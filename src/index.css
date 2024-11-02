@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-body{background: #ccc !important;  font-family: "Roboto", sans-serif;}
+body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 
 .main .sidebarWrapper {height: 100vh;}
 .main .sidebarWrapper .sidebar{height: 100vh; background: #036b29;}
@@ -14,5 +14,5 @@ body{background: #ccc !important;  font-family: "Roboto", sans-serif;}
 .main .sidebarWrapper .sidebar .sidebarTabs button .arrow svg{font-size: 14px;}
 .main .sidebarWrapper .sidebar .sidebarTabs button:hover{background: #052e16 !important; transition: all 0.3s; }
 .main .sidebarWrapper .sidebar .sidebarTabs li button::before{display: none;}
-.main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::after{content: ''; width: 5px; height: 5px;  background: #052e16;  border-radius: 100%; position: absolute; top: 49%; left:10%;}
+.main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::after{content: ''; width: 5px; height: 5px;  background: #052e16;  border-radius: 100%; position: absolute; top: 48%; left:10%;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button{padding: 4px 30px !important;}

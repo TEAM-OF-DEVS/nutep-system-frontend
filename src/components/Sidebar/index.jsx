@@ -11,7 +11,7 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
     <>
       <div className="sidebar fixed top-0 left-0 z-[100] w-[15%]">
@@ -118,4 +118,3 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;

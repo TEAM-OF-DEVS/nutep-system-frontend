@@ -2,6 +2,7 @@ import { createContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar/index.jsx';
 import { Header } from './components/Header/index.jsx';
+import Form from './pages/Form/index.jsx';
 
 
 const MyContext = createContext();
@@ -23,8 +24,12 @@ function App() {
         <Routes>
           <Route path="/" exact={true} element={<Header/>}/>
         </Routes>
+        
+        <Form/>
        </div>
+      
     </section>
+    
       </MyContext.Provider>
     </BrowserRouter>
   
