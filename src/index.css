@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
+body{background: #ccc !important;}
 
-body{background: #f1f1f1;}
-
-.main .sidebar .sidebarWrapper{height: 100vh;}
-.main .sidebar .sidebarWrapper .sidebar{height: 100vh; background: #fff;}
+.main .sidebarWrapper {height: 100vh;}
+.main .sidebarWrapper .sidebar{height: 100vh; background: #fff;}
+.main .sidebarWrapper .sidebar .sidebarTabs button {justify-content: flex-start !important;}
