@@ -12,13 +12,17 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [isToogleSubmenu, setIsToggleSubmenu] = useState(false);
+  const [activeTab, setActiveTab] = useState(null);
+  const [submenuOpen, setSubmenuOpen] = useState(null);
 
   const isOpenSubMenu = (index) => {
+    if (submenuOpen === index) {
+      setSubmenuOpen(null); 
+    } else {
+      setSubmenuOpen(index); 
+    }
     setActiveTab(index);
-    setIsToggleSubmenu(!isToogleSubmenu);
-  }
+  };
 
   return (
     <>
@@ -48,7 +52,7 @@ const Sidebar = () => {
           </ul>
 
           <ul className="pl-0">
-            <li className={`${activeTab === 1 && isToogleSubmenu === true ? 'colapse' : 'colapsed'}`}>
+            <li className={`${submenuOpen === 1 ? 'colapse' : 'colapsed'}`}>
               <Button className={`w-100 ${activeTab === 1 ? 'active' : '' }`} onClick={() => isOpenSubMenu(1)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <NoteAddIcon />
@@ -59,7 +63,7 @@ const Sidebar = () => {
                 </span>
               </Button>
 
-              <div className="submenu">
+              <div className={`submenu ${submenuOpen === 1 ? 'open' : ''}`}>
               <Button className="w-100">
                  Dados Pessoais
               </Button>
