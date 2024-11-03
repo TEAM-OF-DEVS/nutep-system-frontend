@@ -33,14 +33,10 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+            
             </li>
 
-            <div className="submenu">
-              <Button className="w-100">
-                 <span className="dot"></span>
-                 Pacientes
-              </Button>
-            </div>
+         
           </ul>
 
           <ul className="pl-0">
@@ -54,6 +50,22 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+
+              <div className="submenu">
+              <Button className="w-100">
+                 Dados Pessoais
+              </Button>
+              <Button className="w-100">
+                 Dados Serviços Sociais
+              </Button>
+              <Button className="w-100">
+                 Dados Pré-Natais
+              </Button>
+              <Button className="w-100">
+                 Dados Neonatais
+              </Button>
+              
+              </div>
             </li>
           </ul>
 
