@@ -53,7 +53,7 @@ const Sidebar = () => {
 
           <ul className="pl-0">
             <li className={`${submenuOpen === 1 ? 'colapse' : 'colapsed'}`}>
-              <Button className={`w-100 ${activeTab === 1 ? 'active' : '' }`} onClick={() => isOpenSubMenu(1)}>
+              <Button className={`w-100 ${activeTab === 1 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(1)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <NoteAddIcon />
                 </span>
