@@ -10,10 +10,14 @@ body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 .main .sidebarWrapper .sidebar img{background: transparent !important;}
 .main .sidebarWrapper .sidebar .sidebarTabs ul {width: 100%; margin-bottom: 0px;}
 .main .sidebarWrapper .sidebar .sidebarTabs ul li {list-style-type: none; width: 100%;}
-.main .sidebarWrapper .sidebar .sidebarTabs button {justify-content: flex-start !important; color:#fff; text-transform: capitalize; font-size: 16px; font-weight: 600; padding: 2px 10px !important; border-radius: 0px; position: relative;}
+.main .sidebarWrapper .sidebar .sidebarTabs button {justify-content: flex-start !important; color:#fff; text-transform: capitalize; font-size: 16px; font-weight: 600; padding: 4px 10px !important; border-radius: 0px; position: relative;}
 .main .sidebarWrapper .sidebar .sidebarTabs button svg{font-size: 16px;}
 .main .sidebarWrapper .sidebar .sidebarTabs button .arrow svg{font-size: 14px;}
-.main .sidebarWrapper .sidebar .sidebarTabs button:hover{background: #052e16 !important; transition: all 0.3s; }
+.main .sidebarWrapper .sidebar .sidebarTabs button:hover{background: #052e16 !important; transition: all 0.3s;}
+
+.main .sidebarWrapper .sidebar .sidebarTabs li .submenu{position: relative;}
+.main .sidebarWrapper .sidebar .sidebarTabs li .submenu{position: relative; top: 100%; left: 0px; height: 0; opacity: 0; overflow: hidden; transition: all .4s;}
+.main .sidebarWrapper .sidebar .sidebarTabs li.colapse .submenu.open{height: auto; opacity: 1;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::before{display: none;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::after{content: ''; width: 5px; height: 5px;  border-radius: 100%; position: absolute; top: 47%; left: 10%;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button{padding-left: 16px !important; font-weight: 600 !important; font-size: 14px;}

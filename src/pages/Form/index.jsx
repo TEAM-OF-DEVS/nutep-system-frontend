@@ -91,7 +91,7 @@ export function Form() {
           <div className="w-full max-w-sm min-w-[200px]">
             <input
               className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              placeholder="Type here..."
+              placeholder="Descrição da Configuração Familiar"
             />
           </div>
         </span>
@@ -191,7 +191,7 @@ export function Form() {
         </div>
 
         <div className="flex flex-col">
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -203,7 +203,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -215,7 +215,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -227,7 +227,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -239,7 +239,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -251,7 +251,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -263,7 +263,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -275,7 +275,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -300,7 +300,7 @@ export function Form() {
         </div>
 
         <div className="flex flex-col">
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -312,7 +312,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -324,7 +324,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -336,7 +336,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -348,7 +348,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -360,7 +360,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -372,7 +372,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -384,7 +384,7 @@ export function Form() {
               <option value="DE">Germany</option>
             </select>
           </form>
-          <form className="max-w-sm mx-auto pb-2">
+          <form className="max-w-sm mx-auto pb-2 font-bold">
             <select
               id="countries"
               className="w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -410,7 +410,7 @@ export function Form() {
       </div>
 
       <form className="flex flex-row justify-between pt-8 mt-4">
-        <span className="font-bold text-sm px-8">
+        <span className="font-bold text-sm px-4">
           Periodicidade da Terapia
           <form className="max-w-sm mx-auto">
             <select
