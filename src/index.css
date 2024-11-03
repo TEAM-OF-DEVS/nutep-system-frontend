@@ -7,7 +7,7 @@ body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 
 .main .sidebarWrapper {height: 100vh;}
 .main .sidebarWrapper .sidebar{height: 100vh; background: #036b29;}
-.main .sidebarWrapper .sidebar img{background: transparent !important;}
+.main .sidebarWrapper .sidebar img{filter: brightness(0.7) saturate(20.2) hue-rotate(-33deg);}
 .main .sidebarWrapper .sidebar .sidebarTabs ul {width: 100%; margin-bottom: 0px;}
 .main .sidebarWrapper .sidebar .sidebarTabs ul li {list-style-type: none; width: 100%;}
 .main .sidebarWrapper .sidebar .sidebarTabs button {justify-content: flex-start !important; color:#fff; text-transform: capitalize; font-size: 16px; font-weight: 600; padding: 4px 10px !important; border-radius: 0px; position: relative;}
