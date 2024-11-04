@@ -10,6 +10,7 @@ import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import TimelineIcon from "@mui/icons-material/Timeline";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 
 const Sidebar = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -35,8 +36,8 @@ const Sidebar = () => {
 
         <div className="sidebarTabs">
           <ul className="flex gap-3 flex-col pl-0">
-            <li>
-              <Button className={`w-100 ${activeTab === 0 ? 'active' : '' } justify-start gap-2 flex items-center`} onClick={() => isOpenSubMenu(0)}>
+            <li className={`${submenuOpen === 0 ? 'colapse' : 'colapsed'}`}>
+              <Button className={`w-100 ${activeTab === 0 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(0)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md ">
                   <PeopleAltIcon />
                 </span>
@@ -46,9 +47,15 @@ const Sidebar = () => {
                 </span>
               </Button>
             
+              <div className={`submenu ${submenuOpen === 0 ? 'open' : ''}`}>
+              <Button className="w-100">
+                Prontuário
+              </Button>
+              <Button className="w-100">
+                Histórico
+              </Button>
+              </div>
             </li>
-
-         
           </ul>
 
           <ul className="pl-0">
@@ -82,8 +89,8 @@ const Sidebar = () => {
           </ul>
 
           <ul className="pl-0">
-            <li>
-              <Button className={`w-100 ${activeTab === 2 ? 'active' : '' } justify-start gap-2 flex items-center`} onClick={() => isOpenSubMenu(2)}>
+            <li className={`${submenuOpen === 2 ? 'colapse' : 'colapsed'}`}>
+              <Button className={`w-100 ${activeTab === 1 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(2)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <SearchIcon />
                 </span>
@@ -92,12 +99,24 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+
+              <div className={`submenu ${submenuOpen === 2 ? 'open' : ''}`}>
+              <Button className="w-100">
+                Consulta inicial Pediátrica
+              </Button>
+              <Button className="w-100">
+                 Consulta inicial Neurologia
+              </Button>
+              <Button className="w-100">
+                  Consulta de Retorno
+              </Button>
+              </div>
             </li>
           </ul>
 
           <ul className="pl-0">
-            <li>
-              <Button className={`w-100 ${activeTab === 3 ? 'active' : '' } justify-start gap-2 flex items-center`} onClick={() => isOpenSubMenu(3)}>
+            <li className={`${submenuOpen === 3 ? 'colapse' : 'colapsed'}`}>
+              <Button className={`w-100 ${activeTab === 3 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(3)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <ContentPasteIcon />
                 </span>
@@ -106,12 +125,21 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+
+              <div className={`submenu ${submenuOpen === 3 ? 'open' : ''}`}>
+              <Button className="w-100">
+                Criar Agenda
+              </Button>
+              <Button className="w-100">
+                 Bloqueio de Agenda
+              </Button>
+              </div>
             </li>
           </ul>
 
           <ul className="pl-0">
-            <li>
-              <Button className={`w-100 ${activeTab === 4 ? 'active' : '' } justify-start gap-2 flex items-center`} onClick={() => isOpenSubMenu(4)}>
+            <li className={`${submenuOpen === 4 ? 'colapse' : 'colapsed'}`}>
+              <Button className={`w-100 ${activeTab === 4 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(4)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <TimelineIcon />
                 </span>
@@ -120,12 +148,21 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+
+              <div className={`submenu ${submenuOpen === 4 ? 'open' : ''}`}>
+              <Button className="w-100">
+                Pacientes
+              </Button>
+              <Button className="w-100">
+                Atendimentos
+              </Button>
+              </div>
             </li>
           </ul>
 
           <ul className="pl-0">
-            <li>
-              <Button className={`w-100 ${activeTab === 5 ? 'active' : '' } justify-start gap-2 flex items-center`} onClick={() => isOpenSubMenu(5)}>
+            <li className={`${submenuOpen === 5 ? 'colapse' : 'colapsed'}`}>
+              <Button className={`w-100 ${activeTab === 5 ? 'active' : '' } gap-2`} onClick={() => isOpenSubMenu(5)}>
                 <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
                   <SettingsIcon />
                 </span>
@@ -134,6 +171,29 @@ const Sidebar = () => {
                   <ArrowForwardIosIcon />
                 </span>
               </Button>
+
+              <div className={`submenu ${submenuOpen === 5 ? 'open' : ''}`}>
+              <Button className="w-100">
+                Mudar Senha
+              </Button>
+              <Button className="w-100">
+                Criar cadastro/Login
+              </Button>
+              <Button className="w-100">
+                Modo escuro/claro
+              </Button>
+
+              <Button className="w-100">
+                Sair
+
+                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
+                  <LogoutSharpIcon />
+                </span>
+              </Button>
+              
+             
+
+              </div>
             </li>
           </ul>
         </div>
