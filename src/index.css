@@ -21,3 +21,5 @@ body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::before{display: none;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button::after{content: ''; width: 5px; height: 5px;  border-radius: 100%; position: absolute; top: 47%; left: 10%;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button{padding-left: 16px !important; font-weight: 600 !important; font-size: 12px;}
+
+.campoObrigatorio::after {content: " *"; color: red; font-weight: bold;}

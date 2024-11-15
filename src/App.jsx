@@ -2,12 +2,9 @@ import { createContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar/index.jsx';
 import { Header } from './components/Header/index.jsx';
-import { Form } from './pages/Form/index.jsx';
-import { Atendimento } from './pages/Atendimento/index.jsx';
-import { DadosServicoSocial } from './pages/DadosServicoSocial/index.jsx';
-import { SituacaoFamiliar } from './pages/SituacaoFamiliar/index.jsx';
-import { ABEPClasseSocial } from './pages/ABEPClasseSocial/index.jsx';
-
+import { FormServicoSocial } from './pages/FormServicoSocial/index.jsx';
+import { FormCadastroDadosPessoais } from './pages/FormCadastroDadosPessoais/index.jsx';
+import { FormCadastroDadosPreNatais } from './pages/FormCadastroDadosPreNatais/index.jsx';
 
 const MyContext = createContext();
 
@@ -28,11 +25,9 @@ function App() {
               <Routes>
                 <Route path="/" exact={true} element={<Header />} />
               </Routes>
-              <DadosServicoSocial />
-              <SituacaoFamiliar />
-              <ABEPClasseSocial />
-              <Atendimento />
-              <Form />
+              {/* <FormServicoSocial /> */}
+              <FormCadastroDadosPreNatais />
+              {/* <FormCadastroDadosPessoais/> */}
             </div>
           </section>
         </MyContext.Provider>
