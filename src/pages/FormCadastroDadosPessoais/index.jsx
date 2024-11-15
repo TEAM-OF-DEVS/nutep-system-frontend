@@ -10,9 +10,9 @@ export function FormCadastroDadosPessoais() {
     <>
     <h2>Cadastro Dados Pessoais</h2>
       <DadosPaciente />
-      <EncaminhamentoOrigem />
       <DadosPais />
       <Responsavel/>
+      <EncaminhamentoOrigem />
       <div className="flex items-end justify-end px-8 pt-4">
         <button
           type="button"

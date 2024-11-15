@@ -26,8 +26,8 @@ function App() {
                 <Route path="/" exact={true} element={<Header />} />
               </Routes>
               {/* <FormServicoSocial /> */}
-              <FormCadastroDadosPreNatais />
-              {/* <FormCadastroDadosPessoais/> */}
+              {/* <FormCadastroDadosPreNatais /> */}
+              <FormCadastroDadosPessoais/>
             </div>
           </section>
         </MyContext.Provider>
