@@ -1,11 +1,29 @@
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete"
 import { FormField } from "../../components/FormField/FormField"
 import { FormGroup } from "../../components/FormGroup"
+import Antibiotico from "../../models/enum/Antibiotico";
+import DoencaCronica from "../../models/enum/DoencaCronica";
+import DoencaGenetica from "../../models/enum/DoencaGenetica";
+import Intercorrencia from "../../models/enum/Intercorrencia";
+import LocalNascimento from "../../models/enum/LocalNascimento";
+import Malformacao from "../../models/enum/MalFormacao";
+import Terapeutica from "../../models/enum/Terapeutica";
 
 
 export function FormCadastroDadosNeonatais() {
 
-    const locaisDeNascimento = ["Casa de Saúde Nossa Senhora das Graças", "Domicilio", "Hospital ana lima", "Hospital Distrital Gonzaga Mota - Gonzaguinha da Barra do Ceará", "Hospital Distrital Gonzaga Mota - Gonzaguinha da Messejana", "Hospital Distrital Gonzaga Mota - Gonzaguinha do José Walter", "Hospital Distrital Nossa Senhora da Conceição", "Hospital e Maternidade Zilda Arns", "Hospital Geral de Fortaleza (HGF)", "Hospital Geral Dr. César Cals", "Hospital Geral Manuel Assunção Pires", "Hospital São Camilo Cura D´ars", "Hospital Unimed", "MEAC - Maternidade Escola Assis Chateaubriand", "Via Pública", "Outro", "SI"];
+    const locaisDeNascimento = Object.values(LocalNascimento);
+
+    const doencasCronicas = Object.values(DoencaCronica);
+    const doencasGeneticas = Object.values(DoencaGenetica);
+    const antibioticos = Object.values(Antibiotico);
+    const terapeuticaUtilizada = Object.values(Terapeutica);
+    const malformacoes = Object.values(Malformacao);
+    const intercorrencias = Object.values(Intercorrencia);
+
+    const resultadoTeste = ["Alterado", "Normal", "Não realizado", "SI"];
+    const examesRealizados = ["Ecocardiograma", "RNM cerebral", "TC crânio", "US abdominal", "USTF", "Outros", "SI"];
+    const opcaoSimOuNaoOuSi = ["Sim", "Não", "SI"];
     const tiposDeParto = ["Cesária", "Fórceps", "Natural", "SI"];
     const apresentacao = ["Cefálica", "Córmica", "Pélvica", "Outro", "SI"];
     const tiposDeGestacao = ["Feto único", "Gemelaridade", "Outro", "SI"];
@@ -66,19 +84,19 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Peso (g)" isSelect options={locaisDeNascimento} />
+                                <FormField label="Peso (g)" />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Comprimento (cm)" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Perímetro Cefálico (cm)" isSelect options={tiposDeParto} />
+                                <FormField label="Perímetro Cefálico (cm)" />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Perímetro Torácico (cm)" />
                             </div>
                             <div className="w-full sm:w-[32%]">
-                                <FormField label="Apgar 1º Minuto" isSelect options={apresentacao} />
+                                <FormField label="Apgar 1º Minuto" />
                             </div>
                             <div className="w-full sm:w-[32%]">
                                 <FormField label="Apgar 5º Minuto" />
@@ -90,13 +108,13 @@ export function FormCadastroDadosNeonatais() {
                         <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[49%]">
-                                <FormField label="Intercorrências" isSelect options={tiposDeParto} />
+                                <FormField label="Intercorrências" isSelect options={intercorrencias} />
                             </div>
                             <div className="w-full sm:w-[49%]">
                                 <FormField label="Descrição das Intercorrências" />
                             </div>
                             <div className="w-full sm:w-[49%]">
-                                <FormField label="Malformações" isSelect options={apresentacao} />
+                                <FormField label="Malformações" isSelect options={malformacoes} />
                             </div>
                             <div className="w-full sm:w-[49%]">
                                 <FormField label="Descrição das Malformações" />
@@ -106,13 +124,13 @@ export function FormCadastroDadosNeonatais() {
                         <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[35%]">
-                                <FormField label="Terapêutica Utilizada" isSelect options={tiposDeParto} />
+                                <FormField label="Terapêutica Utilizada" isSelect options={terapeuticaUtilizada} />
                             </div>
                             <div className="w-full sm:w-[63%]">
                                 <FormField label="Descrição da Terapêutica utilizada" />
                             </div>
                             <div className="w-full sm:w-[35%]">
-                                <FormField label="Antibióticos" isSelect options={apresentacao} />
+                                <FormField label="Antibióticos" isSelect options={antibioticos} />
                             </div>
                             <div className="w-full sm:w-[63%]">
                                 <FormField label="Descrição do antibióticos" />
@@ -125,7 +143,7 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[35%]">
-                                <FormField label="Cirurgia realizada" isSelect options={locaisDeNascimento} />
+                                <FormField label="Cirurgia realizada" isSelect options={opcaoSimOuNaoOuSi} />
                             </div>
                             <div className="w-full sm:w-[63%]">
                                 <FormField label="Descrição em caso de Cirurgias" />
@@ -148,7 +166,7 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[35%]">
-                                <FormField label="Exames realizados" isSelect options={locaisDeNascimento} />
+                                <FormField label="Exames realizados" isSelect options={examesRealizados} />
                             </div>
                             <div className="w-full sm:w-[63%]">
                                 <FormField label="Descrição para exames realizados" />
@@ -161,22 +179,22 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Pezinho" isSelect options={tiposDeParto} />
+                                <FormField label="Teste do Pezinho" isSelect options={resultadoTeste} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Ouvidinho" isSelect options={tiposDeParto} />
+                                <FormField label="Teste do Ouvidinho" isSelect options={resultadoTeste} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Olhinho" isSelect options={tiposDeParto} />
+                                <FormField label="Teste do Olhinho" isSelect options={resultadoTeste} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Coraçãozinho" isSelect options={tiposDeParto} />
+                                <FormField label="Teste do Coraçãozinho" isSelect options={resultadoTeste} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste da Linguinha" isSelect options={tiposDeParto} />
+                                <FormField label="Teste da Linguinha" isSelect options={resultadoTeste} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste de Ortolani" isSelect options={tiposDeParto} />
+                                <FormField label="Teste de Ortolani" isSelect options={resultadoTeste} />
                             </div>
                         </div>
                     </div>
@@ -186,18 +204,18 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Doenças crônicas" isSelect options={tiposDeParto} />
+                                <FormField label="Doenças crônicas" isSelect options={opcaoSimOuNaoOuSi} />
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Mãe" isSelect options={tiposDeParto} />
+                                <FormField label="Mãe" isSelect options={doencasCronicas} />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Descrição" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Pai" isSelect options={tiposDeParto} />
+                                <FormField label="Pai" isSelect options={doencasCronicas} />
                             </div>
                             <div className="w-full sm:w-[30%]">
                                 <FormField label="Descrição" />
@@ -205,13 +223,13 @@ export function FormCadastroDadosNeonatais() {
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Irmãos" isSelect options={tiposDeParto} />
+                                <FormField label="Irmãos" isSelect options={doencasCronicas} />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Descrição" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós paternos" isSelect options={tiposDeParto} />
+                                <FormField label="Avós paternos" isSelect options={doencasCronicas} />
                             </div>
                             <div className="w-full sm:w-[30%]">
                                 <FormField label="Descrição" />
@@ -219,7 +237,7 @@ export function FormCadastroDadosNeonatais() {
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Avós maternos" isSelect options={tiposDeParto} />
+                                <FormField label="Avós maternos" isSelect options={doencasCronicas} />
                             </div>
                             <div className="w-full sm:w-[65%]">
                                 <FormField label="Descrição" />
@@ -230,18 +248,18 @@ export function FormCadastroDadosNeonatais() {
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Doenças genéticas" isSelect options={tiposDeParto} />
+                                <FormField label="Doenças genéticas" isSelect options={opcaoSimOuNaoOuSi} />
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Mãe" isSelect options={tiposDeParto} />
+                                <FormField label="Mãe" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Descrição" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Pai" isSelect options={tiposDeParto} />
+                                <FormField label="Pai" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[30%]">
                                 <FormField label="Descrição" />
@@ -249,13 +267,13 @@ export function FormCadastroDadosNeonatais() {
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Irmãos" isSelect options={tiposDeParto} />
+                                <FormField label="Irmãos" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Descrição" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós paternos" isSelect options={tiposDeParto} />
+                                <FormField label="Avós paternos" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[30%]">
                                 <FormField label="Descrição" />
@@ -263,13 +281,13 @@ export function FormCadastroDadosNeonatais() {
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós maternos" isSelect options={tiposDeParto} />
+                                <FormField label="Avós maternos" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[20%]">
                                 <FormField label="Descrição" />
                             </div>
                             <div className="w-full sm:w-[20%]">
-                                <FormField label="Tios de 1º grau" isSelect options={tiposDeParto} />
+                                <FormField label="Tios de 1º grau" isSelect options={doencasGeneticas} />
                             </div>
                             <div className="w-full sm:w-[30%]">
                                 <FormField label="Descrição" />
