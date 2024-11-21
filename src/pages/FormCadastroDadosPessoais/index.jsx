@@ -22,7 +22,7 @@ export function FormCadastroDadosPessoais() {
   const racaCor = Object.values(RacaCor)
   const tipoMoradia = Object.values(TipoMoradia);
   const locaisDeNascimento = Object.values(LocalNascimento);
-  const estadoCivil = Object.values(EstadoCivil); 
+  const estadoCivil = Object.values(EstadoCivil);
   const ocupacao = Object.values(Ocupacao);
   const escolaridade = Object.values(Escolaridade);
   const vinculo = Object.values(Vinculo);

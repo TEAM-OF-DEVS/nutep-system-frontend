@@ -202,7 +202,7 @@ export function FormCadastroDadosNeonatais() {
                                 <FormField label="Pai" isSelect options={tiposDeParto} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição"/>
+                                <FormField label="Descrição" />
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
@@ -216,7 +216,7 @@ export function FormCadastroDadosNeonatais() {
                                 <FormField label="Avós paternos" isSelect options={tiposDeParto} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição"/>
+                                <FormField label="Descrição" />
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between gap-4">
@@ -274,7 +274,7 @@ export function FormCadastroDadosNeonatais() {
                                 <FormField label="Tios de 1º grau" isSelect options={tiposDeParto} />
                             </div>
                             <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição"/>
+                                <FormField label="Descrição" />
                             </div>
                         </div>
                     </div>
