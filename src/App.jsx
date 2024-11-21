@@ -5,6 +5,8 @@ import { Header } from './components/Header/index.jsx';
 import { FormServicoSocial } from './pages/FormServicoSocial/index.jsx';
 import { FormCadastroDadosPessoais } from './pages/FormCadastroDadosPessoais/index.jsx';
 import { FormCadastroDadosPreNatais } from './pages/FormCadastroDadosPreNatais/index.jsx';
+import { Home } from './pages/Home/index.jsx';
+import { FormCadastroDadosNeonatais } from './pages/FormCadastroDadosNeonatais/index.jsx';
 
 const MyContext = createContext();
 
@@ -23,11 +25,12 @@ function App() {
 
             <div className='content_Right w-[85%]'>
               <Routes>
-                <Route path="/" exact={true} element={<Header />} />
+                <Route path="/" exact={true} element={[<Header />, <Home/>]} />
+                <Route path="/dados-pre-natais" exact={true} element={<FormCadastroDadosPreNatais />} />
+                <Route path="/dados-pessoais" exact={true} element={<FormCadastroDadosPessoais />} />
+                <Route path="/servico-social" exact={true} element={<FormServicoSocial />} />
+                <Route path="/dados-neonatais" exact={true} element={<FormCadastroDadosNeonatais />} />
               </Routes>
-              {/* <FormServicoSocial /> */}
-              {/* <FormCadastroDadosPreNatais /> */}
-              <FormCadastroDadosPessoais/>
             </div>
           </section>
         </MyContext.Provider>
