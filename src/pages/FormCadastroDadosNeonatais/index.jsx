@@ -1,7 +1,6 @@
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete"
 import { FormField } from "../../components/FormField/FormField"
 import { FormGroup } from "../../components/FormGroup"
-import { Header } from "../../components/Header"
 
 
 export function FormCadastroDadosNeonatais() {
@@ -13,7 +12,6 @@ export function FormCadastroDadosNeonatais() {
 
     return (
         <>
-            <Header />
             <form>
                 <FormGroup title="Dados Neonatais">
                     <AutoComplete />

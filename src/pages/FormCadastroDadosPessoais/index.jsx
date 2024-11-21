@@ -1,5 +1,4 @@
 import React from "react";
-import { Header } from "../../components/Header/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import Nacionalidade from "../../models/enum/Nacionalidade.js";
@@ -43,8 +42,6 @@ export function FormCadastroDadosPessoais() {
 
   return (
     <>
-      <Header />
-
       {/* DADOS PACIENTE */}
       <form>
         <FormGroup title="Dados Paciente" description="Cadastro de dados pessoais do Paciente">

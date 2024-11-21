@@ -1,5 +1,4 @@
 import React from "react";
-import { Header } from "../../components/Header/index.jsx";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
@@ -24,7 +23,6 @@ export function FormCadastroDadosPreNatais() {
 
   return (
     <>
-      <Header />
       <form>
         {/*DADOS PRE NATAIS*/}
         <AutoComplete />

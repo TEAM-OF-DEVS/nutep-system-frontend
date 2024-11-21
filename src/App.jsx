@@ -25,11 +25,11 @@ function App() {
 
             <div className='content_Right w-[85%]'>
               <Routes>
-                <Route path="/" exact={true} element={[<Header />, <Home/>]} />
-                <Route path="/dados-pre-natais" exact={true} element={<FormCadastroDadosPreNatais />} />
-                <Route path="/dados-pessoais" exact={true} element={<FormCadastroDadosPessoais />} />
-                <Route path="/servico-social" exact={true} element={<FormServicoSocial />} />
-                <Route path="/dados-neonatais" exact={true} element={<FormCadastroDadosNeonatais />} />
+                <Route path="/" exact={true} element={[<Header />, <Home />]} />
+                <Route path="/dados-pre-natais" exact={true} element={[<Header />, <FormCadastroDadosPreNatais />]} />
+                <Route path="/dados-pessoais" exact={true} element={[<Header />, <FormCadastroDadosPessoais />]} />
+                <Route path="/servico-social" exact={true} element={[<Header />, <FormServicoSocial />]} />
+                <Route path="/dados-neonatais" exact={true} element={[<Header />, <FormCadastroDadosNeonatais />]} />
               </Routes>
             </div>
           </section>

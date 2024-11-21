@@ -1,5 +1,4 @@
 import React from "react";
-import { Header } from "../../components/Header/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
@@ -23,7 +22,6 @@ export function FormServicoSocial() {
 
   return (
     <>
-      <Header />
       <AutoComplete />
       <form>
         {/* Dados Serviço Social */}
