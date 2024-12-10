@@ -6,7 +6,7 @@
 body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 
 .main .sidebarWrapper {height: 100vh;}
-.main .sidebarWrapper .sidebar{height: 100vh; background: #013f2c;}
+.main .sidebarWrapper .sidebar{height: 100vh; background: #003223;}
 .main .sidebarWrapper .sidebar .sidebarTabs ul {width: 100%; margin-bottom: 0px;}
 .main .sidebarWrapper .sidebar .sidebarTabs ul li {list-style-type: none; width: 100%;}
 .main .sidebarWrapper .sidebar .sidebarTabs button {justify-content: flex-start !important; color:#fff; text-transform: capitalize; font-size: 16px; font-weight: 600; padding: 4px 10px !important; border-radius: 0px; position: relative;}
@@ -22,3 +22,4 @@ body{background: #fff !important;  font-family: "Roboto", sans-serif;}
 .main .sidebarWrapper .sidebar .sidebarTabs li .submenu button{padding-left: 16px !important; font-weight: 600 !important; font-size: 12px;}
 
 .campoObrigatorio::after {content: " *"; color: red; font-weight: bold;}
+.errorMessage { color:#EF4A50; }

@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const FormField = ({ isGrid = false, name = "", value, label = "", placeholder = label, type = "text", styleClass = "", 
-  styleInput = "", isSelect = false, options = [], onChange = () => { } }) => (
+export const FormField = ({ isAPI = false,
+  isGrid = false, name = "", value, label = "", placeholder = label, type = "text", styleClass = "",
+  styleInput = "", isSelect = false, options = [], onChange = () => { }, error, displayAttribute = "label"
+}) => (
   <div className={isGrid ? "flex items-center space-x-2 font-bold text-sm" : "flex flex-col space-y-1 font-bold text-sm"} >
     <label className={isGrid ? `${styleClass} font-bold text-sm text-gray-800 w-1/2` : `${styleClass} font-bold text-sm text-gray-800`}>{label}</label>
     <div className={isGrid ? "" : "w-full max-w-sm min-w-[100%]"}>
@@ -11,7 +13,9 @@ export const FormField = ({ isGrid = false, name = "", value, label = "", placeh
         >
           <option value="">Selecione</option>
           {options.map((option, idx) => (
-            <option key={idx} value={option}>{option}</option>
+            <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
+              {option[displayAttribute]}
+            </option>
           ))}
         </select>
       ) : (
@@ -21,6 +25,7 @@ export const FormField = ({ isGrid = false, name = "", value, label = "", placeh
         />
       )}
     </div>
+    {error && <span className="errorMessage text-xs">{error}</span>}
   </div>
 );
 
