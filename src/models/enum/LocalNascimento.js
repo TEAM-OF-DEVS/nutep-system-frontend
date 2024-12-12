@@ -1,6 +1,6 @@
 const LocalNascimento = {
     CASA_DE_SAUDE_NOSSA_SENHORA_DAS_GRACAS: "Casa de Saúde Nossa Senhora das Graças",
-    DOMICILIO: "Domicilio",
+    DOMICILIO: "Domicílio",
     HOSPITAL_ANA_LIMA: "Hospital ana lima",
     HOSPITAL_DISTRITAL_GONZAGA_MOTA_BARRA_DO_CEARA: "Hospital Distrital Gonzaga Mota - Gonzaguinha da Barra do Ceará",
     HOSPITAL_DISTRITAL_GONZAGA_MOTA_MESSEJANA: "Hospital Distrital Gonzaga Mota - Gonzaguinha da Messejana",
