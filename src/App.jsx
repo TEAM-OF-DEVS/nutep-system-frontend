@@ -14,6 +14,15 @@ function App() {
 
   const values = {}
 
+  const routes = [
+    // { path: '/', component: <Home /> },
+    { path: '/', component: <FormCadastroDadosPessoais /> },
+    { path: '/dados-pessoais', component: <FormCadastroDadosPessoais /> },
+    // { path: '/dados-pre-natais', component: <FormCadastroDadosPreNatais /> },
+    // { path: '/servico-social', component: <FormServicoSocial /> },
+    // { path: '/dados-neonatais', component: <FormCadastroDadosNeonatais /> },
+  ]
+
   return (
     <>
       <BrowserRouter>
@@ -25,11 +34,9 @@ function App() {
 
             <div className='content_Right w-[85%]'>
               <Routes>
-                <Route path="/" exact={true} element={[<Header />, <Home />]} />
-                <Route path="/dados-pre-natais" exact={true} element={[<Header />, <FormCadastroDadosPreNatais />]} />
-                <Route path="/dados-pessoais" exact={true} element={[<Header />, <FormCadastroDadosPessoais />]} />
-                <Route path="/servico-social" exact={true} element={[<Header />, <FormServicoSocial />]} />
-                <Route path="/dados-neonatais" exact={true} element={[<Header />, <FormCadastroDadosNeonatais />]} />
+                {routes.map((route, index) => (
+                  <Route key={index} path={route.path} exact={true} element={[<Header />, route.component]} />
+                ))}
               </Routes>
             </div>
           </section>

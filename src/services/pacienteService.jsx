@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:9090/pacientes"; // Substitua pela URL correta da API.
+const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
 
 const PacienteService = {
   // Recuperar todos os pacientes
@@ -13,6 +13,17 @@ const PacienteService = {
       throw error;
     }
   },
+
+  getByProntuario: async (prontuario) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/${prontuario}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
+      throw error;
+    }
+  },
+
 
   // Recuperar um paciente por ID
   getById: async (id) => {
@@ -29,7 +40,7 @@ const PacienteService = {
   create: async (dadosPaciente) => {
     try {
       const response = await axios.post(BASE_URL, dadosPaciente);
-      return response.data;
+      return <div>{response.status}</div>;
     } catch (error) {
       console.error("Erro ao criar paciente:", error);
       throw error;

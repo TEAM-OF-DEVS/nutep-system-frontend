@@ -12,7 +12,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="nomeCompleto"]').type('João da Silva');
         cy.get('input[name="dataNascimento"]').type('1990-01-01');
         //---------------//
-        cy.get('input[name="cpf"]').type('123.456.789-01');
+        cy.get('input[name="cpf"]').type('280.852.670-98');
         cy.get('select[name="nacionalidade"]').select('Brasileiro');
         cy.get('select[name="naturalidade"]').select('Quixadá');
         cy.get('select[name="uf"]').select('CE - Ceará');
@@ -38,7 +38,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="dataNascimentoMae"]').type('1980-01-01');
         cy.get('select[name="responsavelPelaCriancaMae"]').select('Sim');
         //---------------//
-        cy.get('input[name="cpfMae"]').type('123.456.789-01');
+        cy.get('input[name="cpfMae"]').type('359.784.220-87');
         cy.get('select[name="tipoRacaCorMae"]').select('Branca');
         cy.get('select[name="estadoCivilMae"]').select('Casado(a)');
         cy.get('input[name="telefone1Mae"]').type('(88) 9 9446-2965');
@@ -52,7 +52,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="dataNascimentoPai"]').type('1970-01-01');
         cy.get('select[name="responsavelPelaCriancaPai"]').select('Sim');
         //---------------//
-        cy.get('input[name="cpfPai"]').type('123.456.789-01');
+        cy.get('input[name="cpfPai"]').type('519.675.380-00');
         cy.get('select[name="tipoRacaCorPai"]').select('Branca');
         cy.get('select[name="estadoCivilPai"]').select('Casado(a)');
         cy.get('input[name="telefone1Pai"]').type('(88) 9 9446-2965');
@@ -68,7 +68,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         //---------------//
         cy.get('input[name="descricaoVinculoResponsavel"]').type('Avô materno');
         //---------------//
-        cy.get('input[name="cpfResponsavel"]').type('123.456.789-01');
+        cy.get('input[name="cpfResponsavel"]').type('045.516.520-32');
         cy.get('select[name="tipoRacaCorResponsavel"]').select('Branca');
         cy.get('select[name="estadoCivilResponsavel"]').select('Solteiro(a)');
         cy.get('input[name="telefone1Responsavel"]').type('(88) 9 9446-2965');
@@ -83,8 +83,9 @@ describe('Formulário de Cadastro de Paciente', () => {
 
         // Enviar o formulário
         cy.get('button[name="salvar"]').click();
+        cy.wait(4000);
 
         // Verificar se o envio foi bem-sucedido
-        //cy.contains('Paciente cadastrado com sucesso!').should('be.visible');
+        cy.contains('O paciente foi cadastrado com sucesso.').should('be.visible');
     });
 });

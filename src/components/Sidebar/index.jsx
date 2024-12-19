@@ -76,21 +76,21 @@ const Sidebar = () => {
                     Dados Pessoais
                   </Button>
                 </Link>
-                <Link to="/servico-social">
+                {/* <Link to="/servico-social"> */}
                   <Button className="w-100">
                     Dados Serviços Sociais
                   </Button>
-                </Link>
-                <Link to="/dados-pre-natais">
+                {/* </Link> */}
+                {/* <Link to="/dados-pre-natais"> */}
                   <Button className="w-100">
                     Dados Pré-Natais
                   </Button>
-                </Link>
-                <Link to="/dados-neonatais">
+                {/* </Link> */}
+                {/* <Link to="/dados-neonatais"> */}
                   <Button className="w-100">
                     Dados Neonatais
                   </Button>
-                </Link>
+                {/* </Link> */}
               </div>
             </li>
           </ul>
@@ -197,9 +197,6 @@ const Sidebar = () => {
                     <LogoutSharpIcon />
                   </span>
                 </Button>
-
-
-
               </div>
             </li>
           </ul>

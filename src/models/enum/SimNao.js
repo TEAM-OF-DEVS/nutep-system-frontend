@@ -1,6 +1,6 @@
 const SimOuNao = {
-    true: "Sim",
-    false: "Não"
+    Sim: true,
+    Não: false,
 };
 
 export default SimOuNao;

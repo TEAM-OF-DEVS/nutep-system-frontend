@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:9090/municipios"; // Substitua pela URL correta da API.
+const BASE_URL = "http://localhost:3001/municipios"; // Substitua pela URL correta da API.
 
 const MunicipioService = {
   // Recuperar todos os municipios

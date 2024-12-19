@@ -1,3 +1,5 @@
+import SimOuNao from "../enum/SimNao";
+
 class PacienteBuilder {
     constructor() {
         this.dadosFormulario = {}; // Inicializa com um objeto vazio
@@ -11,21 +13,21 @@ class PacienteBuilder {
     criarEndereco() {
         return {
             ativo: true,
-            dataCricao: new Date(Date.now()),
-            CEP: this.dadosFormulario.cep,
+            dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
             dsLogradouro: this.dadosFormulario.logradouro,
             nrLogradouro: this.dadosFormulario.numero,
             dsComplementoLogradouro: this.dadosFormulario.complemento,
             dsBairro: this.dadosFormulario.bairro,
             municipioLogradouro: JSON.parse(this.dadosFormulario.municipioLogradouro),
             tpMoradia: this.dadosFormulario.tpMoradia,
+            cep: this.dadosFormulario.cep,
         };
     }
 
     criarResponsavel(nomeCampo, campos) {
         return {
             ativo: true,
-            dataCricao: new Date(Date.now()),
+            dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
             dsNome: this.dadosFormulario[campos.nome],
             dataNascimento: this.dadosFormulario[campos.dataNascimento],
             dsCPF: this.dadosFormulario[campos.cpf],
@@ -34,10 +36,7 @@ class PacienteBuilder {
             escolaridade: this.dadosFormulario[campos.escolaridade],
             ocupacao: this.dadosFormulario[campos.ocupacao],
             dsOutroTipoDeOcupacaoResponsavel: this.dadosFormulario[campos.descricaoOcupacao],
-            telefone: [
-                { string: this.dadosFormulario[campos.telefone1] },
-                { string: this.dadosFormulario[campos.telefone2] },
-            ],
+            telefone: [ "88 - 9 9446-2965", "88 - 9 9446-2965" ],
         };
     }
 
@@ -51,8 +50,7 @@ class PacienteBuilder {
             escolaridade: "escolaridadeMae",
             ocupacao: "ocupacaoMae",
             descricaoOcupacao: "descricaoOcupacaoMae",
-            telefone1: "telefone1Mae",
-            telefone2: "telefone2Mae",
+            telefone: ["telefone1Mae", "telefone2Mae"]
         });
     }
 
@@ -66,8 +64,7 @@ class PacienteBuilder {
             escolaridade: "escolaridadePai",
             ocupacao: "ocupacaoPai",
             descricaoOcupacao: "descricaoOcupacaoPai",
-            telefone1: "telefone1Pai",
-            telefone2: "telefone2Pai",
+            telefone: ["88 - 9 9446-2965", "88 - 9 9446-2965"]
         });
     }
 
@@ -81,15 +78,14 @@ class PacienteBuilder {
             escolaridade: "escolaridadeResponsavel",
             ocupacao: "ocupacaoResponsavel",
             descricaoOcupacao: "descricaoOcupacaoResponsavel",
-            telefone1: "telefone1Responsavel",
-            telefone2: "telefone2Responsavel",
+            telefone: ["88 - 9 9446-2965", "88 - 9 9446-2965"]
         });
     }
 
     build() {
         return {
             ativo: true,
-            dataCricao: new Date(Date.now()),
+            dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
             naturalidade: JSON.parse(this.dadosFormulario.naturalidade),
             nacionalidade: this.dadosFormulario.nacionalidade,
             procedencia: this.dadosFormulario.procedencia,
@@ -107,10 +103,10 @@ class PacienteBuilder {
             sexo: this.dadosFormulario.sexo,
             tipoRacaCor: this.dadosFormulario.tipoRacaCor,
             descricaoCartaoSUS: this.dadosFormulario.descricaoCartaoSUS,
-            isConstaPai: this.dadosFormulario.responsavelPelaCriancaPai,
-            isConstaMae: this.dadosFormulario.responsavelPelaCriancaMae,
-            isPaiResponsavel: this.dadosFormulario.responsavelPelaCriancaPai,
-            isMaeResponsavel: this.dadosFormulario.responsavelPelaCriancaMae,
+            isConstaPai: this.dadosFormulario.responsavelPelaCriancaPai != "false" ? SimOuNao.Sim : SimOuNao.Não,
+            isConstaMae: this.dadosFormulario.responsavelPelaCriancaMae != "false" ? SimOuNao.Sim : SimOuNao.Não,
+            isPaiResponsavel: this.dadosFormulario.responsavelPelaCriancaPai != "false" ? SimOuNao.Sim : SimOuNao.Não,
+            isMaeResponsavel: this.dadosFormulario.responsavelPelaCriancaMae != "false" ? SimOuNao.Sim : SimOuNao.Não,
         };
     }
 }

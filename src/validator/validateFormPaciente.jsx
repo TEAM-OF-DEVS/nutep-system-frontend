@@ -1,4 +1,12 @@
 /**
+ * Função para capitalizar a primeira letra de uma string
+ */
+const firstLetter = (string) => {
+  if (!string) return "";
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+/**
  * Valida um campo com base nas regras fornecidas.
  * @param {string} name - Nome do campo.
  * @param {string|number} value - Valor do campo.
@@ -9,19 +17,17 @@ export const validateField = (name, value, rules = {}) => {
   const errors = [];
 
   // Validação de campo obrigatório
-  if (rules.required && (!value || value.trim() === "")) {
-    errors.push(`${name} é obrigatório.`);
+  if (rules.required && (!value || (typeof value === "string" && value.trim() === ""))) {
+    errors.push(`${firstLetter(name)} é obrigatório.`);
   }
 
+  // if (rules.required && (!value || (typeof value === "string" && value.trim() === ""))) {
+  //   errors.push(`${firstLetter(name)} é obrigatório.`);
+  // }
   // Validação de comprimento mínimo (aplicada apenas se o valor não estiver vazio)
-  if (
-    rules.minLength &&
-    value &&
-    typeof value === "string" &&
-    value.trim().length < rules.minLength
-  ) {
-    errors.push(`${name} deve ter pelo menos ${rules.minLength} caracteres.`);
-  }
+  // if (rules.minLength && value && typeof value === "string" && value.trim().length < rules.minLength) {
+  //   errors.push(`${firstLetter(name)} deve ter pelo menos ${rules.minLength} caracteres.`);
+  // }
 
   return errors.length > 0 ? errors.join(" ") : null;
 };
@@ -36,6 +42,7 @@ export const validateForm = (formData, validationRules) => {
   const errors = {};
 
   Object.keys(validationRules).forEach((field) => {
+    console.log(validationRules);
     const error = validateField(field, formData[field], validationRules[field]);
     if (error) {
       errors[field] = error;
