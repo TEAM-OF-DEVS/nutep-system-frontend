@@ -105,7 +105,7 @@ export function FormCadastroDadosNeonatais() {
                                 <FormField label="Apgar 10º Minuto" />
                             </div>
                         </div>
-                        <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+                        <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[49%]">
                                 <FormField label="Intercorrências" isSelect options={intercorrencias} />
@@ -120,8 +120,7 @@ export function FormCadastroDadosNeonatais() {
                                 <FormField label="Descrição das Malformações" />
                             </div>
                         </div>
-
-                        <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+                        <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[35%]">
                                 <FormField label="Terapêutica Utilizada" isSelect options={terapeuticaUtilizada} />
@@ -244,7 +243,7 @@ export function FormCadastroDadosNeonatais() {
                             </div>
                         </div>
                     </div>
-                    <hr className="h-1 mx-auto my-4  bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+                    <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
                     <div className="space-y-4 px-8 py-6">
                         <div className="flex flex-wrap justify-between gap-4">
                             <div className="w-full sm:w-[30%]">

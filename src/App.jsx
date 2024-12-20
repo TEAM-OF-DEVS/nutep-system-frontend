@@ -15,12 +15,12 @@ function App() {
   const values = {}
 
   const routes = [
-    // { path: '/', component: <Home /> },
-    { path: '/', component: <FormCadastroDadosPessoais /> },
+    { path: '/', component: <Home /> },
+    // { path: '/', component: <FormCadastroDadosPessoais /> },
     { path: '/dados-pessoais', component: <FormCadastroDadosPessoais /> },
-    // { path: '/dados-pre-natais', component: <FormCadastroDadosPreNatais /> },
-    // { path: '/servico-social', component: <FormServicoSocial /> },
-    // { path: '/dados-neonatais', component: <FormCadastroDadosNeonatais /> },
+    { path: '/dados-pre-natais', component: <FormCadastroDadosPreNatais /> },
+    { path: '/servico-social', component: <FormServicoSocial /> },
+    { path: '/dados-neonatais', component: <FormCadastroDadosNeonatais /> },
   ]
 
   return (

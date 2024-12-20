@@ -242,19 +242,19 @@ export function FormCadastroDadosPessoais() {
       {/* DADOS PACIENTE */}
       <form>
 
-      {message === "201" ? (
-        <MessageAlert
-          type="success"
-          title="Cadastrado com sucesso!"
-          message="O paciente foi cadastrado com sucesso."
-        />
-      ) : message === "400" ? (
-        <MessageAlert
-          type="error"
-          title="Erro no cadastro"
-          message="Houve um problema ao cadastrar o paciente."
-        />
-      ) : null}
+        {message === "201" ? (
+          <MessageAlert
+            type="success"
+            title="Cadastrado com sucesso!"
+            message="O paciente foi cadastrado com sucesso."
+          />
+        ) : message === "400" ? (
+          <MessageAlert
+            type="error"
+            title="Erro no cadastro"
+            message="Houve um problema ao cadastrar o paciente."
+          />
+        ) : null}
 
         <FormGroup title="Dados Paciente" description="Cadastro de dados pessoais do Paciente">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
@@ -293,151 +293,81 @@ export function FormCadastroDadosPessoais() {
         {/* DADOS DOS PAIS */}
 
         <FormGroup title="Dados dos Pais" description="Cadastro de dados pessoais dos pais do Paciente">
-          <div className="flex items-center mt-8 px-8 w-full">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="nomeMae" label="Nome da Mãe" placeholder="Nome" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeMae} />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField name="dataNascimentoMae" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataNascimentoMae} />
-            </span>
-            <span className="font-bold text-sm w-[20%]">
-              <FormField name="responsavelPelaCriancaMae" label="Responsável pela criança" styleClass="campoObrigatorio" isSelect options={simOuNao} onChange={onChange} error={errors.responsavelPelaCriancaMae} />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
+            <FormField name="nomeMae" label="Nome da Mãe" placeholder="Nome" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeMae} />
+            <FormField name="dataNascimentoMae" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataNascimentoMae} />
+            <FormField name="cpfMae" label="CPF" styleClass="campoObrigatorio" placeholder="000.000.000-00" onChange={onChange} error={errors.cpfMae} />
+            <FormField name="responsavelPelaCriancaMae" label="Responsável pela criança" styleClass="campoObrigatorio" isSelect options={simOuNao} onChange={onChange} error={errors.responsavelPelaCriancaMae} />
           </div>
-          <div className="flex items-center mt-8 px-8 ">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="cpfMae" label="CPF" styleClass="campoObrigatorio" placeholder="000.000.000-00" onChange={onChange} error={errors.cpfMae} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="tipoRacaCorMae" label="Raça/Cor" styleClass="campoObrigatorio" isSelect options={tipoRacaCor} onChange={onChange} error={errors.tipoRacaCorMae} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="estadoCivilMae" label="Estado Civil" styleClass="campoObrigatorio" isSelect options={estadoCivil} onChange={onChange} error={errors.estadoCivilMae} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="telefone1Mae" label="Telefone 1" placeholder="Telefone" styleClass="campoObrigatorio" onChange={onChange} error={errors.telefone1Mae} />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField name="telefone2Mae" label="Telefone 2" placeholder="Telefone" onChange={onChange} error={errors.telefone2Mae} />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
+            <FormField name="tipoRacaCorMae" label="Raça/Cor" styleClass="campoObrigatorio" isSelect options={tipoRacaCor} onChange={onChange} error={errors.tipoRacaCorMae} />
+            <FormField name="estadoCivilMae" label="Estado Civil" styleClass="campoObrigatorio" isSelect options={estadoCivil} onChange={onChange} error={errors.estadoCivilMae} />
+            <FormField name="telefone1Mae" label="Telefone 1" placeholder="Telefone" styleClass="campoObrigatorio" onChange={onChange} error={errors.telefone1Mae} />
+            <FormField name="telefone2Mae" label="Telefone 2" placeholder="Telefone" onChange={onChange} error={errors.telefone2Mae} />
           </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="escolaridadeMae" label="Escolaridade" styleClass="campoObrigatorio" isSelect options={escolaridade} onChange={onChange} error={errors.escolaridadeMae} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="ocupacaoMae" label="Ocupação" styleClass="campoObrigatorio" isSelect options={ocupacao} onChange={onChange} error={errors.ocupacaoMae} />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField name="descricaoOcupacaoMae" label="Descrição da ocupação" placeholder="Descrição" onChange={onChange} error={errors.descricaoOcupacaoMae} />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField name="escolaridadeMae" label="Escolaridade" styleClass="campoObrigatorio" isSelect options={escolaridade} onChange={onChange} error={errors.escolaridadeMae} />
+            <FormField name="ocupacaoMae" label="Ocupação" styleClass="campoObrigatorio" isSelect options={ocupacao} onChange={onChange} error={errors.ocupacaoMae} />
+            <FormField name="descricaoOcupacaoMae" label="Descrição da ocupação" placeholder="Descrição" onChange={onChange} error={errors.descricaoOcupacaoMae} />
           </div>
-          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-          <div className="flex items-center mt-8 px-8" >
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="nomePai" label="Nome do Pai (Caso desconhecido, selecionar a opção ao lado)" placeholder="Nome"
-                styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.nomePai} />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField name="nadaConsta" label="NC" type="checkbox" styleInput="w-6 h-6" onChange={handleCheckboxChange} />
-            </span>
-            <span className="font-bold text-sm mr-5" >
+          <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          {/* <div className={`${isChecked ? 'bg-neutral-200 pt-4 pb-4'  : ''}`}> */}
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
+              <FormField name="nadaConsta" label="NC (Caso desconhecido, selecionar está opção)" type="checkbox" styleInput="w-6 h-6" onChange={handleCheckboxChange} />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4'">
+              <FormField name="nomePai" label="Nome do Pai" placeholder="Nome"
+                styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.nomePai} className="col-span-1" />
               <FormField name="dataNascimentoPai" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.dataNascimentoPai} />
-            </span>
-            <span className="font-bold text-sm w-[20%]">
               <FormField name="responsavelPelaCriancaPai" label="Responsável pela criança" styleClass="campoObrigatorio" isSelect options={simOuNao} onChange={onChange} isDisable={isChecked} error={errors.responsavelPelaCriancaPai} />
-            </span>
-          </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-8 pt-4">
               <FormField name="cpfPai" label="CPF" styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.cpfPai} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
               <FormField name="tipoRacaCorPai" label="Raça/Cor" styleClass="campoObrigatorio" isSelect options={tipoRacaCor} onChange={onChange} isDisable={isChecked} error={errors.tipoRacaCorPai} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full" >
               <FormField name="estadoCivilPai" label="Estado Civil" styleClass="campoObrigatorio" isSelect options={estadoCivil} onChange={onChange} isDisable={isChecked} error={errors.estadoCivilPai} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
               <FormField name="telefone1Pai" label="Telefone 1" placeholder="Telefone" styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.telefone1Pai} />
-            </span>
-            <span className="font-bold text-sm w-full">
               <FormField name="telefone2Pai" label="Telefone 2" placeholder="Telefone" onChange={onChange} isDisable={isChecked} error={errors.telefone2Pai} />
-            </span>
-          </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-[30%]">
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
               <FormField name="escolaridadePai" label="Escolaridade" styleClass="campoObrigatorio" isSelect options={escolaridade} onChange={onChange} isDisable={isChecked} error={errors.escolaridadePai} />
-            </span>
-            <span className="font-bold text-sm mr-5">
               <FormField name="ocupacaoPai" label="Ocupação" styleClass="campoObrigatorio" isSelect options={ocupacao} onChange={onChange} isDisable={isChecked} error={errors.ocupacaoPai} />
-            </span>
-            <span className="font-bold text-sm w-full">
               <FormField name="descricaoOcupacaoPai" label="Descrição da ocupação" placeholder="Descrição" onChange={onChange} isDisable={isChecked} error={errors.descricaoOcupacaoPai} />
-            </span>
-          </div>
+            </div>
+          {/* </div> */}
         </FormGroup>
 
         {/* DADOS RESPONSAVEL*/}
 
         <FormGroup title="Responsável" description="Cadastro de dados pessoais do responsável do Paciente">
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-10 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
               <FormField name="nomeResponsavel" label="Nome do Responsável" placeholder="Nome" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeResponsavel} />
-            </span>
-            <span className="font-bold text-sm mr-10">
               <FormField name="dataNascimentoResponsavel" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataNascimentoResponsavel} />
-            </span>
-            <span className="font-bold text-sm w-[20%]" >
               <FormField name="vinculoResponsavel" label="Vínculo" styleClass="campoObrigatorio" isSelect options={vinculo} onChange={onChange} error={errors.vinculoResponsavel} />
-            </span>
           </div>
-          <div className="flex items-center mt-8 px-8 w-full">
-            <span className="font-bold text-sm w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
               <FormField name="descricaoVinculoResponsavel" label="Descrição do Vínculo" onChange={onChange} error={errors.descricaoVinculoResponsavel} />
-            </span>
           </div>
 
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-8 pt-4">
               <FormField name="cpfResponsavel" label="CPF" styleClass="campoObrigatorio" onChange={onChange} error={errors.cpfResponsavel} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
               <FormField name="tipoRacaCorResponsavel" label="Raça/Cor" styleClass="campoObrigatorio" isSelect options={tipoRacaCor} onChange={onChange} error={errors.tipoRacaCorResponsavel} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
               <FormField name="estadoCivilResponsavel" label="Estado Civil" styleClass="campoObrigatorio" isSelect options={estadoCivil} onChange={onChange} error={errors.estadoCivilResponsavel} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
               <FormField name="telefone1Responsavel" label="Telefone 1" placeholder="Telefone" styleClass="campoObrigatorio" onChange={onChange} error={errors.telefone1Responsavel} />
-            </span>
-            <span className="font-bold text-sm w-full">
               <FormField name="telefone2Responsavel" label="Telefone 2" placeholder="Telefone" onChange={onChange} error={errors.telefone2Responsavel} />
-            </span>
           </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-[40%]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
               <FormField name="escolaridadeResponsavel" label="Escolaridade" styleClass="campoObrigatorio" isSelect options={escolaridade} onChange={onChange} error={errors.escolaridadeResponsavel} />
-            </span>
-            <span className="font-bold text-sm mr-5 w-[40%]">
               <FormField name="ocupacaoResponsavel" label="Ocupação" styleClass="campoObrigatorio" isSelect options={ocupacao} onChange={onChange} error={errors.ocupacaoResponsavel} />
-            </span>
-            <span className="font-bold text-sm w-full">
               <FormField name="descricaoOcupacaoResponsavel" label="Descrição da ocupação" placeholder="Descrição" onChange={onChange} error={errors.descricaoOcupacaoResponsavel} />
-            </span>
           </div>
         </FormGroup>
 
         {/* ENCAMINHAMENTO ORIGEM */}
 
         <FormGroup title="Encaminhamento de Origem">
-          <div className="flex items-center mt-8 px-8 ">
-            <span className="font-bold text-sm mr-10 w-[50%]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
               <FormField name="procedencia" label="Procedência" isSelect styleClass="campoObrigatorio" options={procedencias} onChange={onChange} error={errors.procedencia} />
-            </span>
-            <span className="font-bold text-sm w-full">
               <FormField name="dsOutroTipoDeProcedenciaPaciente" label="Descrição da Procedência" placeholder="Descrição" styleClass="campoObrigatorio" onChange={onChange} error={errors.dsOutroTipoDeProcedenciaPaciente} />
-            </span>
           </div>
         </FormGroup>
 

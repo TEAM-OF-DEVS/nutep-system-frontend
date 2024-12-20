@@ -79,25 +79,25 @@ export function FormCadastroDadosPreNatais() {
               <FormField isGrid label="Tempo de gestação na 1ª consulta (Semanas)" />
               <FormField isGrid label="Planejamento da gestação" isSelect options={planejamentoDeGestacao} />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Método contraceptivo anterior à gestação" isSelect options={contraceptiveMethods} />
               <FormField isGrid label="Descrição do método contraceptivo" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Uso de Aborto" isSelect options={listSimOuNao} />
               <FormField isGrid label="Tempo gestação (Semanas)" />
               <FormField isGrid label="Meio Aborto" isSelect options={meioAbortivo} />
               <FormField isGrid label="Descrição do meio abortivo" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} />
               <FormField isGrid label="Descrição da Consanguinidade" />
             </div>
 
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} />
               <FormField isGrid label="Descrição da Intercorrência" />
@@ -108,27 +108,27 @@ export function FormCadastroDadosPreNatais() {
               <FormField isGrid label="Infecções" isSelect options={infeccoes} />
               <FormField isGrid label="Descrição de Infecções" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} />
               <FormField isGrid label="Descrição de Doenças Pré existentes" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} />
               <FormField isGrid label="Descrição dos exames realizados pela mãe" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} />
               <FormField isGrid label="Descrição dos exames realizados pela mãe" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} />
               <FormField isGrid label="Descrição dos medicamentos utilizados pela mãe" />
             </div>
-            <hr className="h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} />
               <FormField isGrid label="Qual periodo (semanas)" />
