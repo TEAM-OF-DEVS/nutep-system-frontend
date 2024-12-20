@@ -256,7 +256,6 @@ export function FormCadastroDadosPessoais() {
         />
       ) : null}
 
-
         <FormGroup title="Dados Paciente" description="Cadastro de dados pessoais do Paciente">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
             <FormField name="dataAdmissao" label="Data da Admissão" placeholder="00/00/0000" type="date" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataAdmissao} />
