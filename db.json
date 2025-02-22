@@ -739,6 +739,10 @@
       "nome": "Ceará"
     }
   ],
+  "usuários":  [
+    { "id": 1, "email": "teste@teste.com", "password": "123456" },
+    { "id": 2, "email": "usuario@exemplo.com", "password": "senha123" }
+  ],
   "pacientes": [
     {
       "id": "0b8d",
@@ -1785,4 +1789,5 @@
       "isMaeResponsavel": true
     }
   ]
+  
 }
