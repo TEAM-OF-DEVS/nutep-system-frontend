@@ -37,266 +37,122 @@ export function FormCadastroDadosNeonatais() {
                 <AutoComplete onSelectPaciente={setPaciente} />
                 {paciente && (
                     <FormGroup title="Dados Serviço Social" description="Cadastro de Dados Sociais do Paciente">
-                        <div className="flex flex-row items-center justify-between px-8 mt-4">
-                            <span className="font-bold text-sm mr-5">
-                                <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
-                            </span>
-                            <span className="font-bold text-sm w-full mr-5 ">
-                                <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
-                            </span>
-                            <span className="font-bold text-sm mr-5 ">
-                                <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
-                            </span>
-                            <span className="font-bold text-sm ">
-                                <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
-                            </span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
+                            <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
+
+                            <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
+
+                            <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
+
+                            <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
                         </div>
                     </FormGroup>
                 )}
 
                 <FormGroup title="Dados Neonatais">
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Local de nascimento" isSelect options={locaisDeNascimento} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição do local de nascimento" />
-                            </div>
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Tipo de parto" isSelect options={tiposDeParto} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição do Tipo de parto" />
-                            </div>
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Apresentação" isSelect options={apresentacao} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição da Apresentação" />
-                            </div>
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Tipo de gestação" isSelect options={tiposDeGestacao} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição do Tipo de gestação" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Local de nascimento" isSelect options={locaisDeNascimento} />
+                        <FormField label="Descrição do local de nascimento" />
+                        <FormField label="Tipo de parto" isSelect options={tiposDeParto} />
+                        <FormField label="Descrição do Tipo de parto" />
+                        <FormField label="Apresentação" isSelect options={apresentacao} />
+                        <FormField label="Descrição da Apresentação" />
+                        <FormField label="Tipo de gestação" isSelect options={tiposDeGestacao} />
+                        <FormField label="Descrição do Tipo de gestação" />
                     </div>
                 </FormGroup>
 
                 <FormGroup title="Dados Antropométricos">
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Peso (g)" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Comprimento (cm)" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Perímetro Cefálico (cm)" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Perímetro Torácico (cm)" />
-                            </div>
-                            <div className="w-full sm:w-[32%]">
-                                <FormField label="Apgar 1º Minuto" />
-                            </div>
-                            <div className="w-full sm:w-[32%]">
-                                <FormField label="Apgar 5º Minuto" />
-                            </div>
-                            <div className="w-full sm:w-[32%]">
-                                <FormField label="Apgar 10º Minuto" />
-                            </div>
-                        </div>
-                        <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[49%]">
-                                <FormField label="Intercorrências" isSelect options={intercorrencias} />
-                            </div>
-                            <div className="w-full sm:w-[49%]">
-                                <FormField label="Descrição das Intercorrências" />
-                            </div>
-                            <div className="w-full sm:w-[49%]">
-                                <FormField label="Malformações" isSelect options={malformacoes} />
-                            </div>
-                            <div className="w-full sm:w-[49%]">
-                                <FormField label="Descrição das Malformações" />
-                            </div>
-                        </div>
-                        <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Terapêutica Utilizada" isSelect options={terapeuticaUtilizada} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição da Terapêutica utilizada" />
-                            </div>
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Antibióticos" isSelect options={antibioticos} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição do antibióticos" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
+                        <FormField label="Peso (g)" />
+                        <FormField label="Comprimento (cm)" />
+                        <FormField label="Perímetro Cefálico (cm)" />
+                        <FormField label="Perímetro Torácico (cm)" />
+                        <FormField label="Apgar 1º Minuto" />
+                        <FormField label="Apgar 5º Minuto" />
+                        <FormField label="Apgar 10º Minuto" />
+                    </div>
+                    <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Intercorrências" isSelect options={intercorrencias} />
+                        <FormField label="Descrição das Intercorrências" />
+                        <FormField label="Malformações" isSelect options={malformacoes} />
+                        <FormField label="Descrição das Malformações" />
+                    </div>
+                    <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Terapêutica Utilizada" isSelect options={terapeuticaUtilizada} />
+                        <FormField label="Descrição da Terapêutica utilizada" />
+                        <FormField label="Antibióticos" isSelect options={antibioticos} />
+                        <FormField label="Descrição do antibióticos" />
                     </div>
                 </FormGroup>
 
                 <FormGroup title="Cirurgia">
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Cirurgia realizada" isSelect options={opcaoSimOuNaoOuSi} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição em caso de Cirurgias" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Cirurgia realizada" isSelect options={opcaoSimOuNaoOuSi} />
+                        <FormField label="Descrição em caso de Cirurgias" />
                     </div>
                 </FormGroup>
 
                 <FormGroup title="Tempo de Hospitalização">
 
-                    <div className="mt-8 px-8 space-y-6">
-                        <div className="grid grid-cols-1 gap-4">
-                            <FormField isGrid label="UTI Neonatal (dias)" />
-                            <FormField isGrid label="Unidade de Cuidados Intermediários Neonatais (dias)" />
-                            <FormField isGrid label="Unidade de Cuidados Intermediários Canguru (dias)" />
-                            <FormField isGrid label="Alojamento conjunto" />
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField isGrid label="UTI Neonatal (dias)" />
+                        <FormField isGrid label="Unidade de Cuidados Intermediários Neonatais (dias)" />
+                        <FormField isGrid label="Unidade de Cuidados Intermediários Canguru (dias)" />
+                        <FormField isGrid label="Alojamento conjunto" />
                     </div>
-
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[35%]">
-                                <FormField label="Exames realizados" isSelect options={examesRealizados} />
-                            </div>
-                            <div className="w-full sm:w-[63%]">
-                                <FormField label="Descrição para exames realizados" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Exames realizados" isSelect options={examesRealizados} />
+                        <FormField label="Descrição para exames realizados" />
                     </div>
                 </FormGroup>
 
                 <FormGroup title="Testes de Triagem Neonatal">
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Pezinho" isSelect options={resultadoTeste} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Ouvidinho" isSelect options={resultadoTeste} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Olhinho" isSelect options={resultadoTeste} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste do Coraçãozinho" isSelect options={resultadoTeste} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste da Linguinha" isSelect options={resultadoTeste} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Teste de Ortolani" isSelect options={resultadoTeste} />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+                        <FormField label="Teste do Pezinho" isSelect options={resultadoTeste} />
+                        <FormField label="Teste do Ouvidinho" isSelect options={resultadoTeste} />
+                        <FormField label="Teste do Olhinho" isSelect options={resultadoTeste} />
+                        <FormField label="Teste do Coraçãozinho" isSelect options={resultadoTeste} />
+                        <FormField label="Teste da Linguinha" isSelect options={resultadoTeste} />
+                        <FormField label="Teste de Ortolani" isSelect options={resultadoTeste} />
                     </div>
                 </FormGroup>
 
                 <FormGroup title="Antecedentes Familiares">
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Doenças crônicas" isSelect options={opcaoSimOuNaoOuSi} />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Mãe" isSelect options={doencasCronicas} />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Descrição" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Pai" isSelect options={doencasCronicas} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Irmãos" isSelect options={doencasCronicas} />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Descrição" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós paternos" isSelect options={doencasCronicas} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Avós maternos" isSelect options={doencasCronicas} />
-                            </div>
-                            <div className="w-full sm:w-[65%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Doenças crônicas" isSelect options={opcaoSimOuNaoOuSi} />
                     </div>
-                    <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-                    <div className="space-y-4 px-8 py-6">
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Doenças genéticas" isSelect options={opcaoSimOuNaoOuSi} />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Mãe" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Descrição" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Pai" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Irmãos" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Descrição" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós paternos" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap justify-between gap-4">
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Avós maternos" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Descrição" />
-                            </div>
-                            <div className="w-full sm:w-[20%]">
-                                <FormField label="Tios de 1º grau" isSelect options={doencasGeneticas} />
-                            </div>
-                            <div className="w-full sm:w-[30%]">
-                                <FormField label="Descrição" />
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
+                        <FormField label="Mãe" isSelect options={doencasCronicas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Pai" isSelect options={doencasCronicas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Irmãos" isSelect options={doencasCronicas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Avós paternos" isSelect options={doencasCronicas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Avós maternos" isSelect options={doencasCronicas} />
+                        <FormField label="Descrição" />
+                    </div>
+                    <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                        <FormField label="Doenças genéticas" isSelect options={opcaoSimOuNaoOuSi} />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
+                        <FormField label="Mãe" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Pai" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Irmãos" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Avós paternos" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Avós maternos" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
+                        <FormField label="Tios de 1º grau" isSelect options={doencasGeneticas} />
+                        <FormField label="Descrição" />
                     </div>
                 </FormGroup>
                 <div className="flex items-end justify-end px-8 pt-4 mb-10">
@@ -307,7 +163,7 @@ export function FormCadastroDadosNeonatais() {
                         Salvar
                     </button>
                 </div>
-            </form>
+            </form >
         </>
     )
 };
