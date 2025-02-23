@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/json/pacientes"; // Substitua pela URL correta da API.
+const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
 
 const PacienteService = {
   // Recuperar todos os pacientes
