@@ -2,45 +2,51 @@ import React from "react";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
+import { Abrigos, ConfiguracaoFamiliar, DiasTurnoTerapia, GrauInstrucao, OpcoesPadrao, PeriodicidadeTerapia, PresencaDosPais, SituacaoAtualInstituicao, SituacaoConjugalPais, TipoAcolhimento, TipoTerapia } from "../../models/enum/EnunsServicosSocial.js";
+import SimOuNao from "../../models/enum/SimNao.js";
+import { useState } from "react";
 
 export function FormServicoSocial() {
 
-  const configuracaoFamiliar = ["Avós maternos", "Avós paternos", "Casal heteroafetivo", "Casal homoafetivo", "Mãe solo", "Pai solo", "Outros", "SI"];
-  const situacaoConjugalPais = ["Casado (a)", "Divorciado (a)", "Solteiro (a)", "União estável", "Viúvo (a)", "Outros", "SI"];
-  const presencaDosPais = ["Mãe e Pai convivem com a criança", "Mãe convive com a criança e Pai ausente", "Pai convive com a criança e Mãe ausente", "Mãe e Pai ausentes", "Mãe convive com a criança e Pai falecido", "Mãe ausente e Pai falecido", "Pai convive com a criança e Mãe falecida", "Pai ausente e Mãe falecida", "Mãe e Pai falecidos", "SI"];
-  const tipoAcolhimento = ["Criança Institucionalizada", "Família Acolhedora", "Criança adotada"];
-  const abrigos = ["Abrigo Casa da Criança", "Abrigo Nossa Casa", "Abrigo Nova Vida", "Abrigo Recanto da Luz", "Abrigo Renascer", "Abrigo Santa Gianna Beretta Molla", "Abrigo São Lázaro", "Abrigo Tia Júlia", "Acolhimento Casa da Criança", "Acolhimento Casa de Jeremias", "ADOC (Abrigo Des. Olívio Câmara)", "Casa de Criança Escola-Creche", "Casa do Menor São Miguel Arcanjo - Fortaleza", "Casas Abrigo", "Instituto Cristo Rei", "Instituto de Assistência e Proteção Social", "Instituto Orfanato Cristo Rei", "Lar Amigos de Jesus", "Lar Santa Mônica", "Outro"];
-  const opcoesPadrao = ["0", "1", "2", "3", "4", "+"];
-  const opcaoSimOuNao = ["Sim", "Não"];
-  const grauInstrucao = ["Analfabeto", "Ensino fundamental completo", "Ensino fundamental incompleto", "Ensino médio completo", "Ensino médio incompleto", "Ensino superior completo", "Ensino superior incompleto"];
-  const periodicidadeTerapia = ["1 vez por semana", "2 vezes por semana", "3 vezes por semana", "Acompanhamento mensal", "Programa domiciliar", "Outros"];
-  const diasTurnoTerapia = ["Segunda - Manhã", "Segunda - Tarde", "Segunda - Intermediário", "Terça - Manhã", "Terça - Tarde", "Terça - Intermediário", "Quarta - Manhã", "Quarta - Tarde", "Quarta - Intermediário", "Quinta - Manhã", "Quinta - Tarde", "Quinta - Intermediário", "Sexta - Manhã", "Sexta - Tarde", "Sexta - Intermediário"];
-  const tipoTerapia = ["A.V.D.S", "Casa adaptada", "Comunicacao alternativa/suplementar", "Disfagia", "Estimulação auditiva", "Estimulação visual", "Fisioterapia", "Fisioterapia motora", "Fisioterapia respiratória", "Fonoaudiologia", "Fortalecimento", "Game", "Gestão de Comportamento", "Grupo de T21", "Habilidades Sociais", "Interdisciplinar", "Intermediário", "Motricidade", "Multiprofissional I e II", "Multiprofissional III", "Multiprofissional V", "Musicoterapia", "Outros", "Projeto quatro estações", "Psicologia", "Psicomotricidade", "Reabilitação auditiva", "Reabilitação de Fala e linguagem", "Reabilitação intelectual", "Robótica", "Seletividade Alimentar", "Terapia ocupacional", "Treinamento bimanual"];
-  const situacaoAtualInstituicao = ["Ativo", "Afastado (a) por falta", "Afastado (a) por Internação", "Alta", "Alta por idade", "Atestado", "Cirurgia", "Desligado (a)", "Internado (a)", "Óbito", "Transferido para outra instituição"];
+  const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(([key, value]) => ({ value: key, label: value }));
+  const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(([key, value]) => ({ value: key, label: value }));
+  const presencaDosPais = Object.entries(PresencaDosPais).map(([key, value]) => ({ value: key, label: value }));
+  const tipoAcolhimento = Object.entries(TipoAcolhimento).map(([key, value]) => ({ value: key, label: value }));
+  const abrigos = Object.entries(Abrigos).map(([key, value]) => ({ value: key, label: value }));
+  const opcoesPadrao = Object.entries(OpcoesPadrao).map(([key, value]) => ({ value: key, label: value }));
+  const opcaoSimOuNao = Object.entries(SimOuNao).map(([key, value]) => ({ value: value, label: key }));
+  const grauInstrucao = Object.entries(GrauInstrucao).map(([key, value]) => ({ value: key, label: value }));
+  const periodicidadeTerapia = Object.entries(PeriodicidadeTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const diasTurnoTerapia = Object.entries(DiasTurnoTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const tipoTerapia = Object.entries(TipoTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(([key, value]) => ({ value: key, label: value }));
 
+  const [paciente, setPaciente] = useState(null);
 
-
+  console.log(paciente);
   return (
     <>
-      <AutoComplete />
       <form>
-        {/* Dados Serviço Social */}
-        <FormGroup title="Dados Serviço Social" description="Cadastro de Dados Sociais do Paciente">
-          <div className="flex flex-row items-center justify-between px-8 mt-4">
-            <span className="font-bold text-sm mr-5">
-              <FormField label="Prontuário" placeholder="N° do Prontuário" />
-            </span>
-            <span className="font-bold text-sm w-full mr-5 ">
-              <FormField label="Nome Completo" placeholder="Nome Completo" />
-            </span>
-            <span className="font-bold text-sm mr-5 ">
-              <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" />
-            </span>
-            <span className="font-bold text-sm ">
-              <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
-            </span>
-          </div>
-        </FormGroup>
+        <AutoComplete onSelectPaciente={setPaciente} />
+          {/* Dados Serviço Social */}
+          {paciente && (
+          <FormGroup title="Dados Serviço Social" description="Cadastro de Dados Sociais do Paciente">
+              <div className="flex flex-row items-center justify-between px-8 mt-4">
+                <span className="font-bold text-sm mr-5">
+                  <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
+                </span>
+                <span className="font-bold text-sm w-full mr-5 ">
+                  <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""}/>
+                </span>
+                <span className="font-bold text-sm mr-5 ">
+                  <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""}/>
+                </span>
+                <span className="font-bold text-sm ">
+                  <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
+                </span>
+              </div>
+          </FormGroup>
+          )}
         {/* Situação Familiar */}
         <FormGroup title="Situação Familiar" description="Dados sobre a situação familiar do Paciente">
           <div className="space-y-4 px-8 py-6">
