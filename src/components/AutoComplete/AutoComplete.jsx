@@ -78,6 +78,7 @@
 import { useState, useEffect } from "react";
 import pacienteService from "../../services/pacienteService.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
+import { FormField } from "../FormField/FormField.jsx";
 
 export const AutoComplete = ({ onSelectPaciente }) => {
     const [prontuario, setProntuario] = useState("");
@@ -104,7 +105,7 @@ export const AutoComplete = ({ onSelectPaciente }) => {
                 setNome(pacienteEncontrado.dsNome);
                 setPaciente(pacienteEncontrado);
                 onSelectPaciente(pacienteEncontrado);
-                setMensagem({ tipo: "success", texto: "Paciente encontrado!", title: "Pesquisa de paciente"});
+                setMensagem({ tipo: "success", texto: "Paciente encontrado!", title: "Pesquisa de paciente" });
             } else {
                 console.log("Nenhum paciente encontrado.");
                 setPaciente(null);
@@ -133,63 +134,36 @@ export const AutoComplete = ({ onSelectPaciente }) => {
     return (
         <div>
 
-        {  mensagem.texto && (
-            <MessageAlert
-                type={mensagem.tipo}
-                title={mensagem.title}
-                message={mensagem.texto}
-            />
+            {mensagem.texto && (
+                <MessageAlert
+                    type={mensagem.tipo}
+                    title={mensagem.title}
+                    message={mensagem.texto}
+                />
             )
-        }
+            }
 
             <div className="flex mt-4">
                 <span className="pl-8 font-bold text-xl">
                     Identificação do Paciente
                 </span>
             </div>
-            <div className="flex mt-8 px-8">
-                {/* Prontuário */}
-                <div className="font-bold text-sm mr-10">
-                    <label>Prontuário</label>
-                    <div className="w-full max-w-sm">
-                        <input
-                            className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                            placeholder="Prontuário"
-                            value={prontuario}
-                            onChange={(e) => setProntuario(e.target.value)}
-                        />
-                    </div>
-                </div>
-
-                {/* Nome */}
-                <div className="font-bold text-sm mr-10">
-                    <label>Nome</label>
-                    <div className="w-full max-w-sm">
-                        <input
-                            className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                            placeholder="Nome"
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
-                        />
-                    </div>
-                </div>
-
-                {/* Botão de pesquisa */}
-                <div className="font-bold text-sm mt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 px-4 pt-4">
+                <FormField label="Prontuário" placeholder="Prontuário" value={prontuario} onChange={(e) => setProntuario(e.target.value)} />
+                <FormField label="Nome Completo" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                    
+                <div className="mt-4">
                     <button
                         type="button"
                         onClick={fetchPaciente}
-                        className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-10 py-2.5 me-2 mb-2"
+                        className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-3 py-2.5 me-2 mb-2"
                     >
                         Pesquisar
                     </button>
-                </div>
-                {/* Botão de pesquisa */}
-                <div className="font-bold text-sm mt-3">
                     <button
                         type="button"
                         onClick={limparCampos}
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 font-bold rounded-lg text-sm px-10 py-2.5 me-2 mb-2">
+                        className="focus:outline-none text-white  bg-red-700 hover:bg-red-800 focus:ring-4 font-bold rounded-lg text-sm px-3 py-2.5 me-2 mb-2">
                         Limpar
                     </button>
                 </div>
