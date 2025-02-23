@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete"
 import { FormField } from "../../components/FormField/FormField"
 import { FormGroup } from "../../components/FormGroup"
@@ -28,26 +29,30 @@ export function FormCadastroDadosNeonatais() {
     const apresentacao = ["Cefálica", "Córmica", "Pélvica", "Outro", "SI"];
     const tiposDeGestacao = ["Feto único", "Gemelaridade", "Outro", "SI"];
 
+    const [paciente, setPaciente] = useState(null);
+
     return (
         <>
             <form>
-                <FormGroup title="Dados Neonatais">
-                    <AutoComplete />
-                    <div className="flex flex-row items-center justify-between px-8 mt-4">
-                        <span className="font-bold text-sm mr-5">
-                            <FormField label="Prontuário" placeholder="N° do Prontuário" />
-                        </span>
-                        <span className="font-bold text-sm w-full mr-5 ">
-                            <FormField label="Nome Completo" placeholder="Nome Completo" />
-                        </span>
-                        <span className="font-bold text-sm mr-5 ">
-                            <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" />
-                        </span>
-                        <span className="font-bold text-sm ">
-                            <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
-                        </span>
-                    </div>
-                </FormGroup>
+                <AutoComplete onSelectPaciente={setPaciente} />
+                {paciente && (
+                    <FormGroup title="Dados Serviço Social" description="Cadastro de Dados Sociais do Paciente">
+                        <div className="flex flex-row items-center justify-between px-8 mt-4">
+                            <span className="font-bold text-sm mr-5">
+                                <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
+                            </span>
+                            <span className="font-bold text-sm w-full mr-5 ">
+                                <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
+                            </span>
+                            <span className="font-bold text-sm mr-5 ">
+                                <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
+                            </span>
+                            <span className="font-bold text-sm ">
+                                <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
+                            </span>
+                        </div>
+                    </FormGroup>
+                )}
 
                 <FormGroup title="Dados Neonatais">
                     <div className="space-y-4 px-8 py-6">

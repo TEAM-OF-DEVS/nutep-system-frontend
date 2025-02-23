@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
@@ -6,8 +6,8 @@ import Procedencia from "../../models/enum/Procedencia.js";
 
 export function FormCadastroDadosPreNatais() {
 
-  const procedencias = Object.values(Procedencia);
-  const convenio = ["Hapvida", "IPM", "ISSEC", "Sus", "Unimed", "Outros", "SI"];
+  const procedencias = Object.values(Procedencia).map(([key, value]) => ({ value: key, label: value }));
+  const convenio = ["Hapvida", "IPM", "ISSEC", "Sus", "Unimed", "Outros", "SI"]
   const planejamentoDeGestacao = ["Planejada", "Não planejada, mas aceita", "Não planejada, mas desejada", "Indesejada", "Rejeitada", "SI"];
   const contraceptiveMethods = ["Anticoncepcional Injetável - Mensal", "Anticoncepcional Injetável - Trimestral', 'Anticoncepcional oral", "Coito interrompido", "DIU", "Método tabela", "Preservativo", "Nenhum", "Outros", "SI"];
   const meioAbortivo = ["Aborto medicamentoso", "Chás", "Curetagem", "Cytotec", "Método de aspiração", "Outros", "SI"];
@@ -22,29 +22,33 @@ export function FormCadastroDadosPreNatais() {
   const diagnostico = ["Colelitíase", "Diabetes mellitus", "Doenças autoimunes", "Doenças hematológicas", "Hipertensão arterial crônica", "Hipertireoidismo", "Hipotireoidismo", "Nenhum", "Oligoidrâmnio", "Placenta acreta/acretismo placentário", "Placenta prévia", "Polidrâmnio", "Tromboembolismo", "Outro", "SI"];
   const listSimOuNao = ["Sim", "Não", "SI"];
 
+  const [paciente, setPaciente] = useState(null);
+
   return (
     <>
       <form>
         {/*DADOS PRE NATAIS*/}
-        <AutoComplete />
-        <FormGroup title="Dados Pré-Natais" description="Cadastro de Dados Pré Natais do Paciente">
-          <form>
-            <div className="flex mt-8 px-8">
-              <span className="font-bold text-sm w-[40%] mr-10">
-                <FormField label="Prontuário" />
-              </span>
-              <span className="font-bold text-sm w-full mr-10">
-                <FormField label="Nome Completo" />
-              </span>
-              <span className="font-bold text-sm w-[40%] mr-10">
-                <FormField label="Data de Nascimento" placeholder="dd/mm/aaaa" type="date" />
-              </span>
-              <span className="font-bold text-sm w-[40%] mr-10">
-                <FormField label="Data do Atendimento" placeholder="dd/mm/aaaa" type="date" styleClass="campoObrigatorio" />
-              </span>
-            </div>
-          </form>
-        </FormGroup>
+        <AutoComplete onSelectPaciente={setPaciente} />
+        {paciente && (
+          <FormGroup title="Dados Pré-Natais" description="Cadastro de Dados Pré Natais do Paciente">
+            <form>
+              <div className="flex flex-row items-center justify-between px-8 mt-4">
+                <span className="font-bold text-sm mr-5">
+                  <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
+                </span>
+                <span className="font-bold text-sm w-full mr-5 ">
+                  <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
+                </span>
+                <span className="font-bold text-sm mr-5 ">
+                  <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
+                </span>
+                <span className="font-bold text-sm ">
+                  <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
+                </span>
+              </div>
+            </form>
+          </FormGroup>
+        )}
         {/* EMCAMINHAMENTO ORIGEM */}
         <FormGroup title="Encaminhamento de Origem">
           <div className="flex mt-8 px-8">
@@ -79,25 +83,25 @@ export function FormCadastroDadosPreNatais() {
               <FormField isGrid label="Tempo de gestação na 1ª consulta (Semanas)" />
               <FormField isGrid label="Planejamento da gestação" isSelect options={planejamentoDeGestacao} />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Método contraceptivo anterior à gestação" isSelect options={contraceptiveMethods} />
               <FormField isGrid label="Descrição do método contraceptivo" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Uso de Aborto" isSelect options={listSimOuNao} />
               <FormField isGrid label="Tempo gestação (Semanas)" />
               <FormField isGrid label="Meio Aborto" isSelect options={meioAbortivo} />
               <FormField isGrid label="Descrição do meio abortivo" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} />
               <FormField isGrid label="Descrição da Consanguinidade" />
             </div>
 
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} />
               <FormField isGrid label="Descrição da Intercorrência" />
@@ -108,27 +112,27 @@ export function FormCadastroDadosPreNatais() {
               <FormField isGrid label="Infecções" isSelect options={infeccoes} />
               <FormField isGrid label="Descrição de Infecções" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} />
               <FormField isGrid label="Descrição de Doenças Pré existentes" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} />
               <FormField isGrid label="Descrição dos exames realizados pela mãe" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} />
               <FormField isGrid label="Descrição dos exames realizados pela mãe" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} />
               <FormField isGrid label="Descrição dos medicamentos utilizados pela mãe" />
             </div>
-             <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
             <div className="grid grid-cols-2 gap-4">
               <FormField isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} />
               <FormField isGrid label="Qual periodo (semanas)" />
