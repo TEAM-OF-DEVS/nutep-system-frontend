@@ -32,121 +32,103 @@ export function FormCadastroDadosPreNatais() {
         {paciente && (
           <FormGroup title="Dados Pré-Natais" description="Cadastro de Dados Pré Natais do Paciente">
             <form>
-              <div className="flex flex-row items-center justify-between px-8 mt-4">
-                <span className="font-bold text-sm mr-5">
-                  <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
-                </span>
-                <span className="font-bold text-sm w-full mr-5 ">
-                  <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
-                </span>
-                <span className="font-bold text-sm mr-5 ">
-                  <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
-                </span>
-                <span className="font-bold text-sm ">
-                  <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
-                </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+                <FormField label="Prontuário" placeholder="N° do Prontuário" value={paciente?.descricaoProntuario || ""} />
+                <FormField label="Nome Completo" placeholder="Nome Completo" value={paciente?.dsNome || ""} />
+                <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={paciente?.dataNascimento || ""} />
+                <FormField label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" />
               </div>
             </form>
           </FormGroup>
         )}
         {/* EMCAMINHAMENTO ORIGEM */}
         <FormGroup title="Encaminhamento de Origem">
-          <div className="flex mt-8 px-8">
-            <span className="font-bold text-sm w-[40%] mr-10">
-              <FormField label="Procedência" isSelect options={procedencias} />
-            </span>
-            <span className="font-bold text-sm w-full mr-10">
-              <FormField label="Descrição da Procedência" placeholder="Descrição" />
-            </span>
-            <span className="font-bold text-sm w-[40%] mr-10">
-              <FormField label="Convênio" isSelect options={convenio} />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField label="Descrição do Convênio" placeholder="Descrição" />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+            <FormField label="Procedência" isSelect options={procedencias} />
+            <FormField label="Descrição da Procedência" placeholder="Descrição" />
+            <FormField label="Convênio" isSelect options={convenio} />
+            <FormField label="Descrição do Convênio" placeholder="Descrição" />
           </div>
         </FormGroup>
         {/* DADOS GESTACIONAIS */}
         <FormGroup title="Dados Gestacionais" description="Cadastro de Dados Gestacionais">
-          <div className="mt-8 px-8 space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Idade da mãe ao engravidar" />
-              <FormField isGrid label="Número de consultas" />
-              <FormField isGrid label="Idade do pai no início da gestação" />
-              <FormField isGrid label="Número de gestações" />
-              <FormField isGrid label="Peso inicial na gravidez (kg)" />
-              <FormField isGrid label="Número de filhos vivos" />
-              <FormField isGrid label="Peso final na gravidez (kg)" />
-              <FormField isGrid label="Número de natimortos" />
-              <FormField isGrid label="Estatura da mãe (m)" />
-              <FormField isGrid label="Número de abortos" />
-              <FormField isGrid label="Tempo de gestação na 1ª consulta (Semanas)" />
-              <FormField isGrid label="Planejamento da gestação" isSelect options={planejamentoDeGestacao} />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Método contraceptivo anterior à gestação" isSelect options={contraceptiveMethods} />
-              <FormField isGrid label="Descrição do método contraceptivo" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Uso de Aborto" isSelect options={listSimOuNao} />
-              <FormField isGrid label="Tempo gestação (Semanas)" />
-              <FormField isGrid label="Meio Aborto" isSelect options={meioAbortivo} />
-              <FormField isGrid label="Descrição do meio abortivo" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} />
-              <FormField isGrid label="Descrição da Consanguinidade" />
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Idade da mãe ao engravidar" />
+            <FormField isGrid label="Número de consultas" />
+            <FormField isGrid label="Idade do pai no início da gestação" />
+            <FormField isGrid label="Número de gestações" />
+            <FormField isGrid label="Peso inicial na gravidez (kg)" />
+            <FormField isGrid label="Número de filhos vivos" />
+            <FormField isGrid label="Peso final na gravidez (kg)" />
+            <FormField isGrid label="Número de natimortos" />
+            <FormField isGrid label="Estatura da mãe (m)" />
+            <FormField isGrid label="Número de abortos" />
+            <FormField isGrid label="Tempo de gestação na 1ª consulta (Semanas)" />
+            <FormField isGrid label="Planejamento da gestação" isSelect options={planejamentoDeGestacao} />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Método contraceptivo anterior à gestação" isSelect options={contraceptiveMethods} />
+            <FormField isGrid label="Descrição do método contraceptivo" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Uso de Aborto" isSelect options={listSimOuNao} />
+            <FormField isGrid label="Tempo gestação (Semanas)" />
+            <FormField isGrid label="Meio Aborto" isSelect options={meioAbortivo} />
+            <FormField isGrid label="Descrição do meio abortivo" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} />
+            <FormField isGrid label="Descrição da Consanguinidade" />
+          </div>
 
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} />
-              <FormField isGrid label="Descrição da Intercorrência" />
-              <FormField isGrid label="Alergias" isSelect options={alergias} />
-              <FormField isGrid label="Descrição de Alergias" />
-              <FormField isGrid label="Sangramentos na gravidez?" isSelect options={listSimOuNao} />
-              <FormField isGrid label="Período do Sangramento" />
-              <FormField isGrid label="Infecções" isSelect options={infeccoes} />
-              <FormField isGrid label="Descrição de Infecções" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} />
-              <FormField isGrid label="Descrição de Doenças Pré existentes" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} />
-              <FormField isGrid label="Descrição dos exames realizados pela mãe" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} />
-              <FormField isGrid label="Descrição dos exames realizados pela mãe" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} />
-              <FormField isGrid label="Descrição dos medicamentos utilizados pela mãe" />
-            </div>
-            <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-            <div className="grid grid-cols-2 gap-4">
-              <FormField isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} />
-              <FormField isGrid label="Qual periodo (semanas)" />
-              <FormField isGrid label="Motivo da hospitalização" isSelect options={motivoHospitalizacao} />
-              <FormField isGrid label="Dias de hospitalização" />
-            </div>
-            <div className="grid gap-4">
-              <FormField label="Descrição do Motivo da hospitalização" />
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} />
+            <FormField isGrid label="Descrição da Intercorrência" />
+            <FormField isGrid label="Alergias" isSelect options={alergias} />
+            <FormField isGrid label="Descrição de Alergias" />
+            <FormField isGrid label="Sangramentos na gravidez?" isSelect options={listSimOuNao} />
+            <FormField isGrid label="Período do Sangramento" />
+            <FormField isGrid label="Infecções" isSelect options={infeccoes} />
+            <FormField isGrid label="Descrição de Infecções" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} />
+            <FormField isGrid label="Descrição de Doenças Pré existentes" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} />
+            <FormField isGrid label="Descrição dos exames realizados pela mãe" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} />
+            <FormField isGrid label="Descrição dos exames realizados pela mãe" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} />
+            <FormField isGrid label="Descrição dos medicamentos utilizados pela mãe" />
+          </div>
+          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} />
+            <FormField isGrid label="Qual periodo (semanas)" />
+            <FormField isGrid label="Motivo da hospitalização" isSelect options={motivoHospitalizacao} />
+            <FormField isGrid label="Dias de hospitalização" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField label="Descrição do Motivo da hospitalização" />
 
-              <FormField isGrid label="Diagnóstico" isSelect options={diagnostico} />
-              <FormField label="Descrição do Diagnóstico" />
+            <FormField isGrid label="Diagnóstico" isSelect options={diagnostico} />
+            <FormField label="Descrição do Diagnóstico" />
 
-              <FormField label="Observações" />
-            </div>
+            <FormField label="Observações" />
           </div>
         </FormGroup>
         <div className="flex items-end justify-end px-8 pt-4">
@@ -157,7 +139,7 @@ export function FormCadastroDadosPreNatais() {
             Salvar
           </button>
         </div>
-      </form>
+      </form >
     </>
   );
 }
