@@ -42,7 +42,6 @@ export const validateForm = (formData, validationRules) => {
   const errors = {};
 
   Object.keys(validationRules).forEach((field) => {
-    console.log(validationRules);
     const error = validateField(field, formData[field], validationRules[field]);
     if (error) {
       errors[field] = error;
