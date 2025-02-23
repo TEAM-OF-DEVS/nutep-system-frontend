@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
+const BASE_URL = "/json/pacientes"; // Substitua pela URL correta da API.
 
 const PacienteService = {
   // Recuperar todos os pacientes
@@ -16,7 +16,17 @@ const PacienteService = {
 
   getByProntuario: async (prontuario) => {
     try {
-      const response = await axios.get(`${BASE_URL}/${prontuario}`);
+      const response = await axios.get(`${BASE_URL}?descricaoProntuario_like=${prontuario}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
+      throw error;
+    }
+  },
+
+  getByProntuario: async (prontuario, nome) => {
+    try {
+      const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
       return response.data;
     } catch (error) {
       console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
