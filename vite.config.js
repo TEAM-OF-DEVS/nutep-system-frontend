@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-
+  base: '/nutep-system-frontend/',
   server: {
     proxy: {
       '/cep': {
@@ -13,7 +13,7 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/cep/, '')
       },
       '/json': {
-        target: 'http://localhost:3002/',
+        target: 'http://localhost:3001/',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/json/, '')
       }

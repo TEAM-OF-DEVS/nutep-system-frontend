@@ -15,12 +15,12 @@ function App() {
   const values = {}
 
   const routes = [
-    { path: '/', component: <Home /> },
-    // { path: '/', component: <FormCadastroDadosPessoais /> },
-    { path: '/dados-pessoais', component: <FormCadastroDadosPessoais /> },
-    { path: '/dados-pre-natais', component: <FormCadastroDadosPreNatais /> },
-    { path: '/servico-social', component: <FormServicoSocial /> },
-    { path: '/dados-neonatais', component: <FormCadastroDadosNeonatais /> },
+    { path: '/nutep-system-frontend', component: <Home /> },
+    // { path: '/nutep-system-frontend', component: <FormCadastroDadosPessoais /> },
+    { path: 'nutep-system-frontend/dados-pessoais', component: <FormCadastroDadosPessoais /> },
+    { path: '/nutep-system-frontend/dados-pre-natais', component: <FormCadastroDadosPreNatais /> },
+    { path: '/nutep-system-frontend/servico-social', component: <FormServicoSocial /> },
+    { path: '/nutep-system-frontend/dados-neonatais', component: <FormCadastroDadosNeonatais /> },
   ]
 
   return (

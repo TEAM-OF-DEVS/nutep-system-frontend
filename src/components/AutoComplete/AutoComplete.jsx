@@ -96,7 +96,7 @@ export const AutoComplete = ({ onSelectPaciente }) => {
         try {
             console.log("🔎 Buscando paciente com:", { prontuario, nome });
 
-            const response = await pacienteService.getByProntuario(prontuario, nome);
+            const response = await pacienteService.getByProntuarioComNome(prontuario, nome);
 
             console.log("🔄 Resposta da API:", response);
 
