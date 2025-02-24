@@ -2,6 +2,7 @@ class NeoNatalBuilder {
     constructor() {
         this.neoNatal = {
             paciente: {},
+            dataAtendimento: "",
             localNascimento: "",
             descricaoLocalNascimento: "",
             tipoParto: "",
