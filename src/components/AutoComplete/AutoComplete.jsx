@@ -149,12 +149,13 @@ export const AutoComplete = ({ onSelectPaciente }) => {
                 </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 px-4 pt-4">
-                <FormField label="Prontuário" placeholder="Prontuário" value={prontuario} onChange={(e) => setProntuario(e.target.value)} />
-                <FormField label="Nome Completo" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                <FormField name="numeroProtuario" label="Prontuário" placeholder="Prontuário" value={prontuario} onChange={(e) => setProntuario(e.target.value)} />
+                <FormField name="nomeCompleto" label="Nome Completo" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                     
                 <div className="mt-4">
                     <button
                         type="button"
+                        name="pesquisar"
                         onClick={fetchPaciente}
                         className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-3 py-2.5 me-2 mb-2"
                     >
@@ -162,6 +163,7 @@ export const AutoComplete = ({ onSelectPaciente }) => {
                     </button>
                     <button
                         type="button"
+                        name="limpar"
                         onClick={limparCampos}
                         className="focus:outline-none text-white  bg-red-700 hover:bg-red-800 focus:ring-4 font-bold rounded-lg text-sm px-3 py-2.5 me-2 mb-2">
                         Limpar
