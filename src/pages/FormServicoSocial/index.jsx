@@ -282,6 +282,7 @@ export function FormServicoSocial() {
         <div className="flex items-end justify-end px-8 pt-4">
           <button
             type="button"
+            name="salvar"
             onClick={handleSubmit}
             className="focus:outline-none text-white  bg-green-700 hover:bg-green-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
           >
