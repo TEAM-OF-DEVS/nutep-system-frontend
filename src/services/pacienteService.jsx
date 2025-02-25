@@ -14,9 +14,19 @@ const PacienteService = {
     }
   },
 
+  getByNome: async (nome) => {
+    try {
+      const response = await axios.get(`${BASE_URL}?dsNome=${nome}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar paciente com nome ${nome}:`, error);
+      throw error;
+    }
+  },
+
   getByProntuario: async (prontuario) => {
     try {
-      const response = await axios.get(`${BASE_URL}?descricaoProntuario_like=${prontuario}`);
+      const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}`);
       return response.data;
     } catch (error) {
       console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
@@ -26,6 +36,10 @@ const PacienteService = {
 
   getByProntuarioComNome: async (prontuario, nome) => {
     try {
+
+      if (!prontuario && !nome) {
+
+      }
       const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
       return response.data;
     } catch (error) {
