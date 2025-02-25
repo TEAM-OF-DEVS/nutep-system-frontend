@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //const BASE_URL = "http://localhost:3001/municipios"; // Substitua pela URL correta da API.
-const BASE_URL = "https://nutep-9fb84a05c313.herokuapp.com/municipios"; 
+const BASE_URL = "https://nutep-json-server-ebdb8a16af34.herokuapp.com/municipios"; 
 const MunicipioService = {
   // Recuperar todos os municipios
   getAll: async () => {
