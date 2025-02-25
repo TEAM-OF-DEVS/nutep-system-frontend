@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/municipios"; // Substitua pela URL correta da API.
-
+//const BASE_URL = "http://localhost:3001/municipios"; // Substitua pela URL correta da API.
+const BASE_URL = "/api/municipios"; 
 const MunicipioService = {
   // Recuperar todos os municipios
   getAll: async () => {

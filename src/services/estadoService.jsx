@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/estados"; // Substitua pela URL correta da API.
+//const BASE_URL = "http://localhost:3001/estados"; // Substitua pela URL correta da API.
+const BASE_URL = "/api/estados"; 
 
 const EstadoService = {
   // Recuperar todos os estados

@@ -4,6 +4,8 @@
   "version": "1.0.1",
   "type": "module",
   "scripts": {
+    "start-api": "json-server --watch db.json --port 3001",
+    "postinstall": "npm run start-api &",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

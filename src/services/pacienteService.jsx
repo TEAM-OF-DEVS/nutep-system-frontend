@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
-
+//const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
+const BASE_URL = "/api/pacientes";
 const PacienteService = {
   // Recuperar todos os pacientes
   getAll: async () => {
@@ -24,7 +24,7 @@ const PacienteService = {
     }
   },
 
-  getByProntuario: async (prontuario, nome) => {
+  getByProntuarioComNome: async (prontuario, nome) => {
     try {
       const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
       return response.data;
