@@ -73,7 +73,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="observacoes"]').type('Observações para o Atendimento.');
 
         // Enviar o formulário
-        //cy.get('button[name="salvar"]').click();
+        cy.get('button[name="salvar"]').click();
         cy.wait(4000);
 
         // Verificar se o envio foi bem-sucedido

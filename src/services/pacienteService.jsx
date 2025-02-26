@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
-
+//const BASE_URL = "http://localhost:3001/pacientes"; // Substitua pela URL correta da API.
+const BASE_URL = "https://nutep-json-server-ebdb8a16af34.herokuapp.com/pacientes";
 const PacienteService = {
   // Recuperar todos os pacientes
   getAll: async () => {
@@ -14,9 +14,19 @@ const PacienteService = {
     }
   },
 
+  getByNome: async (nome) => {
+    try {
+      const response = await axios.get(`${BASE_URL}?dsNome=${nome}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar paciente com nome ${nome}:`, error);
+      throw error;
+    }
+  },
+
   getByProntuario: async (prontuario) => {
     try {
-      const response = await axios.get(`${BASE_URL}?descricaoProntuario_like=${prontuario}`);
+      const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}`);
       return response.data;
     } catch (error) {
       console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
@@ -24,8 +34,12 @@ const PacienteService = {
     }
   },
 
-  getByProntuario: async (prontuario, nome) => {
+  getByProntuarioComNome: async (prontuario, nome) => {
     try {
+
+      if (!prontuario && !nome) {
+
+      }
       const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
       return response.data;
     } catch (error) {

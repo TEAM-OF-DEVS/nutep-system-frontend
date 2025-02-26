@@ -1,80 +1,3 @@
-// import React, { useState, useCallback } from 'react';
-// import pacienteService from "../../services/pacienteService.jsx";
-
-// export const AutoComplete = ({ onSelectPaciente }) => {
-//     const [prontuario, setProntuario] = useState("");
-//     const [nome, setNome] = useState("");
-//     const [paciente, setPaciente] = useState(null);
-
-//     // Simula a busca no banco de dados (substitua por um fetch real)
-//     const fetchPaciente = async () => {
-//         try {
-//             const response = await pacienteService.getByProntuario(prontuario, nome);
-//             console.log(response);
-//             if (response.length > 0) {
-//                 setNome(response[0].dsNome);
-//                 setPaciente(response[0]); // Atualiza o estado interno
-//                 onSelectPaciente(response[0]); // 🔄 Atualiza o componente pai com o novo paciente
-//                 console.log("Paciente atualizado:", response[0]);
-//             } else {
-//                 setPaciente(null);
-//                 onSelectPaciente(null); // Limpa no componente pai também
-//             }
-//         } catch (error) {
-//             console.error("Erro ao buscar paciente:", error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <div className="flex mt-4">
-//                 <span className="pl-8 font-bold text-xl">
-//                     Identificação do Paciente
-//                 </span>
-//             </div>
-//             <div className="flex mt-8 px-8">
-//                 {/* Prontuário */}
-//                 <div className="font-bold text-sm mr-10">
-//                     <label>Prontuário</label>
-//                     <div className="w-full max-w-sm">
-//                         <input
-//                             className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-//                             placeholder="Prontuário"
-//                             value={prontuario}
-//                             onChange={(e) => setProntuario(e.target.value)}
-//                         />
-//                     </div>
-//                 </div>
-
-//                 {/* Nome */}
-//                 <div className="font-bold text-sm mr-10">
-//                     <label>Nome</label>
-//                     <div className="w-full max-w-sm">
-//                         <input
-//                             className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-//                             placeholder="Nome"
-//                             value={nome}
-//                             onChange={(e) => setNome(e.target.value)}
-//                         />
-//                     </div>
-//                 </div>
-
-//                 {/* Botão de pesquisa */}
-//                 <div className="font-bold text-sm mt-3">
-//                     <button
-//                         type="button"
-//                         onClick={fetchPaciente}
-//                         className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-10 py-2.5 me-2 mb-2"
-//                     >
-//                         Pesquisar
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-
 import { useState, useEffect } from "react";
 import pacienteService from "../../services/pacienteService.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
@@ -94,11 +17,18 @@ export const AutoComplete = ({ onSelectPaciente }) => {
         }
 
         try {
-            console.log("🔎 Buscando paciente com:", { prontuario, nome });
+            console.log("Buscando paciente com:", { prontuario, nome });
 
-            const response = await pacienteService.getByProntuario(prontuario, nome);
+            var response = null;
+            if (prontuario && !nome ) {
+                response = await pacienteService.getByProntuario(prontuario);
+            } else if (!prontuario && nome) {
+                response = await pacienteService.getByNome(nome);
+            } else {
+                response = await pacienteService.getByProntuarioComNome(prontuario, nome);
+            }
 
-            console.log("🔄 Resposta da API:", response);
+            console.log("Resposta da API:", response);
 
             if (response.length > 0) {
                 const pacienteEncontrado = response[0];
@@ -114,7 +44,7 @@ export const AutoComplete = ({ onSelectPaciente }) => {
             }
         } catch (error) {
             setMensagem({ tipo: "error", texto: "Erro ao buscar paciente. Tente novamente!", title: "Pesquisa de paciente" });
-            console.error("❌ Erro ao buscar paciente:", error);
+            console.error("Erro ao buscar paciente:", error);
         }
     };
 

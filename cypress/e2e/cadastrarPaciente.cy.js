@@ -8,8 +8,8 @@ describe('Formulário de Cadastro de Paciente', () => {
     it('Deve preencher e enviar o formulário de cadastro de paciente', () => {
         cy.wait(2000);
         cy.get('input[name="dataAdmissao"]').type('2023-10-10');
-        cy.get('input[name="descricaoProntuario"]').type('25307684');
-        cy.get('input[name="nomeCompleto"]').type('Maria do Santos Silva');
+        cy.get('input[name="descricaoProntuario"]').type('242122122');
+        cy.get('input[name="nomeCompleto"]').type('Carlos Contenete de Elefante');
         cy.get('input[name="dataNascimento"]').type('1990-01-01');
         //---------------//
         cy.get('input[name="cpf"]').type('280.852.670-98');
