@@ -179,36 +179,36 @@ export function FormServicoSocial() {
         {/* ABEP - Classe Social */}
         <FormGroup title="ABEP - Classe Social">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 px-4 pt-4">
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 col-span-2" >
-              <FormField isGrid name="banheiro" label="Banheiro" isSelect options={opcoesPadrao} onChange={onChange}
+            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 col-span-2" >
+              <FormField name="banheiro" label="Banheiro" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.banheiro} />
-              <FormField isGrid name="dvd" label="DVD" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="dvd" label="DVD" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.dvd} />
-              <FormField isGrid name="automovel" label="Automóvel" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="automovel" label="Automóvel" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.automovel} />
-              <FormField isGrid name="microondas" label="Micro-ondas" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="microondas" label="Micro-ondas" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.microondas} />
-              <FormField isGrid name="lavaLoucas" label="Lava louças" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="lavaLoucas" label="Lava louças" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.lavaLoucas} />
-              <FormField isGrid name="motocicleta" label="Motocicleta" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="motocicleta" label="Motocicleta" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.motocicleta} />
-              <FormField isGrid name="freezer" label="Freezer" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="freezer" label="Freezer" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.freezer} />
-              <FormField isGrid name="secadoraRoupa" label="Secadora roupa" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="secadoraRoupa" label="Secadora roupa" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.secadoraRoupa} />
-              <FormField isGrid name="empregadosDomesticos" label="Empregados domésticos" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="empregadosDomesticos" label="Empregados domésticos" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.empregadosDomesticos} />
-              <FormField isGrid name="aguaEncanada" label="Água encanada" isSelect options={opcaoSimOuNao} onChange={onChange}
+              <FormField name="aguaEncanada" label="Água encanada" isSelect options={opcaoSimOuNao} onChange={onChange}
                 error={errors.aguaEncanada} />
-              <FormField isGrid name="microcomputador" label="Microcomputador" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="microcomputador" label="Microcomputador" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.microcomputador} />
-              <FormField isGrid name="ruaPavimentada" label="Rua pavimentada" isSelect options={opcaoSimOuNao} onChange={onChange}
+              <FormField name="ruaPavimentada" label="Rua pavimentada" isSelect options={opcaoSimOuNao} onChange={onChange}
                 error={errors.ruaPavimentada} />
-              <FormField isGrid name="geladeira" label="Geladeira" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="geladeira" label="Geladeira" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.geladeira} />
-              <FormField isGrid name="lavaRoupa" label="Lava roupa" isSelect options={opcoesPadrao} onChange={onChange}
+              <FormField name="lavaRoupa" label="Lava roupa" isSelect options={opcoesPadrao} onChange={onChange}
                 error={errors.lavaRoupa} />
-              <FormField isGrid name="grauInstrucaoChefeFamilia" label="Grau de Instrução do Chefe da Família" isSelect options={grauInstrucao} onChange={onChange}
+              <FormField name="grauInstrucaoChefeFamilia" label="Grau de Instrução do Chefe da Família" isSelect options={grauInstrucao} onChange={onChange}
                 error={errors.grauInstrucaoChefeFamilia} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 p-2 sm:p-4 md:p-6 lg:p-8">
