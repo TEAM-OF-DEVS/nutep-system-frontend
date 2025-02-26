@@ -1,23 +1,9 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-console.log(__dirname);
-
-const express = require('express');
-const {resolve} = require('path');
-const app = express();
-
-app.use(express.static("build"));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "build", "index.html"));
-});
+const express = require('express')
+const {resolve} = require('path')
+const app = express()
 
 app.use('/',
     express.static(
