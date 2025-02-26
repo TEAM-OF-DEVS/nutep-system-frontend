@@ -1,25 +1,19 @@
 const express = require("express");
-const {resolve} = require("path");
-require('dotenv').config();
-
-const app = express();
-
-// Servir os arquivos da build do React
+const {resolve} = require('path')
+const app = express()
 app.use('/',
-express.static(
-    resolve(
-        __dirname,
-        './build'
+    express.static(
+        resolve(
+            __dirname,
+            './build'
         )
     )
+
 )
+app.listen(process.env.PORT || 3000, (err) => {
+    if(err) {
+        return console.log(err)
+    }
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// Porta dinâmica para Heroku
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+    console.log('Nutep Frontend started....')
+})
