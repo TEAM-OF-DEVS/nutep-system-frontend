@@ -3,7 +3,20 @@ import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import Procedencia from "../../models/enum/Procedencia.js";
-import { Alergias, ContraceptiveMethods, Convenio, Diagnostico, DoencasPreExistentesMae, ExamesRealizadosMae, Infeccoes, IntercorrenciasGestacao, ListSimOuNao, MedicamentosUtilizadosMae, MeioAbortivo, MotivoHospitalizacao, PlanejamentoDeGestacao, UsoDrogasMae } from "../../models/enum/EnunsDadosPreNatais.js";
+import Alergias from "../../models/enum/PreNatais/Alergias.js";
+import ContraceptiveMethods from "../../models/enum/PreNatais/ContraceptiveMethods.js";
+import Convenio from "../../models/enum/PreNatais/Convenio.js";
+import Diagnostico from "../../models/enum/PreNatais/Diagnostico.js";
+import DoencasPreExistentesMae from "../../models/enum/PreNatais/DoencasPreExistentesMae.js";
+import ExamesRealizadosMae from "../../models/enum/PreNatais/ExamesRealizadosMae.js";
+import Infeccoes from "../../models/enum/PreNatais/Infeccoes.js";
+import IntercorrenciasGestacao from "../../models/enum/PreNatais/IntercorrenciasGestacao.js";
+import ListSimOuNao from "../../models/enum/PreNatais/ListSimOuNao.js";
+import MedicamentosUtilizadosMae from "../../models/enum/PreNatais/MedicamentosUtilizadosMae.js";
+import MeioAbortivo from "../../models/enum/PreNatais/MeioAbortivo.js";
+import MotivoHospitalizacao from "../../models/enum/PreNatais/MotivoHospitalizacao.js";
+import PlanejamentoDeGestacao from "../../models/enum/PreNatais/PlanejamentoDeGestacao.js";
+import UsoDrogasMae from "../../models/enum/PreNatais/UsoDrogasMae.js";
 import PreNatalBuilder from "../../models/build/PreNatalBuilder.js";
 import PreNatalService from "../../services/prenatalService.jsx";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
@@ -169,12 +182,12 @@ export function FormCadastroDadosPreNatais() {
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (
           <FormGroup title="Dados Pré-Natais" description="Cadastro de Dados Pré Natais do Paciente">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
-                <FormField label="Prontuário" placeholder="N° do Prontuário" value={pacienteEncontrado?.descricaoProntuario || ""} />
-                <FormField label="Nome Completo" placeholder="Nome Completo" value={pacienteEncontrado?.dsNome || ""} />
-                <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={pacienteEncontrado?.dataNascimento || ""} />
-                <FormField name="dataAtendimento" label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataAtendimento} />
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+              <FormField label="Prontuário" placeholder="N° do Prontuário" value={pacienteEncontrado?.descricaoProntuario || ""} />
+              <FormField label="Nome Completo" placeholder="Nome Completo" value={pacienteEncontrado?.dsNome || ""} />
+              <FormField label="Data de Nascimento" placeholder="00/00/0000" type="Date" value={pacienteEncontrado?.dataNascimento || ""} />
+              <FormField name="dataAtendimento" label="Data do Atendimento" placeholder="00/00/0000" type="Date" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataAtendimento} />
+            </div>
           </FormGroup>
         )}
         {/* EMCAMINHAMENTO ORIGEM */}
@@ -217,52 +230,52 @@ export function FormCadastroDadosPreNatais() {
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="consanguinidadePais" isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} onChange={onChange} error={errors.consanguinidadePais}/>
-            <FormField name="descricaoConsanguinidade" isGrid label="Descrição da Consanguinidade" onChange={onChange} error={errors.descricaoConsanguinidade}/>
+            <FormField name="consanguinidadePais" isGrid label="Consanguinidade dos pais" isSelect options={listSimOuNao} onChange={onChange} error={errors.consanguinidadePais} />
+            <FormField name="descricaoConsanguinidade" isGrid label="Descrição da Consanguinidade" onChange={onChange} error={errors.descricaoConsanguinidade} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="intercorrenciasGestacao" isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} onChange={onChange} error={errors.consanguinidadePais}/>
-            <FormField name="descricaoIntercorrencias" isGrid label="Descrição da Intercorrência" onChange={onChange} error={errors.descricaoIntercorrencias}/>
-            <FormField name="alergias" isGrid label="Alergias" isSelect options={alergias} onChange={onChange} error={errors.alergias}/>
-            <FormField name="descricaoAlergias" isGrid label="Descrição de Alergias" onChange={onChange} error={errors.descricaoAlergias}/>
-            <FormField name="sangramentoGravidez" isGrid label="Sangramentos na gravidez?" isSelect options={listSimOuNao} onChange={onChange} error={errors.sangramentoGravidez}/>
-            <FormField name="periodoSangramento" isGrid label="Período do Sangramento" onChange={onChange} error={errors.periodoSangramento}/>
-            <FormField name="infeccoes" isGrid label="Infecções" isSelect options={infeccoes} onChange={onChange} error={errors.infeccoes}/>
-            <FormField name="descricaoInfeccoes" isGrid label="Descrição de Infecções" onChange={onChange} error={errors.descricaoInfeccoes}/>
+            <FormField name="intercorrenciasGestacao" isGrid label="Intercorrências na gestação" isSelect options={intercorrenciasGestacao} onChange={onChange} error={errors.consanguinidadePais} />
+            <FormField name="descricaoIntercorrencias" isGrid label="Descrição da Intercorrência" onChange={onChange} error={errors.descricaoIntercorrencias} />
+            <FormField name="alergias" isGrid label="Alergias" isSelect options={alergias} onChange={onChange} error={errors.alergias} />
+            <FormField name="descricaoAlergias" isGrid label="Descrição de Alergias" onChange={onChange} error={errors.descricaoAlergias} />
+            <FormField name="sangramentoGravidez" isGrid label="Sangramentos na gravidez?" isSelect options={listSimOuNao} onChange={onChange} error={errors.sangramentoGravidez} />
+            <FormField name="periodoSangramento" isGrid label="Período do Sangramento" onChange={onChange} error={errors.periodoSangramento} />
+            <FormField name="infeccoes" isGrid label="Infecções" isSelect options={infeccoes} onChange={onChange} error={errors.infeccoes} />
+            <FormField name="descricaoInfeccoes" isGrid label="Descrição de Infecções" onChange={onChange} error={errors.descricaoInfeccoes} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="doencasPreExistentesMae" isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} onChange={onChange} error={errors.doencasPreExistentesMae}/>
-            <FormField name="descricaoDoencasPreExistentes" isGrid label="Descrição de Doenças Pré existentes" onChange={onChange} error={errors.descricaoDoencasPreExistentes}/>
+            <FormField name="doencasPreExistentesMae" isGrid label="Doenças Pré Existentes da Mãe" isSelect options={doencasPreExistentesMae} onChange={onChange} error={errors.doencasPreExistentesMae} />
+            <FormField name="descricaoDoencasPreExistentes" isGrid label="Descrição de Doenças Pré existentes" onChange={onChange} error={errors.descricaoDoencasPreExistentes} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="usoDrogasMae" isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} onChange={onChange} error={errors.usoDrogasMae}/>
-            <FormField name="descricaoUsoDeDrogas" isGrid label="Descrição de uso de drogas" onChange={onChange} error={errors.descricaoUsoDeDrogas}/>
+            <FormField name="usoDrogasMae" isGrid label="Uso de Drogas Pela Mãe" isSelect options={usoDrogasMae} onChange={onChange} error={errors.usoDrogasMae} />
+            <FormField name="descricaoUsoDeDrogas" isGrid label="Descrição de uso de drogas" onChange={onChange} error={errors.descricaoUsoDeDrogas} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="examesRealizadosMae" isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} onChange={onChange} error={errors.consanguinidadePais}/>
-            <FormField name="descricaoExamesMae" isGrid label="Descrição dos exames realizados pela mãe" onChange={onChange} error={errors.consanguinidadePais}/>
+            <FormField name="examesRealizadosMae" isGrid label="Exames Realizados Pela Mãe" isSelect options={examesRealizadosMae} onChange={onChange} error={errors.consanguinidadePais} />
+            <FormField name="descricaoExamesMae" isGrid label="Descrição dos exames realizados pela mãe" onChange={onChange} error={errors.consanguinidadePais} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="medicamentosUtilizadosMae" isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} onChange={onChange} error={errors.medicamentosUtilizadosMae}/>
-            <FormField name="descricaoMedicamentosMae" isGrid label="Descrição dos medicamentos utilizados pela mãe" onChange={onChange} error={errors.descricaoMedicamentosMae}/>
+            <FormField name="medicamentosUtilizadosMae" isGrid label="Medicamentos utilizados pela mãe" isSelect options={medicamentosUtilizadosMae} onChange={onChange} error={errors.medicamentosUtilizadosMae} />
+            <FormField name="descricaoMedicamentosMae" isGrid label="Descrição dos medicamentos utilizados pela mãe" onChange={onChange} error={errors.descricaoMedicamentosMae} />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="hospitalizacoesGestacao" isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} onChange={onChange} error={errors.hospitalizacoesGestacao}/>
-            <FormField name="periodoHospitalizacaoSemanas" isGrid label="Qual periodo (semanas)" onChange={onChange} error={errors.periodoHospitalizacaoSemanas}/>
-            <FormField name="motivoHospitalizacao" isGrid label="Motivo da hospitalização" isSelect options={motivoHospitalizacao} onChange={onChange} error={errors.motivoHospitalizacao}/>
-            <FormField name="diasHospitalizacao" isGrid label="Dias de hospitalização" onChange={onChange} error={errors.diasHospitalizacao}/>
+            <FormField name="hospitalizacoesGestacao" isGrid label="Hospitalizações no período gestacional" isSelect options={listSimOuNao} onChange={onChange} error={errors.hospitalizacoesGestacao} />
+            <FormField name="periodoHospitalizacaoSemanas" isGrid label="Qual periodo (semanas)" onChange={onChange} error={errors.periodoHospitalizacaoSemanas} />
+            <FormField name="motivoHospitalizacao" isGrid label="Motivo da hospitalização" isSelect options={motivoHospitalizacao} onChange={onChange} error={errors.motivoHospitalizacao} />
+            <FormField name="diasHospitalizacao" isGrid label="Dias de hospitalização" onChange={onChange} error={errors.diasHospitalizacao} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField name="descricaoMotivoHospitalizacao" label="Descrição do Motivo da hospitalização" onChange={onChange} error={errors.descricaoMotivoHospitalizacao}/>
-            <FormField name="diagnostico" isGrid label="Diagnóstico" isSelect options={diagnostico} onChange={onChange} error={errors.diagnostico}/>
-            <FormField name="descricaoDiagnostico" label="Descrição do Diagnóstico" onChange={onChange} error={errors.descricaoDiagnostico}/>
-            <FormField name="observacoes" label="Observações" onChange={onChange} error={errors.observacoes}/>
+            <FormField name="descricaoMotivoHospitalizacao" label="Descrição do Motivo da hospitalização" onChange={onChange} error={errors.descricaoMotivoHospitalizacao} />
+            <FormField name="diagnostico" isGrid label="Diagnóstico" isSelect options={diagnostico} onChange={onChange} error={errors.diagnostico} />
+            <FormField name="descricaoDiagnostico" label="Descrição do Diagnóstico" onChange={onChange} error={errors.descricaoDiagnostico} />
+            <FormField name="observacoes" label="Observações" onChange={onChange} error={errors.observacoes} />
           </div>
         </FormGroup>
         <div className="flex items-end justify-end px-8 pt-4">

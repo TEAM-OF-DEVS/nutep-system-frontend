@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete"
 import { FormField } from "../../components/FormField/FormField"
 import { FormGroup } from "../../components/FormGroup"
+
 import Antibiotico from "../../models/enum/Antibiotico";
 import DoencaCronica from "../../models/enum/DoencaCronica";
 import DoencaGenetica from "../../models/enum/DoencaGenetica";
@@ -13,7 +14,12 @@ import MessageAlert from "../../util/MessageAlert";
 import { validateField, validateForm } from "../../validator/validateFormPaciente";
 import NeoNatalBuilder from "../../models/build/NeoNatalBuilder";
 import NeoNatalService from "../../services/neonatalService";
-import { Apresentacao, ExamesRealizados, OpcaoSimOuNaoOuSi, ResultadoTeste, TiposDeGestacao, TiposDeParto } from "../../models/enum/EnumDadosNeoNatais";
+import Apresentacao from "../../models/enum/NeoNatais/Apresentacao";
+import ExamesRealizados from "../../models/enum/NeoNatais/ExamesRealizados";
+import OpcaoSimOuNaoOuSi from "../../models/enum/NeoNatais/OpcaoSimOuNaoOuSi";
+import ResultadoTeste from "../../models/enum/NeoNatais/ResultadoTeste";
+import TiposDeGestacao from "../../models/enum/NeoNatais/TiposDeGestacao";
+import TiposDeParto from "../../models/enum/NeoNatais/TiposDeParto";
 
 
 export function FormCadastroDadosNeonatais() {

@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
-import { Abrigos, ConfiguracaoFamiliar, DiasTurnoTerapia, GrauInstrucao, OpcoesPadrao, PeriodicidadeTerapia, PresencaDosPais, SituacaoAtualInstituicao, SituacaoConjugalPais, TipoAcolhimento, TipoTerapia } from "../../models/enum/EnunsServicosSocial.js";
+import Abrigos from "../../models/enum/ServicosSocial/Abrigos.js";
+import ConfiguracaoFamiliar from "../../models/enum/ServicosSocial/ConfiguracaoFamiliar.js";
+import DiasTurnoTerapia from "../../models/enum/ServicosSocial/DiasTurnoTerapia.js";
+import GrauInstrucao from "../../models/enum/ServicosSocial/GrauInstrucao.js";
+import OpcoesPadrao from "../../models/enum/ServicosSocial/OpcoesPadrao.js";
+import PeriodicidadeTerapia from "../../models/enum/ServicosSocial/PeriodicidadeTerapia.js";
+import PresencaDosPais from "../../models/enum/ServicosSocial/PresencaDosPais.js";
+import SituacaoAtualInstituicao from "../../models/enum/ServicosSocial/SituacaoAtualInstituicao.js";
+import SituacaoConjugalPais from "../../models/enum/ServicosSocial/SituacaoConjugalPais.js";
+import TipoAcolhimento from "../../models/enum/ServicosSocial/TipoAcolhimento.js";
+import TipoTerapia from "../../models/enum/ServicosSocial/TipoTerapia.js";
 import SimOuNao from "../../models/enum/SimNao.js";
 import ServicoSocialService from "../../services/servicoSocialService.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
@@ -29,6 +39,7 @@ export function FormServicoSocial() {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [resultado, setResultado] = useState(0);
 
   const validationRules = {
     dataAtendimento: { required: true },
@@ -97,6 +108,37 @@ export function FormServicoSocial() {
       [name]: error
     }));
   }
+
+  useEffect(() => {
+    // Campos que devem ser somados
+    console.log("Javoso");
+    const camposSomaveis = [
+      "banheiro",
+      "dvd",
+      "automovel",
+      "microondas",
+      "lavaLoucas",
+      "motocicleta",
+      "freezer",
+      "secadoraRoupa",
+      "empregadosDomesticos",
+      "microcomputador",
+      "geladeira",
+      "lavaRoupa"
+    ];
+
+    let soma = 0;
+    camposSomaveis.forEach((campo) => {
+      let valor = dadosFormulario[campo];
+
+      if (valor === "4 ou +") {
+        valor = 4;
+      }
+      soma += parseInt(valor, 10) || 0;
+    });
+
+    setResultado(soma);
+  }, [dadosFormulario]);
 
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
@@ -217,42 +259,42 @@ export function FormServicoSocial() {
                 <p className="text-sm mb-4">Valores referente à somatória de pontos</p>
                 <table className="w-full text-sm">
                   <tbody>
-                    <tr>
+                    <tr className={(resultado >= 42 && resultado <= 46) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">A1</td>
                       <td className="px-4 py-2 text-center">42-46</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >=35 && resultado <= 41) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">A2</td>
                       <td className="px-4 py-2 text-center">35-41</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado > 29 && resultado <= 34) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">B1</td>
                       <td className="px-4 py-2 text-center">29-34</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >=23 && resultado <= 28) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">B2</td>
                       <td className="px-4 py-2 text-center">23-28</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >= 18 && resultado <= 22) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">C1</td>
                       <td className="px-4 py-2 text-center">18-22</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >= 14 && resultado <= 17) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">C2</td>
                       <td className="px-4 py-2 text-center">14-17</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >= 8 && resultado <= 13) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">D</td>
                       <td className="px-4 py-2 text-center">8-13</td>
                     </tr>
-                    <tr>
+                    <tr className={(resultado >= 0 && resultado <= 7) ? 'bg-green-200':''}>
                       <td className="px-4 py-2 text-center">E</td>
                       <td className="px-4 py-2 text-center">0-7</td>
                     </tr>
                   </tbody>
                 </table>
                 <div className="mt-4">
-                  <h3 className="text-sm font-semibold">Resultado Calculado = 0</h3>
+                  <h3 className="text-sm font-semibold">Resultado Calculado = {resultado}</h3>
                 </div>
               </div>
             </div>
