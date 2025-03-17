@@ -1,11 +1,9 @@
 import { createContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar/index.jsx';
-import { Header } from './components/Header/index.jsx';
 import { FormServicoSocial } from './pages/FormServicoSocial/index.jsx';
 import { FormCadastroDadosPessoais } from './pages/FormCadastroDadosPessoais/index.jsx';
 import { FormCadastroDadosPreNatais } from './pages/FormCadastroDadosPreNatais/index.jsx';
-import { Home } from './pages/Home/index.jsx';
 import { FormCadastroDadosNeonatais } from './pages/FormCadastroDadosNeonatais/index.jsx';
 import Login from './pages/Login/index.jsx';
 

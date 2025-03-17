@@ -39,6 +39,7 @@ export function FormCadastroDadosPessoais() {
   const [message, setMessage] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
+  const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
 
   const carregarCidadesOuMunicipios = async () => {
     try {
@@ -57,7 +58,7 @@ export function FormCadastroDadosPessoais() {
     descricaoProntuario: { required: true },
     nomeCompleto: { required: true },
     dataNascimento: { required: true },
-    cpf: { required: true },
+    cpf: { required: false },
     nacionalidade: { required: true },
     naturalidade: { required: true },
     uf: { required: true },
@@ -65,15 +66,15 @@ export function FormCadastroDadosPessoais() {
     tipoRacaCor: { required: true },
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
-    dsOutroTipoDeLocalDeNascimentoPaciente: { required: true },
+    dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
-    complemento: { required: true },
+    complemento: { required: false },
     bairro: { required: true },
     municipioLogradouro: { required: true },
     estado: { required: true },
-    tpMoradia: { required: false },
+    tpMoradia: { required: true },
 
     nomeMae: { required: true },
     dataNascimentoMae: { required: true },
@@ -99,21 +100,21 @@ export function FormCadastroDadosPessoais() {
     ocupacaoPai: { required: !isChecked },
     descricaoOcupacaoPai: { required: !isChecked },
 
-    nomeResponsavel: { required: true },
-    dataNascimentoResponsavel: { required: true },
-    vinculoResponsavel: { required: true },
+    nomeResponsavel: { required: !paiOuMaeResponsavel },
+    dataNascimentoResponsavel: { required: !paiOuMaeResponsavel },
+    vinculoResponsavel: { required: !paiOuMaeResponsavel },
     descricaoVinculoResponsavel: { required: false },
-    cpfResponsavel: { required: true },
-    tipoRacaCorResponsavel: { required: true },
-    estadoCivilResponsavel: { required: true },
-    telefone1Responsavel: { required: true },
+    cpfResponsavel: { required: !paiOuMaeResponsavel },
+    tipoRacaCorResponsavel: { required: !paiOuMaeResponsavel },
+    estadoCivilResponsavel: { required: !paiOuMaeResponsavel },
+    telefone1Responsavel: { required: !paiOuMaeResponsavel },
     telefone2Responsavel: { required: false },
-    escolaridadeResponsavel: { required: true },
-    ocupacaoResponsavel: { required: true },
+    escolaridadeResponsavel: { required: !paiOuMaeResponsavel },
+    ocupacaoResponsavel: { required: !paiOuMaeResponsavel },
     descricaoOcupacaoResponsavel: { required: false },
 
     procedencia: { required: true },
-    dsOutroTipoDeProcedenciaPaciente: { required: true },
+    dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
   useEffect(() => {
@@ -188,30 +189,91 @@ export function FormCadastroDadosPessoais() {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+  
+
+  const handleResponsavelChange = (valueMae, valuePai) => {
+    const isResponsavel = valueMae === 'Sim' || valuePai === 'Sim';
+    setPaiOuMaeResponsavel(isResponsavel);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      nomeResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      dataNascimentoResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      vinculoResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      cpfResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      tipoRacaCorResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      estadoCivilResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      telefone1Responsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      escolaridadeResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+      ocupacaoResponsavel: isResponsavel ? '' : 'Este campo é obrigatório',
+    }));
+  };
+  const formatCPF = (value) => {
+    value = value.replace(/\D/g, '');
+
+    value = value.slice(0, 11);
+
+    if (value.length <= 11) {
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+
+    return value;
+  };
+
+  const formatCartaoSUS = (value) => {
+    value = value.replace(/\D/g, '');
+
+    value = value.slice(0, 15);
+
+    if (value.length <= 15) {
+      value = value.replace(/(\d{3})(\d)/, '$1 $2');
+      value = value.replace(/(\d{4})(\d)/, '$1 $2');
+      value = value.replace(/(\d{4})(\d)/, '$1 $2');
+      value = value.replace(/(\d{4})(\d{1,4})$/, '$1 $2');
+    }
+
+    return value;
+  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    let formattedValue = value;
+
+    if (name === 'cpf' || name === 'cpfMae' || name === 'cpfPai' || name === 'cpfResponsavel') {
+      formattedValue = formatCPF(value);
+    }
+
+    if (name === 'descricaoCartaoSUS') {
+      formattedValue = formatCartaoSUS(value);
+    }
+
+    const upperCaseValue = formattedValue.toUpperCase();
+
     const keys = name.split(".");
     if (keys.length > 1) {
       setDadosFormulario((prevState) => ({
         ...prevState,
         [keys[0]]: {
           ...prevState[keys[0]],
-          [keys[1]]: value
-        }
+          [keys[1]]: upperCaseValue,
+        },
       }));
     } else {
       setDadosFormulario((prevState) => ({
         ...prevState,
-        [name]: value
+        [name]: upperCaseValue,
       }));
     }
-    const error = validateField(name, value, validationRules[name]);
-    setErrors((prev) => ({
-      ...prev,
-      [name]: error
-    }));
-  }
+
+    if (name === 'responsavelPelaCriancaMae' || name === 'responsavelPelaCriancaPai') {
+      handleResponsavelChange(
+        name === 'responsavelPelaCriancaMae' ? value : dadosFormulario.responsavelPelaCriancaMae,
+        name === 'responsavelPelaCriancaPai' ? value : dadosFormulario.responsavelPelaCriancaPai
+      );
+    }
+  };
+
 
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
@@ -265,7 +327,7 @@ export function FormCadastroDadosPessoais() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
-            <FormField name="cpf" label="CPF" styleClass="campoObrigatorio" placeholder="000.000.000-00" onChange={onChange} error={errors.cpf} />
+            <FormField name="cpf" label="CPF" styleClass="campoObrigatorio" placeholder="000.000.000-00" onChange={onChange} error={errors.cpf} maxLength={14}/>
             <FormField name="nacionalidade" label="Nacionalidade" styleClass="campoObrigatorio" isSelect options={nacionalidade} onChange={onChange} error={errors.nacionalidade} />
             <FormField name="naturalidade" label="Naturalidade" styleClass="campoObrigatorio" isSelect isAPI options={naturalidade} onChange={onChange} displayAttribute="nomeMunicipio" error={errors.naturalidade} />
             <FormField name="uf" label="UF" styleClass="campoObrigatorio" isSelect options={uf} onChange={onChange} error={errors.uf} />
@@ -287,7 +349,7 @@ export function FormCadastroDadosPessoais() {
             <FormField name="bairro" label="Bairro" styleClass="campoObrigatorio" onChange={onChange} error={errors.bairro} />
             <FormField name="municipioLogradouro" label="Cidade" styleClass="campoObrigatorio" isSelect isAPI options={cidades} onChange={onChange} displayAttribute="nomeMunicipio" error={errors.municipioLogradouro} />
             <FormField name="estado" label="Estado" styleClass="campoObrigatorio" isSelect options={uf} onChange={onChange} error={errors.estado} />
-            <FormField name="tpMoradia" label="Tipo de moradia" isSelect options={tipoMoradia} onChange={onChange} error={errors.tpMoradia} />
+            <FormField name="tpMoradia" label="Tipo de moradia" isSelect styleClass="campoObrigatorio" options={tipoMoradia} onChange={onChange} error={errors.tpMoradia} />
           </div>
         </FormGroup >
         {/* DADOS DOS PAIS */}
@@ -295,7 +357,7 @@ export function FormCadastroDadosPessoais() {
         <FormGroup title="Dados dos Pais" description="Cadastro de dados pessoais dos pais do Paciente">
           <div className="flex items-center mt-8 px-8 w-full">
             <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="nomeMae" label="Nome da Mãe" placeholder="Nome" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeMae} />
+              <FormField name="nomeMae" label="Nome da Mãe" placeholder="Nome da Mãe" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeMae} />
             </span>
             <span className="font-bold text-sm mr-5">
               <FormField name="dataNascimentoMae" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataNascimentoMae} />
@@ -335,7 +397,7 @@ export function FormCadastroDadosPessoais() {
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="flex items-center mt-8 px-8" >
             <span className="font-bold text-sm mr-5 w-full">
-              <FormField name="nomePai" label="Nome do Pai (Caso desconhecido, selecionar a opção ao lado)" placeholder="Nome"
+              <FormField name="nomePai" label="Nome do Pai (Caso desconhecido, selecionar a opção ao lado)" placeholder="Nome do Pai"	
                 styleClass="campoObrigatorio" onChange={onChange} isDisable={isChecked} error={errors.nomePai} />
             </span>
             <span className="font-bold text-sm mr-5">
@@ -380,10 +442,10 @@ export function FormCadastroDadosPessoais() {
 
         {/* DADOS RESPONSAVEL*/}
 
-        <FormGroup title="Responsável" description="Cadastro de dados pessoais do responsável do Paciente">
+        <FormGroup title="Responsável" description="Cadastro de dados pessoais do responsável do Paciente (Caso Mãe e/ou Pai não  sejam os responsáveis)">
           <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-10 w-full">
-              <FormField name="nomeResponsavel" label="Nome do Responsável" placeholder="Nome" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeResponsavel} />
+            <span className="font-bold text-sm mr-5  w-full">
+              <FormField name="nomeResponsavel" label="Nome do Responsável" placeholder="Nome do Responsável" styleClass="campoObrigatorio" onChange={onChange} error={errors.nomeResponsavel} />
             </span>
             <span className="font-bold text-sm mr-10">
               <FormField name="dataNascimentoResponsavel" label="Data de Nascimento" type="date" placeholder="00/00/0000" styleClass="campoObrigatorio" onChange={onChange} error={errors.dataNascimentoResponsavel} />
@@ -453,4 +515,4 @@ export function FormCadastroDadosPessoais() {
       </form>
     </>
   );
-}
+};  
