@@ -203,7 +203,7 @@ export function FormCadastroDadosPessoais() {
         console.log(response);
         // const response =  await fetch(`http://localhost:9090/cep/${cep}`);
         if (!response || response.erro) {
-          throw new Error(`CEP inválido ou não encontrado ${response.status}` );
+          throw new Error(`CEP inválido ou não encontrado ${response.status}`);
         }
         const data = response;
         console.log(data);
@@ -274,6 +274,7 @@ export function FormCadastroDadosPessoais() {
       throw new Error(`Erro ao salvar paciente: ${erro.message}`);
     }
   }
+
   return (
     <>
       {/* DADOS PACIENTE */}

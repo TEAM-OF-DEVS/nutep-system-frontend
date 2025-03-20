@@ -15,11 +15,15 @@ export const FormField = ({ isAPI = false, isDisable = false, isGrid = false, is
             : "w-full bg-white text-gray-700 text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-gray-400 "}
         >
           <option value="">Selecione</option>
-          {options.map((option, idx) => (
-            <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
-              {option[displayAttribute]}
-            </option>
-          ))}
+          {Array.isArray(options) ? (
+            options.map((option, idx) => (
+              <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
+                {option[displayAttribute]}
+              </option>
+            ))
+          ) : (
+            <option disabled>Opções inválidas</option>
+          )}
         </select>
       ) : (
         <input id={name} name={name} onChange={onChange} value={value} onBlur={onBlur}

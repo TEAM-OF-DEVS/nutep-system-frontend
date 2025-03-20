@@ -22,7 +22,7 @@ import PreNatalService from "../../services/prenatalService.jsx";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
 
-export function FormCadastroDadosPreNatais() {
+export function FormCadastroDadosPreNatais() { 
 
   const procedencias = Object.entries(Procedencia).map(([key, value]) => ({ value: key, label: value }));
   const convenio = Object.entries(Convenio).map(([key, value]) => ({ value: key, label: value }));

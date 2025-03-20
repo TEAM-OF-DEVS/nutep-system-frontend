@@ -11,6 +11,10 @@ class NeoNatalBuilder {
             descricaoApresentacao: "",
             tipoGestacao: "",
             descricaoTipoGestacao: "",
+
+            termo: "",
+            preTermo: "",
+            posTermo: "",
             
             peso: "",
             comprimento: "",

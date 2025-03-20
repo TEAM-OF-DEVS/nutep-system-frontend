@@ -1,7 +1,8 @@
 import axios from "axios";
 
-//const BASE_URL = "http://localhost:3001/neonatais"; // Substitua pela URL correta da API.
-const BASE_URL = "https://nutep-json-server-ebdb8a16af34.herokuapp.com/neonatais";
+const BASE = import.meta.env.VITE_BASE_URL;
+const BASE_URL = BASE + "/neonatais";
+
 const NeoNatalService = {
   // Recuperar todos os pacientes
   getAll: async () => {

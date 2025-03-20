@@ -22,7 +22,11 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="descricaoApresentacao"]').type('Descrição da apresentação.');
         cy.get('select[name="tipoGestacao"]').select('Gemelaridade');
         cy.get('input[name="descricaoTipoGestacao"]').type('Descrição do tipo de gestação.');
-                //--------//
+        //--------//
+        cy.get('input[name="termo"]').type(2);
+        cy.get('input[name="preTermo"]').type(3);
+        cy.get('input[name="posTermo"]').type(6);
+        //--------//
         cy.get('input[name="peso"]').type('2000g');
         cy.get('input[name="comprimento"]').type('50cm');
         cy.get('input[name="perimetroCefalico"]').type('10cm');

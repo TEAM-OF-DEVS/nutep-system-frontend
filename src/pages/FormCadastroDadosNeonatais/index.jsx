@@ -60,6 +60,10 @@ export function FormCadastroDadosNeonatais() {
         tipoGestacao: "",
         descricaoTipoGestacao: "",
 
+        termo: "",
+        preTermo: "",
+        posTermo: "",
+
         peso: "",
         comprimento: "",
         perimetroCefalico: "",
@@ -230,6 +234,13 @@ export function FormCadastroDadosNeonatais() {
                             error={errors.tipoGestacao} />
                         <FormField name="descricaoTipoGestacao" label="Descrição do Tipo de gestação" onChange={onChange}
                             error={errors.descricaoTipoGestacao} />
+                        
+                    </div>
+                    <label className="pl-8 pt-2 font-bold text-sm text-gray-800 w-1/2">Idade gestacional (em semanas)</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 px-8 pt-4">
+                        <FormField name="termo" label="Termo" onChange={onChange} error={errors.idadeMaeEngravidar} />
+                        <FormField name="preTermo" label="Pré termo" onChange={onChange} error={errors.numeroConsultas} />
+                        <FormField name="posTermo" label="Pós termo" onChange={onChange} error={errors.idadePaiGestacao} />
                     </div>
                 </FormGroup>
 
