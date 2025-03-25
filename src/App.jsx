@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar/index.jsx';
 import { FormServicoSocial } from './pages/FormServicoSocial/index.jsx';
@@ -10,6 +10,7 @@ import Login from './pages/Login/index.jsx';
 const MyContext = createContext();
 
 function App() {
+  const [open, setOpen] = useState(true);
 
   const values = {}
 
@@ -30,12 +31,12 @@ function App() {
             <Route
               path='/dashboard/*'
               element={
-                <section className='main flex '>
-                <div className='sidebarWrapper w-[15%]'>
-                  <Sidebar />
+                <section className='main flex'>
+                <div className={`${open ? 'w-[8%]' : 'w-[3%]'}`}>
+                  <Sidebar setOpen={setOpen} open={open}/>
                 </div>
     
-                <div className='content_Right w-[85%]'>
+                <div className={` ${open ? 'w-[92%]' : 'w-[97%]'}`}>
                   <Routes>
                     {routes.map((route, index) => (
                       <Route key={index} path={route.path} exact={true} element={route.component} />

@@ -12,8 +12,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SettingsIcon from "@mui/icons-material/Settings";
 import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
-const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+// eslint-disable-next-line react/prop-types
+const Sidebar = ({ setOpen, open}) => {
   const [submenuOpen, setSubmenuOpen] = useState(null);
 
   const toggleSubMenu = (index) => {

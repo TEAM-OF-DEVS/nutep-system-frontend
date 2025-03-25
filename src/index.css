@@ -12,17 +12,17 @@ body {
   background: #003223;
   transition: width 0.3s ease;
   width: 13rem;
-  position: fixed;
+  position: fixed; 
   top: 0;
   left: 0;
-  padding: 2rem 1rem; 
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .sidebar.collapsed {
-  width: 5rem;
+  width: 5rem; 
   align-items: center; 
   padding: 2rem 0.5rem;
 }
@@ -63,22 +63,16 @@ body {
   .sidebar.open {
     left: 0;
   }
-
+  
   .content {
     margin-left: 0 !important;
   }
-}
 
-
-.content {
-  transition: margin-left 0.3s ease;
-  margin-left: 16rem;
-}
-
-@media (max-width: 1024px) {
   .content {
-    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    margin-left: 16rem;
   }
+  
 }
 
 .sidebar .sidebarTabs ul {
