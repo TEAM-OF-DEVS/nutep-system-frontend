@@ -8,18 +8,40 @@ body {
 }
 
 .sidebar {
-  height: 100vh; 
+  height: 100vh;
   background: #003223;
-  transition: width 0.3s ease, transform 0.3s ease;
-  transform: translateX(0);
-  width: 16rem; 
-  position: fixed; 
+  transition: width 0.3s ease;
+  width: 13rem;
+  position: fixed;
   top: 0;
   left: 0;
+  padding: 2rem 1rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .sidebar.collapsed {
-  width: 6em; 
+  width: 5rem;
+  align-items: center; 
+  padding: 2rem 0.5rem;
+}
+
+.sidebar .logo-container {
+  width: 100%;
+  padding-left: 0.5rem; 
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.sidebar li {
+  width: 100%;
+  padding-left: 0.5rem;
 }
 
 .sidebar .arrow {

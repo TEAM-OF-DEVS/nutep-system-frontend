@@ -30,7 +30,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className={`sidebar ${open ? '' : 'collapsed'} top-0 left-0 z-50  bg-emerald-950 pt-8 relative transition-all duration-300 ease-in-out h-full`}>
+    <div className={`sidebar ${open ? '' : 'collapsed'} top-0 left-0 z-50 bg-emerald-950 pt-8 relative transition-all duration-300 ease-in-out h-full`}>
       <button
         className="absolute cursor-pointer -right-4 top-9 w-8 h-8 p-1 bg-white border-2 border-white rounded-full text-black flex items-center justify-center transition-all duration-300"
         onClick={() => setOpen(!open)}
@@ -39,21 +39,21 @@ const Sidebar = () => {
       </button>
 
       {open && (
-        <div className="flex gap-x-4 items-center mb-4">
-          <Link to="/dashboard"> 
-            <img src={Logo} alt="logo" className="w-full h-50 rounded-full object-center cursor-pointer transition-all duration-300" />
-          </Link>
-        </div>
+        <div className="logo-container">
+        <Link to="/dashboard">
+          <img src={Logo} alt="logo" className="w-full max-w-[180px] rounded-full" />
+        </Link>
+      </div>
       )}
 
-      <ul className="pt-2 space-y-4">
+      <ul className="menu-list pt-3 space-y-2">
         {Menus.map((menu, index) => (
           <li key={index}>
-            <Button className="flex items-center gap-3 w-full text-white" onClick={() => toggleSubMenu(index)}>
+            <Button className="flex items-center gap-2 text-white bg-red-" onClick={() => toggleSubMenu(index)}>
               {menu.icon}
               {open && <span>{menu.title}</span>}
               {menu.subMenu && (
-                <span className="ml-auto arrow">
+                <span className="ml-auto arrow flex">
                   {submenuOpen === index ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
                 </span>
               )}
@@ -61,14 +61,20 @@ const Sidebar = () => {
             {open && menu.subMenu && submenuOpen === index && (
               <div className="flex flex-col">
                 {menu.subMenu.map((subMenu, subIndex) => (
-                  <Button
+                  <Link
                     key={subIndex}
-                    className="text-white"
-                    component={subMenu === "Sair" || subMenu === "Dados Serviços Sociais" ? Link : Button}
-                    to={subMenu === "Sair" ? "/" : subMenu === "Dados Serviços Sociais" ? "/dashboard/dados-pessoais" : ""}
+                    to={
+                      subMenu === "Sair" ? "/" :
+                      subMenu === "Dados Pessoais" ? "/dashboard/dados-pessoais" :
+                      subMenu === "Dados Serviços Sociais" ? "/dashboard/servico-social" :
+                      subMenu === "Dados Pré-Natais" ? "/dashboard/dados-pre-natais" :
+                      subMenu === "Dados Neonatais" ? "/dashboard/dados-neonatais" :
+                      "#"
+                    }
+                    className="text-white block p-2 no-underline font-bold"
                   >
                     {subMenu}
-                  </Button>
+                  </Link>
                 ))}
               </div>
             )}
