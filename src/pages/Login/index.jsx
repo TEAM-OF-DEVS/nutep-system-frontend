@@ -127,7 +127,7 @@ export default function AuthPage() {
                   className="w-full p-2 border border-gray-300 rounded outline-none"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-
+                  onKeyDown={handleKeyDown}
                 />
               </div>
             )}
