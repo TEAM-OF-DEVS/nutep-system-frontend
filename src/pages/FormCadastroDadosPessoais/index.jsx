@@ -242,14 +242,28 @@ export function FormCadastroDadosPessoais() {
       ocupacaoResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
     }));
   };
+
+  const fetchCEPData = async (cep) => {
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+      if (data.erro) {
+        throw new Error("CEP não encontrado");
+      }
+      return data;
+    } catch (error) {
+      console.error("Erro ao buscar CEP:", error);
+      throw error;
+    }
+  };
   
-  const onChange = (e) => {
+  
+  const onChange = async (e) => {
     const { name, value } = e.target;
     let formattedValue = value;
-
- 
+  
     const upperCaseValue = formattedValue.toUpperCase();
-
+  
     const keys = name.split(".");
     if (keys.length > 1) {
       setDadosFormulario((prevState) => ({
@@ -265,7 +279,32 @@ export function FormCadastroDadosPessoais() {
         [name]: upperCaseValue,
       }));
     }
-
+  
+    if (name === "cep") {
+      if (value.length === 0) {
+        setDadosFormulario((prevState) => ({
+          ...prevState,
+          logradouro: "",
+          bairro: "",
+          municipioLogradouro: "",
+          estado: "",
+        }));
+      } else if (value.length === 9) {
+        try {
+          const cepData = await fetchCEPData(value);
+          setDadosFormulario((prevState) => ({
+            ...prevState,
+            logradouro: cepData.logradouro || "",
+            bairro: cepData.bairro || "",
+            municipioLogradouro: cepData.localidade || "",
+            estado: cepData.uf || "",
+          }));
+        } catch (error) {
+          console.error("Erro ao buscar CEP:", error);
+        }
+      }
+    }
+  
     if (
       name === "responsavelPelaCriancaMae" ||
       name === "responsavelPelaCriancaPai"
@@ -280,6 +319,8 @@ export function FormCadastroDadosPessoais() {
       );
     }
   };
+  
+  
 
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
@@ -306,6 +347,8 @@ export function FormCadastroDadosPessoais() {
       throw new Error(`Erro ao salvar paciente: ${erro.message}`);
     }
   }
+
+  
   return (
     <>
       {/* DADOS PACIENTE */}
@@ -461,6 +504,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="logradouro"
               label="Logradouro"
+              value={dadosFormulario.logradouro}
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.logradouro}
@@ -483,16 +527,15 @@ export function FormCadastroDadosPessoais() {
               name="bairro"
               label="Bairro"
               styleClass="campoObrigatorio"
+              value={dadosFormulario.bairro}
               onChange={onChange}
               error={errors.bairro}
             />
             <FormField
               name="municipioLogradouro"
               label="Cidade"
-              styleClass="campoObrigatorio"
-              isSelect
-              isAPI
-              options={cidades}
+              styleClass="campoObrigatorio"              
+              value={dadosFormulario.municipioLogradouro}
               onChange={onChange}
               displayAttribute="nomeMunicipio"
               error={errors.municipioLogradouro}
@@ -501,8 +544,7 @@ export function FormCadastroDadosPessoais() {
               name="estado"
               label="Estado"
               styleClass="campoObrigatorio"
-              isSelect
-              options={uf}
+              value={dadosFormulario.estado}
               onChange={onChange}
               error={errors.estado}
             />

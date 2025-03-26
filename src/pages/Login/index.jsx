@@ -41,6 +41,12 @@ export default function AuthPage() {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4 mt-8 mb-8">
       <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 p-8 bg-emerald-950 flex flex-col items-center rounded-lg shadow-lg">
@@ -105,6 +111,7 @@ export default function AuthPage() {
                 className="w-full p-2 border border-gray-300 rounded outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
 
@@ -120,6 +127,7 @@ export default function AuthPage() {
                   className="w-full p-2 border border-gray-300 rounded outline-none"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+
                 />
               </div>
             )}

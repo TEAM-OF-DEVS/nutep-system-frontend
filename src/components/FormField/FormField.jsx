@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const FormField = ({
   isAPI = false,
@@ -17,7 +17,6 @@ export const FormField = ({
   error,
   displayAttribute = "label",
 }) => {
-  // Funções de formatação (máscaras)
   const formatCEP = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 8);
     if (formatted.length > 5) {
@@ -29,9 +28,15 @@ export const FormField = ({
   const formatCPF = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 11);
     if (formatted.length > 9) {
-      formatted = `${formatted.slice(0, 3)}.${formatted.slice(3, 6)}.${formatted.slice(6, 9)}-${formatted.slice(9)}`;
+      formatted = `${formatted.slice(0, 3)}.${formatted.slice(
+        3,
+        6
+      )}.${formatted.slice(6, 9)}-${formatted.slice(9)}`;
     } else if (formatted.length > 6) {
-      formatted = `${formatted.slice(0, 3)}.${formatted.slice(3, 6)}.${formatted.slice(6)}`;
+      formatted = `${formatted.slice(0, 3)}.${formatted.slice(
+        3,
+        6
+      )}.${formatted.slice(6)}`;
     } else if (formatted.length > 3) {
       formatted = `${formatted.slice(0, 3)}.${formatted.slice(3)}`;
     }
@@ -41,9 +46,15 @@ export const FormField = ({
   const formatSUS = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 15);
     if (formatted.length > 11) {
-      formatted = `${formatted.slice(0, 3)} ${formatted.slice(3, 7)} ${formatted.slice(7, 11)} ${formatted.slice(11)}`;
+      formatted = `${formatted.slice(0, 3)} ${formatted.slice(
+        3,
+        7
+      )} ${formatted.slice(7, 11)} ${formatted.slice(11)}`;
     } else if (formatted.length > 7) {
-      formatted = `${formatted.slice(0, 3)} ${formatted.slice(3, 7)} ${formatted.slice(7)}`;
+      formatted = `${formatted.slice(0, 3)} ${formatted.slice(
+        3,
+        7
+      )} ${formatted.slice(7)}`;
     } else if (formatted.length > 3) {
       formatted = `${formatted.slice(0, 3)} ${formatted.slice(3)}`;
     }
@@ -53,7 +64,7 @@ export const FormField = ({
   const formatPhone = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 11);
     const isCellphone = formatted.length > 10;
-    
+
     if (formatted.length > 2) {
       formatted = `(${formatted.slice(0, 2)}) ${formatted.slice(2)}`;
     }
@@ -66,7 +77,6 @@ export const FormField = ({
   };
 
   const formatHouseNumber = (value) => {
-    // Permite números, letras e alguns caracteres especiais comuns
     return value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
   };
 
@@ -74,36 +84,43 @@ export const FormField = ({
     let value = event.target.value;
     const fieldName = event.target.name.toLowerCase();
 
-    // Aplica a máscara conforme o tipo de campo
     if (fieldName.includes("cep")) {
       value = formatCEP(value);
     } else if (fieldName.includes("cpf")) {
       value = formatCPF(value);
     } else if (fieldName.includes("sus") || fieldName.includes("cartaosus")) {
       value = formatSUS(value);
-    } else if (fieldName.includes("telefone") || fieldName.includes("celular") || fieldName.includes("phone")) {
+    } else if (
+      fieldName.includes("telefone") ||
+      fieldName.includes("celular") ||
+      fieldName.includes("phone")
+    ) {
       value = formatPhone(value);
-    } else if (fieldName.includes("numero") || fieldName.includes("número") || fieldName.includes("house")) {
+    } else if (
+      fieldName.includes("numero") ||
+      fieldName.includes("número") ||
+      fieldName.includes("house")
+    ) {
       value = formatHouseNumber(value);
     } else {
-      // Converte para maiúsculas se não for um campo com máscara específica
       value = value.toUpperCase();
     }
 
     onChange({ target: { name: event.target.name, value } });
   };
 
-  // Determina o placeholder padrão com base no tipo de campo
   const getDefaultPlaceholder = () => {
     const fieldName = name.toLowerCase();
-    
+
     if (fieldName.includes("cep")) return "00000-000";
     if (fieldName.includes("cpf")) return "000.000.000-00";
-    if (fieldName.includes("sus") || fieldName.includes("cartaosus")) return "000 0000 0000 0000";
-    if (fieldName.includes("telefone") || fieldName.includes("celular")) return "(00) 00000-0000";
+    if (fieldName.includes("sus") || fieldName.includes("cartaosus"))
+      return "000 0000 0000 0000";
+    if (fieldName.includes("telefone") || fieldName.includes("celular"))
+      return "(00) 00000-0000";
     return placeholder;
   };
-  // Determina o tipo de input com base no nome do campo
+
   const getInputType = () => {
     const fieldName = name.toLowerCase();
     if (fieldName.includes("senha") || fieldName.includes("password")) {
@@ -149,7 +166,10 @@ export const FormField = ({
           >
             <option value="">Selecione</option>
             {options.map((option, idx) => (
-              <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
+              <option
+                key={idx}
+                value={isAPI ? JSON.stringify(option) : option.value}
+              >
                 {option[displayAttribute]}
               </option>
             ))}

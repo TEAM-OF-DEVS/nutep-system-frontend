@@ -283,69 +283,69 @@ export function FormServicoSocial() {
         </FormGroup>
         {/* Situação Familiar */}
         <FormGroup
-  title="Situação Familiar"
-  description="Dados sobre a situação familiar do Paciente"
->
-  <div className="space-y-4 px-8 py-6">
-    <div className="flex-wrap justify-between gap-4">
-      <div className="grid grid-cols-3 gap-4 mb-10">
-        <FormField
-          name="configuracaoFamiliar"
-          label="Configuração Familiar"
-          isSelect
-          options={configuracaoFamiliar}
-          onChange={onChange}
-          error={errors.configuracaoFamiliar}
-        />
-        <FormField
-          name="descricaoFamiliar"
-          label="Descrição da Configuração Familiar"
-          onChange={onChange}
-          error={errors.descricaoFamiliar}
-        />
-        <FormField
-          name="situacaoConjugalDosPais"
-          label="Situação Conjugal dos Pais"
-          isSelect
-          options={situacaoConjugalPais}
-          onChange={onChange}
-          error={errors.situacaoConjugalDosPais}
-        />
-        <FormField
-          name="presencaDosPais"
-          label="Presença dos Pais"
-          isSelect
-          options={presencaDosPais}
-          onChange={onChange}
-          error={errors.presencaDosPais}
-        />
-        <FormField
-          name="tipoDeAcolhimento"
-          label="Tipo de Acolhimento"
-          isSelect
-          options={tipoAcolhimento}
-          onChange={onChange}
-          error={errors.tipoDeAcolhimento}
-        />
-        <FormField
-          name="abrigo"
-          label="Abrigo"
-          isSelect
-          options={abrigos}
-          onChange={onChange}
-          error={errors.abrigo}
-        />
-      </div>
-      <FormField
-        name="descricaoDoAbrigo"
-        label="Descrição do Abrigo"
-        isSelect
-        onChange={onChange}
-        error={errors.descricaoDoAbrigo}
-      />
-    </div>
-  </div>
-</FormGroup>
+          title="Situação Familiar"
+          description="Dados sobre a situação familiar do Paciente"
+        >
+          <div className="space-y-4 px-8 py-6">
+            <div className="flex-wrap justify-between gap-4">
+              <div className="grid grid-cols-3 gap-4 mb-10">
+                <FormField
+                  name="configuracaoFamiliar"
+                  label="Configuração Familiar"
+                  isSelect
+                  options={configuracaoFamiliar}
+                  onChange={onChange}
+                  error={errors.configuracaoFamiliar}
+                />
+                <FormField
+                  name="descricaoFamiliar"
+                  label="Descrição da Configuração Familiar"
+                  onChange={onChange}
+                  error={errors.descricaoFamiliar}
+                />
+                <FormField
+                  name="situacaoConjugalDosPais"
+                  label="Situação Conjugal dos Pais"
+                  isSelect
+                  options={situacaoConjugalPais}
+                  onChange={onChange}
+                  error={errors.situacaoConjugalDosPais}
+                />
+                <FormField
+                  name="presencaDosPais"
+                  label="Presença dos Pais"
+                  isSelect
+                  options={presencaDosPais}
+                  onChange={onChange}
+                  error={errors.presencaDosPais}
+                />
+                <FormField
+                  name="tipoDeAcolhimento"
+                  label="Tipo de Acolhimento"
+                  isSelect
+                  options={tipoAcolhimento}
+                  onChange={onChange}
+                  error={errors.tipoDeAcolhimento}
+                />
+                <FormField
+                  name="abrigo"
+                  label="Abrigo"
+                  isSelect
+                  options={abrigos}
+                  onChange={onChange}
+                  error={errors.abrigo}
+                />
+              </div>
+              <FormField
+                name="descricaoDoAbrigo"
+                label="Descrição do Abrigo"
+                isSelect
+                onChange={onChange}
+                error={errors.descricaoDoAbrigo}
+              />
+            </div>
+          </div>
+        </FormGroup>
 
         {/* ABEP - Classe Social */}
         <FormGroup title="ABEP - Classe Social">
