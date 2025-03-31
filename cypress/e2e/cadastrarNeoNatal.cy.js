@@ -63,6 +63,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('select[name="testeOrtolani"]').select('Normal');
                 //--------//
         cy.get('select[name="doencasCronicas"]').select('Sim');
+        cy.get('select[name="maeDoencasCronicas"]').click();
         cy.get('select[name="maeDoencasCronicas"]').select('Renais');
         cy.get('input[name="descricaoMaeDoencasCronicas"]').type('Descrição das doenças crônicas da mãe.');
         cy.get('select[name="paiDoencasCronicas"]').select('Pulmonares');
@@ -75,6 +76,8 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="descricaoAvosMaternosDoencasCronicas"]').type('Descrição das doenças crônicas dos avós maternos.');
                 //--------//
         cy.get('select[name="doencasGeneticas"]').select('Sim');
+        cy.get('select[name="maeDoencasGeneticas"]').click();
+        
         cy.get('select[name="maeDoencasGeneticas"]').select('Infarto');
         cy.get('input[name="descricaoMaeDoencasGeneticas"]').type('Descrição das doenças genéticas da mãe.');
         cy.get('select[name="paiDoencasGeneticas"]').select('Angina');

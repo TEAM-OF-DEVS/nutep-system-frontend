@@ -1,0 +1,6 @@
+{
+  "printWidth": 80,
+  "singleAttributePerLine": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all"
+}
