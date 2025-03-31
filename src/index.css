@@ -7,106 +7,152 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.sidebar {
+  height: 100vh;
+  background: #003223;
+  transition: width 0.3s ease, left 0.3s ease;
+  width: 13rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar.collapsed {
+  width: 5rem;
+  padding: 2rem 0.5rem;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.content {
+  transition: margin-left 0.3s ease;
+  margin-left: 13rem;
+}
+
+.sidebar .logo-container {
+  width: 100%;
+}
+
+.sidebar ul {
+  width: 100%;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.sidebar li {
+  width: 100%;
+  padding-left: 0.5rem;
+}
+
+.sidebar .arrow {
+  display: flex;
+}
+
+.sidebar.collapsed .arrow {
+  display: none;
+}
+
+.sidebar .sidebarTabs ul {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.sidebar .sidebarTabs ul li {
+  list-style-type: none;
+  width: 100%;
+}
+
+.sidebar .sidebarTabs button {
+  justify-content: flex-start !important;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 10px !important;
+  border-radius: 0px;
+  position: relative;
+}
+
+.sidebar .sidebarTabs button svg {
+  font-size: 16px;
+}
+
+.sidebar .sidebarTabs button .arrow svg {
+  font-size: 14px;
+}
+
+.sidebar .sidebarTabs button:hover {
+  background: #086c32 !important;
+  transition: all 0.3s;
+}
+
+.sidebar .sidebarTabs li .submenu {
+  position: relative;
+  top: 100%;
+  left: 0px;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.sidebar .sidebarTabs li.colapse .submenu.open {
+  height: auto;
+  opacity: 1;
+}
+
+.sidebar .sidebarTabs li .submenu button::before {
+  display: none;
+}
+
+.sidebar .sidebarTabs li .submenu button::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  position: absolute;
+  top: 47%;
+  left: 10%;
+}
+
+.sidebar .sidebarTabs li .submenu {
+  padding-left: 16px !important;
+  font-weight: 600 !important;
+  font-size: 5px; 
+}
+
 @media (max-width: 768px) {
-    .sidebar {
-      width: 75%;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-    }
-  
-    .sidebar.open {
-      transform: translateX(0);
-    }
-  
-    .sidebarTabs {
-      padding-left: 10px;
-    }
-  
-    .sidebarTabs button {
-      font-size: 14px;
-    }
-  
-    .sidebarTabs li .submenu button {
-      padding-left: 16px !important;
-      font-weight: 600 !important;
-      font-size: 12px;
-    }
-  }
-  
   .sidebar {
-    height: 100vh;
-    background: #003223;
-    transition: all 0.3s ease;
-  }
-  
-  .sidebar .sidebarTabs ul {
-    width: 100%;
-    margin-bottom: 0px;
-  }
-  
-  .sidebar .sidebarTabs ul li {
-    list-style-type: none;
-    width: 100%;
-  }
-  
-  .sidebar .sidebarTabs button {
-    justify-content: flex-start !important;
-    color: #fff;
-    text-transform: capitalize;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 4px 10px !important;
-    border-radius: 0px;
-    position: relative;
-  }
-  
-  .sidebar .sidebarTabs button svg {
-    font-size: 16px;
-  }
-  
-  .sidebar .sidebarTabs button .arrow svg {
-    font-size: 14px;
-  }
-  
-  .sidebar .sidebarTabs button:hover {
-    background: #086c32 !important;
-    transition: all 0.3s;
+    width: 75%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
-  .sidebar .sidebarTabs li .submenu {
-    position: relative;
-    top: 100%;
-    left: 0px;
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.4s;
+  .sidebar.open {
+    transform: translateX(0);
   }
-  
-  .sidebar .sidebarTabs li.colapse .submenu.open {
-    height: auto;
-    opacity: 1;
+
+  .sidebarTabs {
+    padding-left: 10px;
   }
-  
-  .sidebar .sidebarTabs li .submenu button::before {
-    display: none;
+
+  .sidebarTabs button {
+    font-size: 14px;
   }
-  
-  .sidebar .sidebarTabs li .submenu button::after {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 100%;
-    position: absolute;
-    top: 47%;
-    left: 10%;
-  }
-  
-  .sidebar .sidebarTabs li .submenu button {
+
+  .sidebarTabs li .submenu button {
     padding-left: 16px !important;
     font-weight: 600 !important;
     font-size: 12px;
   }
+}
 
 .campoObrigatorio::after {
   content: " *";

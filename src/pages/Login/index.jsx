@@ -40,6 +40,12 @@ export default function AuthPage() {
       alert("E-mail não encontrado");
     }
   };
+  
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4 mt-8 mb-8">
@@ -105,6 +111,7 @@ export default function AuthPage() {
                 className="w-full p-2 border border-gray-300 rounded outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
 
@@ -120,6 +127,8 @@ export default function AuthPage() {
                   className="w-full p-2 border border-gray-300 rounded outline-none"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  onKeyDown={handleKeyDown}
+
                 />
               </div>
             )}

@@ -1,9 +1,8 @@
-import React from "react";
 
 export const FormGroup = ({ title="", description="", children }) => {
     return (
         <div>
-            <div className="bg-green-200 mt-4">
+            <div className="bg-green-200 mt-4 w-[100]">
                 <span className=" text-green-800 pl-8 font-bold">
                     {title}
                 </span>
@@ -17,7 +16,6 @@ export const FormGroup = ({ title="", description="", children }) => {
             )}
             {children}
         </div>
-
     );
 };
 

@@ -1,225 +1,144 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import SearchIcon from "@mui/icons-material/Search";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import TimelineIcon from "@mui/icons-material/Timeline";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import {
+  TbLayoutSidebarLeftCollapse,
+  TbLayoutSidebarLeftExpand,
+} from "react-icons/tb";
 
-const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState(null);
+const Sidebar = ({ setOpen, open }) => {
   const [submenuOpen, setSubmenuOpen] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const isOpenSubMenu = (index) => {
-    if (submenuOpen === index) {
-      setSubmenuOpen(null);
-    } else {
-      setSubmenuOpen(index);
-    }
-    setActiveTab(index);
+  const toggleSubMenu = (index) => {
+    setSubmenuOpen(submenuOpen === index ? null : index);
   };
 
+  const Menus = [
+    {
+      title: "Pacientes",
+      icon: <PeopleAltIcon />,
+      subMenu: ["Prontuário", "Histórico"],
+    },
+    {
+      title: "Cadastros",
+      icon: <NoteAddIcon />,
+      subMenu: [
+        "Dados Pessoais",
+        "Dados Serviços Sociais",
+        "Dados Pré-Natais",
+        "Dados Neonatais",
+      ],
+    },
+    {
+      title: "Consultas",
+      icon: <SearchIcon />,
+      subMenu: [
+        "Consulta inicial Pediátrica",
+        "Consulta inicial Neurologia",
+        "Consulta de Retorno",
+      ],
+    },
+    {
+      title: "Agenda",
+      icon: <ContentPasteIcon />,
+      subMenu: ["Criar Agenda", "Bloqueio de Agenda"],
+    },
+    {
+      title: "Relatórios",
+      icon: <TimelineIcon />,
+      subMenu: ["Pacientes", "Atendimentos"],
+    },
+    {
+      title: "Ferramentas",
+      icon: <SettingsIcon />,
+      subMenu: [
+        "Mudar Senha",
+        "Criar cadastro/Login",
+        "Modo escuro/claro",
+        "Sair",
+      ],
+    },
+  ];
+
+
   return (
-    <>
-      <Button
-        className="md:hidden p-2 text-white fixed top-2 left-2 z-[101]"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+    <div
+      className={`fixed top-0 left-0 h-full bg-emerald-950 pt-8 transition-all duration-300 ease-in-out ${
+        open ? "w-64" : "w-22"
+      }`}
+    >
+      <button
+        className="absolute cursor-pointer -right-4 top-11 w-8 h-8 p-1 bg-emerald-950 border-3 border-white text-white rounded-full flex items-center justify-center transition-all duration-300"
+        onClick={() => setOpen(!open)}
       >
-        {isSidebarOpen ? <CloseIcon /> : <MenuIcon />}
-     
-      <div
-        className={`sidebar fixed top-0 left-0 z-[100] w-[15%] h-screen bg-emerald-950 transition-transform duration-300 transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:w-[15%]`}
-      >
-        <Link to="/dashboard">
-          <div className="logoWrapper py-2 px-4">
-            <img src={Logo} className="w-100" alt="Logo" />
-          </div>
-        </Link>
+        {open ? <TbLayoutSidebarLeftCollapse size={24} /> : <TbLayoutSidebarLeftExpand size={24}/> }
+      </button>
 
-        <div className="sidebarTabs">
-          <ul className="flex gap-3 flex-col pl-0">
-            <li className={`${submenuOpen === 0 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 0 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(0)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md ">
-                  <PeopleAltIcon />
-                </span>
-                Pacientes
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 0 ? 'open' : ''}`}>
-                <Button className="w-100">
-                  Prontuário
-                </Button>
-                <Button className="w-100">
-                  Histórico
-                </Button>
-              </div>
-            </li>
-
-            <li className={`${submenuOpen === 1 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 1 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(1)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
-                  <NoteAddIcon />
-                </span>
-                Cadastros
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 1 ? 'open' : ''}`}>
-                <Link to="/dashboard/dados-pessoais">
-                  <Button className="w-100">
-                    Dados Pessoais
-                  </Button>
-                </Link>
-                <Button className="w-100">
-                  Dados Serviços Sociais
-                </Button>
-                <Button className="w-100">
-                  Dados Pré-Natais
-                </Button>
-                <Button className="w-100">
-                  Dados Neonatais
-                </Button>
-              </div>
-            </li>
-
-            <li className={`${submenuOpen === 2 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 2 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(2)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
-                  <SearchIcon />
-                </span>
-                Consultas
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 2 ? 'open' : ''}`}>
-                <Button className="w-100">
-                  Consulta inicial Pediátrica
-                </Button>
-                <Button className="w-100">
-                  Consulta inicial Neurologia
-                </Button>
-                <Button className="w-100">
-                  Consulta de Retorno
-                </Button>
-              </div>
-            </li>
-
-            <li className={`${submenuOpen === 3 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 3 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(3)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
-                  <ContentPasteIcon />
-                </span>
-                Agenda
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 3 ? 'open' : ''}`}>
-                <Button className="w-100">
-                  Criar Agenda
-                </Button>
-                <Button className="w-100">
-                  Bloqueio de Agenda
-                </Button>
-              </div>
-            </li>
-
-            <li className={`${submenuOpen === 4 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 4 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(4)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
-                  <TimelineIcon />
-                </span>
-                Relatórios
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 4 ? 'open' : ''}`}>
-                <Button className="w-100">
-                  Pacientes
-                </Button>
-                <Button className="w-100">
-                  Atendimentos
-                </Button>
-              </div>
-            </li>
-
-            <li className={`${submenuOpen === 5 ? 'colapse' : 'colapsed'}`}>
-              <Button
-                className={`w-100 ${activeTab === 5 ? 'active' : ''} gap-2`}
-                onClick={() => isOpenSubMenu(5)}
-              >
-                <span className="icon w-[20px] h-[20px] flex items-center justify-center rounded-md">
-                  <SettingsIcon />
-                </span>
-                Ferramentas
-                <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                  <ArrowForwardIosIcon />
-                </span>
-              </Button>
-
-              <div className={`submenu ${submenuOpen === 5 ? 'open' : ''}`}>
-                <Button className="w-100">
-                  Mudar Senha
-                </Button>
-                <Button className="w-100">
-                  Criar cadastro/Login
-                </Button>
-                <Button className="w-100">
-                  Modo escuro/claro
-                </Button>
-
-                <Link to="/">
-                  <Button className="w-100">
-                    Sair
-                    <span className="arrow ml-auto w-[20px] h-[20px] flex items-center justify-center">
-                      <LogoutSharpIcon />
-                    </span>
-                  </Button>
-                </Link>
-              </div>
-            </li>
-          </ul>
+      {open && (
+        <div className="mb-4">
+          <Link to="/dashboard">
+            <img src={Logo} alt="logo" className="w-full rounded-full" />
+          </Link>
         </div>
-      </div>
-      </Button>
-    </>
+      )}
+
+      <ul className="menu-list pt-3 space-y-2 w-full">
+        {Menus.map((menu, index) => (
+          <li key={index} className="w-full">
+            <Button
+              className="flex items-center gap-2 text-white w-full justify-start px-4 py-2"
+              onClick={() => toggleSubMenu(index)}
+            >
+              {menu.icon}
+              {open && <span>{menu.title}</span>}
+              {menu.subMenu && open && (
+                <span className="ml-auto arrow flex">
+                  {submenuOpen === index ? (
+                    <KeyboardArrowDownIcon />
+                  ) : (
+                    <KeyboardArrowRightIcon />
+                  )}
+                </span>
+              )}
+            </Button>
+            {menu.subMenu && submenuOpen === index && open && (
+              <div className="flex flex-col pl-8">
+                {menu.subMenu.map((subMenu, subIndex) => (
+                  <Link
+                    key={subIndex}
+                    to={
+                      subMenu === "Sair"
+                        ? "/"
+                        : subMenu === "Dados Pessoais"
+                        ? "/dashboard/dados-pessoais"
+                        : subMenu === "Dados Serviços Sociais"
+                        ? "/dashboard/servico-social"
+                        : subMenu === "Dados Pré-Natais"
+                        ? "/dashboard/dados-pre-natais"
+                        : subMenu === "Dados Neonatais"
+                        ? "/dashboard/dados-neonatais"
+                        : "#"
+                    }
+                    className="text-white block p-2 no-underline font-bold"
+                  >
+                    {subMenu}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
