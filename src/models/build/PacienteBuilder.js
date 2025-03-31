@@ -14,13 +14,14 @@ class PacienteBuilder {
         return {
             ativo: true,
             dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
-            dsLogradouro: this.dadosFormulario.logradouro,
+            cep: this.dadosFormulario.cep,
+            estado: this.dadosFormulario.estado,
             nrLogradouro: this.dadosFormulario.numero,
-            dsComplementoLogradouro: this.dadosFormulario.complemento,
+            dsLogradouro: this.dadosFormulario.logradouro,
             dsBairro: this.dadosFormulario.bairro,
             municipioLogradouro: JSON.parse(this.dadosFormulario.municipioLogradouro),
+            dsComplementoLogradouro: this.dadosFormulario.complemento,
             tpMoradia: this.dadosFormulario.tpMoradia,
-            cep: this.dadosFormulario.cep,
         };
     }
 
@@ -28,43 +29,45 @@ class PacienteBuilder {
         return {
             ativo: true,
             dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
+            dsCPF: this.dadosFormulario[campos.cpf],
             dsNome: this.dadosFormulario[campos.nome],
             dataNascimento: this.dadosFormulario[campos.dataNascimento],
-            dsCPF: this.dadosFormulario[campos.cpf],
-            estadoCivil: this.dadosFormulario[campos.estadoCivil],
             racaCor: this.dadosFormulario[campos.racaCor],
+            estadoCivil: this.dadosFormulario[campos.estadoCivil],
             escolaridade: this.dadosFormulario[campos.escolaridade],
             ocupacao: this.dadosFormulario[campos.ocupacao],
             dsOutroTipoDeOcupacaoResponsavel: this.dadosFormulario[campos.descricaoOcupacao],
+            vinculoResponsavel: this.dadosFormulario[campos.vinculoResponsavel],
+            descricaoVinculoResponsavel: this.dadosFormulario[campos.descricaoVinculoResponsavel],
             telefone: [ "88 - 9 9446-2965", "88 - 9 9446-2965" ],
         };
     }
 
     criarMae() {
         return this.criarResponsavel("nomeMae", {
+            cpf: "cpfMae",
             nome: "nomeMae",
             dataNascimento: "dataNascimentoMae",
-            cpf: "cpfMae",
-            estadoCivil: "estadoCivilMae",
             racaCor: "tipoRacaCorMae",
+            estadoCivil: "estadoCivilMae",
+            telefone: ["telefone1Mae", "telefone2Mae"],
             escolaridade: "escolaridadeMae",
             ocupacao: "ocupacaoMae",
-            descricaoOcupacao: "descricaoOcupacaoMae",
-            telefone: ["telefone1Mae", "telefone2Mae"]
+            descricaoOcupacao: "descricaoOcupacaoMae"
         });
     }
 
     criarPai() {
         return this.criarResponsavel("nomePai", {
+            cpf: "cpfPai",
             nome: "nomePai",
             dataNascimento: "dataNascimentoPai",
-            cpf: "cpfPai",
-            estadoCivil: "estadoCivilPai",
             racaCor: "tipoRacaCorPai",
+            estadoCivil: "estadoCivilPai",
+            telefone: ["telefone1Pai", "telefone2Pai"],
             escolaridade: "escolaridadePai",
             ocupacao: "ocupacaoPai",
-            descricaoOcupacao: "descricaoOcupacaoPai",
-            telefone: ["88 - 9 9446-2965", "88 - 9 9446-2965"]
+            descricaoOcupacao: "descricaoOcupacaoPai"
         });
     }
 
@@ -86,23 +89,24 @@ class PacienteBuilder {
         return {
             ativo: true,
             dataCricao: new Date().toLocaleString("pt-Br",{ timeZone: "America/Sao_Paulo" }),
-            naturalidade: JSON.parse(this.dadosFormulario.naturalidade),
-            nacionalidade: this.dadosFormulario.nacionalidade,
-            procedencia: this.dadosFormulario.procedencia,
-            dsOutroTipoDeProcedenciaPaciente: this.dadosFormulario.dsOutroTipoDeProcedenciaPaciente,
-            localDeNascimento: this.dadosFormulario.localDeNascimento,
-            dsOutroTipoDeLocalDeNascimentoPaciente: this.dadosFormulario.dsOutroTipoDeLocalDeNascimentoPaciente,
-            endereco: this.criarEndereco(),
-            paisResponsaveis: [
-                this.criarMae(),
-                this.criarPai(),
-                this.criarOutroResponsavel(),
-            ],
             dataAdmissao: this.dadosFormulario.dataAdmissao,
             descricaoProntuario: this.dadosFormulario.descricaoProntuario,
+            dsNome: this.dadosFormulario.nomeCompleto,
+            dataNascimento: this.dadosFormulario.dataNascimento,
+            cpf: this.dadosFormulario.cpf,
+            nacionalidade: this.dadosFormulario.nacionalidade,
+            naturalidade: JSON.parse(this.dadosFormulario.naturalidade),
             sexo: this.dadosFormulario.sexo,
             tipoRacaCor: this.dadosFormulario.tipoRacaCor,
             descricaoCartaoSUS: this.dadosFormulario.descricaoCartaoSUS,
+            localDeNascimento: this.dadosFormulario.localDeNascimento,
+            dsOutroTipoDeLocalDeNascimentoPaciente: this.dadosFormulario.dsOutroTipoDeLocalDeNascimentoPaciente,
+            endereco: this.criarEndereco(),
+            maeResponsavel: this.criarMae(), 
+            paiResponsavel: this.criarPai(),
+            responsavel: this.criarOutroResponsavel(),
+            procedencia: this.dadosFormulario.procedencia,
+            dsOutroTipoDeProcedenciaPaciente: this.dadosFormulario.dsOutroTipoDeProcedenciaPaciente,
             isConstaPai: this.dadosFormulario.responsavelPelaCriancaPai != "false" ? SimOuNao.Sim : SimOuNao.Não,
             isConstaMae: this.dadosFormulario.responsavelPelaCriancaMae != "false" ? SimOuNao.Sim : SimOuNao.Não,
             isPaiResponsavel: this.dadosFormulario.responsavelPelaCriancaPai != "false" ? SimOuNao.Sim : SimOuNao.Não,

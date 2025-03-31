@@ -69,6 +69,7 @@ const Sidebar = ({ setOpen, open }) => {
     },
   ];
 
+
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-emerald-950 pt-8 transition-all duration-300 ease-in-out ${

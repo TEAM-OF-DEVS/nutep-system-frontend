@@ -9,7 +9,9 @@ const Paciente = {
   dsOutroTipoDeProcedenciaPaciente: '',
   localDeNascimento: '', // Enum como string
   dsOutroTipoDeLocalDeNascimentoPaciente: '',
-  paisResponsaveis: [], // Lista de objetos ou strings
+  maeResponsavel: {},
+  paiResponsavel: {},
+  responsavel: {}, // Lista de objetos ou strings
   telefone: [], // Lista de strings
   dataAdmissao: '', // String no formato ISO 'YYYY-MM-DD'
   descricaoProntuario: '',

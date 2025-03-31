@@ -8,8 +8,8 @@ describe('Formulário de Cadastro de Paciente', () => {
     it('Deve preencher e enviar o formulário de cadastro de paciente', () => {
         cy.wait(2000);
         cy.get('input[name="dataAdmissao"]').type('2023-10-10');
-        cy.get('input[name="descricaoProntuario"]').type('2530');
-        cy.get('input[name="nomeCompleto"]').type('João da Silva');
+        cy.get('input[name="descricaoProntuario"]').type('253076');
+        cy.get('input[name="nomeCompleto"]').type('Contonete de Elefante');
         cy.get('input[name="dataNascimento"]').type('1990-01-01');
         //---------------//
         cy.get('input[name="cpf"]').type('280.852.670-98');
@@ -23,12 +23,12 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('select[name="localDeNascimento"]').select('Domicílio');
         cy.get('input[name="dsOutroTipoDeLocalDeNascimentoPaciente"]').type('Outro local de nascimento.');
         //---------------//
-        cy.get('input[name="cep"]').type('01001000');
-        cy.get('input[name="logradouro"]').type('Rua ABC');
+        cy.get('input[name="cep"]').type('63908210');
+        // cy.get('input[name="bairro"]').type('Alto São Francisco');
+        // cy.get('input[name="logradouro"]').type('Rua São Mateus');
         cy.get('input[name="numero"]').type('123');
         cy.get('input[name="complemento"]').type('Apto 456');
         //---------------//
-        cy.get('input[name="bairro"]').type('Centro');
         cy.get('select[name="municipioLogradouro"]').select('Quixadá');
         cy.get('select[name="estado"]').select('CE - Ceará');// Se for um input, caso contrário, use select
         cy.get('select[name="tpMoradia"]').select('Própria');

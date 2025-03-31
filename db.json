@@ -1,741 +1,741 @@
 {
   "municipios": [
     {
-      "id": 1,
+      "id": "1",
       "nomeMunicipio": "Abaiara"
     },
     {
-      "id": 2,
+      "id": "2",
       "nomeMunicipio": "Acarape"
     },
     {
-      "id": 3,
+      "id": "3",
       "nomeMunicipio": "Acaraú"
     },
     {
-      "id": 4,
+      "id": "4",
       "nomeMunicipio": "Acopiara"
     },
     {
-      "id": 5,
+      "id": "5",
       "nomeMunicipio": "Aiuaba"
     },
     {
-      "id": 6,
+      "id": "6",
       "nomeMunicipio": "Alcântaras"
     },
     {
-      "id": 7,
+      "id": "7",
       "nomeMunicipio": "Altaneira"
     },
     {
-      "id": 8,
+      "id": "8",
       "nomeMunicipio": "Alto Santo"
     },
     {
-      "id": 9,
+      "id": "9",
       "nomeMunicipio": "Amontada"
     },
     {
-      "id": 10,
+      "id": "10",
       "nomeMunicipio": "Antonina do Norte"
     },
     {
-      "id": 11,
+      "id": "11",
       "nomeMunicipio": "Apuiarés"
     },
     {
-      "id": 12,
+      "id": "12",
       "nomeMunicipio": "Aquiraz"
     },
     {
-      "id": 13,
+      "id": "13",
       "nomeMunicipio": "Aracati"
     },
     {
-      "id": 14,
+      "id": "14",
       "nomeMunicipio": "Aracoiaba"
     },
     {
-      "id": 15,
+      "id": "15",
       "nomeMunicipio": "Ararendá"
     },
     {
-      "id": 16,
+      "id": "16",
       "nomeMunicipio": "Araripe"
     },
     {
-      "id": 17,
+      "id": "17",
       "nomeMunicipio": "Aratuba"
     },
     {
-      "id": 18,
+      "id": "18",
       "nomeMunicipio": "Arneiroz"
     },
     {
-      "id": 19,
+      "id": "19",
       "nomeMunicipio": "Assaré"
     },
     {
-      "id": 20,
+      "id": "20",
       "nomeMunicipio": "Aurora"
     },
     {
-      "id": 21,
+      "id": "21",
       "nomeMunicipio": "Baixio"
     },
     {
-      "id": 22,
+      "id": "22",
       "nomeMunicipio": "Banabuiú"
     },
     {
-      "id": 23,
+      "id": "23",
       "nomeMunicipio": "Barbalha"
     },
     {
-      "id": 24,
+      "id": "24",
       "nomeMunicipio": "Barreira"
     },
     {
-      "id": 25,
+      "id": "25",
       "nomeMunicipio": "Barro"
     },
     {
-      "id": 26,
+      "id": "26",
       "nomeMunicipio": "Barroquinha"
     },
     {
-      "id": 27,
+      "id": "27",
       "nomeMunicipio": "Baturité"
     },
     {
-      "id": 28,
+      "id": "28",
       "nomeMunicipio": "Beberibe"
     },
     {
-      "id": 29,
+      "id": "29",
       "nomeMunicipio": "Bela Cruz"
     },
     {
-      "id": 30,
+      "id": "30",
       "nomeMunicipio": "Boa Viagem"
     },
     {
-      "id": 31,
+      "id": "31",
       "nomeMunicipio": "Brejo Santo"
     },
     {
-      "id": 32,
+      "id": "32",
       "nomeMunicipio": "Camocim"
     },
     {
-      "id": 33,
+      "id": "33",
       "nomeMunicipio": "Campos Sales"
     },
     {
-      "id": 34,
+      "id": "34",
       "nomeMunicipio": "Canindé"
     },
     {
-      "id": 35,
+      "id": "35",
       "nomeMunicipio": "Capistrano"
     },
     {
-      "id": 36,
+      "id": "36",
       "nomeMunicipio": "Caridade"
     },
     {
-      "id": 37,
+      "id": "37",
       "nomeMunicipio": "Caririaçu"
     },
     {
-      "id": 38,
+      "id": "38",
       "nomeMunicipio": "Cariré"
     },
     {
-      "id": 39,
+      "id": "39",
       "nomeMunicipio": "Cariús"
     },
     {
-      "id": 40,
+      "id": "40",
       "nomeMunicipio": "Carnaubal"
     },
     {
-      "id": 41,
+      "id": "41",
       "nomeMunicipio": "Cascavel"
     },
     {
-      "id": 42,
+      "id": "42",
       "nomeMunicipio": "Catarina"
     },
     {
-      "id": 43,
+      "id": "43",
       "nomeMunicipio": "Catunda"
     },
     {
-      "id": 44,
+      "id": "44",
       "nomeMunicipio": "Caucaia"
     },
     {
-      "id": 45,
+      "id": "45",
       "nomeMunicipio": "Cedro"
     },
     {
-      "id": 46,
+      "id": "46",
       "nomeMunicipio": "Chaval"
     },
     {
-      "id": 47,
+      "id": "47",
       "nomeMunicipio": "Chorozinho"
     },
     {
-      "id": 48,
+      "id": "48",
       "nomeMunicipio": "Choró"
     },
     {
-      "id": 49,
+      "id": "49",
       "nomeMunicipio": "Coreaú"
     },
     {
-      "id": 50,
+      "id": "50",
       "nomeMunicipio": "Crateús"
     },
     {
-      "id": 51,
+      "id": "51",
       "nomeMunicipio": "Crato"
     },
     {
-      "id": 52,
+      "id": "52",
       "nomeMunicipio": "Croatá"
     },
     {
-      "id": 53,
+      "id": "53",
       "nomeMunicipio": "Cruz"
     },
     {
-      "id": 54,
+      "id": "54",
       "nomeMunicipio": "Deputado Irapuan Pinheiro"
     },
     {
-      "id": 55,
+      "id": "55",
       "nomeMunicipio": "Ererê"
     },
     {
-      "id": 56,
+      "id": "56",
       "nomeMunicipio": "Eusébio"
     },
     {
-      "id": 57,
+      "id": "57",
       "nomeMunicipio": "Farias Brito"
     },
     {
-      "id": 58,
+      "id": "58",
       "nomeMunicipio": "Forquilha"
     },
     {
-      "id": 59,
+      "id": "59",
       "nomeMunicipio": "Fortaleza"
     },
     {
-      "id": 60,
+      "id": "60",
       "nomeMunicipio": "Fortim"
     },
     {
-      "id": 61,
+      "id": "61",
       "nomeMunicipio": "Frecheirinha"
     },
     {
-      "id": 62,
+      "id": "62",
       "nomeMunicipio": "Granja"
     },
     {
-      "id": 63,
+      "id": "63",
       "nomeMunicipio": "Granjeiro"
     },
     {
-      "id": 64,
+      "id": "64",
       "nomeMunicipio": "Graça"
     },
     {
-      "id": 65,
+      "id": "65",
       "nomeMunicipio": "Groaíras"
     },
     {
-      "id": 66,
+      "id": "66",
       "nomeMunicipio": "Guaiúba"
     },
     {
-      "id": 67,
+      "id": "67",
       "nomeMunicipio": "Guaraciaba do Norte"
     },
     {
-      "id": 68,
+      "id": "68",
       "nomeMunicipio": "Guaramiranga"
     },
     {
-      "id": 69,
+      "id": "69",
       "nomeMunicipio": "Hidrolândia"
     },
     {
-      "id": 70,
+      "id": "70",
       "nomeMunicipio": "Horizonte"
     },
     {
-      "id": 71,
+      "id": "71",
       "nomeMunicipio": "Ibaretama"
     },
     {
-      "id": 72,
+      "id": "72",
       "nomeMunicipio": "Ibiapina"
     },
     {
-      "id": 73,
+      "id": "73",
       "nomeMunicipio": "Ibicuitinga"
     },
     {
-      "id": 74,
+      "id": "74",
       "nomeMunicipio": "Icapuí"
     },
     {
-      "id": 75,
+      "id": "75",
       "nomeMunicipio": "Icó"
     },
     {
-      "id": 76,
+      "id": "76",
       "nomeMunicipio": "Iguatu"
     },
     {
-      "id": 77,
+      "id": "77",
       "nomeMunicipio": "Independência"
     },
     {
-      "id": 78,
+      "id": "78",
       "nomeMunicipio": "Ipaporanga"
     },
     {
-      "id": 79,
+      "id": "79",
       "nomeMunicipio": "Ipaumirim"
     },
     {
-      "id": 80,
+      "id": "80",
       "nomeMunicipio": "Ipu"
     },
     {
-      "id": 81,
+      "id": "81",
       "nomeMunicipio": "Ipueiras"
     },
     {
-      "id": 82,
+      "id": "82",
       "nomeMunicipio": "Iracema"
     },
     {
-      "id": 83,
+      "id": "83",
       "nomeMunicipio": "Irauçuba"
     },
     {
-      "id": 84,
+      "id": "84",
       "nomeMunicipio": "Itaitinga"
     },
     {
-      "id": 85,
+      "id": "85",
       "nomeMunicipio": "Itaiçaba"
     },
     {
-      "id": 86,
+      "id": "86",
       "nomeMunicipio": "Itapajé"
     },
     {
-      "id": 87,
+      "id": "87",
       "nomeMunicipio": "Itapipoca"
     },
     {
-      "id": 88,
+      "id": "88",
       "nomeMunicipio": "Itapiúna"
     },
     {
-      "id": 89,
+      "id": "89",
       "nomeMunicipio": "Itarema"
     },
     {
-      "id": 90,
+      "id": "90",
       "nomeMunicipio": "Itatira"
     },
     {
-      "id": 91,
+      "id": "91",
       "nomeMunicipio": "Jaguaretama"
     },
     {
-      "id": 92,
+      "id": "92",
       "nomeMunicipio": "Jaguaribara"
     },
     {
-      "id": 93,
+      "id": "93",
       "nomeMunicipio": "Jaguaribe"
     },
     {
-      "id": 94,
+      "id": "94",
       "nomeMunicipio": "Jaguaruana"
     },
     {
-      "id": 95,
+      "id": "95",
       "nomeMunicipio": "Jardim"
     },
     {
-      "id": 96,
+      "id": "96",
       "nomeMunicipio": "Jati"
     },
     {
-      "id": 97,
+      "id": "97",
       "nomeMunicipio": "Jijoca de Jericoacoara"
     },
     {
-      "id": 98,
+      "id": "98",
       "nomeMunicipio": "Juazeiro do Norte"
     },
     {
-      "id": 99,
+      "id": "99",
       "nomeMunicipio": "Jucás"
     },
     {
-      "id": 100,
+      "id": "100",
       "nomeMunicipio": "Lavras da Mangabeira"
     },
     {
-      "id": 101,
+      "id": "101",
       "nomeMunicipio": "Limoeiro do Norte"
     },
     {
-      "id": 102,
+      "id": "102",
       "nomeMunicipio": "Madalena"
     },
     {
-      "id": 103,
+      "id": "103",
       "nomeMunicipio": "Maracanaú"
     },
     {
-      "id": 104,
+      "id": "104",
       "nomeMunicipio": "Maranguape"
     },
     {
-      "id": 105,
+      "id": "105",
       "nomeMunicipio": "Marco"
     },
     {
-      "id": 106,
+      "id": "106",
       "nomeMunicipio": "Martinópole"
     },
     {
-      "id": 107,
+      "id": "107",
       "nomeMunicipio": "Massapê"
     },
     {
-      "id": 108,
+      "id": "108",
       "nomeMunicipio": "Mauriti"
     },
     {
-      "id": 109,
+      "id": "109",
       "nomeMunicipio": "Meruoca"
     },
     {
-      "id": 110,
+      "id": "110",
       "nomeMunicipio": "Milagres"
     },
     {
-      "id": 111,
+      "id": "111",
       "nomeMunicipio": "Milhã"
     },
     {
-      "id": 112,
+      "id": "112",
       "nomeMunicipio": "Miraíma"
     },
     {
-      "id": 113,
+      "id": "113",
       "nomeMunicipio": "Missão Velha"
     },
     {
-      "id": 114,
+      "id": "114",
       "nomeMunicipio": "Mombaça"
     },
     {
-      "id": 115,
+      "id": "115",
       "nomeMunicipio": "Monsenhor Tabosa"
     },
     {
-      "id": 116,
+      "id": "116",
       "nomeMunicipio": "Morada Nova"
     },
     {
-      "id": 117,
+      "id": "117",
       "nomeMunicipio": "Moraújo"
     },
     {
-      "id": 118,
+      "id": "118",
       "nomeMunicipio": "Morrinhos"
     },
     {
-      "id": 119,
+      "id": "119",
       "nomeMunicipio": "Mucambo"
     },
     {
-      "id": 120,
+      "id": "120",
       "nomeMunicipio": "Mulungu"
     },
     {
-      "id": 121,
+      "id": "121",
       "nomeMunicipio": "Nova Olinda"
     },
     {
-      "id": 122,
+      "id": "122",
       "nomeMunicipio": "Nova Russas"
     },
     {
-      "id": 123,
+      "id": "123",
       "nomeMunicipio": "Novo Oriente"
     },
     {
-      "id": 124,
+      "id": "124",
       "nomeMunicipio": "Ocara"
     },
     {
-      "id": 125,
+      "id": "125",
       "nomeMunicipio": "Orós"
     },
     {
-      "id": 126,
+      "id": "126",
       "nomeMunicipio": "Pacajus"
     },
     {
-      "id": 127,
+      "id": "127",
       "nomeMunicipio": "Pacatuba"
     },
     {
-      "id": 128,
+      "id": "128",
       "nomeMunicipio": "Pacoti"
     },
     {
-      "id": 129,
+      "id": "129",
       "nomeMunicipio": "Pacujá"
     },
     {
-      "id": 130,
+      "id": "130",
       "nomeMunicipio": "Palhano"
     },
     {
-      "id": 131,
+      "id": "131",
       "nomeMunicipio": "Palmácia"
     },
     {
-      "id": 132,
+      "id": "132",
       "nomeMunicipio": "Paracuru"
     },
     {
-      "id": 133,
+      "id": "133",
       "nomeMunicipio": "Paraipaba"
     },
     {
-      "id": 134,
+      "id": "134",
       "nomeMunicipio": "Parambu"
     },
     {
-      "id": 135,
+      "id": "135",
       "nomeMunicipio": "Paramoti"
     },
     {
-      "id": 136,
+      "id": "136",
       "nomeMunicipio": "Pedra Branca"
     },
     {
-      "id": 137,
+      "id": "137",
       "nomeMunicipio": "Penaforte"
     },
     {
-      "id": 138,
+      "id": "138",
       "nomeMunicipio": "Pentecoste"
     },
     {
-      "id": 139,
+      "id": "139",
       "nomeMunicipio": "Pereiro"
     },
     {
-      "id": 140,
+      "id": "140",
       "nomeMunicipio": "Pindoretama"
     },
     {
-      "id": 141,
+      "id": "141",
       "nomeMunicipio": "Piquet Carneiro"
     },
     {
-      "id": 142,
+      "id": "142",
       "nomeMunicipio": "Pires Ferreira"
     },
     {
-      "id": 143,
+      "id": "143",
       "nomeMunicipio": "Poranga"
     },
     {
-      "id": 144,
+      "id": "144",
       "nomeMunicipio": "Porteiras"
     },
     {
-      "id": 145,
+      "id": "145",
       "nomeMunicipio": "Potengi"
     },
     {
-      "id": 146,
+      "id": "146",
       "nomeMunicipio": "Potiretama"
     },
     {
-      "id": 147,
+      "id": "147",
       "nomeMunicipio": "Quiterianópolis"
     },
     {
-      "id": 148,
+      "id": "148",
       "nomeMunicipio": "Quixadá"
     },
     {
-      "id": 149,
+      "id": "149",
       "nomeMunicipio": "Quixelô"
     },
     {
-      "id": 150,
+      "id": "150",
       "nomeMunicipio": "Quixeramobim"
     },
     {
-      "id": 151,
+      "id": "151",
       "nomeMunicipio": "Quixeré"
     },
     {
-      "id": 152,
+      "id": "152",
       "nomeMunicipio": "Redenção"
     },
     {
-      "id": 153,
+      "id": "153",
       "nomeMunicipio": "Reriutaba"
     },
     {
-      "id": 154,
+      "id": "154",
       "nomeMunicipio": "Russas"
     },
     {
-      "id": 155,
+      "id": "155",
       "nomeMunicipio": "Saboeiro"
     },
     {
-      "id": 156,
+      "id": "156",
       "nomeMunicipio": "Salitre"
     },
     {
-      "id": 157,
+      "id": "157",
       "nomeMunicipio": "Santa Quitéria"
     },
     {
-      "id": 158,
+      "id": "158",
       "nomeMunicipio": "Santana do Acaraú"
     },
     {
-      "id": 159,
+      "id": "159",
       "nomeMunicipio": "Santana do Cariri"
     },
     {
-      "id": 160,
+      "id": "160",
       "nomeMunicipio": "Senador Pompeu"
     },
     {
-      "id": 161,
+      "id": "161",
       "nomeMunicipio": "Senador Sá"
     },
     {
-      "id": 162,
+      "id": "162",
       "nomeMunicipio": "Sobral"
     },
     {
-      "id": 163,
+      "id": "163",
       "nomeMunicipio": "Solonópole"
     },
     {
-      "id": 164,
+      "id": "164",
       "nomeMunicipio": "São Benedito"
     },
     {
-      "id": 165,
+      "id": "165",
       "nomeMunicipio": "São Gonçalo do Amarante"
     },
     {
-      "id": 166,
+      "id": "166",
       "nomeMunicipio": "São João do Jaguaribe"
     },
     {
-      "id": 167,
+      "id": "167",
       "nomeMunicipio": "São Luís do Curu"
     },
     {
-      "id": 168,
+      "id": "168",
       "nomeMunicipio": "Tabuleiro do Norte"
     },
     {
-      "id": 169,
+      "id": "169",
       "nomeMunicipio": "Tamboril"
     },
     {
-      "id": 170,
+      "id": "170",
       "nomeMunicipio": "Tarrafas"
     },
     {
-      "id": 171,
+      "id": "171",
       "nomeMunicipio": "Tauá"
     },
     {
-      "id": 172,
+      "id": "172",
       "nomeMunicipio": "Tejuçuoca"
     },
     {
-      "id": 173,
+      "id": "173",
       "nomeMunicipio": "Tianguá"
     },
     {
-      "id": 174,
+      "id": "174",
       "nomeMunicipio": "Trairi"
     },
     {
-      "id": 175,
+      "id": "175",
       "nomeMunicipio": "Tururu"
     },
     {
-      "id": 176,
+      "id": "176",
       "nomeMunicipio": "Ubajara"
     },
     {
-      "id": 177,
+      "id": "177",
       "nomeMunicipio": "Umari"
     },
     {
-      "id": 178,
+      "id": "178",
       "nomeMunicipio": "Umirim"
     },
     {
-      "id": 179,
+      "id": "179",
       "nomeMunicipio": "Uruburetama"
     },
     {
-      "id": 180,
+      "id": "180",
       "nomeMunicipio": "Uruoca"
     },
     {
-      "id": 181,
+      "id": "181",
       "nomeMunicipio": "Varjota"
     },
     {
-      "id": 182,
+      "id": "182",
       "nomeMunicipio": "Várzea Alegre"
     },
     {
-      "id": 183,
+      "id": "183",
       "nomeMunicipio": "Viçosa do Ceará"
     }
   ],
   "estados": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Ceará"
     }
   ],
@@ -745,824 +745,407 @@
   ],
   "pacientes": [
     {
-      "id": "0b8d",
+      "id": "475b",
       "ativo": true,
-      "dataCricao": "2024-12-18T00:09:21.823Z",
+      "dataCricao": "17/03/2025, 11:45:48",
+      "dataAdmissao": "2023-10-10",
+      "descricaoProntuario": "242122122",
+      "dsNome": "Carlos Contenete de Elefante",
+      "dataNascimento": "1990-01-01",
+      "cpf": "280.852.670-98",
+      "nacionalidade": "BRASILEIRO",
       "naturalidade": {
-        "id": 1,
+        "id": "148",
         "nomeMunicipio": "Quixadá"
       },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+      "sexo": "MASCULINO",
+      "tipoRacaCor": "BRANCA",
+      "descricaoCartaoSUS": "1234 5678 9012 3456",
       "localDeNascimento": "DOMICILIO",
       "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
       "endereco": {
         "ativo": true,
-        "dataCricao": "2024-12-18T00:09:21.823Z",
-        "dsLogradouro": "Rua ABC",
+        "dataCricao": "17/03/2025, 11:45:48",
+        "cep": "63908210",
+        "estado": "CE - Ceará",
         "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
+        "dsLogradouro": "Rua São Mateus",
+        "dsBairro": "Alto São Francisco",
         "municipioLogradouro": {
-          "id": 1,
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
+        "dsComplementoLogradouro": "Apto 456",
+        "tpMoradia": "PROPRIA"
       },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:09:21.823Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:09:21.823Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:09:21.823Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            {},
-            {}
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
+      "maeResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:45:48",
+        "dsCPF": "359.784.220-87",
+        "dsNome": "Maria da Silva",
+        "dataNascimento": "1980-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "PROFESSOR",
+        "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "paiResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:45:48",
+        "dsCPF": "519.675.380-00",
+        "dsNome": "José da Silva",
+        "dataNascimento": "1970-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "ENGENHEIRO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "responsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:45:48",
+        "dsCPF": "045.516.520-32",
+        "dsNome": "Carlos da Silva",
+        "dataNascimento": "1950-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "SOLTEIRO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "MEDICO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "procedencia": "NUTEP",
+      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
       "isConstaPai": true,
       "isConstaMae": true,
       "isPaiResponsavel": true,
       "isMaeResponsavel": true
     },
     {
-      "id": "65ed",
+      "id": "9c32",
       "ativo": true,
-      "dataCricao": "2024-12-18T00:15:30.505Z",
+      "dataCricao": "17/03/2025, 11:49:14",
+      "dataAdmissao": "2023-10-10",
+      "descricaoProntuario": "2530",
+      "dsNome": "Contenete de Elefante",
+      "dataNascimento": "1990-01-01",
+      "cpf": "280.852.670-98",
+      "nacionalidade": "BRASILEIRO",
       "naturalidade": {
-        "id": 1,
+        "id": "148",
         "nomeMunicipio": "Quixadá"
       },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+      "sexo": "MASCULINO",
+      "tipoRacaCor": "BRANCA",
+      "descricaoCartaoSUS": "1234 5678 9012 3456",
       "localDeNascimento": "DOMICILIO",
       "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
       "endereco": {
         "ativo": true,
-        "dataCricao": "2024-12-18T00:15:30.505Z",
-        "dsLogradouro": "Rua ABC",
+        "dataCricao": "17/03/2025, 11:49:14",
+        "cep": "63908210",
+        "estado": "CE - Ceará",
         "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
+        "dsLogradouro": "Rua São Mateus",
+        "dsBairro": "Alto São Francisco",
         "municipioLogradouro": {
-          "id": 1,
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
+        "dsComplementoLogradouro": "Apto 456",
+        "tpMoradia": "PROPRIA"
       },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:15:30.505Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:15:30.505Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:15:30.505Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            {},
-            {}
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
+      "maeResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dsCPF": "359.784.220-87",
+        "dsNome": "Maria da Silva",
+        "dataNascimento": "1980-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "PROFESSOR",
+        "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "paiResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dsCPF": "519.675.380-00",
+        "dsNome": "José da Silva",
+        "dataNascimento": "1970-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "ENGENHEIRO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "responsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dsCPF": "045.516.520-32",
+        "dsNome": "Carlos da Silva",
+        "dataNascimento": "1950-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "SOLTEIRO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "MEDICO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "procedencia": "NUTEP",
+      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
       "isConstaPai": true,
       "isConstaMae": true,
       "isPaiResponsavel": true,
       "isMaeResponsavel": true
     },
     {
-      "id": "1dfb",
+      "id": "5754",
       "ativo": true,
-      "dataCricao": "2024-12-18T00:32:56.409Z",
+      "dataCricao": "17/03/2025, 12:06:11",
+      "dataAdmissao": "2023-10-10",
+      "descricaoProntuario": "25307684",
+      "dsNome": "Contonete de Elefante",
+      "dataNascimento": "1990-01-01",
+      "cpf": "280.852.670-98",
+      "nacionalidade": "BRASILEIRO",
       "naturalidade": {
-        "id": 148,
+        "id": "148",
         "nomeMunicipio": "Quixadá"
       },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+      "sexo": "MASCULINO",
+      "tipoRacaCor": "BRANCA",
+      "descricaoCartaoSUS": "1234 5678 9012 3456",
       "localDeNascimento": "DOMICILIO",
       "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
       "endereco": {
         "ativo": true,
-        "dataCricao": "2024-12-18T00:32:56.409Z",
-        "dsLogradouro": "Rua ABC",
+        "dataCricao": "17/03/2025, 12:06:11",
+        "cep": "63908210",
+        "estado": "CE - Ceará",
         "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
+        "dsLogradouro": "Rua São Mateus",
+        "dsBairro": "Alto São Francisco",
         "municipioLogradouro": {
-          "id": 148,
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
+        "dsComplementoLogradouro": "Apto 456",
+        "tpMoradia": "PROPRIA"
       },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:32:56.409Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:32:56.409Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            {},
-            {}
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:32:56.409Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            {},
-            {}
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
+      "maeResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:11",
+        "dsCPF": "359.784.220-87",
+        "dsNome": "Maria da Silva",
+        "dataNascimento": "1980-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "PROFESSOR",
+        "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "paiResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:11",
+        "dsCPF": "519.675.380-00",
+        "dsNome": "José da Silva",
+        "dataNascimento": "1970-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "ENGENHEIRO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "responsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:11",
+        "dsCPF": "045.516.520-32",
+        "dsNome": "Carlos da Silva",
+        "dataNascimento": "1950-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "SOLTEIRO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "MEDICO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "procedencia": "NUTEP",
+      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
       "isConstaPai": true,
       "isConstaMae": true,
       "isPaiResponsavel": true,
       "isMaeResponsavel": true
     },
     {
-      "id": "f543",
+      "id": "17ee",
       "ativo": true,
-      "dataCricao": "2024-12-18T00:35:40.932Z",
+      "dataCricao": "17/03/2025, 12:06:43",
+      "dataAdmissao": "2023-10-10",
+      "descricaoProntuario": "253076",
+      "dsNome": "Contonete de Elefante",
+      "dataNascimento": "1990-01-01",
+      "cpf": "280.852.670-98",
+      "nacionalidade": "BRASILEIRO",
       "naturalidade": {
-        "id": 148,
+        "id": "148",
         "nomeMunicipio": "Quixadá"
       },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+      "sexo": "MASCULINO",
+      "tipoRacaCor": "BRANCA",
+      "descricaoCartaoSUS": "1234 5678 9012 3456",
       "localDeNascimento": "DOMICILIO",
       "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
       "endereco": {
         "ativo": true,
-        "dataCricao": "2024-12-18T00:35:40.932Z",
-        "dsLogradouro": "Rua ABC",
+        "dataCricao": "17/03/2025, 12:06:43",
+        "cep": "63908210",
+        "estado": "CE - Ceará",
         "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
+        "dsLogradouro": "Rua São Mateus",
+        "dsBairro": "Alto São Francisco",
         "municipioLogradouro": {
-          "id": 148,
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
+        "dsComplementoLogradouro": "Apto 456",
+        "tpMoradia": "PROPRIA"
       },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:35:40.932Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:35:40.932Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:35:40.932Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
+      "maeResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:43",
+        "dsCPF": "359.784.220-87",
+        "dsNome": "Maria da Silva",
+        "dataNascimento": "1980-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "PROFESSOR",
+        "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "paiResponsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:43",
+        "dsCPF": "519.675.380-00",
+        "dsNome": "José da Silva",
+        "dataNascimento": "1970-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "CASADO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "ENGENHEIRO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "responsavel": {
+        "ativo": true,
+        "dataCricao": "17/03/2025, 12:06:43",
+        "dsCPF": "045.516.520-32",
+        "dsNome": "Carlos da Silva",
+        "dataNascimento": "1950-01-01",
+        "racaCor": "BRANCA",
+        "estadoCivil": "SOLTEIRO",
+        "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+        "ocupacao": "MEDICO",
+        "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+        "telefone": [
+          "88 - 9 9446-2965",
+          "88 - 9 9446-2965"
+        ]
+      },
+      "procedencia": "NUTEP",
+      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
       "isConstaPai": true,
       "isConstaMae": true,
       "isPaiResponsavel": true,
       "isMaeResponsavel": true
-    },
+    }
+  ],
+  "servicos_sociais": [
     {
-      "id": "53cc",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:38:08.165Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
+      "id": "3a68",
+      "paciente": {
+        "id": "9c32",
         "ativo": true,
-        "dataCricao": "2024-12-18T00:38:08.165Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
           "ativo": true,
-          "dataCricao": "2024-12-18T00:38:08.166Z",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
           "dsNome": "Maria da Silva",
           "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
+          "racaCor": "BRANCA",
           "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:38:08.166Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:38:08.166Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "d03e",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:41:32.856Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
-        "ativo": true,
-        "dataCricao": "2024-12-18T00:41:32.856Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
-          "nomeMunicipio": "Quixadá"
-        },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:41:32.856Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:41:32.856Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:41:32.856Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "5405",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:44:09.933Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
-        "ativo": true,
-        "dataCricao": "2024-12-18T00:44:09.933Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
-          "nomeMunicipio": "Quixadá"
-        },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:44:09.933Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:44:09.933Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:44:09.933Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "d541",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:45:35.845Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
-        "ativo": true,
-        "dataCricao": "2024-12-18T00:45:35.845Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
-          "nomeMunicipio": "Quixadá"
-        },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:45:35.845Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:45:35.845Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:45:35.845Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "6a8b",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:47:14.172Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
-        "ativo": true,
-        "dataCricao": "2024-12-18T00:47:14.172Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
-          "nomeMunicipio": "Quixadá"
-        },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:47:14.172Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "PROFESSOR",
-          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:47:14.172Z",
-          "dsNome": "José da Silva",
-          "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "ENGENHEIRO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
-          "telefone": [
-            null,
-            null
-          ]
-        },
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:47:14.172Z",
-          "dsNome": "Carlos da Silva",
-          "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
-          "racaCor": "BRANCA",
-          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
-          "ocupacao": "MEDICO",
-          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
-          "telefone": [
-            null,
-            null
-          ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "4ed3",
-      "ativo": true,
-      "dataCricao": "2024-12-18T00:51:23.533Z",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
-      },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
-        "ativo": true,
-        "dataCricao": "2024-12-18T00:51:23.533Z",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
-          "nomeMunicipio": "Quixadá"
-        },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
-          "ativo": true,
-          "dataCricao": "2024-12-18T00:51:23.533Z",
-          "dsNome": "Maria da Silva",
-          "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
-          "racaCor": "BRANCA",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "PROFESSOR",
           "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
@@ -1571,14 +1154,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "paiResponsavel": {
           "ativo": true,
-          "dataCricao": "2024-12-18T00:51:23.533Z",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
           "dsNome": "José da Silva",
           "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
           "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "ENGENHEIRO",
           "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
@@ -1587,14 +1170,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "responsavel": {
           "ativo": true,
-          "dataCricao": "2024-12-18T00:51:23.533Z",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
           "dsNome": "Carlos da Silva",
           "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
           "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "MEDICO",
           "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
@@ -1602,54 +1185,90 @@
             "88 - 9 9446-2965",
             "88 - 9 9446-2965"
           ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "e07c",
-      "ativo": true,
-      "dataCricao": "17/12/2024, 23:09:11",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
       },
-      "nacionalidade": "BRASILEIRO",
-      "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
+      "configuracaoFamiliar": "CASAL_HETERO",
+      "descricaoConfiguracaoFamiliar": "Descrição Configuração familiar",
+      "situacaoConjugalPais": "CASADO",
+      "presencaDosPais": "AMBOS_PRESENTES",
+      "tipoAcolhimento": "INSTITUCIONALIZADA",
+      "abrigo": "ORFANATO_CRISTO_REI",
+      "descricaoAbrigo": "Descrição para o Abrigo.",
+      "banheiro": "2",
+      "dvd": "2",
+      "automovel": "2",
+      "microondas": "2",
+      "lavaLoucas": "2",
+      "motocicleta": "2",
+      "freezer": "2",
+      "secadoraRoupa": "2",
+      "empregadosDomesticos": "2",
+      "aguaEncanada": "true",
+      "microcomputador": "2",
+      "ruaPavimentada": "true",
+      "geladeira": "1",
+      "grauInstrucaoChefeFamilia": "SUPERIOR_COMPLETO",
+      "lavaRoupa": "1",
+      "periodicidadeTerapia": "DUAS_VEZES_SEMANA",
+      "descricaoPeriodicidadeTerapia": "descrição da periodicidade da terapia",
+      "diasTurnoTerapia": "QUINTA_TARDE",
+      "tipoTerapia": "FISIOTERAPIA_MOTORA",
+      "situacaoAtualInstituicao": "ATESTADO",
+      "observacoes": "Observações para o Atendimento.",
+      "dataCriacao": "17/03/2025, 12:08:20"
+    }
+  ],
+  "pre_natais": [
+    {
+      "id": "82e8",
+      "paciente": {
+        "id": "9c32",
         "ativo": true,
-        "dataCricao": "17/12/2024, 23:09:11",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
           "ativo": true,
-          "dataCricao": "17/12/2024, 23:09:11",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
           "dsNome": "Maria da Silva",
           "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
           "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "PROFESSOR",
           "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
@@ -1658,14 +1277,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "paiResponsavel": {
           "ativo": true,
-          "dataCricao": "17/12/2024, 23:09:11",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
           "dsNome": "José da Silva",
           "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
           "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "ENGENHEIRO",
           "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
@@ -1674,14 +1293,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "responsavel": {
           "ativo": true,
-          "dataCricao": "17/12/2024, 23:09:11",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
           "dsNome": "Carlos da Silva",
           "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
           "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "MEDICO",
           "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
@@ -1689,54 +1308,110 @@
             "88 - 9 9446-2965",
             "88 - 9 9446-2965"
           ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
-    },
-    {
-      "id": "3f6d",
-      "ativo": true,
-      "dataCricao": "18/12/2024, 02:58:41",
-      "naturalidade": {
-        "id": 148,
-        "nomeMunicipio": "Quixadá"
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
       },
-      "nacionalidade": "BRASILEIRO",
       "procedencia": "NUTEP",
-      "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
-      "localDeNascimento": "DOMICILIO",
-      "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
-      "endereco": {
+      "descricaoProcedencia": "Descrição da procedência.",
+      "convenio": "SUS",
+      "descricaoConvenio": "Descrição do convênio.",
+      "idadeMaeEngravidar": "25 Anos",
+      "numeroConsultas": "12 Consultas",
+      "idadePaiGestacao": "25 Anos",
+      "numeroGestacoes": "1",
+      "pesoInicialGravidez": "75kg",
+      "numeroFilhosVivos": "0",
+      "pesoFinalGravidez": "85kg",
+      "numeroNatimortos": "0",
+      "estaturaMae": "1.65m",
+      "numeroAbortos": "3",
+      "tempoGestacaoPrimeiraConsulta": "3 Meses.",
+      "planejamentoGestacao": "",
+      "metodoContraceptivoAnterior": "DIU",
+      "descricaoMetodoContraceptivo": "Descrição do método contraceptivo.",
+      "usoAborto": "SIM",
+      "tempoGestacaoSemanas": "Tempo de gestação em semanas.",
+      "meioAborto": "CHAS",
+      "descricaoMeioAbortivo": "Descrição do meio abortivo.",
+      "consanguinidadePais": "SIM",
+      "descricaoConsanguinidade": "Descrição da consanguinidade.",
+      "intercorrenciasGestacao": "ACIDENTE",
+      "descricaoIntercorrencias": "Descrição das intercorrências.",
+      "alergias": "ASMA",
+      "descricaoAlergias": "Descrição das alergias.",
+      "sangramentoGravidez": "NAO",
+      "periodoSangramento": "Período do sangramento.",
+      "infeccoes": "COVID",
+      "descricaoInfeccoes": "Descrição das infecções.",
+      "doencasPreExistentesMae": "ASMA_ALERGICA",
+      "descricaoDoencasPreExistentes": "Descrição das doenças pré-existentes.",
+      "usoDrogasMae": "NENHUMA",
+      "descricaoUsoDeDrogas": "Descrição do uso de drogas.",
+      "examesRealizadosMae": "HIV_NORMAL",
+      "descricaoExamesMae": "Descrição dos exames realizados.",
+      "medicamentosUtilizadosMae": "VITAMINAS",
+      "descricaoMedicamentosMae": "Descrição dos medicamentos utilizados.",
+      "hospitalizacoesGestacao": "SIM",
+      "periodoHospitalizacaoSemanas": "4 semanas.",
+      "motivoHospitalizacao": "ASMA",
+      "diasHospitalizacao": "15 Dias.",
+      "descricaoMotivoHospitalizacao": "Descrição Motivo Hospitalar.",
+      "diagnostico": "DOENCAS_AUTOIMUNES",
+      "descricaoDiagnostico": "Descrição do diagnóstico.",
+      "observacoes": "Observações para o Atendimento.",
+      "dataCriacao": "17/03/2025, 12:09:09"
+    }
+  ],
+  "neonatais": [
+    {
+      "id": "9d16",
+      "paciente": {
+        "id": "9c32",
         "ativo": true,
-        "dataCricao": "18/12/2024, 02:58:41",
-        "dsLogradouro": "Rua ABC",
-        "nrLogradouro": "123",
-        "dsComplementoLogradouro": "Apto 456",
-        "dsBairro": "Centro",
-        "municipioLogradouro": {
-          "id": 148,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
           "nomeMunicipio": "Quixadá"
         },
-        "tpMoradia": "PROPRIA",
-        "cep": "01001000"
-      },
-      "paisResponsaveis": [
-        {
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
           "ativo": true,
-          "dataCricao": "18/12/2024, 02:58:41",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
           "dsNome": "Maria da Silva",
           "dataNascimento": "1980-01-01",
-          "dsCPF": "359.784.220-87",
-          "estadoCivil": "CASADO",
           "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "PROFESSOR",
           "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
@@ -1745,14 +1420,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "paiResponsavel": {
           "ativo": true,
-          "dataCricao": "18/12/2024, 02:58:41",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
           "dsNome": "José da Silva",
           "dataNascimento": "1970-01-01",
-          "dsCPF": "519.675.380-00",
-          "estadoCivil": "CASADO",
           "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "ENGENHEIRO",
           "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
@@ -1761,14 +1436,14 @@
             "88 - 9 9446-2965"
           ]
         },
-        {
+        "responsavel": {
           "ativo": true,
-          "dataCricao": "18/12/2024, 02:58:41",
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
           "dsNome": "Carlos da Silva",
           "dataNascimento": "1950-01-01",
-          "dsCPF": "045.516.520-32",
-          "estadoCivil": "SOLTEIRO",
           "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
           "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
           "ocupacao": "MEDICO",
           "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
@@ -1776,17 +1451,79 @@
             "88 - 9 9446-2965",
             "88 - 9 9446-2965"
           ]
-        }
-      ],
-      "dataAdmissao": "2023-10-10",
-      "descricaoProntuario": "2530",
-      "sexo": "MASCULINO",
-      "tipoRacaCor": "BRANCA",
-      "descricaoCartaoSUS": "1234 5678 9012 3456",
-      "isConstaPai": true,
-      "isConstaMae": true,
-      "isPaiResponsavel": true,
-      "isMaeResponsavel": true
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
+      },
+      "dataAtendimento": "2025-02-23",
+      "localNascimento": "HOSPITAL_DISTRITAL_GONZAGA_MOTA_BARRA_DO_CEARA",
+      "descricaoLocalNascimento": "Descrição do local de nascimento.",
+      "tipoParto": "NATURAL",
+      "descricaoTipoParto": "Descrição do tipo de parto.",
+      "apresentacao": "PELVICA",
+      "descricaoApresentacao": "Descrição da apresentação.",
+      "tipoGestacao": "GEMELARIDADE",
+      "descricaoTipoGestacao": "Descrição do tipo de gestação.",
+      "termo": "2",
+      "preTermo": "3",
+      "posTermo": "6",
+      "peso": "2000g",
+      "comprimento": "50cm",
+      "perimetroCefalico": "10cm",
+      "perimetroToracico": "40cm",
+      "apgar1Min": "Apgar 1 minuto.",
+      "apgar5Min": "Apgar 5 minutos.",
+      "apgar10Min": "Apgar 10 minutos.",
+      "intercorrencias": "COVID",
+      "descricaoIntercorrencias": "Descrição das intercorrências.",
+      "malformacoes": "PE_TORTO",
+      "descricaoMalformacoes": "Descrição das malformações.",
+      "terapeuticaUtilizada": "CAFEINA",
+      "descricaoTerapeuticaUtilizada": "Descrição da terapêutica utilizada.",
+      "antibioticos": "AMOXICILINA",
+      "descricaoAntibioticos": "Descrição dos antibióticos.",
+      "cirurgiaRealizada": "SIM",
+      "descricaoCirurgia": "Descrição da cirurgia.",
+      "utiNeonatalDias": "35 dias",
+      "cuidadosIntermediariosNeonataisDias": "30 dias",
+      "cuidadosIntermediariosCanguruDias": "15 dias",
+      "alojamentoConjunto": "Alojamento conjunto.",
+      "examesRealizados": "USTF",
+      "descricaoExamesRealizados": "Descrição dos exames realizados.",
+      "testePezinho": "NORMAL",
+      "testeOuvidinho": "NORMAL",
+      "testeOlhinho": "NORMAL",
+      "testeCoracaozinho": "NORMAL",
+      "testeLinguinha": "NORMAL",
+      "testeOrtolani": "NORMAL",
+      "doencasCronicas": "SIM",
+      "maeDoencasCronicas": "RENAIS",
+      "descricaoMaeDoencasCronicas": "Descrição das doenças crônicas da mãe.",
+      "paiDoencasCronicas": "PULMONARES",
+      "descricaoPaiDoencasCronicas": "Descrição das doenças crônicas do pai.",
+      "irmaosDoencasCronicas": "RENAIS",
+      "descricaoIrmaosDoencasCronicas": "Descrição das doenças crônicas dos irmãos.",
+      "avosPaternosDoencasCronicas": "RENAIS",
+      "descricaoAvosPaternosDoencasCronicas": "Descrição das doenças crônicas dos avós paternos.",
+      "avosMaternosDoencasCronicas": "PULMONARES",
+      "descricaoAvosMaternosDoencasCronicas": "Descrição das doenças crônicas dos avós maternos.",
+      "doencasGeneticas": "SIM",
+      "maeDoencasGeneticas": "INFARTO",
+      "descricaoMaeDoencasGeneticas": "Descrição das doenças genéticas da mãe.",
+      "paiDoencasGeneticas": "ANGINA",
+      "descricaoPaiDoencasGeneticas": "Descrição das doenças genéticas do pai.",
+      "irmaosDoencasGeneticas": "ARRITMIA",
+      "descricaoIrmaosDoencasGeneticas": "Descrição das doenças genéticas dos irmãos.",
+      "avosPaternosDoencasGeneticas": "MIOCARDITE",
+      "descricaoAvosPaternosDoencasGeneticas": "Descrição das doenças genéticas dos avós paternos.",
+      "avosMaternosDoencasGeneticas": "INSUFICIENCIA_CARDIACA",
+      "descricaoAvosMaternosDoencasGeneticas": "Descrição das doenças genéticas dos avós maternos.",
+      "tiosPrimeiroGrauDoencasGeneticas": "NENHUMA",
+      "descricaoTiosPrimeiroGrauDoencasGeneticas": "Descrição das doenças genéticas dos tios de primeiro grau."
     }
   ]
   

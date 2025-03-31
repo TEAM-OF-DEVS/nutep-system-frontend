@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import Nacionalidade from "../../models/enum/Nacionalidade.js";
@@ -16,7 +17,7 @@ import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
 import { validateForm } from "../../validator/validateFormPaciente.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
-import { useEffect, useState } from "react";
+
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -336,6 +337,9 @@ export function FormCadastroDadosPessoais() {
     const paciente = new PacienteBuilder()
       .withFormulario(dadosFormulario)
       .build();
+
+    console.log(paciente);
+
     try {
       const resposta = await PacienteService.create(paciente);
       handleShowAlert(resposta != null ? "201" : "400");
@@ -348,7 +352,6 @@ export function FormCadastroDadosPessoais() {
     }
   }
 
-  
   return (
     <>
       {/* DADOS PACIENTE */}
@@ -371,6 +374,20 @@ export function FormCadastroDadosPessoais() {
           title="Dados Paciente"
           description="Cadastro de dados pessoais do Paciente"
         >
+        {message === "201" ? (
+          <MessageAlert
+            type="success"
+            title="Cadastrado com sucesso!"
+            message="O paciente foi cadastrado com sucesso."
+          />
+        ) : message === "400" ? (
+          <MessageAlert
+            type="error"
+            title="Erro no cadastro"
+            message="Houve um problema ao cadastrar o paciente."
+          />
+        ) : null}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
             <FormField
               name="dataAdmissao"
@@ -830,7 +847,9 @@ export function FormCadastroDadosPessoais() {
                 error={errors.descricaoOcupacaoPai}
               />
             </span>
+
           </div>
+          {/* </div> */}
         </FormGroup>
 
         {/* DADOS RESPONSAVEL*/}
@@ -1000,6 +1019,7 @@ export function FormCadastroDadosPessoais() {
                 error={errors.dsOutroTipoDeProcedenciaPaciente}
               />
             </span>
+
           </div>
         </FormGroup>
 
