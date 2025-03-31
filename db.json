@@ -363,7 +363,7 @@
     {
       "id": "91",
       "nomeMunicipio": "Jaguaretama"
-    },]
+    },
     {
       "id": "92",
       "nomeMunicipio": "Jaguaribara"
@@ -732,7 +732,7 @@
       "id": "183",
       "nomeMunicipio": "Viçosa do Ceará"
     }
-  ],
+  ,
   "estados": [
     {
       "id": "1",
