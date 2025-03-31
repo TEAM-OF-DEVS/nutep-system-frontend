@@ -15,9 +15,17 @@ import Sexo from "../../models/enum/Sexo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
-import { validateForm } from "../../validator/validateFormPaciente.jsx";
+import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
 
+const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
+  value: key,
+  label: value,
+}));
+const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
+  value: key,
+  label: value,
+}));
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -43,19 +51,11 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-  const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
   const escolaridade = Object.entries(Escolaridade).map(([key, value]) => ({
     value: key,
     label: value,
   }));
   const vinculo = Object.entries(Vinculo).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
     value: key,
     label: value,
   }));
@@ -257,14 +257,13 @@ export function FormCadastroDadosPessoais() {
       throw error;
     }
   };
-  
-  
+
   const onChange = async (e) => {
     const { name, value } = e.target;
     let formattedValue = value;
-  
+
     const upperCaseValue = formattedValue.toUpperCase();
-  
+
     const keys = name.split(".");
     if (keys.length > 1) {
       setDadosFormulario((prevState) => ({
@@ -280,7 +279,7 @@ export function FormCadastroDadosPessoais() {
         [name]: upperCaseValue,
       }));
     }
-  
+
     if (name === "cep") {
       if (value.length === 0) {
         setDadosFormulario((prevState) => ({
@@ -305,7 +304,7 @@ export function FormCadastroDadosPessoais() {
         }
       }
     }
-  
+
     if (
       name === "responsavelPelaCriancaMae" ||
       name === "responsavelPelaCriancaPai"
@@ -319,9 +318,13 @@ export function FormCadastroDadosPessoais() {
           : dadosFormulario.responsavelPelaCriancaPai
       );
     }
+
+    const error = validateField(name, value, validationRules[name]);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
   };
-  
-  
 
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
@@ -354,7 +357,6 @@ export function FormCadastroDadosPessoais() {
 
   return (
     <>
-      {/* DADOS PACIENTE */}
       <form>
         {message === "201" ? (
           <MessageAlert
@@ -374,21 +376,7 @@ export function FormCadastroDadosPessoais() {
           title="Dados Paciente"
           description="Cadastro de dados pessoais do Paciente"
         >
-        {message === "201" ? (
-          <MessageAlert
-            type="success"
-            title="Cadastrado com sucesso!"
-            message="O paciente foi cadastrado com sucesso."
-          />
-        ) : message === "400" ? (
-          <MessageAlert
-            type="error"
-            title="Erro no cadastro"
-            message="Houve um problema ao cadastrar o paciente."
-          />
-        ) : null}
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
             <FormField
               name="dataAdmissao"
               label="Data da Admissão"
@@ -397,6 +385,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dataAdmissao}
+              className="col-span-1"
             />
             <FormField
               name="descricaoProntuario"
@@ -404,13 +393,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.descricaoProntuario}
-            />
-            <FormField
-              name="nomeCompleto"
-              label="Nome Completo"
-              styleClass="campoObrigatorio"
-              onChange={onChange}
-              error={errors.nomeCompleto}
+              className="col-span-1"
             />
             <FormField
               name="dataNascimento"
@@ -420,6 +403,15 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dataNascimento}
+              className="col-span-1"
+            />
+            <FormField
+              name="nomeCompleto"
+              label="Nome Completo"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.nomeCompleto}
+              className="col-span-3"
             />
           </div>
 
@@ -427,10 +419,9 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpf"
               label="CPF"
-              value={dadosFormulario.cpf}
-              onChange={onChange}
               styleClass="campoObrigatorio"
               placeholder="000.000.000-00"
+              onChange={onChange}
               error={errors.cpf}
             />
             <FormField
@@ -483,13 +474,13 @@ export function FormCadastroDadosPessoais() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField 
-            name="descricaoCartaoSUS" 
-            label="Número do Cartão SUS"
-            value={dadosFormulario.descricaoCartaoSUS}
-            onChange={onChange}
-            placeholder="000 0000 0000 0000"
-            error={errors.descricaoCartaoSUS}
+            <FormField
+              name="descricaoCartaoSUS"
+              label="Número do cartão SUS"
+              styleClass="campoObrigatorio"
+              placeholder="000 0000 0000 0000"
+              onChange={onChange}
+              error={errors.descricaoCartaoSUS}
             />
             <FormField
               name="localDeNascimento"
@@ -510,13 +501,12 @@ export function FormCadastroDadosPessoais() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-8 pt-4">
-            <FormField 
-            name="cep" 
-            label="CEP" 
-            value={dadosFormulario.cep}
-            onChange={onChange}
-            placeholder="00000-000"
-            error={errors.cep}
+            <FormField
+              name="cep"
+              label="CEP"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.cep}
             />
             <FormField
               name="logradouro"
@@ -526,10 +516,10 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               error={errors.logradouro}
             />
-              <FormField 
+            <FormField
               name="numero"
               label="Número"
-              value={dadosFormulario.numero}
+              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.numero}
             />
@@ -542,17 +532,20 @@ export function FormCadastroDadosPessoais() {
             />
             <FormField
               name="bairro"
+              value={dadosFormulario.bairro}
               label="Bairro"
               styleClass="campoObrigatorio"
-              value={dadosFormulario.bairro}
               onChange={onChange}
               error={errors.bairro}
             />
             <FormField
               name="municipioLogradouro"
-              label="Cidade"
-              styleClass="campoObrigatorio"              
               value={dadosFormulario.municipioLogradouro}
+              label="Cidade"
+              styleClass="campoObrigatorio"
+              isSelect
+              isAPI
+              options={cidades}
               onChange={onChange}
               displayAttribute="nomeMunicipio"
               error={errors.municipioLogradouro}
@@ -561,7 +554,8 @@ export function FormCadastroDadosPessoais() {
               name="estado"
               label="Estado"
               styleClass="campoObrigatorio"
-              value={dadosFormulario.estado}
+              isSelect
+              options={uf}
               onChange={onChange}
               error={errors.estado}
             />
@@ -576,450 +570,361 @@ export function FormCadastroDadosPessoais() {
             />
           </div>
         </FormGroup>
-        {/* DADOS DOS PAIS */}
 
         <FormGroup
           title="Dados dos Pais"
           description="Cadastro de dados pessoais dos pais do Paciente"
         >
-          <div className="flex items-center mt-8 px-8 w-full">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="nomeMae"
-                label="Nome da Mãe"
-                placeholder="Nome da Mãe"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                error={errors.nomeMae}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField
-                name="dataNascimentoMae"
-                label="Data de Nascimento"
-                type="date"
-                placeholder="00/00/0000"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                error={errors.dataNascimentoMae}
-              />
-            </span>
-            <span className="font-bold text-sm w-[20%]">
-              <FormField
-                name="responsavelPelaCriancaMae"
-                label="Responsável pela criança"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={simOuNao}
-                onChange={onChange}
-                error={errors.responsavelPelaCriancaMae}
-              />
-            </span>
-          </div>
-          <div className="flex items-center mt-8 px-8 ">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="cpfMae"
-                label="CPF"
-                value={dadosFormulario.cpfMae}
-                styleClass="campoObrigatorio"
-                placeholder="000.000.000-00"
-                onChange={onChange}
-                error={errors.cpfMae}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="tipoRacaCorMae"
-                label="Raça/Cor"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={tipoRacaCor}
-                onChange={onChange}
-                error={errors.tipoRacaCorMae}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="estadoCivilMae"
-                label="Estado Civil"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={estadoCivil}
-                onChange={onChange}
-                error={errors.estadoCivilMae}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-            <FormField 
-            name="telefone1Mae" 
-            label="Telefone 1"
-            value={dadosFormulario.telefone1Mae}
-            styleClass="campoObrigatorio" 
-            onChange={onChange}
-            placeholder="(00) 00000-0000"
-            error={errors.telefone1Mae}
-          />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="telefone2Mae"
-                label="Telefone 2"
-                value={dadosFormulario.telefone2Mae}
-                placeholder="(00) 00000-0000"
-                onChange={onChange}
-                error={errors.telefone2Mae}
-              />
-            </span>
-          </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="escolaridadeMae"
-                label="Escolaridade"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={escolaridade}
-                onChange={onChange}
-                error={errors.escolaridadeMae}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="ocupacaoMae"
-                label="Ocupação"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={ocupacao}
-                onChange={onChange}
-                error={errors.ocupacaoMae}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="descricaoOcupacaoMae"
-                label="Descrição da ocupação"
-                placeholder="Descrição"
-                onChange={onChange}
-                error={errors.descricaoOcupacaoMae}
-              />
-            </span>
-          </div>
-          <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="nomePai"
-                label="Nome do Pai (Caso desconhecido, selecionar a opção ao lado)"
-                placeholder="Nome do Pai"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.nomePai}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField
-                name="nadaConsta"
-                label="NC"
-                type="checkbox"
-                styleInput="w-6 h-6"
-                onChange={handleCheckboxChange}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField
-                name="dataNascimentoPai"
-                label="Data de Nascimento"
-                type="date"
-                placeholder="00/00/0000"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.dataNascimentoPai}
-              />
-            </span>
-            <span className="font-bold text-sm w-[20%]">
-              <FormField
-                name="responsavelPelaCriancaPai"
-                label="Responsável pela criança"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={simOuNao}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.responsavelPelaCriancaPai}
-              />
-            </span>
-          </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
             <FormField
-                name="cpfPai"
-                label="CPF"
-                value={dadosFormulario.cpfPai}
-                styleClass="campoObrigatorio"
-                placeholder="000.000.000-00"
-                onChange={onChange}
-                error={errors.cpfPai}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="tipoRacaCorPai"
-                label="Raça/Cor"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={tipoRacaCor}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.tipoRacaCorPai}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="estadoCivilPai"
-                label="Estado Civil"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={estadoCivil}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.estadoCivilPai}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="telefone1Pai"
-                label="Telefone 1"
-                placeholder="(00) 00000-0000"
-                value={dadosFormulario.telefone1Pai}
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.telefone1Pai}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="telefone2Pai"
-                label="Telefone 2"
-                placeholder="(00) 00000-0000"
-                value={dadosFormulario.telefone2Pai}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.telefone2Pai}
-              />
-            </span>
+              name="nomeMae"
+              label="Nome da Mãe"
+              placeholder="Nome"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.nomeMae}
+            />
+            <FormField
+              name="dataNascimentoMae"
+              label="Data de Nascimento"
+              type="date"
+              placeholder="00/00/0000"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.dataNascimentoMae}
+            />
+            <FormField
+              name="cpfMae"
+              label="CPF"
+              styleClass="campoObrigatorio"
+              placeholder="000.000.000-00"
+              onChange={onChange}
+              error={errors.cpfMae}
+            />
+            <FormField
+              name="responsavelPelaCriancaMae"
+              label="Responsável pela criança"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={simOuNao}
+              onChange={onChange}
+              error={errors.responsavelPelaCriancaMae}
+            />
           </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-[30%]">
-              <FormField
-                name="escolaridadePai"
-                label="Escolaridade"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={escolaridade}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.escolaridadePai}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5">
-              <FormField
-                name="ocupacaoPai"
-                label="Ocupação"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={ocupacao}
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.ocupacaoPai}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="descricaoOcupacaoPai"
-                label="Descrição da ocupação"
-                placeholder="Descrição"
-                onChange={onChange}
-                isDisable={isChecked}
-                error={errors.descricaoOcupacaoPai}
-              />
-            </span>
-
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
+            <FormField
+              name="tipoRacaCorMae"
+              label="Raça/Cor"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={tipoRacaCor}
+              onChange={onChange}
+              error={errors.tipoRacaCorMae}
+            />
+            <FormField
+              name="estadoCivilMae"
+              label="Estado Civil"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={estadoCivil}
+              onChange={onChange}
+              error={errors.estadoCivilMae}
+            />
+            <FormField
+              name="telefone1Mae"
+              label="Telefone 1"
+              placeholder="Telefone"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.telefone1Mae}
+            />
+            <FormField
+              name="telefone2Mae"
+              label="Telefone 2"
+              placeholder="Telefone"
+              onChange={onChange}
+              error={errors.telefone2Mae}
+            />
           </div>
-          {/* </div> */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField
+              name="escolaridadeMae"
+              label="Escolaridade"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={escolaridade}
+              onChange={onChange}
+              error={errors.escolaridadeMae}
+            />
+            <FormField
+              name="ocupacaoMae"
+              label="Ocupação"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={ocupacao}
+              onChange={onChange}
+              error={errors.ocupacaoMae}
+            />
+            <FormField
+              name="descricaoOcupacaoMae"
+              label="Descrição da ocupação"
+              placeholder="Descrição"
+              onChange={onChange}
+              error={errors.descricaoOcupacaoMae}
+            />
+          </div>
+          <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
+            <FormField
+              name="nadaConsta"
+              label="NC (Caso desconhecido, selecionar está opção)"
+              type="checkbox"
+              styleInput="w-6 h-6"
+              onChange={handleCheckboxChange}
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4'">
+            <FormField
+              name="nomePai"
+              label="Nome do Pai"
+              placeholder="Nome"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.nomePai}
+              className="col-span-1"
+            />
+            <FormField
+              name="dataNascimentoPai"
+              label="Data de Nascimento"
+              type="date"
+              placeholder="00/00/0000"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.dataNascimentoPai}
+            />
+            <FormField
+              name="responsavelPelaCriancaPai"
+              label="Responsável pela criança"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={simOuNao}
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.responsavelPelaCriancaPai}
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-8 pt-4">
+            <FormField
+              name="cpfPai"
+              label="CPF"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.cpfPai}
+            />
+            <FormField
+              name="tipoRacaCorPai"
+              label="Raça/Cor"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={tipoRacaCor}
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.tipoRacaCorPai}
+            />
+            <FormField
+              name="estadoCivilPai"
+              label="Estado Civil"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={estadoCivil}
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.estadoCivilPai}
+            />
+            <FormField
+              name="telefone1Pai"
+              label="Telefone 1"
+              placeholder="Telefone"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.telefone1Pai}
+            />
+            <FormField
+              name="telefone2Pai"
+              label="Telefone 2"
+              placeholder="Telefone"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.telefone2Pai}
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField
+              name="escolaridadePai"
+              label="Escolaridade"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={escolaridade}
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.escolaridadePai}
+            />
+            <FormField
+              name="ocupacaoPai"
+              label="Ocupação"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={ocupacao}
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.ocupacaoPai}
+            />
+            <FormField
+              name="descricaoOcupacaoPai"
+              label="Descrição da ocupação"
+              placeholder="Descrição"
+              onChange={onChange}
+              isDisable={isChecked}
+              error={errors.descricaoOcupacaoPai}
+            />
+          </div>
         </FormGroup>
-
-        {/* DADOS RESPONSAVEL*/}
 
         <FormGroup
           title="Responsável"
-          description="Cadastro de dados pessoais do responsável do Paciente (Caso Mãe e/ou Pai não  sejam os responsáveis)"
+          description="Cadastro de dados pessoais do responsável do Paciente"
         >
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5  w-full">
-              <FormField
-                name="nomeResponsavel"
-                label="Nome do Responsável"
-                placeholder="Nome do Responsável"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                error={errors.nomeResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm mr-10">
-              <FormField
-                name="dataNascimentoResponsavel"
-                label="Data de Nascimento"
-                type="date"
-                placeholder="00/00/0000"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                error={errors.dataNascimentoResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm w-[20%]">
-              <FormField
-                name="vinculoResponsavel"
-                label="Vínculo"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={vinculo}
-                onChange={onChange}
-                error={errors.vinculoResponsavel}
-              />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField
+              name="nomeResponsavel"
+              label="Nome do Responsável"
+              placeholder="Nome"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.nomeResponsavel}
+            />
+            <FormField
+              name="dataNascimentoResponsavel"
+              label="Data de Nascimento"
+              type="date"
+              placeholder="00/00/0000"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.dataNascimentoResponsavel}
+            />
+            <FormField
+              name="vinculoResponsavel"
+              label="Vínculo"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={vinculo}
+              onChange={onChange}
+              error={errors.vinculoResponsavel}
+            />
           </div>
-          <div className="flex items-center mt-8 px-8 w-full">
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="descricaoVinculoResponsavel"
-                label="Descrição do Vínculo"
-                onChange={onChange}
-                error={errors.descricaoVinculoResponsavel}
-              />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
+            <FormField
+              name="descricaoVinculoResponsavel"
+              label="Descrição do Vínculo"
+              onChange={onChange}
+              error={errors.descricaoVinculoResponsavel}
+            />
           </div>
 
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="cpfResponsavel"
-                label="CPF"
-                value={dadosFormulario.cpfResponsavel}
-                styleClass="campoObrigatorio"
-                placeholder="000.000.000-00"
-                onChange={onChange}
-                error={errors.cpfResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="tipoRacaCorResponsavel"
-                label="Raça/Cor"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={tipoRacaCor}
-                onChange={onChange}
-                error={errors.tipoRacaCorResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="estadoCivilResponsavel"
-                label="Estado Civil"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={estadoCivil}
-                onChange={onChange}
-                error={errors.estadoCivilResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-full">
-              <FormField
-                name="telefone1Responsavel"
-                label="Telefone 1"
-                placeholder="(00) 00000-0000"
-                styleClass="campoObrigatorio"
-                value={dadosFormulario.telefone1Responsavel}
-                onChange={onChange}
-                error={errors.telefone1Responsavel}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="telefone2Responsavel"
-                label="Telefone 2"
-                placeholder="(00) 00000-0000"
-                value={dadosFormulario.telefone2Responsavel}
-                onChange={onChange}
-                error={errors.telefone2Responsavel}
-              />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-8 pt-4">
+            <FormField
+              name="cpfResponsavel"
+              label="CPF"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.cpfResponsavel}
+            />
+            <FormField
+              name="tipoRacaCorResponsavel"
+              label="Raça/Cor"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={tipoRacaCor}
+              onChange={onChange}
+              error={errors.tipoRacaCorResponsavel}
+            />
+            <FormField
+              name="estadoCivilResponsavel"
+              label="Estado Civil"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={estadoCivil}
+              onChange={onChange}
+              error={errors.estadoCivilResponsavel}
+            />
+            <FormField
+              name="telefone1Responsavel"
+              label="Telefone 1"
+              placeholder="Telefone"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.telefone1Responsavel}
+            />
+            <FormField
+              name="telefone2Responsavel"
+              label="Telefone 2"
+              placeholder="Telefone"
+              onChange={onChange}
+              error={errors.telefone2Responsavel}
+            />
           </div>
-          <div className="flex items-center mt-8 px-8">
-            <span className="font-bold text-sm mr-5 w-[40%]">
-              <FormField
-                name="escolaridadeResponsavel"
-                label="Escolaridade"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={escolaridade}
-                onChange={onChange}
-                error={errors.escolaridadeResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm mr-5 w-[40%]">
-              <FormField
-                name="ocupacaoResponsavel"
-                label="Ocupação"
-                styleClass="campoObrigatorio"
-                isSelect
-                options={ocupacao}
-                onChange={onChange}
-                error={errors.ocupacaoResponsavel}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="descricaoOcupacaoResponsavel"
-                label="Descrição da ocupação"
-                placeholder="Descrição"
-                onChange={onChange}
-                error={errors.descricaoOcupacaoResponsavel}
-              />
-            </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
+            <FormField
+              name="escolaridadeResponsavel"
+              label="Escolaridade"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={escolaridade}
+              onChange={onChange}
+              error={errors.escolaridadeResponsavel}
+            />
+            <FormField
+              name="ocupacaoResponsavel"
+              label="Ocupação"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={ocupacao}
+              onChange={onChange}
+              error={errors.ocupacaoResponsavel}
+            />
+            <FormField
+              name="descricaoOcupacaoResponsavel"
+              label="Descrição da ocupação"
+              placeholder="Descrição"
+              onChange={onChange}
+              error={errors.descricaoOcupacaoResponsavel}
+            />
           </div>
         </FormGroup>
 
-        {/* ENCAMINHAMENTO ORIGEM */}
-
         <FormGroup title="Encaminhamento de Origem">
-          <div className="flex items-center mt-8 px-8 ">
-            <span className="font-bold text-sm mr-10 w-[50%]">
-              <FormField
-                name="procedencia"
-                label="Procedência"
-                isSelect
-                styleClass="campoObrigatorio"
-                options={procedencias}
-                onChange={onChange}
-                error={errors.procedencia}
-              />
-            </span>
-            <span className="font-bold text-sm w-full">
-              <FormField
-                name="dsOutroTipoDeProcedenciaPaciente"
-                label="Descrição da Procedência"
-                placeholder="Descrição"
-                styleClass="campoObrigatorio"
-                onChange={onChange}
-                error={errors.dsOutroTipoDeProcedenciaPaciente}
-              />
-            </span>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+            <FormField
+              name="procedencia"
+              label="Procedência"
+              isSelect
+              styleClass="campoObrigatorio"
+              options={procedencias}
+              onChange={onChange}
+              error={errors.procedencia}
+            />
+            <FormField
+              name="dsOutroTipoDeProcedenciaPaciente"
+              label="Descrição da Procedência"
+              placeholder="Descrição"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              error={errors.dsOutroTipoDeProcedenciaPaciente}
+            />
           </div>
         </FormGroup>
 
@@ -1028,7 +933,7 @@ export function FormCadastroDadosPessoais() {
             name="salvar"
             type="button"
             onClick={handleSubmit}
-            className="focus:outline-none text-white  bg-green-700 hover:bg-green-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
           >
             Salvar
           </button>

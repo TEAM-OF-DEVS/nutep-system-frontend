@@ -23,7 +23,6 @@ function App() {
     { path: "dados-neonatais", component: <FormCadastroDadosNeonatais /> },
   ];
 
-
   return (
     <>
       <BrowserRouter>
@@ -64,5 +63,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

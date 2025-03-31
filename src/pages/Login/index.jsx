@@ -40,7 +40,7 @@ export default function AuthPage() {
       alert("E-mail não encontrado");
     }
   };
-
+  
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleLogin();
@@ -128,6 +128,7 @@ export default function AuthPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onKeyDown={handleKeyDown}
+
                 />
               </div>
             )}

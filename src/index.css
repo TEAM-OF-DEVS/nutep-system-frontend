@@ -56,10 +56,8 @@ body {
 }
 
 .sidebar.collapsed .arrow {
-  display: none; 
+  display: none;
 }
-
-
 
 .sidebar .sidebarTabs ul {
   width: 100%;
@@ -128,6 +126,32 @@ body {
   padding-left: 16px !important;
   font-weight: 600 !important;
   font-size: 5px; 
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 75%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebarTabs {
+    padding-left: 10px;
+  }
+
+  .sidebarTabs button {
+    font-size: 14px;
+  }
+
+  .sidebarTabs li .submenu button {
+    padding-left: 16px !important;
+    font-weight: 600 !important;
+    font-size: 12px;
+  }
 }
 
 .campoObrigatorio::after {
