@@ -363,7 +363,7 @@
     {
       "id": "91",
       "nomeMunicipio": "Jaguaretama"
-    },
+    },]
     {
       "id": "92",
       "nomeMunicipio": "Jaguaribara"
@@ -1048,5 +1048,4 @@
   ],
   "pre_natais": [],
   "neonatais": []
-  ]
 }
