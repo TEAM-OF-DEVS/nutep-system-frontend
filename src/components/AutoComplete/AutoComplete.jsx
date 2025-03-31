@@ -63,7 +63,6 @@ export const AutoComplete = ({ onSelectPaciente }) => {
 
     return (
         <div>
-
             {mensagem.texto && (
                 <MessageAlert
                     type={mensagem.tipo}
@@ -71,7 +70,7 @@ export const AutoComplete = ({ onSelectPaciente }) => {
                     message={mensagem.texto}
                 />
             )
-            }
+           }
 
             <div className="flex mt-4">
                 <span className="pl-8 font-bold text-xl">

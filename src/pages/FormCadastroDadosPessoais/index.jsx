@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import Nacionalidade from "../../models/enum/Nacionalidade.js";
@@ -15,23 +15,19 @@ import Sexo from "../../models/enum/Sexo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
-import {
-  validateField,
-  validateForm,
-} from "../../validator/validateFormPaciente.jsx";
+import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
-import CepService from "../../services/cepService.jsx";
+
+const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
+  value: key,
+  label: value,
+}));
+const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
+  value: key,
+  label: value,
+}));
 
 export function FormCadastroDadosPessoais() {
-  const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
     value: value,
     label: key,
@@ -49,13 +45,12 @@ export function FormCadastroDadosPessoais() {
     label: value,
   }));
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
-    ([key, value]) => ({ value: key, label: value }),
+    ([key, value]) => ({ value: key, label: value })
   );
   const estadoCivil = Object.entries(EstadoCivil).map(([key, value]) => ({
     value: key,
     label: value,
   }));
-
   const escolaridade = Object.entries(Escolaridade).map(([key, value]) => ({
     value: key,
     label: value,
@@ -64,12 +59,10 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-
   const sexo = Object.entries(Sexo).map(([key, value]) => ({
     value: key,
     label: value,
   }));
-
   const uf = Object.entries(["CE - Ceará"]).map(([key, value]) => ({
     value: value,
     label: value,
@@ -77,12 +70,11 @@ export function FormCadastroDadosPessoais() {
 
   const [loading, setLoading] = useState(false);
   const [cidades, setCidades] = useState([]);
-  // const [ocupacao, setOcupacao] = useState([]);
-  // const [procedencias, setProcedencias] = useState([]);
   const [naturalidade, setNaturalidade] = useState([]);
   const [message, setMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
+  const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
 
   const carregarCidadesOuMunicipios = async () => {
     try {
@@ -101,7 +93,7 @@ export function FormCadastroDadosPessoais() {
     descricaoProntuario: { required: true },
     nomeCompleto: { required: true },
     dataNascimento: { required: true },
-    cpf: { required: true },
+    cpf: { required: false },
     nacionalidade: { required: true },
     naturalidade: { required: true },
     uf: { required: true },
@@ -109,15 +101,15 @@ export function FormCadastroDadosPessoais() {
     tipoRacaCor: { required: true },
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
-    dsOutroTipoDeLocalDeNascimentoPaciente: { required: true },
+    dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
-    complemento: { required: true },
+    complemento: { required: false },
     bairro: { required: true },
     municipioLogradouro: { required: true },
     estado: { required: true },
-    tpMoradia: { required: false },
+    tpMoradia: { required: true },
 
     nomeMae: { required: true },
     dataNascimentoMae: { required: true },
@@ -143,21 +135,21 @@ export function FormCadastroDadosPessoais() {
     ocupacaoPai: { required: !isChecked },
     descricaoOcupacaoPai: { required: !isChecked },
 
-    nomeResponsavel: { required: true },
-    dataNascimentoResponsavel: { required: true },
-    vinculoResponsavel: { required: true },
+    nomeResponsavel: { required: !paiOuMaeResponsavel },
+    dataNascimentoResponsavel: { required: !paiOuMaeResponsavel },
+    vinculoResponsavel: { required: !paiOuMaeResponsavel },
     descricaoVinculoResponsavel: { required: false },
-    cpfResponsavel: { required: true },
-    tipoRacaCorResponsavel: { required: true },
-    estadoCivilResponsavel: { required: true },
-    telefone1Responsavel: { required: true },
+    cpfResponsavel: { required: !paiOuMaeResponsavel },
+    tipoRacaCorResponsavel: { required: !paiOuMaeResponsavel },
+    estadoCivilResponsavel: { required: !paiOuMaeResponsavel },
+    telefone1Responsavel: { required: !paiOuMaeResponsavel },
     telefone2Responsavel: { required: false },
-    escolaridadeResponsavel: { required: true },
-    ocupacaoResponsavel: { required: true },
+    escolaridadeResponsavel: { required: !paiOuMaeResponsavel },
+    ocupacaoResponsavel: { required: !paiOuMaeResponsavel },
     descricaoOcupacaoResponsavel: { required: false },
 
     procedencia: { required: true },
-    dsOutroTipoDeProcedenciaPaciente: { required: true },
+    dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
   useEffect(() => {
@@ -233,59 +225,100 @@ export function FormCadastroDadosPessoais() {
     setIsChecked(!isChecked);
   };
 
-  const handleBlurCep = async () => {
-    const { cep } = dadosFormulario;
+  const handleResponsavelChange = (valueMae, valuePai) => {
+    const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
+    setPaiOuMaeResponsavel(isResponsavel);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      nomeResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      dataNascimentoResponsavel: isResponsavel
+        ? ""
+        : "Este campo é obrigatório",
+      vinculoResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      cpfResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      tipoRacaCorResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      estadoCivilResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      telefone1Responsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      escolaridadeResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+      ocupacaoResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+    }));
+  };
 
-    // Verifica se a resposta está em um formato correto
-
-    if (cep.length === 8) {
-      // Valida o formato do CEP
-      try {
-        // Simula uma chamada à API para buscar o logradouro
-        console.log(cep);
-        const response = await CepService.getById(cep);
-        console.log(response);
-        // const response =  await fetch(`http://localhost:9090/cep/${cep}`);
-        if (!response || response.erro) {
-          throw new Error(`CEP inválido ou não encontrado ${response.status}`);
-        }
-        const data = response;
-        console.log(data);
-        if (data) {
-          setDadosFormulario((prevState) => ({
-            ...prevState,
-            logradouro: data.logradouro,
-            bairro: data.bairro,
-            municipioLogradouro: { value: data.localidade },
-          }));
-        } else {
-          console.log("Logradouro não encontrado para este CEP.");
-        }
-      } catch (error) {
-        console.error("Erro ao buscar o CEP:", error);
+  const fetchCEPData = async (cep) => {
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+      if (data.erro) {
+        throw new Error("CEP não encontrado");
       }
-    } else {
-      console.log("CEP inválido.");
+      return data;
+    } catch (error) {
+      console.error("Erro ao buscar CEP:", error);
+      throw error;
     }
   };
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     const { name, value } = e.target;
+    let formattedValue = value;
+
+    const upperCaseValue = formattedValue.toUpperCase();
+
     const keys = name.split(".");
     if (keys.length > 1) {
       setDadosFormulario((prevState) => ({
         ...prevState,
         [keys[0]]: {
           ...prevState[keys[0]],
-          [keys[1]]: value,
+          [keys[1]]: upperCaseValue,
         },
       }));
     } else {
       setDadosFormulario((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: upperCaseValue,
       }));
     }
+
+    if (name === "cep") {
+      if (value.length === 0) {
+        setDadosFormulario((prevState) => ({
+          ...prevState,
+          logradouro: "",
+          bairro: "",
+          municipioLogradouro: "",
+          estado: "",
+        }));
+      } else if (value.length === 9) {
+        try {
+          const cepData = await fetchCEPData(value);
+          setDadosFormulario((prevState) => ({
+            ...prevState,
+            logradouro: cepData.logradouro || "",
+            bairro: cepData.bairro || "",
+            municipioLogradouro: cepData.localidade || "",
+            estado: cepData.uf || "",
+          }));
+        } catch (error) {
+          console.error("Erro ao buscar CEP:", error);
+        }
+      }
+    }
+
+    if (
+      name === "responsavelPelaCriancaMae" ||
+      name === "responsavelPelaCriancaPai"
+    ) {
+      handleResponsavelChange(
+        name === "responsavelPelaCriancaMae"
+          ? value
+          : dadosFormulario.responsavelPelaCriancaMae,
+        name === "responsavelPelaCriancaPai"
+          ? value
+          : dadosFormulario.responsavelPelaCriancaPai
+      );
+    }
+
     const error = validateField(name, value, validationRules[name]);
     setErrors((prev) => ({
       ...prev,
@@ -307,7 +340,9 @@ export function FormCadastroDadosPessoais() {
     const paciente = new PacienteBuilder()
       .withFormulario(dadosFormulario)
       .build();
+
     console.log(paciente);
+
     try {
       const resposta = await PacienteService.create(paciente);
       handleShowAlert(resposta != null ? "201" : "400");
@@ -322,7 +357,6 @@ export function FormCadastroDadosPessoais() {
 
   return (
     <>
-      {/* DADOS PACIENTE */}
       <form>
         {message === "201" ? (
           <MessageAlert
@@ -472,13 +506,12 @@ export function FormCadastroDadosPessoais() {
               label="CEP"
               styleClass="campoObrigatorio"
               onChange={onChange}
-              onBlur={handleBlurCep}
               error={errors.cep}
             />
             <FormField
               name="logradouro"
-              value={dadosFormulario.logradouro}
               label="Logradouro"
+              value={dadosFormulario.logradouro}
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.logradouro}
@@ -530,13 +563,13 @@ export function FormCadastroDadosPessoais() {
               name="tpMoradia"
               label="Tipo de moradia"
               isSelect
+              styleClass="campoObrigatorio"
               options={tipoMoradia}
               onChange={onChange}
               error={errors.tpMoradia}
             />
           </div>
         </FormGroup>
-        {/* DADOS DOS PAIS */}
 
         <FormGroup
           title="Dados dos Pais"
@@ -641,7 +674,6 @@ export function FormCadastroDadosPessoais() {
             />
           </div>
           <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
-          {/* <div className={`${isChecked ? 'bg-neutral-200 pt-4 pb-4'  : ''}`}> */}
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
             <FormField
               name="nadaConsta"
@@ -760,10 +792,7 @@ export function FormCadastroDadosPessoais() {
               error={errors.descricaoOcupacaoPai}
             />
           </div>
-          {/* </div> */}
         </FormGroup>
-
-        {/* DADOS RESPONSAVEL*/}
 
         <FormGroup
           title="Responsável"
@@ -877,8 +906,6 @@ export function FormCadastroDadosPessoais() {
           </div>
         </FormGroup>
 
-        {/* ENCAMINHAMENTO ORIGEM */}
-
         <FormGroup title="Encaminhamento de Origem">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
             <FormField
@@ -906,7 +933,7 @@ export function FormCadastroDadosPessoais() {
             name="salvar"
             type="button"
             onClick={handleSubmit}
-            className="focus:outline-none text-white  bg-green-700 hover:bg-green-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
           >
             Salvar
           </button>

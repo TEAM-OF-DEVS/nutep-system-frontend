@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   validateField,
   validateForm,
@@ -24,53 +23,24 @@ import MessageAlert from "../../util/MessageAlert.jsx";
 import ServicoSocialBuilder from "../../models/build/ServicoSocialBuilder.js";
 
 export function FormServicoSocial() {
-  const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const presencaDosPais = Object.entries(PresencaDosPais).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const tipoAcolhimento = Object.entries(TipoAcolhimento).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const abrigos = Object.entries(Abrigos).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const opcoesPadrao = Object.entries(OpcoesPadrao).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const opcaoSimOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
-    value: value,
-    label: key,
-  }));
-  const grauInstrucao = Object.entries(GrauInstrucao).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const periodicidadeTerapia = Object.entries(PeriodicidadeTerapia).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const diasTurnoTerapia = Object.entries(DiasTurnoTerapia).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const tipoTerapia = Object.entries(TipoTerapia).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-
-  const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resultado, setResultado] = useState(0);
+
+  const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(([key, value]) => ({ value: key, label: value }));
+  const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(([key, value]) => ({ value: key, label: value }));
+  const presencaDosPais = Object.entries(PresencaDosPais).map(([key, value]) => ({ value: key, label: value }));
+  const tipoAcolhimento = Object.entries(TipoAcolhimento).map(([key, value]) => ({ value: key, label: value }));
+  const abrigos = Object.entries(Abrigos).map(([key, value]) => ({ value: key, label: value }));
+  const opcoesPadrao = Object.entries(OpcoesPadrao).map(([key, value]) => ({ value: key, label: value }));
+  const opcaoSimOuNao = Object.entries(SimOuNao).map(([key, value]) => ({ value: value, label: key }));
+  const grauInstrucao = Object.entries(GrauInstrucao).map(([key, value]) => ({ value: key, label: value }));
+  const periodicidadeTerapia = Object.entries(PeriodicidadeTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const diasTurnoTerapia = Object.entries(DiasTurnoTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const tipoTerapia = Object.entries(TipoTerapia).map(([key, value]) => ({ value: key, label: value }));
+  const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(([key, value]) => ({ value: key, label: value }));
 
   const validationRules = {
     dataAtendimento: { required: true },
@@ -205,6 +175,7 @@ export function FormServicoSocial() {
       throw new Error(`Erro ao salvar servico social: ${erro.message}`);
     }
   }
+
   return (
     <>
       <form>
@@ -212,17 +183,16 @@ export function FormServicoSocial() {
           <MessageAlert
             type="success"
             title="Cadastrado com sucesso!"
-            message="Serviço social para o paciente foi cadastrado com sucesso."
+            message="O paciente foi cadastrado com sucesso."
           />
         ) : message === "400" ? (
           <MessageAlert
             type="error"
             title="Erro no cadastro"
-            message="Houve um problema ao cadastrar serviço social do paciente."
+            message="Houve um problema ao cadastrar o paciente."
           />
         ) : null}
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
-        {/* Dados Serviço Social */}
         {pacienteEncontrado && (
           <FormGroup
             title="Dados Serviço Social"
@@ -319,6 +289,7 @@ export function FormServicoSocial() {
             />
           </div>
         </FormGroup>
+
         {/* ABEP - Classe Social */}
         <FormGroup title="ABEP - Classe Social">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 px-4 pt-4">
