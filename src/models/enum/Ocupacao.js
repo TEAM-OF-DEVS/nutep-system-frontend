@@ -59,7 +59,7 @@ const Ocupacao = {
     TERAPEUTA_OCUPACIONAL: "Terapeuta ocupacional",
     TRADUTOR_INTEPRETE: "Tradutor(a)/intérprete",
     VETERINARIO: "Veterinário(a)",
-    OUTROS: "Outros",
+    OUTRO: "Outro",
     SI: "SI"
 };
 

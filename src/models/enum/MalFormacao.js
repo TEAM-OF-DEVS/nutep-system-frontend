@@ -29,6 +29,7 @@ const Malformacao = {
     SINDROME_DE_TURNER: "Síndrome de Turner",
     SINDROME_DO_X_FRAGIL: "Síndrome do X Frágil",
     SINDROME_PATAU: "Síndrome Patau",
+    NENHUM: "Nenhuma",
     OUTROS: "Outros"
 };
 

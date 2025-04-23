@@ -17,6 +17,8 @@ import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
+import UF from "../../models/enum/UFs.js";
+import Estado from "../../models/enum/Estado.js";
 
 const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
   value: key,
@@ -63,8 +65,12 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-  const uf = Object.entries(["CE - Ceará"]).map(([key, value]) => ({
-    value: value,
+  const uf = Object.entries(UF).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+  const estado = Object.entries(Estado).map(([key, value]) => ({
+    value: key,
     label: value,
   }));
 
@@ -164,7 +170,7 @@ export function FormCadastroDadosPessoais() {
     dataNascimento: "",
     cpf: "",
     nacionalidade: "",
-    naturalidade: {},
+    naturalidade: "",
     uf: "",
     sexo: "",
     tipoRacaCor: "",
@@ -176,7 +182,7 @@ export function FormCadastroDadosPessoais() {
     numero: "",
     complemento: "",
     bairro: "",
-    municipioLogradouro: {},
+    municipioLogradouro: "",
     estado: "",
     tpMoradia: "",
     cpfMae: "",
@@ -373,7 +379,7 @@ export function FormCadastroDadosPessoais() {
         ) : null}
 
         <FormGroup
-          title="Dados Paciente"
+          title="Dados do Paciente"
           description="Cadastro de dados pessoais do Paciente"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
@@ -423,6 +429,7 @@ export function FormCadastroDadosPessoais() {
               placeholder="000.000.000-00"
               onChange={onChange}
               error={errors.cpf}
+              value={dadosFormulario.cpf}
             />
             <FormField
               name="nacionalidade"
@@ -481,6 +488,7 @@ export function FormCadastroDadosPessoais() {
               placeholder="000 0000 0000 0000"
               onChange={onChange}
               error={errors.descricaoCartaoSUS}
+              value={dadosFormulario.descricaoCartaoSUS}
             />
             <FormField
               name="localDeNascimento"
@@ -507,6 +515,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.cep}
+              value={dadosFormulario.cep}
             />
             <FormField
               name="logradouro"
@@ -522,6 +531,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.numero}
+              value={dadosFormulario.numero}
             />
             <FormField
               name="complemento"
@@ -543,7 +553,6 @@ export function FormCadastroDadosPessoais() {
               value={dadosFormulario.municipioLogradouro}
               label="Cidade"
               styleClass="campoObrigatorio"
-              isSelect
               isAPI
               options={cidades}
               onChange={onChange}
@@ -555,7 +564,7 @@ export function FormCadastroDadosPessoais() {
               label="Estado"
               styleClass="campoObrigatorio"
               isSelect
-              options={uf}
+              options={estado}
               onChange={onChange}
               error={errors.estado}
             />
@@ -600,6 +609,7 @@ export function FormCadastroDadosPessoais() {
               placeholder="000.000.000-00"
               onChange={onChange}
               error={errors.cpfMae}
+              value={dadosFormulario.cpfMae}
             />
             <FormField
               name="responsavelPelaCriancaMae"
@@ -637,6 +647,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.telefone1Mae}
+              value={dadosFormulario.telefone1Mae}
             />
             <FormField
               name="telefone2Mae"
@@ -644,6 +655,7 @@ export function FormCadastroDadosPessoais() {
               placeholder="Telefone"
               onChange={onChange}
               error={errors.telefone2Mae}
+              value={dadosFormulario.telefone2Mae}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
@@ -723,6 +735,7 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               isDisable={isChecked}
               error={errors.cpfPai}
+              value={dadosFormulario.cpfPai}
             />
             <FormField
               name="tipoRacaCorPai"
@@ -752,6 +765,7 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               isDisable={isChecked}
               error={errors.telefone1Pai}
+              value={dadosFormulario.telefone1Pai}
             />
             <FormField
               name="telefone2Pai"
@@ -760,6 +774,7 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               isDisable={isChecked}
               error={errors.telefone2Pai}
+              value={dadosFormulario.telefone2Pai}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
@@ -789,13 +804,12 @@ export function FormCadastroDadosPessoais() {
               placeholder="Descrição"
               onChange={onChange}
               isDisable={isChecked}
-              error={errors.descricaoOcupacaoPai}
             />
           </div>
         </FormGroup>
 
         <FormGroup
-          title="Responsável"
+          title="Dados do Responsável"
           description="Cadastro de dados pessoais do responsável do Paciente"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
@@ -803,27 +817,21 @@ export function FormCadastroDadosPessoais() {
               name="nomeResponsavel"
               label="Nome do Responsável"
               placeholder="Nome"
-              styleClass="campoObrigatorio"
               onChange={onChange}
-              error={errors.nomeResponsavel}
             />
             <FormField
               name="dataNascimentoResponsavel"
               label="Data de Nascimento"
               type="date"
               placeholder="00/00/0000"
-              styleClass="campoObrigatorio"
               onChange={onChange}
-              error={errors.dataNascimentoResponsavel}
             />
             <FormField
               name="vinculoResponsavel"
               label="Vínculo"
-              styleClass="campoObrigatorio"
               isSelect
               options={vinculo}
               onChange={onChange}
-              error={errors.vinculoResponsavel}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
@@ -839,69 +847,55 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpfResponsavel"
               label="CPF"
-              styleClass="campoObrigatorio"
               onChange={onChange}
-              error={errors.cpfResponsavel}
             />
             <FormField
               name="tipoRacaCorResponsavel"
               label="Raça/Cor"
-              styleClass="campoObrigatorio"
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
-              error={errors.tipoRacaCorResponsavel}
             />
             <FormField
               name="estadoCivilResponsavel"
               label="Estado Civil"
-              styleClass="campoObrigatorio"
               isSelect
               options={estadoCivil}
               onChange={onChange}
-              error={errors.estadoCivilResponsavel}
             />
             <FormField
               name="telefone1Responsavel"
               label="Telefone 1"
               placeholder="Telefone"
-              styleClass="campoObrigatorio"
               onChange={onChange}
-              error={errors.telefone1Responsavel}
             />
             <FormField
               name="telefone2Responsavel"
               label="Telefone 2"
               placeholder="Telefone"
               onChange={onChange}
-              error={errors.telefone2Responsavel}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
               name="escolaridadeResponsavel"
               label="Escolaridade"
-              styleClass="campoObrigatorio"
               isSelect
               options={escolaridade}
               onChange={onChange}
-              error={errors.escolaridadeResponsavel}
             />
             <FormField
               name="ocupacaoResponsavel"
               label="Ocupação"
-              styleClass="campoObrigatorio"
               isSelect
               options={ocupacao}
               onChange={onChange}
-              error={errors.ocupacaoResponsavel}
             />
             <FormField
               name="descricaoOcupacaoResponsavel"
               label="Descrição da ocupação"
               placeholder="Descrição"
               onChange={onChange}
-              error={errors.descricaoOcupacaoResponsavel}
             />
           </div>
         </FormGroup>

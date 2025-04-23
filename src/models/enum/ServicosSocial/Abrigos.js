@@ -15,7 +15,6 @@ const Abrigos = {
     ORFANATO_CRISTO_REI: "Instituto Orfanato Cristo Rei",
     RECANTO_LUZ: "Abrigo Recanto da Luz",
     RENASCER: "Abrigo Renascer",
-    SAO_LAZARO: "Abrigo São Lázaro",
     SANTA_GIANNA: "Abrigo Santa Gianna Beretta Molla",
     TIA_JULIA: "Abrigo Tia Júlia",
     OUTRO: "Outro"

@@ -21,6 +21,7 @@ import SimOuNao from "../../models/enum/SimNao.js";
 import ServicoSocialService from "../../services/servicoSocialService.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
 import ServicoSocialBuilder from "../../models/build/ServicoSocialBuilder.js";
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 
 export function FormServicoSocial() {
   const [message, setMessage] = useState("");
@@ -28,6 +29,7 @@ export function FormServicoSocial() {
   const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resultado, setResultado] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(([key, value]) => ({ value: key, label: value }));
   const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(([key, value]) => ({ value: key, label: value }));
@@ -152,10 +154,15 @@ export function FormServicoSocial() {
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
-      enviarDadosServicoSocialPaciente(dadosFormulario);
+      setIsModalOpen(true); 
     } else {
       console.log("Erros no formulário:", formErrors);
     }
+  };
+
+  const handleConfirmSave = async () => {
+    setIsModalOpen(false); 
+    await enviarDadosServicoSocialPaciente(dadosFormulario);
   };
 
   async function enviarDadosServicoSocialPaciente(dadosFormulario) {
@@ -291,7 +298,7 @@ export function FormServicoSocial() {
         </FormGroup>
 
         {/* ABEP - Classe Social */}
-        <FormGroup title="ABEP - Classe Social">
+        <FormGroup title="Classe Social" description="ABEP">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 px-4 pt-4">
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 col-span-2">
               <FormField
@@ -571,6 +578,7 @@ export function FormServicoSocial() {
               name="observacoes"
               label="Observações"
               onChange={onChange}
+              type="textarea"
               error={errors.observacoes}
             />
           </div>
@@ -586,6 +594,12 @@ export function FormServicoSocial() {
           </button>
         </div>
       </form>
+
+      <ModalSave
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleConfirmSave}
+      />
     </>
   );
 }

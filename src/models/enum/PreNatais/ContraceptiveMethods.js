@@ -4,7 +4,7 @@ const ContraceptiveMethods = {
     ANTICONCEPCIONAL_ORAL: "Anticoncepcional oral",
     COITO_INTERROMPIDO: "Coito interrompido",
     DIU: "DIU",
-    METODO_TABELA: "Método tabela",
+    TABELA: "Tabela",
     PRESERVATIVO: "Preservativo",
     NENHUM: "Nenhum",
     OUTROS: "Outros",
