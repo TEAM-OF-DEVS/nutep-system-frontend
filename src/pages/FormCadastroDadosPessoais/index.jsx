@@ -16,9 +16,9 @@ import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
-import MessageAlert from "../../util/MessageAlert.jsx";
 import UF from "../../models/enum/UFs.js";
 import Estado from "../../models/enum/Estado.js";
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 
 const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
   value: key,
@@ -81,6 +81,7 @@ export function FormCadastroDadosPessoais() {
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
+const [isModalOpen, setIsModalOpen] = useState(true);
 
   const carregarCidadesOuMunicipios = async () => {
     try {
@@ -365,16 +366,18 @@ export function FormCadastroDadosPessoais() {
     <>
       <form>
         {message === "201" ? (
-          <MessageAlert
-            type="success"
-            title="Cadastrado com sucesso!"
-            message="O paciente foi cadastrado com sucesso."
-          />
+           <ModalSave
+           title="Cadastrado com sucesso!"
+           message="O paciente foi cadastrado com sucesso."
+           isOpen={isModalOpen}
+           onClose={() => setIsModalOpen(false)}
+         />
         ) : message === "400" ? (
-          <MessageAlert
-            type="error"
+          <ModalSave
             title="Erro no cadastro"
             message="Houve um problema ao cadastrar o paciente."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
           />
         ) : null}
 
@@ -848,6 +851,7 @@ export function FormCadastroDadosPessoais() {
               name="cpfResponsavel"
               label="CPF"
               onChange={onChange}
+              value={dadosFormulario.cpfResponsavel}
             />
             <FormField
               name="tipoRacaCorResponsavel"
@@ -868,12 +872,14 @@ export function FormCadastroDadosPessoais() {
               label="Telefone 1"
               placeholder="Telefone"
               onChange={onChange}
+              value={dadosFormulario.telefone1Responsavel}
             />
             <FormField
               name="telefone2Responsavel"
               label="Telefone 2"
               placeholder="Telefone"
               onChange={onChange}
+              value={dadosFormulario.telefone2Responsavel}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">

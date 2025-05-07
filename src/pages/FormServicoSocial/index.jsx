@@ -29,7 +29,7 @@ export function FormServicoSocial() {
   const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resultado, setResultado] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(([key, value]) => ({ value: key, label: value }));
   const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(([key, value]) => ({ value: key, label: value }));
@@ -152,16 +152,16 @@ export function FormServicoSocial() {
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
     setErrors(formErrors);
-
+  
     if (Object.keys(formErrors).length === 0) {
-      setIsModalOpen(true); 
+      setIsModalOpen(true);
     } else {
       console.log("Erros no formulário:", formErrors);
     }
   };
-
+  
   const handleConfirmSave = async () => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
     await enviarDadosServicoSocialPaciente(dadosFormulario);
   };
 
@@ -186,19 +186,25 @@ export function FormServicoSocial() {
   return (
     <>
       <form>
-        {message === "201" ? (
-          <MessageAlert
-            type="success"
-            title="Cadastrado com sucesso!"
-            message="O paciente foi cadastrado com sucesso."
-          />
-        ) : message === "400" ? (
-          <MessageAlert
-            type="error"
-            title="Erro no cadastro"
-            message="Houve um problema ao cadastrar o paciente."
-          />
-        ) : null}
+      {isModalOpen && (
+  message === "201" ? (
+    <ModalSave
+      title="Cadastrado com sucesso!"
+      message="O paciente foi cadastrado com sucesso."
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      onConfirm={handleConfirmSave}
+    />
+  ) : message === "400" ? (
+    <MessageAlert
+      title="Erro no cadastro"
+      message="Houve um problema ao cadastrar o paciente."
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+    />
+  ) : null
+)}
+
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (
           <FormGroup
@@ -594,12 +600,6 @@ export function FormServicoSocial() {
           </button>
         </div>
       </form>
-
-      <ModalSave
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirmSave}
-      />
     </>
   );
 }

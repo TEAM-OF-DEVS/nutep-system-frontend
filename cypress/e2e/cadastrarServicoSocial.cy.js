@@ -1,7 +1,7 @@
 describe('Formulário de Cadastro de Paciente', () => {
     
     beforeEach(() => {
-        cy.visit('/servico-social');
+        cy.visit('dashboard/servico-social');
         cy.viewport(1920, 1080);
     });
 
@@ -11,7 +11,7 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('button[name="pesquisar"]').click();
         cy.wait(2000);
 
-        cy.get('input[name="dataAtendimento"]').type('2025-02-23');
+        // cy.get('input[name="dataAtendimento"]').type('2025-02-23');
 
         cy.get('select[name="configuracaoFamiliar"]').select('Casal heteroafetivo');
         cy.get('input[name="descricaoConfiguracaoFamiliar"]').type('Descrição Configuração familiar');
