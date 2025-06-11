@@ -12,7 +12,7 @@ export default function AuthPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
@@ -22,24 +22,21 @@ export default function AuthPage() {
     );
 
     if (user) {
-      alert("Login bem-sucedido!");
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/dashboard");
-    } else {
-      alert("Credenciais inválidas");
     }
   };
 
-  const handleResetPassword = () => {
-    const user = db.usuários.find((u) => u.email === email);
-    if (user) {
-      user.password = newPassword;
-      alert("Senha redefinida com sucesso!");
-      setIsResetPassword(false);
-    } else {
-      alert("E-mail não encontrado");
-    }
-  };
+  // const handleResetPassword = () => {
+  //   const user = db.usuários.find((u) => u.email === email);
+  //   if (user) {
+  //     user.password = newPassword;
+  //     alert("Senha redefinida com sucesso!");
+  //     setIsResetPassword(false);
+  //   } else {
+  //     alert("E-mail não encontrado");
+  //   }
+  // };
   
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -54,7 +51,6 @@ export default function AuthPage() {
           <img src={Logo} className="w-32 sm:w-40 md:w-48" alt="Logo" />
         </div>
 
-        {isResetPassword ? (
           <div className="w-full flex flex-col mb-6">
             <label className="mb-2 font-bold text-sm text-white flex items-center">
               <EmailIcon className="mr-2" />
@@ -68,8 +64,23 @@ export default function AuthPage() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-        ) : (
-          <>
+
+          <div className="w-full flex flex-col mb-6">
+              <label className="mb-2 font-bold text-sm text-white flex items-center">
+                <LockIcon className="mr-2" />
+                Senha
+              </label>
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                className="w-full p-2 border border-gray-300 rounded outline-none"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+       
+          {/* <>
             {isSignUp && (
               <div className="w-full flex flex-col mb-6">
                 <label className="mb-2 font-bold text-sm text-white flex items-center">
@@ -98,24 +109,11 @@ export default function AuthPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
+            </div> */}
 
-            <div className="w-full flex flex-col mb-6">
-              <label className="mb-2 font-bold text-sm text-white flex items-center">
-                <LockIcon className="mr-2" />
-                Senha
-              </label>
-              <input
-                type="password"
-                placeholder="Digite sua senha"
-                className="w-full p-2 border border-gray-300 rounded outline-none"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
+          
 
-            {isSignUp && (
+            {/* {isSignUp && (
               <div className="w-full flex flex-col mb-6">
                 <label className="mb-2 font-bold text-sm text-white flex items-center">
                   <LockIcon className="mr-2" />
@@ -132,12 +130,12 @@ export default function AuthPage() {
                 />
               </div>
             )}
-          </>
-        )}
+          </> */}
+        
 
         <button
           type="button"
-          onClick={isResetPassword ? handleResetPassword : handleLogin}
+          onClick={handleLogin}
           className="w-full text-white bg-green-700 hover:bg-green-800 font-bold rounded-lg text-sm px-5 py-2.5 transition"
         >
           {isResetPassword ? "Redefinir Senha" : isSignUp ? "Cadastrar" : "Entrar"}
@@ -157,8 +155,7 @@ export default function AuthPage() {
             {isResetPassword
               ? "Voltar para login"
               : isSignUp
-              ? "Já tem uma conta? Entrar"
-              : "Esqueceu sua senha?"}
+            }
           </button>
         </div>
       </div>
