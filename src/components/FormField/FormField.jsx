@@ -69,13 +69,28 @@ export const FormField = ({
     return formatted;
   };
 
+  const formatDateBR = (value) => {
+    let digits = value.replace(/\D/g, "").slice(0, 8);
+    
+    let formatted = "";
+    if (digits.length > 4) {
+      formatted = `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4, 8)}`;
+    } else if (digits.length > 2) {
+      formatted = `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    } else {
+      formatted = digits;
+    }
+    
+    return formatted;
+  };
+
   const formatHouseNumber = (value) => value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
 
 
   const handleInputChange = (event) => {
     let value = event.target.value;
     const fieldName = event.target.name.toLowerCase();
-
+  
     if (fieldName.includes("cep")) {
       value = formatCEP(value);
     } else if (fieldName.includes("cpf")) {
@@ -86,12 +101,15 @@ export const FormField = ({
       value = formatPhone(value);
     } else if (fieldName.includes("numero") || fieldName.includes("número") || fieldName.includes("house")) {
       value = formatHouseNumber(value);
+    } else if (fieldName.includes("data")) {
+      value = formatDateBR(value); 
     } else {
       value = value.toUpperCase();
     }
-
+  
     onChange({ target: { name: event.target.name, value } });
   };
+  
 
   return (
     <div

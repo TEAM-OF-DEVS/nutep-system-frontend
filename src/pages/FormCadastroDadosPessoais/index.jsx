@@ -386,16 +386,17 @@ const [isModalOpen, setIsModalOpen] = useState(true);
           description="Cadastro de dados pessoais do Paciente"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
-            <FormField
-              name="dataAdmissao"
-              label="Data da Admissão"
-              placeholder="00/00/0000"
-              type="date"
-              styleClass="campoObrigatorio"
-              onChange={onChange}
-              error={errors.dataAdmissao}
-              className="col-span-1"
-            />
+          <FormField
+            name="dataAdmissao"
+            label="Data da Admissão"
+            placeholder="00/00/0000"
+            type="text"
+            styleClass="campoObrigatorio"
+            onChange={onChange}
+            value={dadosFormulario.dataAdmissao} 
+            error={errors.dataAdmissao}
+            className="col-span-1"
+          />
             <FormField
               name="descricaoProntuario"
               label="Prontuário"
@@ -408,10 +409,11 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="dataNascimento"
               label="Data de Nascimento"
               placeholder="00/00/0000"
-              type="date"
+              type="text"
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dataNascimento}
+              value={dadosFormulario.dataNascimento}
               className="col-span-1"
             />
             <FormField
@@ -599,11 +601,12 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="dataNascimentoMae"
               label="Data de Nascimento"
-              type="date"
+              type="text"
               placeholder="00/00/0000"
               styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dataNascimentoMae}
+              value={dadosFormulario.dataNascimentoMae}
             />
             <FormField
               name="cpfMae"
@@ -712,12 +715,13 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="dataNascimentoPai"
               label="Data de Nascimento"
-              type="date"
+              type="text"
               placeholder="00/00/0000"
               styleClass="campoObrigatorio"
               onChange={onChange}
               isDisable={isChecked}
               error={errors.dataNascimentoPai}
+              value={dadosFormulario.dataNascimentoPai}
             />
             <FormField
               name="responsavelPelaCriancaPai"
@@ -825,9 +829,10 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="dataNascimentoResponsavel"
               label="Data de Nascimento"
-              type="date"
+              type="text"
               placeholder="00/00/0000"
               onChange={onChange}
+              value={dadosFormulario.dataNascimentoResponsavel}
             />
             <FormField
               name="vinculoResponsavel"
