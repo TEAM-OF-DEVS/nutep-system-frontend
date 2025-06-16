@@ -39,6 +39,7 @@ const MultiSelectCheckbox = ({ options = [], onChange }) => {
       <div
         className="border px-3 py-1 w-full rounded cursor-pointer bg-white flex justify-between items-center"
         onClick={toggleDropdown}
+        data-testid="intercorrencias-dropdown-toggle"
       >
         <span>
           {selectedOptions.length > 0

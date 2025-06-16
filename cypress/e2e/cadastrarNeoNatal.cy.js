@@ -1,7 +1,7 @@
 describe('Formulário de Cadastro de Paciente', () => {
 
     beforeEach(() => {
-        cy.visit('/dados-neonatais');
+        cy.visit('dashboard/dados-neonatais');
         cy.viewport(1920, 1080);
     });
 
@@ -35,8 +35,13 @@ describe('Formulário de Cadastro de Paciente', () => {
         cy.get('input[name="apgar5Min"]').type('Apgar 5 minutos.');
         cy.get('input[name="apgar10Min"]').type('Apgar 10 minutos.');
                 //--------//
-        cy.get('select[name="intercorrencias"]').select('Covid');
+          
+        cy.get('[data-testid="intercorrencias-dropdown-toggle"]').first().click();
+        cy.contains('label', 'Covid').click();
+
         cy.get('input[name="descricaoIntercorrencias"]').type('Descrição das intercorrências.');
+        
+        cy.get('[data-testid="malformacoes-dropdown-toggle"]').first().click();
         cy.get('select[name="malformacoes"]').select('Pé torto');
         cy.get('input[name="descricaoMalformacoes"]').type('Descrição das malformações.');
                 //--------//

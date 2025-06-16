@@ -1,6 +1,6 @@
 describe("Formulário de Cadastro de Paciente", () => {
   beforeEach(() => {
-    cy.visit("/dados-pre-natais");
+    cy.visit("dashboard/dados-pre-natais");
     cy.viewport(1920, 1080);
   });
 
@@ -9,7 +9,7 @@ describe("Formulário de Cadastro de Paciente", () => {
     cy.get('button[name="pesquisar"]').click();
     cy.wait(2000);
 
-    cy.get('input[name="dataAtendimento"]').type("2025-02-23");
+    // cy.get('input[name="dataAtendimento"]').type("2025-02-23");
 
     cy.get('select[name="procedencia"]').select("NUTEP");
     cy.get('input[name="descricaoProcedencia"]').type(

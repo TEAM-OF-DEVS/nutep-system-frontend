@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
@@ -23,9 +23,9 @@ import {
   validateField,
   validateForm,
 } from "../../validator/validateFormPaciente.jsx";
-import MessageAlert from "../../util/MessageAlert.jsx";
 import ServiceUtil from "../../services/serviceUtil.jsx";
 import { useEffect } from "react";
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 
 export function FormCadastroDadosPreNatais() {
   const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
@@ -87,6 +87,7 @@ export function FormCadastroDadosPreNatais() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [procedenciasList, setProcedenciasList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const validationRules = {
     dataAtendimento: { required: true },
@@ -234,16 +235,18 @@ export function FormCadastroDadosPreNatais() {
     <>
       <form>
         {message === "201" ? (
-          <MessageAlert
-            type="success"
+          <ModalSave
             title="Pré Natal cadastrado!"
             message="O Pré natal para o paciente foi cadastrado com sucesso."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
           />
         ) : message === "400" ? (
-          <MessageAlert
-            type="error"
+          <ModalSave
             title="Erro no cadastro!"
             message="Houve um problema ao cadastrar pré natal do paciente."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
           />
         ) : null}
         {/*DADOS PRE NATAIS*/}

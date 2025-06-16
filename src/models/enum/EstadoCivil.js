@@ -4,7 +4,7 @@ const EstadoCivil = {
     SOLTEIRO: "Solteiro(a)",
     UNIAO_ESTAVEL: "União estável",
     VIUVO: "Viúvo(a)",
-    OUTROS: "Outros"
+    OUTRO: "Outro"
   };
   
   export default EstadoCivil;

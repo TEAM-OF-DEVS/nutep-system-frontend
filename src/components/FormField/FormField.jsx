@@ -1,4 +1,3 @@
-import React from "react";
 import MultiSelectCheckbox from "../MultiSelect";
 import PropTypes from "prop-types";
 
@@ -70,12 +69,28 @@ export const FormField = ({
     return formatted;
   };
 
+  const formatDateBR = (value) => {
+    let digits = value.replace(/\D/g, "").slice(0, 8);
+    
+    let formatted = "";
+    if (digits.length > 4) {
+      formatted = `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4, 8)}`;
+    } else if (digits.length > 2) {
+      formatted = `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    } else {
+      formatted = digits;
+    }
+    
+    return formatted;
+  };
+
   const formatHouseNumber = (value) => value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
+
 
   const handleInputChange = (event) => {
     let value = event.target.value;
     const fieldName = event.target.name.toLowerCase();
-
+  
     if (fieldName.includes("cep")) {
       value = formatCEP(value);
     } else if (fieldName.includes("cpf")) {
@@ -86,12 +101,15 @@ export const FormField = ({
       value = formatPhone(value);
     } else if (fieldName.includes("numero") || fieldName.includes("número") || fieldName.includes("house")) {
       value = formatHouseNumber(value);
+    } else if (fieldName.includes("data")) {
+      value = formatDateBR(value); 
     } else {
       value = value.toUpperCase();
     }
-
+  
     onChange({ target: { name: event.target.name, value } });
   };
+  
 
   return (
     <div
@@ -119,10 +137,11 @@ export const FormField = ({
             onChange={onChange}
             onBlur={onBlur}
             disabled={isDisable}
+            data-testid={name}
             className={
               isGrid
                 ? "w-full bg-transparent placeholder:text-slate-300 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                : "w-full bg-white text-gray-700 text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-gray-400 "
+                : "w-full bg-white text-gray-700 text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-gray-400"
             }
           >
             <option value="">Selecione</option>

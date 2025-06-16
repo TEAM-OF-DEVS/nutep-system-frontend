@@ -2,7 +2,7 @@ const Convenio = {
     HAPVIDA: "Hapvida",
     IPM: "IPM",
     ISSEC: "ISSEC",
-    SUS: "Sus",
+    SUS: "SUS",
     UNIMED: "Unimed",
     OUTROS: "Outros",
     SI: "SI"

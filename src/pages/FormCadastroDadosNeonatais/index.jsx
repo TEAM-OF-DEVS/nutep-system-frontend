@@ -10,7 +10,7 @@ import Intercorrencia from "../../models/enum/Intercorrencia";
 import LocalNascimento from "../../models/enum/LocalNascimento";
 import Malformacao from "../../models/enum/MalFormacao";
 import Terapeutica from "../../models/enum/Terapeutica";
-import MessageAlert from "../../util/MessageAlert";
+
 import {
   validateField,
   validateForm,
@@ -23,6 +23,7 @@ import OpcaoSimOuNaoOuSi from "../../models/enum/NeoNatais/OpcaoSimOuNaoOuSi";
 import ResultadoTeste from "../../models/enum/NeoNatais/ResultadoTeste";
 import TiposDeGestacao from "../../models/enum/NeoNatais/TiposDeGestacao";
 import TiposDeParto from "../../models/enum/NeoNatais/TiposDeParto";
+import ModalSave from "../../components/ModalSave/ModalSave";
 
 export function FormCadastroDadosNeonatais() {
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
@@ -78,6 +79,7 @@ export function FormCadastroDadosNeonatais() {
   const [loading, setLoading] = useState(false);
 
   const [lista, setLista] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const validationRules = {
     dataAtendimento: { required: true },
@@ -234,16 +236,20 @@ export function FormCadastroDadosNeonatais() {
     <>
       <form>
         {message === "201" ? (
-          <MessageAlert
+          <ModalSave
             type="success"
             title="Neo Natal cadastrado!"
             message="O Neo natal do paciente foi cadastrado com sucesso."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
           />
         ) : message === "400" ? (
-          <MessageAlert
+          <ModalSave
             type="error"
             title="Erro no cadastro!"
             message="Houve um problema ao cadastrar o neo natal do paciente."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
           />
         ) : null}
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
@@ -417,6 +423,7 @@ export function FormCadastroDadosNeonatais() {
             <FormField
               name="intercorrencias"
               label="Intercorrências"
+              data-testid="intercorrencias-field"
               isSelect
               isMulti
               options={intercorrencias}
@@ -436,6 +443,7 @@ export function FormCadastroDadosNeonatais() {
               label="Malformações"
               isSelect
               isMulti
+              data-testid="malformacoes-dropdown-toggle"
               options={malformacoes}
               onChange={(selected) =>
                 handleSelectionChange("malformacoes", selected)

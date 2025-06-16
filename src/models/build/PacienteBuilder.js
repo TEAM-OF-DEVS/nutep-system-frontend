@@ -19,7 +19,7 @@ class PacienteBuilder {
             nrLogradouro: this.dadosFormulario.numero,
             dsLogradouro: this.dadosFormulario.logradouro,
             dsBairro: this.dadosFormulario.bairro,
-            municipioLogradouro: JSON.parse(this.dadosFormulario.municipioLogradouro),
+            municipioLogradouro: this.dadosFormulario.municipioLogradouro,
             dsComplementoLogradouro: this.dadosFormulario.complemento,
             tpMoradia: this.dadosFormulario.tpMoradia,
         };

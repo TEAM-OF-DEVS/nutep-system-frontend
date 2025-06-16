@@ -1,5 +1,4 @@
 const IntercorrenciasGestacao = {
-  NENHUMA: "Nenhuma",
   ACIDENTE: "Acidente",
   ANEMIA: "Anemia",
   CARDIOPATIA: "Cardiopatia",
@@ -12,6 +11,7 @@ const IntercorrenciasGestacao = {
   SINDROMES_HIPERTENSIVAS_GESTACAO: "Síndromes hipertensivas na gestação",
   TRANSTORNO_PSIQUICO: "Transtorno psíquico",
   TRATAMENTO_PSIQUIATRICO: "Tratamento psiquiátrico",
+  NENHUMA: "Nenhuma",
   OUTROS: "Outros",
   SI: "SI",
 };
