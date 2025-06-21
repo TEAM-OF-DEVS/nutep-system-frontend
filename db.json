@@ -749,7 +749,26 @@
       "id": "2",
       "email": "usuario@exemplo.com",
       "password": "senha123"
+    },
+    {
+      "id": "3",
+      "nome": "Sandra Elza Gomes Barbosa",
+      "email": "sandrafgj@gmail.com",
+      "password": "aT9kLp2W"
+    },
+    {
+      "id": "4",
+      "nome": "Paula Rafaela Sousa dos Santos",
+      "email": "rafaelassantos.adm@gmail.com",
+      "password": "Q6zMbv3X"
+    },
+    {
+      "id": "5",
+      "nome": "Fabiane Elpídio de Sá Pinheiro",
+      "email": "fabianeelpidio0@gmail.com",
+      "password": "nY7Trp1C"
     }
+    
   ],
   "pacientes": [
     {
