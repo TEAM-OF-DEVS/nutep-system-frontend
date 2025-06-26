@@ -548,16 +548,14 @@ export function FormServicoSocial() {
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols- gap-4 px-8 pt-4">
-            <FormField
+           <FormField
               name="diasTurnoTerapia"
               label="Dias/turno da terapia"
               isSelect
               isMulti
               options={diasTurnoTerapia}
-              onChange={(selected) =>
-                handleSelectionChange("diasTurnoTerapia", selected)
-              }
-              error={errors.diasTurnoTerapia}
+              value={dadosFormulario.diasTurnoTerapia}
+              onChange={onChange}
             />
             <FormField
               name="tipoTerapia"
@@ -565,9 +563,8 @@ export function FormServicoSocial() {
               isSelect
               isMulti
               options={tipoTerapia}
-              onChange={(selected) =>
-                handleSelectionChange("tipoTerapia", selected)
-              }
+              value={dadosFormulario.tipoTerapia}
+              onChange={onChange}
               error={errors.tipoTerapia}
             />
             <FormField
