@@ -1,4 +1,3 @@
-import MultiSelectCheckbox from "../MultiSelect";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
