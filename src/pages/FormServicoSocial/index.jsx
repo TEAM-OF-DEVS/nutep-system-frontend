@@ -112,6 +112,10 @@ export function FormServicoSocial() {
     }));
   };
 
+  useEffect(() => {
+  console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
+}, [dadosFormulario]);
+
   const handleSelectionChange = (name, selected) => {
     setDadosFormulario((prevState) => ({
       ...prevState,

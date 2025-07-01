@@ -215,7 +215,16 @@ FormField.propTypes = {
   isSelect: PropTypes.bool,
   isMulti: PropTypes.bool,
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+ value: PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])
+  ),
+]),
   label: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,

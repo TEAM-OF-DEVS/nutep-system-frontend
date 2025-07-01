@@ -164,6 +164,11 @@ export function FormCadastroDadosPreNatais() {
     setMessage(dados);
   };
 
+
+    useEffect(() => {
+    console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
+  }, [dadosFormulario]);
+
   const onChange = (e, fieldName) => {
     if (Array.isArray(e)) {
       setDadosFormulario((prevState) => ({
