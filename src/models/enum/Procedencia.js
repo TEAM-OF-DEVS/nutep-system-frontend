@@ -1,9 +1,9 @@
 const Procedencia = {
-  NUTEP: "NUTEP - Núcleo de Tratamento e Estimulação Precoce",
-  UAPS: "UAPS",
   MEAC_MATERNIDADE_ESCOLA: "MEAC - Maternidade Escola Assis Chateaubriand",
+  NUTEP: "NUTEP - Núcleo de Tratamento e Estimulação Precoce",
   NAMI_NUCLEO_ATENCAO_MEDICA_INTEGRADA:
     "NAMI - Núcleo de Atenção Médica Integrada",
+  UAPS: "UAPS",
   // UAPS_ABNER_CAVALCANTE: "UAPS ABNER CAVALCANTE",
   // UAPS_AINDA_SANTOS_E_SILVA: "UAPS AINDA SANTOS E SILVA",
   // UAPS_ALARICO_LEITE: "UAPS ALARICO LEITE",
@@ -82,7 +82,7 @@ const Procedencia = {
   // UAPS_WALDEMAR_DE_ALCANTARA: "UAPS WALDEMAR DE ALCÂNTARA",
   // UAPS_WALDO_PESSOA: "UAPS WALDO PESSOA",
   // UAPS_ZELIA_CORREIA: "UAPS ZÉLIA CORREIA",
-  OUTRO: "Outro",
+  OUTROS: "Outros",
   SI: "SI",
 };
 

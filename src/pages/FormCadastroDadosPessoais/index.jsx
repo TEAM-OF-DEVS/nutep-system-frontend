@@ -108,11 +108,11 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     tipoRacaCor: { required: true },
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
-    dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
+    // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
-    complemento: { required: false },
+    // complemento: { required: false },
     bairro: { required: true },
     municipioLogradouro: { required: true },
     estado: { required: true },
@@ -156,7 +156,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     descricaoOcupacaoResponsavel: { required: false },
 
     procedencia: { required: true },
-    dsOutroTipoDeProcedenciaPaciente: { required: false },
+    // dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
   useEffect(() => {
@@ -507,7 +507,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="dsOutroTipoDeLocalDeNascimentoPaciente"
               label="Descrição Local de Nascimento"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dsOutroTipoDeLocalDeNascimentoPaciente}
             />
@@ -541,7 +540,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="complemento"
               label="Complemento"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.complemento}
             />
@@ -926,7 +924,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="dsOutroTipoDeProcedenciaPaciente"
               label="Descrição da Procedência"
               placeholder="Descrição"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dsOutroTipoDeProcedenciaPaciente}
             />

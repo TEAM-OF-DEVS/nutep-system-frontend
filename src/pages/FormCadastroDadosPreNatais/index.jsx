@@ -164,6 +164,11 @@ export function FormCadastroDadosPreNatais() {
     setMessage(dados);
   };
 
+
+    useEffect(() => {
+    console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
+  }, [dadosFormulario]);
+
   const onChange = (e, fieldName) => {
     if (Array.isArray(e)) {
       setDadosFormulario((prevState) => ({
@@ -468,16 +473,15 @@ export function FormCadastroDadosPreNatais() {
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-            <FormField
+           <FormField
               name="intercorrenciasGestacao"
               label="Intercorrências na gestação"
               isSelect
               isMulti
               options={intercorrenciasGestacao}
-              onChange={(selected) =>
-                onChange(selected, "intercorrenciasGestacao")
-              }
-              error={errors.consanguinidadePais}
+              value={dadosFormulario.intercorrenciasGestacao} 
+              onChange={onChange}
+              error={errors.intercorrenciasGestacao}
             />
             <FormField
               name="descricaoIntercorrencias"
@@ -491,7 +495,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={alergias}
-              onChange={(selected) => onChange(selected, "alergias")}
+              value={dadosFormulario.alergias}
+              onChange={onChange}
               error={errors.alergias}
             />
             <FormField
@@ -520,7 +525,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={infeccoes}
-              onChange={(selected) => onChange(selected, "infeccoes")}
+              value={dadosFormulario.infeccoes}
+              onChange={onChange}
               error={errors.infeccoes}
             />
             <FormField
@@ -538,9 +544,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={doencasPreExistentesMae}
-              onChange={(selected) =>
-                onChange(selected, "doencasPreExistentesMae")
-              }
+              value={dadosFormulario.doencasPreExistentesMae}
+              onChange={onChange}
               error={errors.doencasPreExistentesMae}
             />
             <FormField
@@ -558,7 +563,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={usoDrogasMae}
-              onChange={(selected) => onChange(selected, "usoDrogasMae")}
+               value={dadosFormulario.usoDrogasMae}
+              onChange={onChange}
               error={errors.usoDrogasMae}
             />
             <FormField
@@ -576,7 +582,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={examesRealizadosMae}
-              onChange={(selected) => onChange(selected, "examesRealizadosMae")}
+              value={dadosFormulario.examesRealizadosMae}
+              onChange={onChange}
               error={errors.consanguinidadePais}
             />
             <FormField
@@ -594,9 +601,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={medicamentosUtilizadosMae}
-              onChange={(selected) =>
-                onChange(selected, "medicamentosUtilizadosMae")
-              }
+              value={dadosFormulario.medicamentosUtilizadosMae}
+              onChange={onChange}
               error={errors.medicamentosUtilizadosMae}
             />
             <FormField
@@ -628,9 +634,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={motivoHospitalizacao}
-              onChange={(selected) =>
-                onChange(selected, "motivoHospitalizacao")
-              }
+              value={dadosFormulario.motivoHospitalizacao}
+              onChange={onChange}
               error={errors.motivoHospitalizacao}
             />
             <FormField
@@ -653,7 +658,8 @@ export function FormCadastroDadosPreNatais() {
               isSelect
               isMulti
               options={diagnostico}
-              onChange={(selected) => onChange(selected, "diagnostico")}
+              value={dadosFormulario.diagnostico}
+              onChange={onChange}
               error={errors.diagnostico}
             />
             <FormField
