@@ -16,6 +16,7 @@ import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
+import NaturalidadeEnum from "../../models/enum/Naturalidade.js";
 import UF from "../../models/enum/UFs.js";
 import Estado from "../../models/enum/Estado.js";
 import ModalSave from "../../components/ModalSave/ModalSave.jsx";
@@ -62,6 +63,10 @@ export function FormCadastroDadosPessoais() {
     label: value,
   }));
   const sexo = Object.entries(Sexo).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+  const naturalidadeOptions = Object.entries(NaturalidadeEnum).map(([key, value]) => ({
     value: key,
     label: value,
   }));
@@ -231,6 +236,10 @@ const [isModalOpen, setIsModalOpen] = useState(true);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  useEffect(() => {
+    console.log("DADOS ENVIADO", dadosFormulario)
+  }, [dadosFormulario]);
 
   const handleResponsavelChange = (valueMae, valuePai) => {
     const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
@@ -451,9 +460,9 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               styleClass="campoObrigatorio"
               isSelect
               isAPI
-              options={naturalidade}
+              options={naturalidadeOptions}
               onChange={onChange}
-              displayAttribute="nomeMunicipio"
+              displayAttribute="label"
               error={errors.naturalidade}
             />
             <FormField

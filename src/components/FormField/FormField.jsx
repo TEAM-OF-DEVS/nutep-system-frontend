@@ -164,7 +164,7 @@ export const FormField = ({
     <option value="">Selecione</option>
     {Array.isArray(options) ? (
       options.map((option, idx) => (
-        <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
+        <option key={idx} value={option.value}>
           {option[displayAttribute]}
         </option>
       ))
