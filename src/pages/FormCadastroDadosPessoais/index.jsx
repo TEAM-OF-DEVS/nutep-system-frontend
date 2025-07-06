@@ -16,6 +16,7 @@ import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
 import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
+import NaturalidadeEnum from "../../models/enum/Naturalidade.js";
 import UF from "../../models/enum/UFs.js";
 import Estado from "../../models/enum/Estado.js";
 import ModalSave from "../../components/ModalSave/ModalSave.jsx";
@@ -65,6 +66,10 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
+  const naturalidadeOptions = Object.entries(NaturalidadeEnum).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
   const uf = Object.entries(UF).map(([key, value]) => ({
     value: key,
     label: value,
@@ -108,11 +113,11 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     tipoRacaCor: { required: true },
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
-    dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
+    // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
-    complemento: { required: false },
+    // complemento: { required: false },
     bairro: { required: true },
     municipioLogradouro: { required: true },
     estado: { required: true },
@@ -156,7 +161,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     descricaoOcupacaoResponsavel: { required: false },
 
     procedencia: { required: true },
-    dsOutroTipoDeProcedenciaPaciente: { required: false },
+    // dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
   useEffect(() => {
@@ -231,6 +236,10 @@ const [isModalOpen, setIsModalOpen] = useState(true);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  useEffect(() => {
+    console.log("DADOS ENVIADO", dadosFormulario)
+  }, [dadosFormulario]);
 
   const handleResponsavelChange = (valueMae, valuePai) => {
     const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
@@ -451,9 +460,9 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               styleClass="campoObrigatorio"
               isSelect
               isAPI
-              options={naturalidade}
+              options={naturalidadeOptions}
               onChange={onChange}
-              displayAttribute="nomeMunicipio"
+              displayAttribute="label"
               error={errors.naturalidade}
             />
             <FormField
@@ -507,7 +516,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="dsOutroTipoDeLocalDeNascimentoPaciente"
               label="Descrição Local de Nascimento"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dsOutroTipoDeLocalDeNascimentoPaciente}
             />
@@ -541,7 +549,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
             <FormField
               name="complemento"
               label="Complemento"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.complemento}
             />
@@ -926,7 +933,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="dsOutroTipoDeProcedenciaPaciente"
               label="Descrição da Procedência"
               placeholder="Descrição"
-              styleClass="campoObrigatorio"
               onChange={onChange}
               error={errors.dsOutroTipoDeProcedenciaPaciente}
             />

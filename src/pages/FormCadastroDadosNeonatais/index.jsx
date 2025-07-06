@@ -427,9 +427,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={intercorrencias}
-              onChange={(selected) =>
-                handleSelectionChange("intercorrencias", selected)
-              }
+              value={dadosFormulario.intercorrencias}
+              onChange={onChange}
               error={errors.intercorrencias}
             />
             <FormField
@@ -445,9 +444,8 @@ export function FormCadastroDadosNeonatais() {
               isMulti
               data-testid="malformacoes-dropdown-toggle"
               options={malformacoes}
-              onChange={(selected) =>
-                handleSelectionChange("malformacoes", selected)
-              }
+              value={dadosFormulario.malformacoes}
+              onChange={onChange}
               error={errors.malformacoes}
             />
             <FormField
@@ -465,9 +463,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={terapeuticaUtilizada}
-              onChange={(selected) =>
-                handleSelectionChange("terapeuticaUtilizada", selected)
-              }
+              value={dadosFormulario.terapeuticaUtilizada}
+              onChange={onChange}
               error={errors.terapeuticaUtilizada}
             />
             <FormField
@@ -482,9 +479,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={antibioticos}
-              onChange={(selected) =>
-                handleSelectionChange("antibioticos", selected)
-              }
+              value={dadosFormulario.antibioticos}
+              onChange={onChange}
               error={errors.antibioticos}
             />
             <FormField
@@ -553,9 +549,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={examesRealizados}
-              onChange={(selected) =>
-                handleSelectionChange("examesRealizados", selected)
-              }
+              value={dadosFormulario.examesRealizados}
+              onChange={onChange}
               error={errors.examesRealizados}
             />
             <FormField
@@ -638,9 +633,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasCronicas}
-              onChange={(selected) =>
-                handleSelectionChange("maeDoencasCronicas", selected)
-              }
+              value={dadosFormulario.maeDoencasCronicas}
+              onChange={onChange}
               error={errors.maeDoencasCronicas}
             />
             <FormField
@@ -655,9 +649,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasCronicas}
-              onChange={(selected) =>
-                handleSelectionChange("paiDoencasCronicas", selected)
-              }
+              value={dadosFormulario.paiDoencasCronicas}
+              onChange={onChange}
               error={errors.paiDoencasCronicas}
             />
             <FormField
@@ -670,11 +663,10 @@ export function FormCadastroDadosNeonatais() {
               name="irmaosDoencasCronicas"
               label="Irmãos"
               isSelect
-              options={doencasCronicas}
               isMulti
-              onChange={(selected) =>
-                handleSelectionChange("irmaosDoencasCronicas", selected)
-              }
+              options={doencasCronicas}
+              value={dadosFormulario.irmaosDoencasCronicas}
+              onChange={onChange}
               error={errors.irmaosDoencasCronicas}
             />
             <FormField
@@ -689,9 +681,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasCronicas}
-              onChange={(selected) =>
-                handleSelectionChange("avosPaternosDoencasCronicas", selected)
-              }
+              value={dadosFormulario.avosPaternosDoencasCronicas}
+              onChange={onChange}
               error={errors.avosPaternosDoencasCronicas}
             />
             <FormField
@@ -706,9 +697,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasCronicas}
-              onChange={(selected) =>
-                handleSelectionChange("avosMaternosDoencasCronicas", selected)
-              }
+             value={dadosFormulario.avosMaternosDoencasCronicas}
+              onChange={onChange}
               error={errors.avosMaternosDoencasCronicas}
             />
             <FormField
@@ -736,9 +726,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange("maeDoencasGeneticas", selected)
-              }
+              value={dadosFormulario.maeDoencasGeneticas}
+              onChange={onChange}
               error={errors.maeDoencasGeneticas}
             />
             <FormField
@@ -753,9 +742,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange("paiDoencasGeneticas", selected)
-              }
+               value={dadosFormulario.paiDoencasGeneticas}
+              onChange={onChange}
               error={errors.paiDoencasGeneticas}
             />
             <FormField
@@ -770,9 +758,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange("irmaosDoencasGeneticas", selected)
-              }
+              value={dadosFormulario.irmaosDoencasGeneticas}
+              onChange={onChange}
               error={errors.irmaosDoencasGeneticas}
             />
             <FormField
@@ -787,9 +774,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange("avosPaternosDoencasGeneticas", selected)
-              }
+              value={dadosFormulario.avosPaternosDoencasGeneticas}
+              onChange={onChange}
               error={errors.avosPaternosDoencasGeneticas}
             />
             <FormField
@@ -804,9 +790,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange("avosMaternosDoencasGeneticas", selected)
-              }
+              value={dadosFormulario.avosMaternosDoencasGeneticas}
+              onChange={onChange}
               error={errors.avosMaternosDoencasGeneticas}
             />
             <FormField
@@ -821,12 +806,8 @@ export function FormCadastroDadosNeonatais() {
               isSelect
               isMulti
               options={doencasGeneticas}
-              onChange={(selected) =>
-                handleSelectionChange(
-                  "tiosPrimeiroGrauDoencasGeneticas",
-                  selected,
-                )
-              }
+              value={dadosFormulario.tiosPrimeiroGrauDoencasGeneticas}
+              onChange={onChange}
               error={errors.tiosPrimeiroGrauDoencasGeneticas}
             />
             <FormField

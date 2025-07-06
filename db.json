@@ -768,7 +768,6 @@
       "email": "fabianeelpidio0@gmail.com",
       "password": "nY7Trp1C"
     }
-    
   ],
   "pacientes": [
     {
@@ -2012,6 +2011,177 @@
       "descricaoDiagnostico": "",
       "observacoes": "",
       "dataCriacao": "07/05/2025, 14:16:13"
+    },
+    {
+      "id": "a6b1",
+      "paciente": {
+        "id": "9c32",
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
+          "nomeMunicipio": "Quixadá"
+        },
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
+          "dsNome": "Maria da Silva",
+          "dataNascimento": "1980-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "PROFESSOR",
+          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "paiResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
+          "dsNome": "José da Silva",
+          "dataNascimento": "1970-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "ENGENHEIRO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "responsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
+          "dsNome": "Carlos da Silva",
+          "dataNascimento": "1950-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "MEDICO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
+      },
+      "procedencia": "",
+      "descricaoProcedencia": "",
+      "convenio": "",
+      "descricaoConvenio": "",
+      "idadeMaeEngravidar": "",
+      "numeroConsultas": "",
+      "idadePaiGestacao": "",
+      "numeroGestacoes": "",
+      "pesoInicialGravidez": "",
+      "numeroFilhosVivos": "",
+      "pesoFinalGravidez": "",
+      "numeroNatimortos": "",
+      "estaturaMae": "",
+      "numeroAbortos": "",
+      "tempoGestacaoPrimeiraConsulta": "",
+      "planejamentoGestacao": "",
+      "metodoContraceptivoAnterior": "",
+      "descricaoMetodoContraceptivo": "",
+      "usoAborto": "",
+      "tempoGestacaoSemanas": "",
+      "meioAborto": "",
+      "descricaoMeioAbortivo": "",
+      "consanguinidadePais": "",
+      "descricaoConsanguinidade": "",
+      "intercorrenciasGestacao": [
+        "ACIDENTE"
+      ],
+      "descricaoIntercorrencias": "",
+      "alergias": [
+        "ASMA",
+        "OCULARES"
+      ],
+      "descricaoAlergias": "",
+      "sangramentoGravidez": "",
+      "periodoSangramento": "",
+      "infeccoes": [
+        "CHIKUNGUNHA",
+        "DENGUE"
+      ],
+      "descricaoInfeccoes": "",
+      "doencasPreExistentesMae": [
+        "ALERGIA_MEDICAMENTOSA",
+        "ASMA_ALERGICA"
+      ],
+      "descricaoDoencasPreExistentes": "",
+      "usoDrogasMae": [
+        "ALCOOL_11_20"
+      ],
+      "descricaoUsoDeDrogas": "",
+      "examesRealizadosMae": [
+        "BIOPSIA_CARIOTIPO_FETAL_ALTERADO",
+        "AMNIOCENTESE_NORMAL"
+      ],
+      "descricaoExamesMae": "",
+      "medicamentosUtilizadosMae": [
+        "VITAMINAS",
+        "ANTIEMETICOS"
+      ],
+      "descricaoMedicamentosMae": "",
+      "hospitalizacoesGestacao": "",
+      "periodoHospitalizacaoSemanas": "",
+      "motivoHospitalizacao": [
+        "ACIDENTE_ANIMAL_PECONHENTO",
+        "ANEMIA"
+      ],
+      "diasHospitalizacao": "",
+      "descricaoMotivoHospitalizacao": "",
+      "diagnostico": [
+        "COLELITIASE",
+        "DIABETES_MELLITUS",
+        "HIPERTENSAO_ARTERIAL_CRONICA",
+        "HIPERTIREOIDISMO",
+        "POLIDRAMNIO",
+        "TROMBOEMBOLISMO",
+        "PLACENTA_ACRETA"
+      ],
+      "descricaoDiagnostico": "",
+      "observacoes": "",
+      "dataCriacao": "26/06/2025, 17:38:08"
     }
   ],
   "neonatais": [
@@ -2225,6 +2395,376 @@
       "avosMaternosDoencasGeneticas": [],
       "descricaoAvosMaternosDoencasGeneticas": "",
       "tiosPrimeiroGrauDoencasGeneticas": [],
+      "descricaoTiosPrimeiroGrauDoencasGeneticas": ""
+    },
+    {
+      "id": "f4f3",
+      "paciente": {
+        "id": "9c32",
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
+          "nomeMunicipio": "Quixadá"
+        },
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
+          "dsNome": "Maria da Silva",
+          "dataNascimento": "1980-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "PROFESSOR",
+          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "paiResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
+          "dsNome": "José da Silva",
+          "dataNascimento": "1970-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "ENGENHEIRO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "responsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
+          "dsNome": "Carlos da Silva",
+          "dataNascimento": "1950-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "MEDICO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
+      },
+      "dataAtendimento": "20/25/0626",
+      "localNascimento": "",
+      "descricaoLocalNascimento": "",
+      "tipoParto": "",
+      "descricaoTipoParto": "",
+      "apresentacao": "",
+      "descricaoApresentacao": "",
+      "tipoGestacao": "",
+      "descricaoTipoGestacao": "",
+      "termo": "",
+      "preTermo": "",
+      "posTermo": "",
+      "peso": "",
+      "comprimento": "",
+      "perimetroCefalico": "",
+      "perimetroToracico": "",
+      "apgar1Min": "",
+      "apgar5Min": "",
+      "apgar10Min": "",
+      "intercorrencias": [
+        "APNEIA",
+        "CARDIOPATIA_ACIANOTICA_CIV"
+      ],
+      "descricaoIntercorrencias": "",
+      "malformacoes": [],
+      "descricaoMalformacoes": "",
+      "terapeuticaUtilizada": [],
+      "descricaoTerapeuticaUtilizada": "",
+      "antibioticos": [],
+      "descricaoAntibioticos": "",
+      "cirurgiaRealizada": "",
+      "descricaoCirurgia": "",
+      "utiNeonatalDias": "",
+      "cuidadosIntermediariosNeonataisDias": "",
+      "cuidadosIntermediariosCanguruDias": "",
+      "alojamentoConjunto": "",
+      "examesRealizados": "",
+      "descricaoExamesRealizados": "",
+      "testePezinho": "",
+      "testeOuvidinho": "",
+      "testeOlhinho": "",
+      "testeCoracaozinho": "",
+      "testeLinguinha": "",
+      "testeOrtolani": "",
+      "doencasCronicas": "",
+      "maeDoencasCronicas": [],
+      "descricaoMaeDoencasCronicas": "",
+      "paiDoencasCronicas": [],
+      "descricaoPaiDoencasCronicas": "",
+      "irmaosDoencasCronicas": [],
+      "descricaoIrmaosDoencasCronicas": "",
+      "avosPaternosDoencasCronicas": [],
+      "descricaoAvosPaternosDoencasCronicas": "",
+      "avosMaternosDoencasCronicas": [],
+      "descricaoAvosMaternosDoencasCronicas": "",
+      "doencasGeneticas": "",
+      "maeDoencasGeneticas": [],
+      "descricaoMaeDoencasGeneticas": "",
+      "paiDoencasGeneticas": [],
+      "descricaoPaiDoencasGeneticas": "",
+      "irmaosDoencasGeneticas": [],
+      "descricaoIrmaosDoencasGeneticas": "",
+      "avosPaternosDoencasGeneticas": [],
+      "descricaoAvosPaternosDoencasGeneticas": "",
+      "avosMaternosDoencasGeneticas": [],
+      "descricaoAvosMaternosDoencasGeneticas": "",
+      "tiosPrimeiroGrauDoencasGeneticas": [],
+      "descricaoTiosPrimeiroGrauDoencasGeneticas": ""
+    },
+    {
+      "id": "1dc5",
+      "paciente": {
+        "id": "9c32",
+        "ativo": true,
+        "dataCricao": "17/03/2025, 11:49:14",
+        "dataAdmissao": "2023-10-10",
+        "descricaoProntuario": "2530",
+        "dsNome": "Contenete de Elefante",
+        "dataNascimento": "1990-01-01",
+        "cpf": "280.852.670-98",
+        "nacionalidade": "BRASILEIRO",
+        "naturalidade": {
+          "id": "148",
+          "nomeMunicipio": "Quixadá"
+        },
+        "sexo": "MASCULINO",
+        "tipoRacaCor": "BRANCA",
+        "descricaoCartaoSUS": "1234 5678 9012 3456",
+        "localDeNascimento": "DOMICILIO",
+        "dsOutroTipoDeLocalDeNascimentoPaciente": "Outro local de nascimento.",
+        "endereco": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "cep": "63908210",
+          "estado": "CE - Ceará",
+          "nrLogradouro": "123",
+          "dsLogradouro": "Rua São Mateus",
+          "dsBairro": "Alto São Francisco",
+          "municipioLogradouro": {
+            "id": "148",
+            "nomeMunicipio": "Quixadá"
+          },
+          "dsComplementoLogradouro": "Apto 456",
+          "tpMoradia": "PROPRIA"
+        },
+        "maeResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "359.784.220-87",
+          "dsNome": "Maria da Silva",
+          "dataNascimento": "1980-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "PROFESSOR",
+          "dsOutroTipoDeOcupacaoResponsavel": "Ensino fundamental",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "paiResponsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "519.675.380-00",
+          "dsNome": "José da Silva",
+          "dataNascimento": "1970-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "CASADO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "ENGENHEIRO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Construção civil",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "responsavel": {
+          "ativo": true,
+          "dataCricao": "17/03/2025, 11:49:14",
+          "dsCPF": "045.516.520-32",
+          "dsNome": "Carlos da Silva",
+          "dataNascimento": "1950-01-01",
+          "racaCor": "BRANCA",
+          "estadoCivil": "SOLTEIRO",
+          "escolaridade": "ENSINO_SUPERIOR_COMPLETO",
+          "ocupacao": "MEDICO",
+          "dsOutroTipoDeOcupacaoResponsavel": "Clínica Geral",
+          "telefone": [
+            "88 - 9 9446-2965",
+            "88 - 9 9446-2965"
+          ]
+        },
+        "procedencia": "NUTEP",
+        "dsOutroTipoDeProcedenciaPaciente": "Outra procedência.",
+        "isConstaPai": true,
+        "isConstaMae": true,
+        "isPaiResponsavel": true,
+        "isMaeResponsavel": true
+      },
+      "dataAtendimento": "20/25/0626",
+      "localNascimento": "",
+      "descricaoLocalNascimento": "",
+      "tipoParto": "",
+      "descricaoTipoParto": "",
+      "apresentacao": "",
+      "descricaoApresentacao": "",
+      "tipoGestacao": "",
+      "descricaoTipoGestacao": "",
+      "termo": "",
+      "preTermo": "",
+      "posTermo": "",
+      "peso": "",
+      "comprimento": "",
+      "perimetroCefalico": "",
+      "perimetroToracico": "",
+      "apgar1Min": "",
+      "apgar5Min": "",
+      "apgar10Min": "",
+      "intercorrencias": [
+        "APNEIA",
+        "CARDIOPATIA_ACIANOTICA_CIV"
+      ],
+      "descricaoIntercorrencias": "",
+      "malformacoes": [
+        "ESTENOSE_CRANIOFACIAL",
+        "FENDA_PALATINA",
+        "MIELOMENINGOCELE"
+      ],
+      "descricaoMalformacoes": "",
+      "terapeuticaUtilizada": [
+        "CAFEINA",
+        "DIURETICOS_FUROSEMIDA",
+        "EXSANGUINEO_TRANSFUSAO",
+        "GENTAMICINA"
+      ],
+      "descricaoTerapeuticaUtilizada": "",
+      "antibioticos": [
+        "ACIDO_PIPEMIDICO",
+        "AMICACINA",
+        "ACIDO_NALIDIXICO"
+      ],
+      "descricaoAntibioticos": "",
+      "cirurgiaRealizada": "",
+      "descricaoCirurgia": "",
+      "utiNeonatalDias": "",
+      "cuidadosIntermediariosNeonataisDias": "",
+      "cuidadosIntermediariosCanguruDias": "",
+      "alojamentoConjunto": "",
+      "examesRealizados": [
+        "TC_CRANIO",
+        "USTF"
+      ],
+      "descricaoExamesRealizados": "",
+      "testePezinho": "",
+      "testeOuvidinho": "",
+      "testeOlhinho": "",
+      "testeCoracaozinho": "",
+      "testeLinguinha": "",
+      "testeOrtolani": "",
+      "doencasCronicas": "",
+      "maeDoencasCronicas": [
+        "PULMONARES",
+        "NEUROLOGICAS",
+        "PSIQUIATRICAS"
+      ],
+      "descricaoMaeDoencasCronicas": "",
+      "paiDoencasCronicas": [
+        "NEUROLOGICAS",
+        "PULMONARES"
+      ],
+      "descricaoPaiDoencasCronicas": "",
+      "irmaosDoencasCronicas": [
+        "METABOLICAS",
+        "PULMONARES"
+      ],
+      "descricaoIrmaosDoencasCronicas": "",
+      "avosPaternosDoencasCronicas": [
+        "GASTRO_INTESTINAIS",
+        "PSIQUIATRICAS",
+        "RENAIS"
+      ],
+      "descricaoAvosPaternosDoencasCronicas": "",
+      "avosMaternosDoencasCronicas": [
+        "NEUROLOGICAS"
+      ],
+      "descricaoAvosMaternosDoencasCronicas": "",
+      "doencasGeneticas": "",
+      "maeDoencasGeneticas": [
+        "ANGINA",
+        "HIPERTENSAO",
+        "INFARTO"
+      ],
+      "descricaoMaeDoencasGeneticas": "",
+      "paiDoencasGeneticas": [
+        "ARRITMIA",
+        "VALVULOPATIA"
+      ],
+      "descricaoPaiDoencasGeneticas": "",
+      "irmaosDoencasGeneticas": [
+        "CARDIOPATIA_CONGENITA",
+        "ANGINA"
+      ],
+      "descricaoIrmaosDoencasGeneticas": "",
+      "avosPaternosDoencasGeneticas": [
+        "ARRITMIA",
+        "ENDOCARDITE"
+      ],
+      "descricaoAvosPaternosDoencasGeneticas": "",
+      "avosMaternosDoencasGeneticas": [
+        "INFARTO",
+        "INSUFICIENCIA_CARDIACA"
+      ],
+      "descricaoAvosMaternosDoencasGeneticas": "",
+      "tiosPrimeiroGrauDoencasGeneticas": [
+        "INFARTO"
+      ],
       "descricaoTiosPrimeiroGrauDoencasGeneticas": ""
     }
   ]
