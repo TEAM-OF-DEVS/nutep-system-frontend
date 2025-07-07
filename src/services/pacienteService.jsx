@@ -37,10 +37,6 @@ const PacienteService = {
 
   getByProntuarioComNome: async (prontuario, nome) => {
     try {
-
-      if (!prontuario && !nome) {
-
-      }
       const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
       return response.data;
     } catch (error) {

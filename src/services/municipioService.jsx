@@ -15,6 +15,16 @@ const MunicipioService = {
     }
   },
 
+  getByUF: async (uf) => {
+  try {
+    const response = await axios.get(`${BASE_URL}?uf=${uf}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Erro ao buscar municípios da UF ${uf}:`, error);
+    throw error;
+  }
+},
+
   // Recuperar um municipio por ID
   getById: async (id) => {
     try {
