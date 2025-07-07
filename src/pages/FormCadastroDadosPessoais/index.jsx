@@ -15,8 +15,10 @@ import Sexo from "../../models/enum/Sexo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
-import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
-import NaturalidadeEnum from "../../models/enum/Naturalidade.js";
+import {
+  validateField,
+  validateForm,
+} from "../../validator/validateFormPaciente.jsx";
 import UF from "../../models/enum/UFs.js";
 import Estado from "../../models/enum/Estado.js";
 import ModalSave from "../../components/ModalSave/ModalSave.jsx";
@@ -48,7 +50,7 @@ export function FormCadastroDadosPessoais() {
     label: value,
   }));
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
-    ([key, value]) => ({ value: key, label: value })
+    ([key, value]) => ({ value: key, label: value }),
   );
   const estadoCivil = Object.entries(EstadoCivil).map(([key, value]) => ({
     value: key,
@@ -66,10 +68,7 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-  const naturalidadeOptions = Object.entries(NaturalidadeEnum).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
+
   const uf = Object.entries(UF).map(([key, value]) => ({
     value: key,
     label: value,
@@ -86,7 +85,7 @@ export function FormCadastroDadosPessoais() {
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
-const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const carregarCidadesOuMunicipios = async () => {
     try {
@@ -238,8 +237,37 @@ const [isModalOpen, setIsModalOpen] = useState(true);
   };
 
   useEffect(() => {
-    console.log("DADOS ENVIADO", dadosFormulario)
+    console.log("DADOS ENVIADO", dadosFormulario);
   }, [dadosFormulario]);
+
+  useEffect(() => {
+  const carregarNaturalidadesPorUF = async () => {
+    if (!dadosFormulario.uf) return;
+
+    try {
+      setLoading(true);
+
+      const municipios = await MunicipioService.getByUF(dadosFormulario.uf);
+
+      const formatados = municipios.map((municipio) => ({
+      ...municipio,
+      nomeMunicipio: municipio.nome || municipio.nomeMunicipio || municipio.descricao
+    }));
+
+    setNaturalidade(formatados);
+
+      setNaturalidade(formatados);
+    } catch (error) {
+      console.error("Erro ao buscar naturalidades por UF:", error);
+      setNaturalidade([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  carregarNaturalidadesPorUF();
+}, [dadosFormulario.uf]);
+
 
   const handleResponsavelChange = (valueMae, valuePai) => {
     const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
@@ -331,7 +359,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
           : dadosFormulario.responsavelPelaCriancaMae,
         name === "responsavelPelaCriancaPai"
           ? value
-          : dadosFormulario.responsavelPelaCriancaPai
+          : dadosFormulario.responsavelPelaCriancaPai,
       );
     }
 
@@ -375,12 +403,12 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     <>
       <form>
         {message === "201" ? (
-           <ModalSave
-           title="Cadastrado com sucesso!"
-           message="O paciente foi cadastrado com sucesso."
-           isOpen={isModalOpen}
-           onClose={() => setIsModalOpen(false)}
-         />
+          <ModalSave
+            title="Cadastrado com sucesso!"
+            message="O paciente foi cadastrado com sucesso."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         ) : message === "400" ? (
           <ModalSave
             title="Erro no cadastro"
@@ -395,17 +423,17 @@ const [isModalOpen, setIsModalOpen] = useState(true);
           description="Cadastro de dados pessoais do Paciente"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
-          <FormField
-            name="dataAdmissao"
-            label="Data da Admissão"
-            placeholder="00/00/0000"
-            type="text"
-            styleClass="campoObrigatorio"
-            onChange={onChange}
-            value={dadosFormulario.dataAdmissao} 
-            error={errors.dataAdmissao}
-            className="col-span-1"
-          />
+            <FormField
+              name="dataAdmissao"
+              label="Data da Admissão"
+              placeholder="00/00/0000"
+              type="text"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              value={dadosFormulario.dataAdmissao}
+              error={errors.dataAdmissao}
+              className="col-span-1"
+            />
             <FormField
               name="descricaoProntuario"
               label="Prontuário"
@@ -458,11 +486,11 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="naturalidade"
               label="Naturalidade"
               styleClass="campoObrigatorio"
-              isSelect
               isAPI
-              options={naturalidadeOptions}
+              isSelect
+              options={naturalidade}
               onChange={onChange}
-              displayAttribute="label"
+              displayAttribute="nomeMunicipio"
               error={errors.naturalidade}
             />
             <FormField
