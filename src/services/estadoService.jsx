@@ -15,6 +15,17 @@ const EstadoService = {
     }
   },
 
+  getAllUFs: async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/uf`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar lista de UF`, error);
+      throw error;
+    }
+  },
+
   // Recuperar um estado por ID
   getById: async (id) => {
     try {

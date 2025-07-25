@@ -19,9 +19,9 @@ import {
   validateField,
   validateForm,
 } from "../../validator/validateFormPaciente.jsx";
-import UF from "../../models/enum/UFs.js";
 import Estado from "../../models/enum/Estado.js";
 import ModalSave from "../../components/ModalSave/ModalSave.jsx";
+import EstadoService from "../../services/estadoService.jsx";
 
 const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
   value: key,
@@ -68,11 +68,6 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-
-  const uf = Object.entries(UF).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
   const estado = Object.entries(Estado).map(([key, value]) => ({
     value: key,
     label: value,
@@ -81,16 +76,28 @@ export function FormCadastroDadosPessoais() {
   const [loading, setLoading] = useState(false);
   const [cidades, setCidades] = useState([]);
   const [naturalidade, setNaturalidade] = useState([]);
+  const [uf, setUF] = useState([]);
   const [message, setMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
 
+  const carregarUf = async () => {
+    try {
+      setLoading(true);
+      const ufs = await EstadoService.getAllUFs();
+      setUF(ufs);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const carregarCidadesOuMunicipios = async () => {
     try {
       setLoading(true);
-      const citys = await MunicipioService.getAll();
+      const citys = await MunicipioService.getByUF("CE");
       setCidades(citys);
       setNaturalidade(citys);
     } catch (error) {
@@ -164,6 +171,7 @@ export function FormCadastroDadosPessoais() {
   };
 
   useEffect(() => {
+    carregarUf();
     carregarCidadesOuMunicipios();
   }, []);
 
@@ -232,6 +240,20 @@ export function FormCadastroDadosPessoais() {
     setMessage(dados);
   };
 
+  const handleListCitysByUF = async (e) => {
+    const { value } = e.target;
+    try {
+      setLoading(true);
+      const citys = await MunicipioService.getByUF(value);
+      console.log(citys);
+      setCidades(citys);
+      setNaturalidade(citys);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -241,33 +263,33 @@ export function FormCadastroDadosPessoais() {
   }, [dadosFormulario]);
 
   useEffect(() => {
-  const carregarNaturalidadesPorUF = async () => {
-    if (!dadosFormulario.uf) return;
+    const carregarNaturalidadesPorUF = async () => {
+      if (!dadosFormulario.uf) return;
 
-    try {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      const municipios = await MunicipioService.getByUF(dadosFormulario.uf);
+        const municipios = await MunicipioService.getByUF(dadosFormulario.uf);
 
-      const formatados = municipios.map((municipio) => ({
-      ...municipio,
-      nomeMunicipio: municipio.nome || municipio.nomeMunicipio || municipio.descricao
-    }));
+        const formatados = municipios.map((municipio) => ({
+          ...municipio,
+          nomeMunicipio:
+            municipio.nome || municipio.nomeMunicipio || municipio.descricao,
+        }));
 
-    setNaturalidade(formatados);
+        setNaturalidade(formatados);
 
-      setNaturalidade(formatados);
-    } catch (error) {
-      console.error("Erro ao buscar naturalidades por UF:", error);
-      setNaturalidade([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setNaturalidade(formatados);
+      } catch (error) {
+        console.error("Erro ao buscar naturalidades por UF:", error);
+        setNaturalidade([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  carregarNaturalidadesPorUF();
-}, [dadosFormulario.uf]);
-
+    carregarNaturalidadesPorUF();
+  }, [dadosFormulario.uf]);
 
   const handleResponsavelChange = (valueMae, valuePai) => {
     const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
@@ -483,6 +505,16 @@ export function FormCadastroDadosPessoais() {
               error={errors.nacionalidade}
             />
             <FormField
+              name="uf"
+              label="UF"
+              displayAttribute="uf"
+              styleClass="campoObrigatorio"
+              isSelect
+              options={uf}
+              onChange={handleListCitysByUF}
+              error={errors.uf}
+            />
+            <FormField
               name="naturalidade"
               label="Naturalidade"
               styleClass="campoObrigatorio"
@@ -492,15 +524,6 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               displayAttribute="nomeMunicipio"
               error={errors.naturalidade}
-            />
-            <FormField
-              name="uf"
-              label="UF"
-              styleClass="campoObrigatorio"
-              isSelect
-              options={uf}
-              onChange={onChange}
-              error={errors.uf}
             />
             <FormField
               name="sexo"
