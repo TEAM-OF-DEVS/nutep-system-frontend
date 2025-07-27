@@ -16,6 +16,20 @@ const ServiceUtil = {
     }
   },
 
+  findByIdOcupacao: async (id) => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + `/dados-pessoais/ocupacoes/${id}`,
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar ocupacão:", error);
+      throw error;
+    }
+  },
+
   getAllProcedencias: async () => {
     try {
       console.log(BASE_URL);
@@ -29,6 +43,20 @@ const ServiceUtil = {
     }
   },
 
+  findByIdProcedencia: async (id) => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + `/dados-pessoais/procedencias/${id}`,
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar procedencia:", error);
+      throw error;
+    }
+  },
+
   // Recuperar as listas a serem utilizadas na tela servico-social
   getAllAbrigos: async () => {
     try {
@@ -37,6 +65,18 @@ const ServiceUtil = {
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar abrigos:", error);
+      throw error;
+    }
+  },
+
+  getByIdAbrigo: async (id) => {
+    try {
+      const response = await axios.get(
+        BASE_URL + "/servico-social/abrigos/" + id,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar abrigo:", error);
       throw error;
     }
   },
