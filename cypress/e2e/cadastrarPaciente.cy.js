@@ -1,20 +1,20 @@
 describe("Formulário de Cadastro de Paciente", () => {
   beforeEach(() => {
-    cy.visit("dashboard/dados-pessoais");
+    cy.visit("/dashboard/dados-pessoais");
     cy.viewport(1920, 1080);
   });
 
   it("Deve preencher e enviar o formulário de cadastro de paciente", () => {
     cy.wait(2000);
-    cy.get('input[name="dataAdmissao"]').type("2023-10-10");
+    cy.get('input[name="dataAdmissao"]').type("10/10/2024");
     cy.get('input[name="descricaoProntuario"]').type("253076");
     cy.get('input[name="nomeCompleto"]').type("Contonete de Elefante");
-    cy.get('input[name="dataNascimento"]').type("1990-01-01");
+    cy.get('input[name="dataNascimento"]').type("01/01/1990");
     //---------------//
     cy.get('input[name="cpf"]').type("280.852.670-98");
     cy.get('select[name="nacionalidade"]').select("Brasileiro");
     cy.get('select[name="naturalidade"]').select("Quixadá");
-     cy.get('select[name="uf"]').select("CE");
+    cy.get('select[name="uf"]').select("CE");
     cy.get('select[name="sexo"]').select("Masculino");
     cy.get('select[name="tipoRacaCor"]').select("Branca");
     //---------------//
@@ -31,12 +31,12 @@ describe("Formulário de Cadastro de Paciente", () => {
     cy.get('input[name="complemento"]').type("Apto 456");
     //---------------//
     // cy.get('select[name="municipioLogradouro"]').select("Quixadá");
-    cy.get('select[name="estado"]').select("Ceará"); // Se for um input, caso contrário, use select
+    cy.get('select[name="estado"]').select("CEARÁ"); // Se for um input, caso contrário, use select
     cy.get('select[name="tpMoradia"]').select("Própria");
 
     //---------------//
     cy.get('input[name="nomeMae"]').type("Maria da Silva");
-    cy.get('input[name="dataNascimentoMae"]').type("1980-01-01");
+    cy.get('input[name="dataNascimentoMae"]').type("01/01/1980");
     cy.get('select[name="responsavelPelaCriancaMae"]').select("Sim");
     //---------------//
     cy.get('input[name="cpfMae"]').type("359.784.220-87");
@@ -50,7 +50,7 @@ describe("Formulário de Cadastro de Paciente", () => {
     cy.get('input[name="descricaoOcupacaoMae"]').type("Ensino fundamental");
     //---------------//
     cy.get('input[name="nomePai"]').type("José da Silva");
-    cy.get('input[name="dataNascimentoPai"]').type("1970-01-01");
+    cy.get('input[name="dataNascimentoPai"]').type("01/01/1970");
     cy.get('select[name="responsavelPelaCriancaPai"]').select("Sim");
     //---------------//
     cy.get('input[name="cpfPai"]').type("519.675.380-00");
@@ -64,7 +64,7 @@ describe("Formulário de Cadastro de Paciente", () => {
     cy.get('input[name="descricaoOcupacaoPai"]').type("Construção civil");
     //---------------//
     cy.get('input[name="nomeResponsavel"]').type("Carlos da Silva");
-    cy.get('input[name="dataNascimentoResponsavel"]').type("1950-01-01");
+    cy.get('input[name="dataNascimentoResponsavel"]').type("01/01/1950");
     cy.get('select[name="vinculoResponsavel"]').select("Avô materno");
     //---------------//
     cy.get('input[name="descricaoVinculoResponsavel"]').type("Avô paterno");

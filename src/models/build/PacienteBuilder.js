@@ -36,7 +36,7 @@ class PacienteBuilder {
             estadoCivil: this.dadosFormulario[campos.estadoCivil],
             escolaridade: this.dadosFormulario[campos.escolaridade],
             ocupacao: this.dadosFormulario[campos.ocupacao],
-            dsOutroTipoDeOcupacaoResponsavel: this.dadosFormulario[campos.descricaoOcupacao],
+            dsOutroTipoDeOcupacaoRe11111111111111111111111111111sponsavel: this.dadosFormulario[campos.descricaoOcupacao],
             vinculoResponsavel: this.dadosFormulario[campos.vinculoResponsavel],
             descricaoVinculoResponsavel: this.dadosFormulario[campos.descricaoVinculoResponsavel],
             telefone: [ "88 - 9 9446-2965", "88 - 9 9446-2965" ],

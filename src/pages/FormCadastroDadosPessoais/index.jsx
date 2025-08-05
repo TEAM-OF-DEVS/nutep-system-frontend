@@ -5,30 +5,27 @@ import Nacionalidade from "../../models/enum/Nacionalidade.js";
 import RacaCor from "../../models/enum/RacaCor.js";
 import TipoMoradia from "../../models/enum/TipoMoradia.js";
 import EstadoCivil from "../../models/enum/EstadoCivil.js";
-import Ocupacao from "../../models/enum/Ocupacao.js";
 import Escolaridade from "../../models/enum/Escolaridade.js";
-import Procedencia from "../../models/enum/Procedencia.js";
 import Vinculo from "../../models/enum/Vinculo.js";
 import LocalNascimento from "../../models/enum/LocalNascimento.js";
 import SimOuNao from "../../models/enum/SimNao.js";
 import Sexo from "../../models/enum/Sexo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
-import PacienteBuilder from "../../models/build/PacienteBuilder.js";
-import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
-import NaturalidadeEnum from "../../models/enum/Naturalidade.js";
-import UF from "../../models/enum/UFs.js";
-import Estado from "../../models/enum/Estado.js";
-import ModalSave from "../../components/ModalSave/ModalSave.jsx";
+import BuilderPaciente from "../../models/build/BuilderPaciente.js";
+import HttpStatusGroup from "../../util/HttpStatusGroup.js";
 
-const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
-  value: key,
-  label: value,
-}));
-const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
-  value: key,
-  label: value,
-}));
+import {
+  validateField,
+  validateForm,
+} from "../../validator/validateFormPaciente.jsx";
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
+import EstadoService from "../../services/estadoService.jsx";
+import ServiceUtil from "../../services/serviceUtil.jsx";
+import CepService from "../../services/cepService.jsx";
+import ResponsavelService from "../../services/responsavelService.jsx";
+import ResponsavelBuilder from "../../models/build/ResponsavelBuilder.js";
+import EnderecoBuilder from "../../models/build/EnderecoBuilder.js";
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -48,7 +45,7 @@ export function FormCadastroDadosPessoais() {
     label: value,
   }));
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
-    ([key, value]) => ({ value: key, label: value })
+    ([key, value]) => ({ value: key, label: value }),
   );
   const estadoCivil = Object.entries(EstadoCivil).map(([key, value]) => ({
     value: key,
@@ -66,32 +63,46 @@ export function FormCadastroDadosPessoais() {
     value: key,
     label: value,
   }));
-  const naturalidadeOptions = Object.entries(NaturalidadeEnum).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const uf = Object.entries(UF).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const estado = Object.entries(Estado).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
 
   const [loading, setLoading] = useState(false);
+  const [estados, setEstados] = useState([]);
   const [cidades, setCidades] = useState([]);
   const [naturalidade, setNaturalidade] = useState([]);
+  const [uf, setUF] = useState([]);
+  const [ocupacoes, setOcupacoes] = useState([]);
+  const [procedencias, setProcedencias] = useState([]);
   const [message, setMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
-const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const carregarEstados = async () => {
+    try {
+      setLoading(true);
+      const estados = await EstadoService.getAll();
+      setEstados(estados);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarUf = async () => {
+    try {
+      setLoading(true);
+      const ufs = await EstadoService.getAllUFs();
+      setUF(ufs);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const carregarCidadesOuMunicipios = async () => {
     try {
       setLoading(true);
-      const citys = await MunicipioService.getAll();
+      const citys = await MunicipioService.getByUF("CE");
       setCidades(citys);
       setNaturalidade(citys);
     } catch (error) {
@@ -99,6 +110,36 @@ const [isModalOpen, setIsModalOpen] = useState(true);
       setLoading(false);
     }
   };
+
+  const carregarOcupacoes = async () => {
+    try {
+      setLoading(true);
+      const ocupacoesAPI = await ServiceUtil.getAllOcupacoes();
+      setOcupacoes(ocupacoesAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarProcedencias = async () => {
+    try {
+      setLoading(true);
+      const procedenciasAPI = await ServiceUtil.getAllProcedencias();
+      setProcedencias(procedenciasAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    carregarProcedencias();
+    carregarOcupacoes();
+    carregarCidadesOuMunicipios();
+    carregarUf();
+    carregarEstados();
+  }, []);
 
   const validationRules = {
     dataAdmissao: { required: true },
@@ -114,6 +155,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
     // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
+    endereco: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
@@ -164,10 +206,6 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     // dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
-  useEffect(() => {
-    carregarCidadesOuMunicipios();
-  }, []);
-
   const [dadosFormulario, setDadosFormulario] = useState({
     ativo: true,
     dataAdmissao: "",
@@ -176,20 +214,21 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     dataNascimento: "",
     cpf: "",
     nacionalidade: "",
-    naturalidade: "",
+    naturalidade: {},
     uf: "",
     sexo: "",
     tipoRacaCor: "",
     descricaoCartaoSUS: "",
     localDeNascimento: "",
     dsOutroTipoDeLocalDeNascimentoPaciente: "",
+    endereco: {},
     cep: "",
     logradouro: "",
     numero: "",
     complemento: "",
     bairro: "",
     municipioLogradouro: "",
-    estado: "",
+    estado: {},
     tpMoradia: "",
     cpfMae: "",
     cpfPai: "",
@@ -215,9 +254,9 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     escolaridadeMae: "",
     escolaridadePai: "",
     escolaridadeResponsavel: "",
-    ocupacaoMae: "",
-    ocupacaoPai: "",
-    ocupacaoResponsavel: "",
+    ocupacaoMae: {},
+    ocupacaoPai: {},
+    ocupacaoResponsavel: {},
     descricaoOcupacaoMae: "",
     descricaoOcupacaoPai: "",
     descricaoOcupacaoResponsavel: "",
@@ -225,7 +264,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     responsavelPelaCriancaPai: "",
     vinculoResponsavel: "",
     descricaoVinculoResponsavel: "",
-    procedencia: "",
+    procedencia: {},
     dsOutroTipoDeProcedenciaPaciente: "",
   });
 
@@ -233,13 +272,55 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     setMessage(dados);
   };
 
+  const handleListCitysByUF = async (e) => {
+    const value = JSON.parse(e.target.value);
+    try {
+      setLoading(true);
+      const citys = await MunicipioService.getByUF(value.uf);
+      setCidades(citys);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+    setDadosFormulario((prevState) => ({
+      ...prevState,
+      uf: value ? value.uf : "",
+    }));
+  };
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
   useEffect(() => {
-    console.log("DADOS ENVIADO", dadosFormulario)
+    console.log("DADOS ENVIADO", dadosFormulario);
   }, [dadosFormulario]);
+
+  useEffect(() => {
+    const carregarNaturalidadesPorUF = async () => {
+      if (!dadosFormulario.uf) return;
+
+      try {
+        setLoading(true);
+
+        const municipios = await MunicipioService.getByUF(dadosFormulario.uf);
+
+        const formatados = municipios.map((municipio) => ({
+          ...municipio,
+          nomeMunicipio:
+            municipio.nome || municipio.nomeMunicipio || municipio.descricao,
+        }));
+        setNaturalidade(formatados);
+      } catch (error) {
+        console.error("Erro ao buscar naturalidades por UF:", error);
+        setNaturalidade([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    carregarNaturalidadesPorUF();
+  }, [dadosFormulario.uf]);
 
   const handleResponsavelChange = (valueMae, valuePai) => {
     const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
@@ -260,25 +341,17 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     }));
   };
 
-  const fetchCEPData = async (cep) => {
-    try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      const data = await response.json();
-      if (data.erro) {
-        throw new Error("CEP não encontrado");
-      }
-      return data;
-    } catch (error) {
-      console.error("Erro ao buscar CEP:", error);
-      throw error;
-    }
-  };
-
   const onChange = async (e) => {
     const { name, value } = e.target;
-    let formattedValue = value;
 
-    const upperCaseValue = formattedValue.toUpperCase();
+    let parsedValue;
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value;
+    }
+    const upperCaseValue =
+      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
 
     const keys = name.split(".");
     if (keys.length > 1) {
@@ -307,13 +380,16 @@ const [isModalOpen, setIsModalOpen] = useState(true);
         }));
       } else if (value.length === 9) {
         try {
-          const cepData = await fetchCEPData(value);
+          const endereco = await CepService.getById(value);
+          const endJson = endereco;
+          const muniJson = endJson.municipioLogradouro;
           setDadosFormulario((prevState) => ({
             ...prevState,
-            logradouro: cepData.logradouro || "",
-            bairro: cepData.bairro || "",
-            municipioLogradouro: cepData.localidade || "",
-            estado: cepData.uf || "",
+            cep: endJson.cep,
+            logradouro: endJson.dsLogradouro || "",
+            bairro: endJson.dsBairro || "",
+            municipioLogradouro: endJson.municipioLogradouro,
+            estado: muniJson.estado,
           }));
         } catch (error) {
           console.error("Erro ao buscar CEP:", error);
@@ -331,7 +407,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
           : dadosFormulario.responsavelPelaCriancaMae,
         name === "responsavelPelaCriancaPai"
           ? value
-          : dadosFormulario.responsavelPelaCriancaPai
+          : dadosFormulario.responsavelPelaCriancaPai,
       );
     }
 
@@ -352,16 +428,138 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     }
   };
 
-  async function enviarPaciente(dadosFormulario) {
-    const paciente = new PacienteBuilder()
-      .withFormulario(dadosFormulario)
-      .build();
+  async function returnValues(dadosFormulario) {
+    const pacientePreSalvo = new BuilderPaciente();
+    const endereco = await criarEndereco();
+    const maeResponsavel = await criarResponsavelMae();
+    const paiResponsavel = await criarResponsavelPai();
+    const responsavel = await criarResponsavel();
 
-    console.log(paciente);
+    pacientePreSalvo
+      .withCPF(dadosFormulario.cpf)
+      .withAdmissao(dadosFormulario.dataAdmissao)
+      .withDataNascimento(dadosFormulario.dataNascimento)
+      .withCartaoSUS(dadosFormulario.descricaoCartaoSUS)
+      .withDescricaoProntuario(dadosFormulario.descricaoProntuario)
+      .withNome(dadosFormulario.nomeCompleto)
+      .withLocalDeNascimento(dadosFormulario.localDeNascimento)
+      .withSexo(dadosFormulario.sexo)
+      .withRacaCor(dadosFormulario.tipoRacaCor)
+      .withOutrosTipos(
+        dadosFormulario.dsOutroTipoDeProcedenciaPaciente,
+        dadosFormulario.dsOutroTipoDeLocalDeNascimentoPaciente,
+      )
+      .withConstaPaiMae(dadosFormulario.constaPai, dadosFormulario.constaMae)
+      .withNacionalidade(dadosFormulario.nacionalidade)
+      .withProcedencia(dadosFormulario.procedencia)
+      .withNaturalidade(dadosFormulario.naturalidade)
+      .withEndereco(endereco)
+      .withMaeResponsavel(dadosFormulario.responsavelPelaCriancaMae)
+      .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai)
+      .withResponsavel("paiResponsavel", paiResponsavel)
+      .withResponsavel("maeResponsavel", maeResponsavel)
+      .withResponsavel("responsavel", responsavel);
+    return pacientePreSalvo.build();
+  }
+
+  async function criarResponsavelMae() {
+    let maeResponsavel;
+    try {
+      maeResponsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfMae,
+      );
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        maeResponsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfMae)
+          .withDataNascimento(dadosFormulario.dataNascimentoMae)
+          .withEscolaridade(dadosFormulario.escolaridadeMae)
+          .withEstadoCivil(dadosFormulario.estadoCivilMae)
+          .withNome(dadosFormulario.nomeMae)
+          .withOcupacao(dadosFormulario.ocupacaoMae)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoMae)
+          .withRacaCor(dadosFormulario.tipoRacaCorMae)
+          .withTelefone1(dadosFormulario.telefone1Mae)
+          .withTelefone2(dadosFormulario.telefone2Mae)
+          .build();
+      } else {
+        throw error;
+      }
+    }
+    return maeResponsavel;
+  }
+
+  async function criarResponsavelPai() {
+    let paiResponsavel;
 
     try {
+      paiResponsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfPai,
+      );
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        paiResponsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfPai)
+          .withDataNascimento(dadosFormulario.dataNascimentoPai)
+          .withEscolaridade(dadosFormulario.escolaridadePai)
+          .withEstadoCivil(dadosFormulario.estadoCivilPai)
+          .withNome(dadosFormulario.nomePai)
+          .withOcupacao(dadosFormulario.ocupacaoPai)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoPai)
+          .withRacaCor(dadosFormulario.tipoRacaCorPai)
+          .withTelefone1(dadosFormulario.telefone1Pai)
+          .withTelefone2(dadosFormulario.telefone2Pai)
+          .build();
+      }
+    }
+    return paiResponsavel;
+  }
+
+  async function criarResponsavel() {
+    let responsavel;
+    try {
+      responsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfResponsavel,
+      );
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        responsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfResponsavel)
+          .withDataNascimento(dadosFormulario.dataNascimentoResponsavel)
+          .withEscolaridade(dadosFormulario.escolaridadeResponsavel)
+          .withEstadoCivil(dadosFormulario.estadoCivilResponsavel)
+          .withNome(dadosFormulario.nomeResponsavel)
+          .withOcupacao(dadosFormulario.ocupacaoResponsavel)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoResponsavel)
+          .withTipoVinculo(dadosFormulario.vinculoResponsavel)
+          .withOutroTipoVinculo(dadosFormulario.descricaoVinculoResponsavel)
+          .withRacaCor(dadosFormulario.tipoRacaCorResponsavel)
+          .withTelefone1(dadosFormulario.telefone1Responsavel)
+          .withTelefone2(dadosFormulario.telefone2Responsavel)
+          .build();
+      }
+    }
+    return responsavel;
+  }
+
+  async function criarEndereco() {
+    const endereco = new EnderecoBuilder()
+      .withCep(dadosFormulario.cep)
+      .withLogradouro(dadosFormulario.logradouro)
+      .withNumero(dadosFormulario.numero)
+      .withComplemento(dadosFormulario.complemento)
+      .withBairro(dadosFormulario.bairro)
+      .withTpMoradia(dadosFormulario.tpMoradia)
+      .withMunicipio(dadosFormulario.municipioLogradouro)
+      .build();
+    return endereco;
+  }
+
+  async function enviarPaciente(dadosFormulario) {
+    const paciente = await returnValues(dadosFormulario);
+    try {
       const resposta = await PacienteService.create(paciente);
-      handleShowAlert(resposta != null ? "201" : "400");
+      handleShowAlert(resposta.status);
     } catch (erro) {
       if (erro instanceof Promise) {
         erro = await erro;
@@ -374,14 +572,14 @@ const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <>
       <form>
-        {message === "201" ? (
-           <ModalSave
-           title="Cadastrado com sucesso!"
-           message="O paciente foi cadastrado com sucesso."
-           isOpen={isModalOpen}
-           onClose={() => setIsModalOpen(false)}
-         />
-        ) : message === "400" ? (
+        {HttpStatusGroup.isSuccess(message) ? (
+          <ModalSave
+            title="Cadastrado com sucesso!"
+            message="O paciente foi cadastrado com sucesso."
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        ) : HttpStatusGroup.isClientError(message) ? (
           <ModalSave
             title="Erro no cadastro"
             message="Houve um problema ao cadastrar o paciente."
@@ -395,17 +593,17 @@ const [isModalOpen, setIsModalOpen] = useState(true);
           description="Cadastro de dados pessoais do Paciente"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-6 gap-4 px-8 pt-4">
-          <FormField
-            name="dataAdmissao"
-            label="Data da Admissão"
-            placeholder="00/00/0000"
-            type="text"
-            styleClass="campoObrigatorio"
-            onChange={onChange}
-            value={dadosFormulario.dataAdmissao} 
-            error={errors.dataAdmissao}
-            className="col-span-1"
-          />
+            <FormField
+              name="dataAdmissao"
+              label="Data da Admissão"
+              placeholder="00/00/0000"
+              type="text"
+              styleClass="campoObrigatorio"
+              onChange={onChange}
+              value={dadosFormulario.dataAdmissao}
+              error={errors.dataAdmissao}
+              className="col-span-1"
+            />
             <FormField
               name="descricaoProntuario"
               label="Prontuário"
@@ -455,24 +653,26 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               error={errors.nacionalidade}
             />
             <FormField
-              name="naturalidade"
-              label="Naturalidade"
+              name="uf"
+              label="UF"
+              displayAttribute="uf"
               styleClass="campoObrigatorio"
               isSelect
               isAPI
-              options={naturalidadeOptions}
-              onChange={onChange}
-              displayAttribute="label"
-              error={errors.naturalidade}
+              options={uf}
+              onChange={handleListCitysByUF}
+              error={errors.uf}
             />
             <FormField
-              name="uf"
-              label="UF"
+              name="naturalidade"
+              label="Naturalidade"
               styleClass="campoObrigatorio"
+              isAPI
               isSelect
-              options={uf}
+              options={naturalidade}
               onChange={onChange}
-              error={errors.uf}
+              displayAttribute="nomeMunicipio"
+              error={errors.naturalidade}
             />
             <FormField
               name="sexo"
@@ -576,8 +776,10 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               label="Estado"
               styleClass="campoObrigatorio"
               isSelect
-              options={estado}
+              isApi
+              options={estados}
               onChange={onChange}
+              displayAttribute="nomeEstado"
               error={errors.estado}
             />
             <FormField
@@ -686,7 +888,8 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               label="Ocupação"
               styleClass="campoObrigatorio"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
               error={errors.ocupacaoMae}
             />
@@ -807,7 +1010,8 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               label="Ocupação"
               styleClass="campoObrigatorio"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.ocupacaoPai}
@@ -906,7 +1110,8 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="ocupacaoResponsavel"
               label="Ocupação"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
             />
             <FormField
@@ -924,6 +1129,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
               name="procedencia"
               label="Procedência"
               isSelect
+              isAPI
               styleClass="campoObrigatorio"
               options={procedencias}
               onChange={onChange}
