@@ -762,7 +762,7 @@ export function FormCadastroDadosPessoais() {
             />
             <FormField
               name="municipioLogradouro"
-              value={dadosFormulario.municipioLogradouro}
+              value={dadosFormulario.municipioLogradouro?.nomeMunicipio}
               label="Cidade"
               styleClass="campoObrigatorio"
               isAPI
