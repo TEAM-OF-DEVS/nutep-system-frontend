@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.get("*", (req, res) => {
 });
 
 // Porta dinâmica para Heroku
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7777;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
