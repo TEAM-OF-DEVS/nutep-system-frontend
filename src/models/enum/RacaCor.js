@@ -5,5 +5,4 @@ const RacaCor = {
     PARDA: "Parda",
     PRETA: "Preta"
   };
-  
   export default RacaCor;

@@ -471,7 +471,7 @@ export function FormCadastroDadosPessoais() {
       .withResponsavel("maeResponsavel", maeResponsavel);
 
     console.log("isCheckedResponsavel: ", isCheckedResponsavel);
-    if (isCheckedResponsavel) {
+    if (!isCheckedResponsavel) {
       pacientePreSalvo.withResponsavel("responsavel", responsavel);
     }
 
