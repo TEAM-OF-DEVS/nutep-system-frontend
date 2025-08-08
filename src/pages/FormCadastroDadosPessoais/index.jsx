@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
+import BuilderPaciente from "../../models/build/BuilderPaciente.js";
+import Escolaridade from "../../models/enum/Escolaridade.js";
+import EstadoCivil from "../../models/enum/EstadoCivil.js";
+import LocalNascimento from "../../models/enum/LocalNascimento.js";
 import Nacionalidade from "../../models/enum/Nacionalidade.js";
 import RacaCor from "../../models/enum/RacaCor.js";
-import TipoMoradia from "../../models/enum/TipoMoradia.js";
-import EstadoCivil from "../../models/enum/EstadoCivil.js";
-import Escolaridade from "../../models/enum/Escolaridade.js";
-import Vinculo from "../../models/enum/Vinculo.js";
-import LocalNascimento from "../../models/enum/LocalNascimento.js";
-import SimOuNao from "../../models/enum/SimNao.js";
 import Sexo from "../../models/enum/Sexo.js";
+import SimOuNao from "../../models/enum/SimNao.js";
+import TipoMoradia from "../../models/enum/TipoMoradia.js";
+import Vinculo from "../../models/enum/Vinculo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
-import BuilderPaciente from "../../models/build/BuilderPaciente.js";
 import HttpStatusGroup from "../../util/HttpStatusGroup.js";
 
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
+import EnderecoBuilder from "../../models/build/EnderecoBuilder.js";
+import ResponsavelBuilder from "../../models/build/ResponsavelBuilder.js";
+import CepService from "../../services/cepService.jsx";
+import EstadoService from "../../services/estadoService.jsx";
+import ResponsavelService from "../../services/responsavelService.jsx";
+import ServiceUtil from "../../services/serviceUtil.jsx";
 import {
   validateField,
   validateForm,
 } from "../../validator/validateFormPaciente.jsx";
-import ModalSave from "../../components/ModalSave/ModalSave.jsx";
-import EstadoService from "../../services/estadoService.jsx";
-import ServiceUtil from "../../services/serviceUtil.jsx";
-import CepService from "../../services/cepService.jsx";
-import ResponsavelService from "../../services/responsavelService.jsx";
-import ResponsavelBuilder from "../../models/build/ResponsavelBuilder.js";
-import EnderecoBuilder from "../../models/build/EnderecoBuilder.js";
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -72,7 +72,9 @@ export function FormCadastroDadosPessoais() {
   const [ocupacoes, setOcupacoes] = useState([]);
   const [procedencias, setProcedencias] = useState([]);
   const [message, setMessage] = useState("");
+  const [code, setCode] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedResponsavel, setIsCheckedResponsavel] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -189,18 +191,18 @@ export function FormCadastroDadosPessoais() {
     ocupacaoPai: { required: !isChecked },
     descricaoOcupacaoPai: { required: !isChecked },
 
-  nomeResponsavel: { required: !paiOuMaeResponsavel },
-  dataNascimentoResponsavel: { required: !paiOuMaeResponsavel },
-  vinculoResponsavel: { required: !paiOuMaeResponsavel },
-  descricaoVinculoResponsavel: { required: false },
-  cpfResponsavel: { required: !paiOuMaeResponsavel },
-  tipoRacaCorResponsavel: { required: !paiOuMaeResponsavel },
-  estadoCivilResponsavel: { required: !paiOuMaeResponsavel },
-  telefone1Responsavel: { required: !paiOuMaeResponsavel },
-  telefone2Responsavel: { required: false },
-  escolaridadeResponsavel: { required: !paiOuMaeResponsavel },
-  ocupacaoResponsavel: { required: !paiOuMaeResponsavel },
-  descricaoOcupacaoResponsavel: { required: false },
+    nomeResponsavel: { required: false },
+    dataNascimentoResponsavel: { required: false },
+    vinculoResponsavel: { required: false },
+    descricaoVinculoResponsavel: { required: false },
+    cpfResponsavel: { required: false },
+    tipoRacaCorResponsavel: { required: false },
+    estadoCivilResponsavel: { required: false },
+    telefone1Responsavel: { required: false },
+    telefone2Responsavel: { required: false },
+    escolaridadeResponsavel: { required: false },
+    ocupacaoResponsavel: { required: false },
+    descricaoOcupacaoResponsavel: { required: false },
 
     procedencia: { required: true },
     // dsOutroTipoDeProcedenciaPaciente: { required: false },
@@ -268,8 +270,9 @@ export function FormCadastroDadosPessoais() {
     dsOutroTipoDeProcedenciaPaciente: "",
   });
 
-  const handleShowAlert = (dados) => {
-    setMessage(dados);
+  const handleShowAlert = (code, message) => {
+    setMessage(message);
+    setCode(code);
   };
 
   const handleListCitysByUF = async (e) => {
@@ -290,6 +293,10 @@ export function FormCadastroDadosPessoais() {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const handleCheckboxChangeResponsavel = () => {
+    setIsCheckedResponsavel(!isCheckedResponsavel);
   };
 
   useEffect(() => {
@@ -322,28 +329,27 @@ export function FormCadastroDadosPessoais() {
     carregarNaturalidadesPorUF();
   }, [dadosFormulario.uf]);
 
-const handleResponsavelChange = (valueMae, valuePai) => {
-  const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
-  setPaiOuMaeResponsavel(isResponsavel);
+  const handleResponsavelChange = (valueMae, valuePai) => {
+    const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
+    setPaiOuMaeResponsavel(isResponsavel);
 
-  
-  if (!isResponsavel) {
-    setDadosFormulario(prev => ({
-      ...prev,
-      nomeResponsavel: "",
-      dataNascimentoResponsavel: "",
-      vinculoResponsavel: "",
-      cpfResponsavel: "",
-      tipoRacaCorResponsavel: "",
-      estadoCivilResponsavel: "",
-      telefone1Responsavel: "",
-      escolaridadeResponsavel: "",
-      ocupacaoResponsavel: "",
-      descricaoOcupacaoResponsavel: "",
-      descricaoVinculoResponsavel: ""
-    }));
-  }
-};
+    if (!isResponsavel) {
+      setDadosFormulario((prev) => ({
+        ...prev,
+        nomeResponsavel: "",
+        dataNascimentoResponsavel: "",
+        vinculoResponsavel: "",
+        cpfResponsavel: "",
+        tipoRacaCorResponsavel: "",
+        estadoCivilResponsavel: "",
+        telefone1Responsavel: "",
+        escolaridadeResponsavel: "",
+        ocupacaoResponsavel: "",
+        descricaoOcupacaoResponsavel: "",
+        descricaoVinculoResponsavel: "",
+      }));
+    }
+  };
 
   const onChange = async (e) => {
     const { name, value } = e.target;
@@ -462,8 +468,13 @@ const handleResponsavelChange = (valueMae, valuePai) => {
       .withMaeResponsavel(dadosFormulario.responsavelPelaCriancaMae)
       .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai)
       .withResponsavel("paiResponsavel", paiResponsavel)
-      .withResponsavel("maeResponsavel", maeResponsavel)
-      .withResponsavel("responsavel", responsavel);
+      .withResponsavel("maeResponsavel", maeResponsavel);
+
+    console.log("isCheckedResponsavel: ", isCheckedResponsavel);
+    if (isCheckedResponsavel) {
+      pacientePreSalvo.withResponsavel("responsavel", responsavel);
+    }
+
     return pacientePreSalvo.build();
   }
 
@@ -563,13 +574,15 @@ const handleResponsavelChange = (valueMae, valuePai) => {
   async function enviarPaciente(dadosFormulario) {
     const paciente = await returnValues(dadosFormulario);
     try {
+      console.log("Paciente:", paciente);
       const resposta = await PacienteService.create(paciente);
-      handleShowAlert(resposta.status);
+      handleShowAlert(resposta.status, "");
     } catch (erro) {
       if (erro instanceof Promise) {
         erro = await erro;
       }
-      console.error("Erro ao salvar paciente: ", erro.message || erro);
+      console.error("Erro ao salvar paciente: ", erro);
+      handleShowAlert(erro?.status, erro?.response?.data);
       throw new Error(`Erro ao salvar paciente: ${erro.message}`);
     }
   }
@@ -577,17 +590,19 @@ const handleResponsavelChange = (valueMae, valuePai) => {
   return (
     <>
       <form>
-        {HttpStatusGroup.isSuccess(message) ? (
+        {HttpStatusGroup.isSuccess(code) ? (
           <ModalSave
             title="Cadastrado com sucesso!"
             message="O paciente foi cadastrado com sucesso."
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
-        ) : HttpStatusGroup.isClientError(message) ? (
+        ) : HttpStatusGroup.isClientError(code) ? (
           <ModalSave
             title="Erro no cadastro"
-            message="Houve um problema ao cadastrar o paciente."
+            message={`${
+              message ? message : "Houve um problema ao cadastrar o paciente."
+            }`}
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
@@ -1035,12 +1050,23 @@ const handleResponsavelChange = (valueMae, valuePai) => {
           title="Dados do Responsável"
           description="Cadastro de dados pessoais do responsável do Paciente"
         >
+          <br />
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
+            <FormField
+              name="nadaConstaResponsavel"
+              label="NC (Escolha esta opção caso o paciente não tenha um responsável a ser cadastrado)"
+              type="checkbox"
+              styleInput="w-6 h-6"
+              onChange={handleCheckboxChangeResponsavel}
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
               name="nomeResponsavel"
               label="Nome do Responsável"
               placeholder="Nome"
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="dataNascimentoResponsavel"
@@ -1048,6 +1074,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               type="text"
               placeholder="00/00/0000"
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
               value={dadosFormulario.dataNascimentoResponsavel}
             />
             <FormField
@@ -1056,6 +1083,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               isSelect
               options={vinculo}
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
@@ -1064,6 +1092,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               label="Descrição do Vínculo"
               onChange={onChange}
               error={errors.descricaoVinculoResponsavel}
+              isDisable={isCheckedResponsavel}
             />
           </div>
 
@@ -1073,6 +1102,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               label="CPF"
               onChange={onChange}
               value={dadosFormulario.cpfResponsavel}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="tipoRacaCorResponsavel"
@@ -1080,6 +1110,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="estadoCivilResponsavel"
@@ -1087,6 +1118,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               isSelect
               options={estadoCivil}
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="telefone1Responsavel"
@@ -1094,6 +1126,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               placeholder="Telefone"
               onChange={onChange}
               value={dadosFormulario.telefone1Responsavel}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="telefone2Responsavel"
@@ -1101,6 +1134,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               placeholder="Telefone"
               onChange={onChange}
               value={dadosFormulario.telefone2Responsavel}
+              isDisable={isCheckedResponsavel}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
@@ -1110,6 +1144,7 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               isSelect
               options={escolaridade}
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="ocupacaoResponsavel"
@@ -1118,12 +1153,14 @@ const handleResponsavelChange = (valueMae, valuePai) => {
               isAPI
               options={ocupacoes}
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
             <FormField
               name="descricaoOcupacaoResponsavel"
               label="Descrição da ocupação"
               placeholder="Descrição"
               onChange={onChange}
+              isDisable={isCheckedResponsavel}
             />
           </div>
         </FormGroup>

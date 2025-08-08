@@ -113,7 +113,7 @@ body {
 }
 
 .sidebar .sidebarTabs li .submenu button::after {
-  content: '';
+  content: "";
   width: 5px;
   height: 5px;
   border-radius: 100%;
@@ -125,7 +125,7 @@ body {
 .sidebar .sidebarTabs li .submenu {
   padding-left: 16px !important;
   font-weight: 600 !important;
-  font-size: 5px; 
+  font-size: 5px;
 }
 
 @media (max-width: 768px) {

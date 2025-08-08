@@ -27,9 +27,7 @@ const PacienteService = {
 
   getByProntuario: async (prontuario) => {
     try {
-      const response = await axios.get(
-        `${BASE_URL}?descricaoProntuario=${prontuario}`,
-      );
+      const response = await axios.get(`${BASE_URL}/find/${prontuario}`);
       return response.data;
     } catch (error) {
       console.error(
