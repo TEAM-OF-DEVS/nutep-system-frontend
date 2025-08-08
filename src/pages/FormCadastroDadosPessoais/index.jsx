@@ -189,18 +189,19 @@ export function FormCadastroDadosPessoais() {
     ocupacaoPai: { required: !isChecked },
     descricaoOcupacaoPai: { required: !isChecked },
 
-    nomeResponsavel: { required: !paiOuMaeResponsavel },
-    dataNascimentoResponsavel: { required: !paiOuMaeResponsavel },
-    vinculoResponsavel: { required: !paiOuMaeResponsavel },
-    descricaoVinculoResponsavel: { required: false },
-    cpfResponsavel: { required: !paiOuMaeResponsavel },
-    tipoRacaCorResponsavel: { required: !paiOuMaeResponsavel },
-    estadoCivilResponsavel: { required: !paiOuMaeResponsavel },
-    telefone1Responsavel: { required: !paiOuMaeResponsavel },
-    telefone2Responsavel: { required: false },
-    escolaridadeResponsavel: { required: !paiOuMaeResponsavel },
-    ocupacaoResponsavel: { required: !paiOuMaeResponsavel },
-    descricaoOcupacaoResponsavel: { required: false },
+    //  nomeResponsavel: { required: paiOuMaeResponsavel },
+    // dataNascimentoResponsavel: { required: paiOuMaeResponsavel },
+    // vinculoResponsavel: { required: paiOuMaeResponsavel },
+    // descricaoVinculoResponsavel: { required: false },
+    // cpfResponsavel: { required: paiOuMaeResponsavel },
+    // tipoRacaCorResponsavel: { required: paiOuMaeResponsavel },
+    // estadoCivilResponsavel: { required: paiOuMaeResponsavel },
+    // telefone1Responsavel: { required: paiOuMaeResponsavel },
+    // telefone2Responsavel: { required: false },
+    // escolaridadeResponsavel: { required: paiOuMaeResponsavel },
+    // ocupacaoResponsavel: { required: paiOuMaeResponsavel },
+    // descricaoOcupacaoResponsavel: { required: false },
+
 
     procedencia: { required: true },
     // dsOutroTipoDeProcedenciaPaciente: { required: false },
@@ -322,24 +323,28 @@ export function FormCadastroDadosPessoais() {
     carregarNaturalidadesPorUF();
   }, [dadosFormulario.uf]);
 
-  const handleResponsavelChange = (valueMae, valuePai) => {
-    const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
-    setPaiOuMaeResponsavel(isResponsavel);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      nomeResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      dataNascimentoResponsavel: isResponsavel
-        ? ""
-        : "Este campo é obrigatório",
-      vinculoResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      cpfResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      tipoRacaCorResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      estadoCivilResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      telefone1Responsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      escolaridadeResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
-      ocupacaoResponsavel: isResponsavel ? "" : "Este campo é obrigatório",
+const handleResponsavelChange = (valueMae, valuePai) => {
+  const isResponsavel = valueMae === "Sim" || valuePai === "Sim";
+  setPaiOuMaeResponsavel(isResponsavel);
+
+  
+  if (!isResponsavel) {
+    setDadosFormulario(prev => ({
+      ...prev,
+      nomeResponsavel: "",
+      dataNascimentoResponsavel: "",
+      vinculoResponsavel: "",
+      cpfResponsavel: "",
+      tipoRacaCorResponsavel: "",
+      estadoCivilResponsavel: "",
+      telefone1Responsavel: "",
+      escolaridadeResponsavel: "",
+      ocupacaoResponsavel: "",
+      descricaoOcupacaoResponsavel: "",
+      descricaoVinculoResponsavel: ""
     }));
-  };
+  }
+};
 
   const onChange = async (e) => {
     const { name, value } = e.target;
@@ -421,8 +426,9 @@ export function FormCadastroDadosPessoais() {
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
     setErrors(formErrors);
+
     if (Object.keys(formErrors).length === 0) {
-      enviarPaciente(dadosFormulario);
+      await enviarPaciente(dadosFormulario);
     } else {
       console.log("Erros no formulário:", formErrors);
     }
