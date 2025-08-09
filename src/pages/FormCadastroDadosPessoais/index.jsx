@@ -26,6 +26,7 @@ import {
   validateField,
   validateForm,
 } from "../../validator/validateFormPaciente.jsx";
+import MessageAlert from "../../util/MessageAlert.jsx";
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -72,12 +73,14 @@ export function FormCadastroDadosPessoais() {
   const [ocupacoes, setOcupacoes] = useState([]);
   const [procedencias, setProcedencias] = useState([]);
   const [message, setMessage] = useState("");
+  const [cpf, setCpf] = useState("");
   const [code, setCode] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedResponsavel, setIsCheckedResponsavel] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isMessageOpen, setIsMessageOpen] = useState(false);
 
   const carregarEstados = async () => {
     try {
@@ -275,6 +278,18 @@ export function FormCadastroDadosPessoais() {
     setCode(code);
   };
 
+  const handleAlertCPF = async (cpf) => {
+    if (cpf.replace(/\D/g, "").length === 11) {
+      try {
+        const resposta = await PacienteService.getByCPF(cpf);
+      } catch (erro) {
+        console.log(cpf);
+      }
+      setCpf(cpf);
+      setIsMessageOpen(true);
+    }
+  };
+
   const handleListCitysByUF = async (e) => {
     const value = JSON.parse(e.target.value);
     try {
@@ -353,6 +368,10 @@ export function FormCadastroDadosPessoais() {
 
   const onChange = async (e) => {
     const { name, value } = e.target;
+
+    if (name === "cpf") {
+      handleAlertCPF(value);
+    }
 
     let parsedValue;
     try {
@@ -590,7 +609,8 @@ export function FormCadastroDadosPessoais() {
   return (
     <>
       <form>
-        {(HttpStatusGroup.isSuccess(code) || HttpStatusGroup.isClientError(code)) && (
+        {(HttpStatusGroup.isSuccess(code) ||
+          HttpStatusGroup.isClientError(code)) && (
           <ModalSave
             title={
               HttpStatusGroup.isSuccess(code)
@@ -610,6 +630,15 @@ export function FormCadastroDadosPessoais() {
           />
         )}
 
+        {isMessageOpen && (
+          <MessageAlert
+            type="error"
+            title="CPF já Cadastrado"
+            message={`O CPF ${cpf} já se encontra cadastrado na base de dados.`}
+            isOpen={isMessageOpen}
+            onClose={() => setIsMessageOpen(false)}
+          />
+        )}
 
         <FormGroup
           title="Dados do Paciente"
@@ -663,6 +692,7 @@ export function FormCadastroDadosPessoais() {
               styleClass="campoObrigatorio"
               placeholder="000.000.000-00"
               onChange={onChange}
+              onBlur={handleAlertCPF}
               error={errors.cpf}
               value={dadosFormulario.cpf}
             />

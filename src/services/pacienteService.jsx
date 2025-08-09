@@ -38,15 +38,27 @@ const PacienteService = {
     }
   },
 
-  getByProntuarioComNome: async (prontuario, nome) => {
+  getByCPF: async (cpf) => {
     try {
-      const response = await axios.get(
-        `${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`,
-      );
+      const response = await axios.get(`${BASE_URL}/find/cpf/${cpf}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao buscar paciente com cpf ${cpf}:`, error);
+      throw error;
+    }
+  },
+
+  getByProntuarioComNome: async (prontuario, nome) => {
+    const filter = {
+      descricaoProntuario: prontuario,
+      dsNome: nome,
+    };
+    try {
+      const response = await axios.get(`${BASE_URL}/find/filter/${filter}`);
       return response.data;
     } catch (error) {
       console.error(
-        `Erro ao buscar paciente com prontuário ${prontuario}:`,
+        `Erro ao buscar paciente com prontuário: ${prontuario} ou com o nome: ${nome}`,
         error,
       );
       throw error;
