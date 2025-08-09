@@ -23,7 +23,6 @@ export const FormField = ({
   displayAttribute = isAPI ? "descricao" : "label",
   className = "",
 }) => {
-  
   const formatCEP = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 8);
     if (formatted.length > 5) {
@@ -35,9 +34,15 @@ export const FormField = ({
   const formatCPF = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 11);
     if (formatted.length > 9) {
-      formatted = `${formatted.slice(0, 3)}.${formatted.slice(3, 6)}.${formatted.slice(6, 9)}-${formatted.slice(9)}`;
+      formatted = `${formatted.slice(0, 3)}.${formatted.slice(
+        3,
+        6,
+      )}.${formatted.slice(6, 9)}-${formatted.slice(9)}`;
     } else if (formatted.length > 6) {
-      formatted = `${formatted.slice(0, 3)}.${formatted.slice(3, 6)}.${formatted.slice(6)}`;
+      formatted = `${formatted.slice(0, 3)}.${formatted.slice(
+        3,
+        6,
+      )}.${formatted.slice(6)}`;
     } else if (formatted.length > 3) {
       formatted = `${formatted.slice(0, 3)}.${formatted.slice(3)}`;
     }
@@ -47,9 +52,15 @@ export const FormField = ({
   const formatSUS = (value) => {
     let formatted = value.replace(/\D/g, "").slice(0, 15);
     if (formatted.length > 11) {
-      formatted = `${formatted.slice(0, 3)} ${formatted.slice(3, 7)} ${formatted.slice(7, 11)} ${formatted.slice(11)}`;
+      formatted = `${formatted.slice(0, 3)} ${formatted.slice(
+        3,
+        7,
+      )} ${formatted.slice(7, 11)} ${formatted.slice(11)}`;
     } else if (formatted.length > 7) {
-      formatted = `${formatted.slice(0, 3)} ${formatted.slice(3, 7)} ${formatted.slice(7)}`;
+      formatted = `${formatted.slice(0, 3)} ${formatted.slice(
+        3,
+        7,
+      )} ${formatted.slice(7)}`;
     } else if (formatted.length > 3) {
       formatted = `${formatted.slice(0, 3)} ${formatted.slice(3)}`;
     }
@@ -70,7 +81,8 @@ export const FormField = ({
     return formatted;
   };
 
-  const formatHouseNumber = (value) => value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
+  const formatHouseNumber = (value) =>
+    value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
 
   const handleInputChange = (event) => {
     let value = event.target.value;
@@ -82,9 +94,17 @@ export const FormField = ({
       value = formatCPF(value);
     } else if (fieldName.includes("sus") || fieldName.includes("cartaosus")) {
       value = formatSUS(value);
-    } else if (fieldName.includes("telefone") || fieldName.includes("celular") || fieldName.includes("phone")) {
+    } else if (
+      fieldName.includes("telefone") ||
+      fieldName.includes("celular") ||
+      fieldName.includes("phone")
+    ) {
       value = formatPhone(value);
-    } else if (fieldName.includes("numero") || fieldName.includes("número") || fieldName.includes("house")) {
+    } else if (
+      fieldName.includes("numero") ||
+      fieldName.includes("número") ||
+      fieldName.includes("house")
+    ) {
       value = formatHouseNumber(value);
     } else {
       value = value.toUpperCase();
@@ -110,7 +130,12 @@ export const FormField = ({
       </label>
       <div className={isGrid ? "" : "w-full max-w-sm min-w-[100%]"}>
         {isMulti ? (
-          <MultiSelectCheckbox options={options} onChange={onChange} />
+          <MultiSelectCheckbox
+            options={options}
+            onChange={onChange}
+            displayAttribute={displayAttribute}
+            isAPI={isAPI}
+          />
         ) : isSelect ? (
           <select
             id={name}
@@ -127,8 +152,11 @@ export const FormField = ({
           >
             <option value="">Selecione</option>
             {Array.isArray(options) ? (
-              options.map((option, idx) => (
-                <option key={idx} value={isAPI ? JSON.stringify(option) : option.value}>
+              options.map((option) => (
+                <option
+                  key={isAPI ? option.id : JSON.stringify(option)}
+                  value={isAPI ? JSON.stringify(option) : option.value}
+                >
                   {option[displayAttribute]}
                 </option>
               ))
@@ -191,4 +219,3 @@ FormField.propTypes = {
   error: PropTypes.string,
   displayAttribute: PropTypes.string,
 };
-

@@ -9,9 +9,24 @@ const ServiceUtil = {
     try {
       console.log(BASE_URL);
       const response = await axios.get(BASE_URL + "/dados-pessoais/ocupacoes");
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar ocupacoes:", error);
+      throw error;
+    }
+  },
+
+  findByIdOcupacao: async (id) => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + `/dados-pessoais/ocupacoes/${id}`,
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar ocupacão:", error);
       throw error;
     }
   },
@@ -22,9 +37,24 @@ const ServiceUtil = {
       const response = await axios.get(
         BASE_URL + "/dados-pessoais/procedencias",
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar procedencias:", error);
+      throw error;
+    }
+  },
+
+  findByIdProcedencia: async (id) => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + `/dados-pessoais/procedencias/${id}`,
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar procedencia:", error);
       throw error;
     }
   },
@@ -37,6 +67,18 @@ const ServiceUtil = {
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar abrigos:", error);
+      throw error;
+    }
+  },
+
+  getByIdAbrigo: async (id) => {
+    try {
+      const response = await axios.get(
+        BASE_URL + "/servico-social/abrigos/" + id,
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar abrigo:", error);
       throw error;
     }
   },
@@ -73,6 +115,7 @@ const ServiceUtil = {
       const response = await axios.get(
         BASE_URL + "/servico-social/tiposDeTerapias",
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar tipos de Terapias:", error);

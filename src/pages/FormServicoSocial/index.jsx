@@ -6,21 +6,18 @@ import {
 import { FormField } from "../../components/FormField/FormField.jsx";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
 import { FormGroup } from "../../components/FormGroup/index.jsx";
-import Abrigos from "../../models/enum/ServicosSocial/Abrigos.js";
 import ConfiguracaoFamiliar from "../../models/enum/ServicosSocial/ConfiguracaoFamiliar.js";
-import DiasTurnoTerapia from "../../models/enum/ServicosSocial/DiasTurnoTerapia.js";
 import GrauInstrucao from "../../models/enum/ServicosSocial/GrauInstrucao.js";
 import OpcoesPadrao from "../../models/enum/ServicosSocial/OpcoesPadrao.js";
-import PeriodicidadeTerapia from "../../models/enum/ServicosSocial/PeriodicidadeTerapia.js";
-import PresencaDosPais from "../../models/enum/ServicosSocial/PresencaDosPais.js";
+import PresencasDosPais from "../../models/enum/ServicosSocial/PresencaDosPais.js";
 import SituacaoAtualInstituicao from "../../models/enum/ServicosSocial/SituacaoAtualInstituicao.js";
-import SituacaoConjugalPais from "../../models/enum/ServicosSocial/SituacaoConjugalPais.js";
+import SituacaoConjugalDosPais from "../../models/enum/ServicosSocial/SituacaoConjugalPais.js";
 import TipoAcolhimento from "../../models/enum/ServicosSocial/TipoAcolhimento.js";
-import TipoTerapia from "../../models/enum/ServicosSocial/TipoTerapia.js";
 import SimOuNao from "../../models/enum/SimNao.js";
 import ServicoSocialService from "../../services/servicoSocialService.jsx";
 import MessageAlert from "../../util/MessageAlert.jsx";
 import ServicoSocialBuilder from "../../models/build/ServicoSocialBuilder.js";
+import ServiceUtil from "../../services/serviceUtil.jsx";
 
 export function FormServicoSocial() {
   const [message, setMessage] = useState("");
@@ -28,55 +25,76 @@ export function FormServicoSocial() {
   const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resultado, setResultado] = useState(0);
+  const [abrigos, setAbrigos] = useState([]);
+  const [diasTurnosTerapia, setdiasTurnosTerapia] = useState([]);
+  const [periodicidadeTerapia, setPeriodicidadeTerapia] = useState([]);
+  const [tipoTerapia, setTipoTerapia] = useState([]);
 
-  const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(([key, value]) => ({ value: key, label: value }));
-  const situacaoConjugalPais = Object.entries(SituacaoConjugalPais).map(([key, value]) => ({ value: key, label: value }));
-  const presencaDosPais = Object.entries(PresencaDosPais).map(([key, value]) => ({ value: key, label: value }));
-  const tipoAcolhimento = Object.entries(TipoAcolhimento).map(([key, value]) => ({ value: key, label: value }));
-  const abrigos = Object.entries(Abrigos).map(([key, value]) => ({ value: key, label: value }));
-  const opcoesPadrao = Object.entries(OpcoesPadrao).map(([key, value]) => ({ value: key, label: value }));
-  const opcaoSimOuNao = Object.entries(SimOuNao).map(([key, value]) => ({ value: value, label: key }));
-  const grauInstrucao = Object.entries(GrauInstrucao).map(([key, value]) => ({ value: key, label: value }));
-  const periodicidadeTerapia = Object.entries(PeriodicidadeTerapia).map(([key, value]) => ({ value: key, label: value }));
-  const diasTurnoTerapia = Object.entries(DiasTurnoTerapia).map(([key, value]) => ({ value: key, label: value }));
-  const tipoTerapia = Object.entries(TipoTerapia).map(([key, value]) => ({ value: key, label: value }));
-  const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(([key, value]) => ({ value: key, label: value }));
+  const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(
+    ([key, value]) => ({ value: key, label: value }),
+  );
+  const situacaoConjugal = Object.entries(SituacaoConjugalDosPais).map(
+    ([key, value]) => ({ value: key, label: value }),
+  );
+  const presencasPais = Object.entries(PresencasDosPais).map(
+    ([key, value]) => ({ value: key, label: value }),
+  );
+  const tpAcolhimento = Object.entries(TipoAcolhimento).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+
+  const opcoesPadrao = Object.entries(OpcoesPadrao).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+  const opcaoSimOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
+    value: value,
+    label: key,
+  }));
+  const grauInstrucao = Object.entries(GrauInstrucao).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+  const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(
+    ([key, value]) => ({ value: key, label: value }),
+  );
 
   const validationRules = {
-    dataAtendimento: { required: true },
+    dtAtendimento: { required: true },
   };
 
   const [dadosFormulario, setDadosFormulario] = useState({
     paciente: {},
-    dataAtendimento: "",
+    dtAtendimento: "",
     configuracaoFamiliar: "",
-    descricaoConfiguracaoFamiliar: "",
-    situacaoConjugalPais: "",
-    presencaDosPais: "",
-    tipoAcolhimento: "",
+    dsConfiguracaoFamiliar: "",
+    situacaoConjugal: "",
+    presencasPais: "",
+    tpAcolhimento: "",
     abrigo: "",
-    descricaoAbrigo: "",
-    banheiro: "",
-    dvd: "",
-    automovel: "",
-    microondas: "",
-    lavaLoucas: "",
-    motocicleta: "",
-    freezer: "",
-    secadoraRoupa: "",
-    empregadosDomesticos: "",
-    aguaEncanada: "",
-    microcomputador: "",
-    ruaPavimentada: "",
-    geladeira: "",
-    grauInstrucaoChefeFamilia: "",
-    lavaRoupa: "",
-    periodicidadeTerapia: "",
-    descricaoPeriodicidadeTerapia: "",
-    diasTurnoTerapia: "",
+    dsAbrigo: "",
+    nrBanheiro: "",
+    nrDvd: "",
+    nrAutomoveis: "",
+    nrMicroondas: "",
+    nrLavaLoucas: "",
+    nrMotocicleta: "",
+    nrFreezer: "",
+    nrSecadoraRoupa: "",
+    nrEmpregadosDomesticos: "",
+    possuiAguaEncanda: "",
+    nrMicrocomputador: "",
+    possuiRuaPavimentada: "",
+    nrGeladeira: "",
+    nrGrauInstrucaoChefeFamilia: "",
+    nrLavaRoupa: "",
+    periodicidadeTerapia: {},
+    dsPeriodicidadeTerapia: "",
+    diasTurnosTerapia: [],
     tipoTerapia: "",
     situacaoAtualInstituicao: "",
-    observacoes: "",
+    dsObservacao: "",
   });
 
   const handleShowAlert = (dados) => {
@@ -86,6 +104,17 @@ export function FormServicoSocial() {
   const onChange = (e) => {
     const { name, value } = e.target;
 
+    let parsedValue;
+
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value;
+    }
+
+    const upperCaseValue =
+      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
+
     const keys = name.split(".");
 
     if (keys.length > 1) {
@@ -93,13 +122,13 @@ export function FormServicoSocial() {
         ...prevState,
         [keys[0]]: {
           ...prevState[keys[0]],
-          [keys[1]]: value,
+          [keys[1]]: upperCaseValue,
         },
       }));
     } else {
       setDadosFormulario((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: upperCaseValue,
       }));
     }
 
@@ -117,21 +146,73 @@ export function FormServicoSocial() {
     }));
   };
 
+  const carregarAbrigos = async () => {
+    try {
+      setLoading(true);
+      const abrigosAPI = await ServiceUtil.getAllAbrigos();
+      setAbrigos(abrigosAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarTipoTerapia = async () => {
+    try {
+      setLoading(true);
+      const tipoTerapiaAPI = await ServiceUtil.getAllTiposDeTerapias();
+      setTipoTerapia(tipoTerapiaAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarDiasTurnosTerapias = async () => {
+    try {
+      setLoading(true);
+      const diasTurnosTerapiaAPI = await ServiceUtil.getAllDiasTurnosTerapia();
+      setdiasTurnosTerapia(diasTurnosTerapiaAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarPeriodicidadesTerapias = async () => {
+    try {
+      setLoading(true);
+      const periodicidadesTerapiasAPI =
+        await ServiceUtil.getAllPeriodicidadesTerapias();
+      setPeriodicidadeTerapia(periodicidadesTerapiasAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    carregarAbrigos();
+    carregarDiasTurnosTerapias();
+    carregarPeriodicidadesTerapias();
+    carregarTipoTerapia();
+  }, []);
+
   useEffect(() => {
     // Campos que devem ser somados
     const camposSomaveis = [
-      "banheiro",
-      "dvd",
-      "automovel",
-      "microondas",
-      "lavaLoucas",
-      "motocicleta",
-      "freezer",
-      "secadoraRoupa",
-      "empregadosDomesticos",
-      "microcomputador",
-      "geladeira",
-      "lavaRoupa",
+      "Banheiro",
+      "Dvd",
+      "Automoveis",
+      "Microondas",
+      "LavaLoucas",
+      "Motocicleta",
+      "Freezer",
+      "SecadoraRoupa",
+      "EmpregadosDomesticos",
+      "Microcomputador",
+      "Geladeira",
+      "LavaRoupa",
     ];
 
     let soma = 0;
@@ -161,6 +242,10 @@ export function FormServicoSocial() {
   async function enviarDadosServicoSocialPaciente(dadosFormulario) {
     const servicoSocial = new ServicoSocialBuilder()
       .withDados(dadosFormulario)
+      .withAbrigo(JSON.parse(dadosFormulario.abrigo))
+      .withPeriodicidadeTerapia(
+        JSON.parse(dadosFormulario.periodicidadeTerapia),
+      )
       .withPaciente(pacienteEncontrado)
       .build();
     console.log(servicoSocial);
@@ -216,13 +301,13 @@ export function FormServicoSocial() {
                 value={pacienteEncontrado?.dataNascimento || ""}
               />
               <FormField
-                name="dataAtendimento"
+                name="dtAtendimento"
                 label="Data do Atendimento"
                 placeholder="00/00/0000"
                 type="Date"
                 styleClass="campoObrigatorio"
                 onChange={onChange}
-                error={errors.dataAtendimento}
+                error={errors.dtAtendimento}
               />
             </div>
           </FormGroup>
@@ -242,34 +327,34 @@ export function FormServicoSocial() {
               error={errors.configuracaoFamiliar}
             />
             <FormField
-              name="descricaoConfiguracaoFamiliar"
+              name="dsConfiguracaoFamiliar"
               label="Descrição da Configuração Familiar"
               onChange={onChange}
-              error={errors.descricaoConfiguracaoFamiliar}
+              error={errors.dsConfiguracaoFamiliar}
             />
             <FormField
-              name="situacaoConjugalPais"
+              name="situacaoConjugal"
               label="Situação Conjugal dos Pais"
               isSelect
-              options={situacaoConjugalPais}
+              options={situacaoConjugal}
               onChange={onChange}
-              error={errors.situacaoConjugalPais}
+              error={errors.situacaoConjugal}
             />
             <FormField
-              name="presencaDosPais"
+              name="presencasPais"
               label="Presença dos Pais"
               isSelect
-              options={presencaDosPais}
+              options={presencasPais}
               onChange={onChange}
-              error={errors.presencaDosPais}
+              error={errors.presencasPais}
             />
             <FormField
-              name="tipoAcolhimento"
+              name="tpAcolhimento"
               label="Tipo de Acolhimento"
               isSelect
-              options={tipoAcolhimento}
+              options={tpAcolhimento}
               onChange={onChange}
-              error={errors.tipoAcolhimento}
+              error={errors.tpAcolhimento}
             />
             <FormField
               name="abrigo"
@@ -278,14 +363,15 @@ export function FormServicoSocial() {
               options={abrigos}
               onChange={onChange}
               error={errors.abrigo}
+              isAPI
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
             <FormField
-              name="descricaoAbrigo"
+              name="dsAbrigo"
               label="Descrição do Abrigo"
               onChange={onChange}
-              error={errors.descricaoAbrigo}
+              error={errors.dsAbrigo}
             />
           </div>
         </FormGroup>
@@ -296,129 +382,129 @@ export function FormServicoSocial() {
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 col-span-2">
               <FormField
                 isGrid
-                name="banheiro"
+                name="nrBanheiro"
                 label="Banheiro"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.banheiro}
+                error={errors.nrBanheiro}
               />
               <FormField
                 isGrid
-                name="dvd"
-                label="DVD"
+                name="nrDvd"
+                label="Dvd"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.dvd}
+                error={errors.nrDvd}
               />
               <FormField
                 isGrid
-                name="automovel"
+                name="nrAutomoveis"
                 label="Automóvel"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.automovel}
+                error={errors.nrAutomoveis}
               />
               <FormField
                 isGrid
-                name="microondas"
+                name="nrMicroondas"
                 label="Micro-ondas"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.microondas}
+                error={errors.nrMicroondas}
               />
               <FormField
                 isGrid
-                name="lavaLoucas"
+                name="nrLavaLoucas"
                 label="Lava louças"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.lavaLoucas}
+                error={errors.nrLavaLoucas}
               />
               <FormField
                 isGrid
-                name="motocicleta"
+                name="nrMotocicleta"
                 label="Motocicleta"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.motocicleta}
+                error={errors.nrMotocicleta}
               />
               <FormField
                 isGrid
-                name="freezer"
+                name="nrFreezer"
                 label="Freezer"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.freezer}
+                error={errors.nrFreezer}
               />
               <FormField
                 isGrid
-                name="secadoraRoupa"
+                name="nrSecadoraRoupa"
                 label="Secadora roupa"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.secadoraRoupa}
+                error={errors.nrSecadoraRoupa}
               />
               <FormField
                 isGrid
-                name="empregadosDomesticos"
+                name="nrEmpregadosDomesticos"
                 label="Empregados domésticos"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.empregadosDomesticos}
+                error={errors.nrEmpregadosDomesticos}
               />
               <FormField
                 isGrid
-                name="aguaEncanada"
+                name="possuiAguaEncanda"
                 label="Água encanada"
                 isSelect
                 options={opcaoSimOuNao}
                 onChange={onChange}
-                error={errors.aguaEncanada}
+                error={errors.possuiAguaEncanda}
               />
               <FormField
                 isGrid
-                name="microcomputador"
+                name="nrMicrocomputador"
                 label="Microcomputador"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.microcomputador}
+                error={errors.nrMicrocomputador}
               />
               <FormField
                 isGrid
-                name="ruaPavimentada"
+                name="possuiRuaPavimentada"
                 label="Rua pavimentada"
                 isSelect
                 options={opcaoSimOuNao}
                 onChange={onChange}
-                error={errors.ruaPavimentada}
+                error={errors.possuiRuaPavimentada}
               />
               <FormField
                 isGrid
-                name="geladeira"
+                name="nrGeladeira"
                 label="Geladeira"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.geladeira}
+                error={errors.nrGeladeira}
               />
               <FormField
                 isGrid
-                name="lavaRoupa"
+                name="nrLavaRoupa"
                 label="Lava roupa"
                 isSelect
                 options={opcoesPadrao}
                 onChange={onChange}
-                error={errors.lavaRoupa}
+                error={errors.nrLavaRoupa}
               />
               <FormField
                 isGrid
@@ -523,34 +609,37 @@ export function FormServicoSocial() {
               name="periodicidadeTerapia"
               label="Periodicidade da Terapia"
               isSelect
+              isAPI
               options={periodicidadeTerapia}
               onChange={onChange}
               error={errors.periodicidadeTerapia}
             />
             <FormField
-              name="descricaoPeriodicidadeTerapia"
+              name="dsPeriodicidadeTerapia"
               label="Descrição da periodicidade da terapia"
               onChange={onChange}
-              error={errors.descricaoPeriodicidadeTerapia}
+              error={errors.dsPeriodicidadeTerapia}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols- gap-4 px-8 pt-4">
             <FormField
-              name="diasTurnoTerapia"
+              name="diasTurnosTerapia"
               label="Dias/turno da terapia"
               isSelect
               isMulti
-              options={diasTurnoTerapia}
+              isAPI
+              options={diasTurnosTerapia}
               onChange={(selected) =>
-                handleSelectionChange("diasTurnoTerapia", selected)
+                handleSelectionChange("diasTurnosTerapia", selected)
               }
-              error={errors.diasTurnoTerapia}
+              error={errors.diasTurnosTerapia}
             />
             <FormField
               name="tipoTerapia"
               label="Tipo de Terapia"
               isSelect
               isMulti
+              isAPI
               options={tipoTerapia}
               onChange={(selected) =>
                 handleSelectionChange("tipoTerapia", selected)
@@ -568,10 +657,10 @@ export function FormServicoSocial() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pt-4">
             <FormField
-              name="observacoes"
+              name="dsObservacao"
               label="Observações"
               onChange={onChange}
-              error={errors.observacoes}
+              error={errors.dsObservacao}
             />
           </div>
         </FormGroup>

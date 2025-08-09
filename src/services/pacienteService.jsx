@@ -27,28 +27,35 @@ const PacienteService = {
 
   getByProntuario: async (prontuario) => {
     try {
-      const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}`);
+      const response = await axios.get(
+        `${BASE_URL}?descricaoProntuario=${prontuario}`,
+      );
       return response.data;
     } catch (error) {
-      console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
+      console.error(
+        `Erro ao buscar paciente com prontuário ${prontuario}:`,
+        error,
+      );
       throw error;
     }
   },
 
   getByProntuarioComNome: async (prontuario, nome) => {
     try {
-
       if (!prontuario && !nome) {
-
       }
-      const response = await axios.get(`${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`);
+      const response = await axios.get(
+        `${BASE_URL}?descricaoProntuario=${prontuario}&dsNome=${nome}`,
+      );
       return response.data;
     } catch (error) {
-      console.error(`Erro ao buscar paciente com prontuário ${prontuario}:`, error);
+      console.error(
+        `Erro ao buscar paciente com prontuário ${prontuario}:`,
+        error,
+      );
       throw error;
     }
   },
-
 
   // Recuperar um paciente por ID
   getById: async (id) => {
@@ -63,8 +70,14 @@ const PacienteService = {
 
   // Criar um novo paciente
   create: async (dadosPaciente) => {
+    const paciente = dadosPaciente;
     try {
-      const response = await axios.post(BASE_URL, dadosPaciente);
+      console.log("PACIENTE ANTERS DE SALVA 02", paciente);
+      const response = await axios.post(BASE_URL, paciente, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return <div>{response.status}</div>;
     } catch (error) {
       console.error("Erro ao criar paciente:", error);

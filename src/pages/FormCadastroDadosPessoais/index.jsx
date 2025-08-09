@@ -5,9 +5,7 @@ import Nacionalidade from "../../models/enum/Nacionalidade.js";
 import RacaCor from "../../models/enum/RacaCor.js";
 import TipoMoradia from "../../models/enum/TipoMoradia.js";
 import EstadoCivil from "../../models/enum/EstadoCivil.js";
-import Ocupacao from "../../models/enum/Ocupacao.js";
 import Escolaridade from "../../models/enum/Escolaridade.js";
-import Procedencia from "../../models/enum/Procedencia.js";
 import Vinculo from "../../models/enum/Vinculo.js";
 import LocalNascimento from "../../models/enum/LocalNascimento.js";
 import SimOuNao from "../../models/enum/SimNao.js";
@@ -15,17 +13,18 @@ import Sexo from "../../models/enum/Sexo.js";
 import MunicipioService from "../../services/municipioService.jsx";
 import PacienteService from "../../services/pacienteService.jsx";
 import PacienteBuilder from "../../models/build/PacienteBuilder.js";
-import { validateField, validateForm } from "../../validator/validateFormPaciente.jsx";
-import MessageAlert from "../../util/MessageAlert.jsx";
+import BuilderPaciente from "../../models/build/BuilderPaciente.js";
 
-const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
-  value: key,
-  label: value,
-}));
-const ocupacao = Object.entries(Ocupacao).map(([key, value]) => ({
-  value: key,
-  label: value,
-}));
+import {
+  validateField,
+  validateForm,
+} from "../../validator/validateFormPaciente.jsx";
+import MessageAlert from "../../util/MessageAlert.jsx";
+import ServiceUtil from "../../services/serviceUtil.jsx";
+import CepService from "../../services/cepService.jsx";
+import ResponsavelService from "../../services/responsavelService.jsx";
+import ResponsavelBuilder from "../../models/build/ResponsavelBuilder.js";
+import EnderecoBuilder from "../../models/build/EnderecoBuilder.js";
 
 export function FormCadastroDadosPessoais() {
   const simOuNao = Object.entries(SimOuNao).map(([key, value]) => ({
@@ -45,7 +44,7 @@ export function FormCadastroDadosPessoais() {
     label: value,
   }));
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
-    ([key, value]) => ({ value: key, label: value })
+    ([key, value]) => ({ value: key, label: value }),
   );
   const estadoCivil = Object.entries(EstadoCivil).map(([key, value]) => ({
     value: key,
@@ -71,6 +70,8 @@ export function FormCadastroDadosPessoais() {
   const [loading, setLoading] = useState(false);
   const [cidades, setCidades] = useState([]);
   const [naturalidade, setNaturalidade] = useState([]);
+  const [ocupacoes, setOcupacoes] = useState([]);
+  const [procedencias, setProcedencias] = useState([]);
   const [message, setMessage] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
@@ -82,6 +83,72 @@ export function FormCadastroDadosPessoais() {
       const citys = await MunicipioService.getAll();
       setCidades(citys);
       setNaturalidade(citys);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarOcupacoes = async () => {
+    try {
+      setLoading(true);
+      const ocupacoesAPI = await ServiceUtil.getAllOcupacoes();
+      setOcupacoes(ocupacoesAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarProcedencias = async () => {
+    try {
+      setLoading(true);
+      const procedenciasAPI = await ServiceUtil.getAllProcedencias();
+      setProcedencias(procedenciasAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const findByIdProcedencia = async (id) => {
+    try {
+      setLoading(true);
+      const procedenciaAPI = await ServiceUtil.findByIdProcedencia(id);
+      return procedenciaAPI;
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const findByIdOcupacao = async (id) => {
+    try {
+      setLoading(true);
+      const ocupacaoAPI = await ServiceUtil.findByIdOcupacao(id);
+      return ocupacaoAPI;
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const findByIdMunicipio = async (id) => {
+    try {
+      setLoading(true);
+      const municipioAPI = await MunicipioService.getById(id);
+      return municipioAPI;
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const findEnderecoByCep = async (cep) => {
+    try {
+      setLoading(true);
+      const enderecoAPI = await CepService.getById(cep);
+      return enderecoAPI;
     } catch (error) {
     } finally {
       setLoading(false);
@@ -102,6 +169,7 @@ export function FormCadastroDadosPessoais() {
     descricaoCartaoSUS: { required: true },
     localDeNascimento: { required: true },
     dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
+    endereco: { required: false },
     cep: { required: true },
     logradouro: { required: true },
     numero: { required: true },
@@ -154,6 +222,8 @@ export function FormCadastroDadosPessoais() {
 
   useEffect(() => {
     carregarCidadesOuMunicipios();
+    carregarProcedencias();
+    carregarOcupacoes();
   }, []);
 
   const [dadosFormulario, setDadosFormulario] = useState({
@@ -171,6 +241,7 @@ export function FormCadastroDadosPessoais() {
     descricaoCartaoSUS: "",
     localDeNascimento: "",
     dsOutroTipoDeLocalDeNascimentoPaciente: "",
+    endereco: {},
     cep: "",
     logradouro: "",
     numero: "",
@@ -203,9 +274,9 @@ export function FormCadastroDadosPessoais() {
     escolaridadeMae: "",
     escolaridadePai: "",
     escolaridadeResponsavel: "",
-    ocupacaoMae: "",
-    ocupacaoPai: "",
-    ocupacaoResponsavel: "",
+    ocupacaoMae: {},
+    ocupacaoPai: {},
+    ocupacaoResponsavel: {},
     descricaoOcupacaoMae: "",
     descricaoOcupacaoPai: "",
     descricaoOcupacaoResponsavel: "",
@@ -213,7 +284,7 @@ export function FormCadastroDadosPessoais() {
     responsavelPelaCriancaPai: "",
     vinculoResponsavel: "",
     descricaoVinculoResponsavel: "",
-    procedencia: "",
+    procedencia: {},
     dsOutroTipoDeProcedenciaPaciente: "",
   });
 
@@ -260,9 +331,17 @@ export function FormCadastroDadosPessoais() {
 
   const onChange = async (e) => {
     const { name, value } = e.target;
-    let formattedValue = value;
 
-    const upperCaseValue = formattedValue.toUpperCase();
+    let parsedValue;
+
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value;
+    }
+
+    const upperCaseValue =
+      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
 
     const keys = name.split(".");
     if (keys.length > 1) {
@@ -292,12 +371,18 @@ export function FormCadastroDadosPessoais() {
       } else if (value.length === 9) {
         try {
           const cepData = await fetchCEPData(value);
+          const idEndereco = await CepService.getById(value);
+          const cidade = cidades.find(
+            (cidade) => cidade.nomeMunicipio === cepData.localidade,
+          );
+          console.log("Cidade encontrada:", cidade);
           setDadosFormulario((prevState) => ({
             ...prevState,
             logradouro: cepData.logradouro || "",
             bairro: cepData.bairro || "",
-            municipioLogradouro: cepData.localidade || "",
+            municipioLogradouro: cidade ? cidade : {},
             estado: cepData.uf || "",
+            endereco: idEndereco,
           }));
         } catch (error) {
           console.error("Erro ao buscar CEP:", error);
@@ -315,7 +400,7 @@ export function FormCadastroDadosPessoais() {
           : dadosFormulario.responsavelPelaCriancaMae,
         name === "responsavelPelaCriancaPai"
           ? value
-          : dadosFormulario.responsavelPelaCriancaPai
+          : dadosFormulario.responsavelPelaCriancaPai,
       );
     }
 
@@ -330,22 +415,155 @@ export function FormCadastroDadosPessoais() {
     const formErrors = validateForm(dadosFormulario, validationRules);
     setErrors(formErrors);
     if (Object.keys(formErrors).length === 0) {
-      enviarPaciente(dadosFormulario);
+      console.log("DADOS_FORMULARIO", dadosFormulario);
+      const paciente = new PacienteBuilder()
+        .withFormulario(dadosFormulario)
+        .build();
+      console.log("PACIENTE", paciente);
+      enviarPaciente(paciente);
     } else {
       console.log("Erros no formulário:", formErrors);
     }
   };
 
-  async function enviarPaciente(dadosFormulario) {
-    const paciente = new PacienteBuilder()
-      .withFormulario(dadosFormulario)
-      .build();
+  async function returnValues(dadosFormulario) {
+    const pacientePreSalvo = new BuilderPaciente();
+    const endereco = await criarEndereco();
+    const maeResponsavel = await criarResponsavelMae();
+    const paiResponsavel = await criarResponsavelPai();
+    const responsavel = await criarResponsavel();
 
-    console.log(paciente);
+    pacientePreSalvo
+      .withCPF(dadosFormulario.cpf)
+      .withAdmissao(dadosFormulario.dataAdmissao)
+      .withDataNascimento(dadosFormulario.dataNascimento)
+      .withCartaoSUS(dadosFormulario.descricaoCartaoSUS)
+      .withDescricaoProntuario(dadosFormulario.descricaoProntuario)
+      .withNome(dadosFormulario.nomeCompleto)
+      .withLocalDeNascimento(dadosFormulario.localDeNascimento)
+      .withSexo(dadosFormulario.sexo)
+      .withRacaCor(dadosFormulario.tipoRacaCor)
+      .withOutrosTipos(
+        dadosFormulario.dsOutroTipoDeProcedenciaPaciente,
+        dadosFormulario.dsOutroTipoDeLocalDeNascimentoPaciente,
+      )
+      .withConstaPaiMae(dadosFormulario.constaPai, dadosFormulario.constaMae)
+      .withNacionalidade(dadosFormulario.nacionalidade)
+      .withProcedencia(dadosFormulario.procedencia)
+      .withNaturalidade(dadosFormulario.naturalidade)
+      .withEndereco(endereco)
+      .withMaeResponsavel(dadosFormulario.responsavelPelaCriancaMae)
+      .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai)
+      .withResponsavel("paiResponsavel", paiResponsavel)
+      .withResponsavel("maeResponsavel", maeResponsavel)
+      .withResponsavel("responsavel", responsavel);
+    return pacientePreSalvo.build();
+  }
+
+  async function criarResponsavelMae() {
+    let maeResponsavel;
+    try {
+      maeResponsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfMae,
+      );
+    } catch (error) {
+      console.log(dadosFormulario.ocupacaoMae);
+      if (error.response && error.response.status === 404) {
+        console.log(dadosFormulario.ocupacaoMae);
+
+        maeResponsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfMae)
+          .withDataNascimento(dadosFormulario.dataNascimentoMae)
+          .withEscolaridade(dadosFormulario.escolaridadeMae)
+          .withEstadoCivil(dadosFormulario.estadoCivilMae)
+          .withNome(dadosFormulario.nomeMae)
+          .withOcupacao(dadosFormulario.ocupacaoMae)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoMae)
+          .withRacaCor(dadosFormulario.tipoRacaCorMae)
+          .withTelefone1(dadosFormulario.telefone1Mae)
+          .withTelefone2(dadosFormulario.telefone2Mae)
+          .build();
+        console.log(maeResponsavel);
+      } else {
+        throw error;
+      }
+    }
+    return maeResponsavel;
+  }
+
+  async function criarResponsavelPai() {
+    let paiResponsavel;
 
     try {
+      paiResponsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfPai,
+      );
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        paiResponsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfPai)
+          .withDataNascimento(dadosFormulario.dataNascimentoPai)
+          .withEscolaridade(dadosFormulario.escolaridadePai)
+          .withEstadoCivil(dadosFormulario.estadoCivilPai)
+          .withNome(dadosFormulario.nomePai)
+          .withOcupacao(dadosFormulario.ocupacaoPai)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoPai)
+          .withRacaCor(dadosFormulario.tipoRacaCorPai)
+          .withTelefone1(dadosFormulario.telefone1Pai)
+          .withTelefone2(dadosFormulario.telefone2Pai)
+          .build();
+      }
+    }
+    return paiResponsavel;
+  }
+
+  async function criarResponsavel() {
+    let responsavel;
+    try {
+      responsavel = await ResponsavelService.getByCPF(
+        dadosFormulario.cpfResponsavel,
+      );
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        responsavel = new ResponsavelBuilder()
+          .withCPF(dadosFormulario.cpfResponsavel)
+          .withDataNascimento(dadosFormulario.dataNascimentoResponsavel)
+          .withEscolaridade(dadosFormulario.escolaridadeResponsavel)
+          .withEstadoCivil(dadosFormulario.estadoCivilResponsavel)
+          .withNome(dadosFormulario.nomeResponsavel)
+          .withOcupacao(dadosFormulario.ocupacaoResponsavel)
+          .withOutraOcupacao(dadosFormulario.descricaoOcupacaoResponsavel)
+          .withTipoVinculo(dadosFormulario.vinculoResponsavel)
+          .withOutroTipoVinculo(dadosFormulario.descricaoVinculoResponsavel)
+          .withRacaCor(dadosFormulario.tipoRacaCorResponsavel)
+          .withTelefone1(dadosFormulario.telefone1Responsavel)
+          .withTelefone2(dadosFormulario.telefone2Responsavel)
+          .build();
+      }
+    }
+    return responsavel;
+  }
+
+  async function criarEndereco() {
+    const endereco = new EnderecoBuilder()
+      .withCep(dadosFormulario.cep)
+      .withLogradouro(dadosFormulario.logradouro)
+      .withNumero(dadosFormulario.numero)
+      .withComplemento(dadosFormulario.complemento)
+      .withBairro(dadosFormulario.bairro)
+      .withTpMoradia(dadosFormulario.tpMoradia)
+      .withMunicipio(dadosFormulario.municipioLogradouro)
+      .build();
+    return endereco;
+  }
+
+  async function enviarPaciente(paciente) {
+    paciente = await returnValues(dadosFormulario);
+
+    try {
+      console.log("PACIENTE ANTES DE SALVAR", paciente);
       const resposta = await PacienteService.create(paciente);
-      handleShowAlert(resposta != null ? "201" : "400");
+      handleShowAlert(resposta.status ? "201" : "400");
     } catch (erro) {
       if (erro instanceof Promise) {
         erro = await erro;
@@ -661,7 +879,8 @@ export function FormCadastroDadosPessoais() {
               label="Ocupação"
               styleClass="campoObrigatorio"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
               error={errors.ocupacaoMae}
             />
@@ -778,7 +997,8 @@ export function FormCadastroDadosPessoais() {
               label="Ocupação"
               styleClass="campoObrigatorio"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.ocupacaoPai}
@@ -892,7 +1112,8 @@ export function FormCadastroDadosPessoais() {
               label="Ocupação"
               styleClass="campoObrigatorio"
               isSelect
-              options={ocupacao}
+              isAPI
+              options={ocupacoes}
               onChange={onChange}
               error={errors.ocupacaoResponsavel}
             />
@@ -912,6 +1133,7 @@ export function FormCadastroDadosPessoais() {
               name="procedencia"
               label="Procedência"
               isSelect
+              isAPI
               styleClass="campoObrigatorio"
               options={procedencias}
               onChange={onChange}

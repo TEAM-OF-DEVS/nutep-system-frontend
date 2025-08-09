@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-const MultiSelectCheckbox = ({ options = [], onChange }) => {
+const MultiSelectCheckbox = ({
+  options = [],
+  onChange,
+  displayAttribute,
+  isAPI = false,
+}) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -8,10 +13,12 @@ const MultiSelectCheckbox = ({ options = [], onChange }) => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionChange = (option) => {
-    const updatedOptions = selectedOptions.some(
-      (item) => item.value === option.value,
+    const updatedOptions = selectedOptions.some((item) =>
+      isAPI ? item === option : item.value === option.value,
     )
-      ? selectedOptions.filter((item) => item.value !== option.value)
+      ? selectedOptions.filter((item) =>
+          isAPI ? item !== option : item.value !== option.value,
+        )
       : [...selectedOptions, option];
 
     setSelectedOptions(updatedOptions);
@@ -42,7 +49,7 @@ const MultiSelectCheckbox = ({ options = [], onChange }) => {
       >
         <span>
           {selectedOptions.length > 0
-            ? selectedOptions.map((item) => item.label).join(", ")
+            ? selectedOptions.map((item) => item[displayAttribute]).join(", ")
             : "Selecione"}
         </span>
         <span className="ml-2 pb-2">⌄</span>
@@ -58,12 +65,12 @@ const MultiSelectCheckbox = ({ options = [], onChange }) => {
               <input
                 type="checkbox"
                 checked={selectedOptions.some(
-                  (item) => item.value === option.value,
+                  (item) => item[displayAttribute] === option[displayAttribute],
                 )}
                 onChange={() => handleOptionChange(option)}
                 className="mr-2"
               />
-              {option.label}
+              {option[displayAttribute]}
             </label>
           ))}
         </div>

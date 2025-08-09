@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE = import.meta.env.VITE_BASE_URL;
-const BASE_URL = BASE + "/servicos_sociais";
+const BASE_URL = BASE + "/servicoSocial";
 
 const ServicoSocialService = {
   // Recuperar todos os pacientes
@@ -20,11 +20,13 @@ const ServicoSocialService = {
       const response = await axios.get(`${BASE_URL}?paciente=${paciente}`);
       return response.data;
     } catch (error) {
-      console.error(`Erro ao buscar serviço social com prontuário ${paciente}:`, error);
+      console.error(
+        `Erro ao buscar serviço social com prontuário ${paciente}:`,
+        error,
+      );
       throw error;
     }
   },
-
 
   // Recuperar um paciente por ID
   getById: async (id) => {

@@ -1,181 +1,191 @@
 import SimOuNao from "../enum/SimNao";
 
 class ServicoSocialBuilder {
-    constructor() {
-        this.dadosFormulario = {}
-        this.servicoSocial = {
-            paciente: {},
-            configuracaoFamiliar: "",
-            descricaoConfiguracaoFamiliar: "",
-            situacaoConjugalPais: "",
-            presencaDosPais: "",
-            tipoAcolhimento: "",
-            abrigo: "",
-            descricaoAbrigo: "",
-            banheiro: "",
-            dvd: "",
-            automovel: "",
-            microondas: "",
-            lavaLoucas: "",
-            motocicleta: "",
-            freezer: "",
-            secadoraRoupa: "",
-            empregadosDomesticos: "",
-            aguaEncanada: "",
-            microcomputador: "",
-            ruaPavimentada: "",
-            geladeira: "",
-            grauInstrucaoChefeFamilia: "",
-            lavaRoupa: "",
-            periodicidadeTerapia: "",
-            descricaoPeriodicidadeTerapia: "",
-            diasTurnoTerapia: "",
-            tipoTerapia: "",
-            situacaoAtualInstituicao: "",
-            observacoes: ""
-        };
-    }
+  constructor() {
+    this.dadosFormulario = {};
+    this.servicoSocial = {
+      dtAtendimento: "",
+      dsAbrigo: "",
+      possuiRuaPavimentada: "",
+      possuiAguaEncanda: "",
+      nrSecadoraRoupa: "",
+      nrMotocicleta: "",
+      nrMicroondas: "",
+      nrDvd: "",
+      nrLavaRoupa: "",
+      nrFreezer: "",
+      nrGeladeira: "",
+      nrLavaLoucas: "",
+      nrMicrocomputador: "",
+      nrAutomoveis: "",
+      nrEmpregadosDomesticos: "",
+      nrBanheiro: "",
+      dsObservacao: "",
+      dsConfiguracaoFamiliar: "",
+      dsPeriodicidadeTerapia: "",
+      configuracaoFamiliar: "",
+      tpAcolhimento: "",
+      grauInstrucaoChefeFamilia: "",
+      situacaoConjugal: "",
+      presencasPais: "",
+      situacaoAtualInstituicao: "",
+      paciente: {},
+      abrigo: {},
+      periodicidadeTerapia: {},
+      diasTurnosTerapia: "",
+      tipoTerapia: "",
+    };
+  }
 
-    setCampo(campo, valor) {
-        this.servicoSocial[campo] = valor;
-        return this;
-    }
+  setCampo(campo, valor) {
+    this.servicoSocial[campo] = valor;
+    return this;
+  }
 
-    withPaciente(paciente) {
-        return this.setCampo("paciente", { ...paciente });
-    }
+  withPaciente(paciente) {
+    return this.setCampo("paciente", { ...paciente });
+  }
 
-    withDataAtendimento(dataAtendimento) {
-        return this.setCampo("dataAtendimento", dataAtendimento);
-    }
+  withTipoTerapia(tipoTerapia) {
+    return this.setCampo("tipoTerapia", { ...tipoTerapia });
+  }
 
-    withConfiguracaoFamiliar(configuracaoFamiliar) {
-        return this.setCampo("configuracaoFamiliar", configuracaoFamiliar);
-    }
+  withDataAtendimento(dataAtendimento) {
+    return this.setCampo("dtAtendimento", dataAtendimento);
+  }
 
-    withDescricaoConfiguracaoFamiliar(descricaoConfiguracaoFamiliar) {
-        return this.setCampo("descricaoConfiguracaoFamiliar", descricaoConfiguracaoFamiliar);
-    }
+  withConfiguracaoFamiliar(configuracaoFamiliar) {
+    return this.setCampo("configuracaoFamiliar", configuracaoFamiliar);
+  }
 
-    withSituacaoConjugalPais(situacaoConjugalPais) {
-        return this.setCampo("situacaoConjugalPais", situacaoConjugalPais);
-    }
+  withDescricaoConfiguracaoFamiliar(descricaoConfiguracaoFamiliar) {
+    return this.setCampo(
+      "dsConfiguracaoFamiliar",
+      descricaoConfiguracaoFamiliar,
+    );
+  }
 
-    withPresencaDosPais(presencaDosPais) {
-        return this.setCampo("presencaDosPais", presencaDosPais);
-    }
+  withSituacaoConjugalPais(situacaoConjugalPais) {
+    return this.setCampo("situacaoConjugal", situacaoConjugalPais);
+  }
 
-    withTipoAcolhimento(tipoAcolhimento) {
-        return this.setCampo("tipoAcolhimento", tipoAcolhimento);
-    }
+  withPresencaDosPais(presencaDosPais) {
+    return this.setCampo("presencasPais", presencaDosPais);
+  }
 
-    withAbrigo(abrigo) {
-        return this.setCampo("abrigo", abrigo);
-    }
+  withTipoAcolhimento(tipoAcolhimento) {
+    return this.setCampo("tpAcolhimento", tipoAcolhimento);
+  }
 
-    withDescricaoAbrigo(descricaoAbrigo) {
-        return this.setCampo("descricaoAbrigo", descricaoAbrigo);
-    }
+  withAbrigo(abrigo) {
+    return this.setCampo("abrigo", abrigo);
+  }
 
-    withBanheiro(banheiro) {
-        return this.setCampo("banheiro", banheiro);
-    }
+  withDescricaoAbrigo(descricaoAbrigo) {
+    return this.setCampo("dsAbrigo", descricaoAbrigo);
+  }
 
-    withDvd(dvd) {
-        return this.setCampo("dvd", dvd);
-    }
+  withBanheiro(banheiro) {
+    return this.setCampo("nrBanheiro", banheiro);
+  }
 
-    withAutomovel(automovel) {
-        return this.setCampo("automovel", automovel);
-    }
+  withDvd(dvd) {
+    return this.setCampo("nrDvd", dvd);
+  }
 
-    withMicroOndas(microondas) {
-        return this.setCampo("microondas", microondas);
-    }
+  withAutomovel(automovel) {
+    return this.setCampo("nrAutomoveis", automovel);
+  }
 
-    withLavaLoucas(lavaLoucas) {
-        return this.setCampo("lavaLoucas", lavaLoucas);
-    }
+  withMicroOndas(microondas) {
+    return this.setCampo("nrMicroondas", microondas);
+  }
 
-    withMotocicleta(motocicleta) {
-        return this.setCampo("motocicleta", motocicleta);
-    }
+  withLavaLoucas(lavaLoucas) {
+    return this.setCampo("nrLavaLoucas", lavaLoucas);
+  }
 
-    withFreezer(freezer) {
-        return this.setCampo("freezer", freezer);
-    }
+  withMotocicleta(motocicleta) {
+    return this.setCampo("nrMotocicleta", motocicleta);
+  }
 
-    withSecadoraRoupa(secadoraRoupa) {
-        return this.setCampo("secadoraRoupa", secadoraRoupa);
-    }
+  withFreezer(freezer) {
+    return this.setCampo("nrFreezer", freezer);
+  }
 
-    withEmpregadosDomesticos(empregadosDomesticos) {
-        return this.setCampo("empregadosDomesticos", empregadosDomesticos);
-    }
+  withSecadoraRoupa(secadoraRoupa) {
+    return this.setCampo("nrSecadoraRoupa", secadoraRoupa);
+  }
 
-    withAguaEncanada(aguaEncanada) {
-        return this.setCampo("aguaEncanada", aguaEncanada);
-    }
+  withEmpregadosDomesticos(empregadosDomesticos) {
+    return this.setCampo("nrEmpregadosDomesticos", empregadosDomesticos);
+  }
 
-    withMicrocomputador(microcomputador) {
-        return this.setCampo("microcomputador", microcomputador);
-    }
+  withAguaEncanada(aguaEncanada) {
+    return this.setCampo("possuiAguaEncanda", aguaEncanada);
+  }
 
-    withRuaPavimentada(ruaPavimentada) {
-        return this.setCampo("ruaPavimentada", ruaPavimentada);
-    }
+  withMicrocomputador(microcomputador) {
+    return this.setCampo("nrMicrocomputador", microcomputador);
+  }
 
-    withGeladeira(geladeira) {
-        return this.setCampo("geladeira", geladeira);
-    }
+  withRuaPavimentada(ruaPavimentada) {
+    return this.setCampo("possuiRuaPavimentada", ruaPavimentada);
+  }
 
-    withGrauInstrucaoChefeFamilia(grauInstrucaoChefeFamilia) {
-        return this.setCampo("grauInstrucaoChefeFamilia", grauInstrucaoChefeFamilia);
-    }
+  withGeladeira(geladeira) {
+    return this.setCampo("nrGeladeira", geladeira);
+  }
 
-    withLavaRoupa(lavaRoupa) {
-        return this.setCampo("lavaRoupa", lavaRoupa);
-    }
+  withGrauInstrucaoChefeFamilia(grauInstrucaoChefeFamilia) {
+    return this.setCampo(
+      "grauInstrucaoChefeFamilia",
+      grauInstrucaoChefeFamilia,
+    );
+  }
 
-    withPeriodicidadeTerapia(periodicidadeTerapia) {
-        return this.setCampo("periodicidadeTerapia", periodicidadeTerapia);
-    }
+  withLavaRoupa(lavaRoupa) {
+    return this.setCampo("nrLavaRoupa", lavaRoupa);
+  }
 
-    withDescricaoPeriodicidadeTerapia(descricaoPeriodicidadeTerapia) {
-        return this.setCampo("descricaoPeriodicidadeTerapia", descricaoPeriodicidadeTerapia);
-    }
+  withPeriodicidadeTerapia(periodicidadeTerapia) {
+    return this.setCampo("periodicidadeTerapia", periodicidadeTerapia);
+  }
 
-    withDiasTurnoTerapia(diasTurnoTerapia) {
-        return this.setCampo("diasTurnoTerapia", diasTurnoTerapia);
-    }
+  withDescricaoPeriodicidadeTerapia(descricaoPeriodicidadeTerapia) {
+    return this.setCampo(
+      "dsPeriodicidadeTerapia",
+      descricaoPeriodicidadeTerapia,
+    );
+  }
 
-    withTipoTerapia(tipoTerapia) {
-        return this.setCampo("tipoTerapia", tipoTerapia);
-    }
+  withDiasTurnoTerapia(diasTurnoTerapia) {
+    return this.setCampo("diasTurnosTerapia", diasTurnoTerapia);
+  }
+  nrAutomoveis;
 
-    withSituacaoAtualInstituicao(situacaoAtualInstituicao) {
-        return this.setCampo("situacaoAtualInstituicao", situacaoAtualInstituicao);
-    }
+  withSituacaoAtualInstituicao(situacaoAtualInstituicao) {
+    return this.setCampo("situacaoAtualInstituicao", situacaoAtualInstituicao);
+  }
 
-    withObservacoes(observacoes) {
-        return this.setCampo("observacoes", observacoes);
-    }
+  withObservacoes(observacoes) {
+    return this.setCampo("dsObservacao", observacoes);
+  }
 
-    withDados(dados) {
-        Object.keys(dados).forEach(campo => {
-          if (this.servicoSocial.hasOwnProperty(campo)) {
-            this.servicoSocial[campo] = dados[campo];
-          }
-        });
-        return this;
+  withDados(dados) {
+    Object.keys(dados).forEach((campo) => {
+      if (this.servicoSocial.hasOwnProperty(campo)) {
+        this.servicoSocial[campo] = dados[campo];
       }
+    });
+    return this;
+  }
 
-    build() {
-        return {
-            ...this.servicoSocial,
-            dataCriacao: new Date().toLocaleString("pt-Br", { timeZone: "America/Sao_Paulo" })
-        };
-    }
+  build() {
+    return {
+      ...this.servicoSocial,
+    };
+  }
 }
 
 export default ServicoSocialBuilder;

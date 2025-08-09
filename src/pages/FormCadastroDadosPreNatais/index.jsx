@@ -133,30 +133,30 @@ export function FormCadastroDadosPreNatais() {
     descricaoMeioAbortivo: "",
     consanguinidadePais: "",
     descricaoConsanguinidade: "",
-    intercorrenciasGestacao: [],
     descricaoIntercorrencias: "",
-    alergias: [],
     descricaoAlergias: "",
     sangramentoGravidez: "",
     periodoSangramento: "",
-    infeccoes: [],
     descricaoInfeccoes: "",
-    doencasPreExistentesMae: [],
     descricaoDoencasPreExistentes: "",
-    usoDrogasMae: [],
     descricaoUsoDeDrogas: "",
-    examesRealizadosMae: [],
     descricaoExamesMae: "",
-    medicamentosUtilizadosMae: [],
     descricaoMedicamentosMae: "",
     hospitalizacoesGestacao: "",
     periodoHospitalizacaoSemanas: "",
-    motivoHospitalizacao: [],
     diasHospitalizacao: "",
     descricaoMotivoHospitalizacao: "",
-    diagnostico: [],
     descricaoDiagnostico: "",
     observacoes: "",
+    intercorrenciasGestacao: [],
+    alergias: [],
+    infeccoes: [],
+    doencasPreExistentesMae: [],
+    usoDrogasMae: [],
+    examesRealizadosMae: [],
+    medicamentosUtilizadosMae: [],
+    motivoHospitalizacao: [],
+    diagnostico: [],
   });
 
   const handleShowAlert = (dados) => {
@@ -174,6 +174,17 @@ export function FormCadastroDadosPreNatais() {
 
     const { name, value } = e.target;
 
+    let parsedValue;
+
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value;
+    }
+
+    const upperCaseValue =
+      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
+
     const keys = name.split(".");
 
     if (keys.length > 1) {
@@ -181,13 +192,13 @@ export function FormCadastroDadosPreNatais() {
         ...prevState,
         [keys[0]]: {
           ...prevState[keys[0]],
-          [keys[1]]: value,
+          [keys[1]]: upperCaseValue,
         },
       }));
     } else {
       setDadosFormulario((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: upperCaseValue,
       }));
     }
 

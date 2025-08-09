@@ -1,6 +1,6 @@
 describe("Formulário de Cadastro de Paciente", () => {
   beforeEach(() => {
-    cy.visit("/dados-pessoais");
+    cy.visit("/dashboard/dados-pessoais");
     cy.viewport(1920, 1080);
   });
 
