@@ -44,6 +44,16 @@ export function FormServicoSocial() {
   const tipoTerapia = Object.entries(TipoTerapia).map(([key, value]) => ({ value: key, label: value }));
   const situacaoAtualInstituicao = Object.entries(SituacaoAtualInstituicao).map(([key, value]) => ({ value: key, label: value }));
 
+  function formatarDataParaInput(dataBR) {
+    if (!dataBR) return '';
+    const [dia, mes, ano] = dataBR.split('/');
+    return `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+  }
+
+  const dataFormatada = pacienteEncontrado?.dataNascimento
+    ? formatarDataParaInput(pacienteEncontrado.dataNascimento)
+    : '';
+
   const validationRules = {
     dataAtendimento: { required: true },
   };
@@ -113,8 +123,8 @@ export function FormServicoSocial() {
   };
 
   useEffect(() => {
-  console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
-}, [dadosFormulario]);
+    console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
+  }, [dadosFormulario]);
 
   const handleSelectionChange = (name, selected) => {
     setDadosFormulario((prevState) => ({
@@ -156,14 +166,14 @@ export function FormServicoSocial() {
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
     setErrors(formErrors);
-  
+
     if (Object.keys(formErrors).length === 0) {
       setIsModalOpen(true);
     } else {
       console.log("Erros no formulário:", formErrors);
     }
   };
-  
+
   const handleConfirmSave = async () => {
     setIsModalOpen(false);
     await enviarDadosServicoSocialPaciente(dadosFormulario);
@@ -190,25 +200,25 @@ export function FormServicoSocial() {
   return (
     <>
       <form>
-      {isModalOpen && (
-  message === "201" ? (
-    <ModalSave
-      title="Cadastrado com sucesso!"
-      message="O paciente foi cadastrado com sucesso."
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-      onConfirm={handleConfirmSave}
-    />
-  ) : message === "400" ? (
-    <MessageAlert
-      title="Erro no cadastro"
-      message="Houve um problema ao cadastrar o paciente."
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-    />
-  ) : null
-)}
-
+        {isModalOpen && (
+          message === "201" ? (
+            <ModalSave
+              title="Cadastrado com sucesso!"
+              message="O paciente foi cadastrado com sucesso."
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              onConfirm={handleConfirmSave}
+            />
+          ) : message === "400" ? (
+            <MessageAlert
+              title="Erro no cadastro"
+              message="Houve um problema ao cadastrar o paciente."
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+          ) : null
+        )}
+        
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (
           <FormGroup
@@ -221,17 +231,20 @@ export function FormServicoSocial() {
                 placeholder="N° do Prontuário"
                 value={pacienteEncontrado?.descricaoProntuario || ""}
               />
+              
               <FormField
                 label="Nome Completo"
                 placeholder="Nome Completo"
                 value={pacienteEncontrado?.dsNome || ""}
               />
+
               <FormField
                 label="Data de Nascimento"
                 placeholder="00/00/0000"
-                type="Date"
-                value={pacienteEncontrado?.dataNascimento || ""}
+                type="date"
+                value={dataFormatada}
               />
+
               <FormField
                 name="dataAtendimento"
                 label="Data do Atendimento"
@@ -552,7 +565,7 @@ export function FormServicoSocial() {
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols- gap-4 px-8 pt-4">
-           <FormField
+            <FormField
               name="diasTurnoTerapia"
               label="Dias/turno da terapia"
               isSelect

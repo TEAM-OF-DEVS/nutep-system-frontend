@@ -177,7 +177,7 @@ export function FormCadastroDadosPessoais() {
     telefone2Mae: { required: false },
     escolaridadeMae: { required: true },
     ocupacaoMae: { required: true },
-    descricaoOcupacaoMae: { required: false },
+    // descricaoOcupacaoMae: { required: false },
 
     nomePai: { required: !isChecked },
     dataNascimentoPai: { required: !isChecked },
@@ -590,23 +590,26 @@ export function FormCadastroDadosPessoais() {
   return (
     <>
       <form>
-        {HttpStatusGroup.isSuccess(code) ? (
+        {(HttpStatusGroup.isSuccess(code) || HttpStatusGroup.isClientError(code)) && (
           <ModalSave
-            title="Cadastrado com sucesso!"
-            message="O paciente foi cadastrado com sucesso."
+            title={
+              HttpStatusGroup.isSuccess(code)
+                ? "Cadastrado com sucesso!"
+                : "Erro no cadastro"
+            }
+            message={
+              HttpStatusGroup.isSuccess(code)
+                ? "O paciente foi cadastrado com sucesso."
+                : message || "Houve um problema ao cadastrar o paciente."
+            }
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => {
+              setIsModalOpen(false);
+              setCode(undefined); // ← importante: resetar o status
+            }}
           />
-        ) : HttpStatusGroup.isClientError(code) ? (
-          <ModalSave
-            title="Erro no cadastro"
-            message={`${
-              message ? message : "Houve um problema ao cadastrar o paciente."
-            }`}
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
-        ) : null}
+        )}
+
 
         <FormGroup
           title="Dados do Paciente"

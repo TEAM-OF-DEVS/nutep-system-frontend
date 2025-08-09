@@ -17,7 +17,7 @@ const PacienteService = {
 
   getByNome: async (nome) => {
     try {
-      const response = await axios.get(`${BASE_URL}?dsNome=${nome}`);
+      const response = await axios.get(`${BASE_URL}/find/nome/${nome}`);
       return response.data;
     } catch (error) {
       console.error(`Erro ao buscar paciente com nome ${nome}:`, error);

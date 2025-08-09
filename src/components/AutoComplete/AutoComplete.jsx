@@ -30,8 +30,8 @@ export const AutoComplete = ({ onSelectPaciente }) => {
 
             console.log("Resposta da API:", response);
 
-            if (response.length > 0) {
-                const pacienteEncontrado = response[0];
+            if (response) {
+                const pacienteEncontrado = response;
                 setNome(pacienteEncontrado.dsNome);
                 setPaciente(pacienteEncontrado);
                 onSelectPaciente(pacienteEncontrado);
