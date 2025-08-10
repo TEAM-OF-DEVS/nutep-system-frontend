@@ -82,6 +82,12 @@ export function FormCadastroDadosPessoais() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
 
+  useEffect(() => {
+    window.onload = () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   const carregarEstados = async () => {
     try {
       setLoading(true);
@@ -611,24 +617,24 @@ export function FormCadastroDadosPessoais() {
       <form>
         {(HttpStatusGroup.isSuccess(code) ||
           HttpStatusGroup.isClientError(code)) && (
-          <ModalSave
-            title={
-              HttpStatusGroup.isSuccess(code)
-                ? "Cadastrado com sucesso!"
-                : "Erro no cadastro"
-            }
-            message={
-              HttpStatusGroup.isSuccess(code)
-                ? "O paciente foi cadastrado com sucesso."
-                : message || "Houve um problema ao cadastrar o paciente."
-            }
-            isOpen={isModalOpen}
-            onClose={() => {
-              setIsModalOpen(false);
-              setCode(undefined); // ← importante: resetar o status
-            }}
-          />
-        )}
+            <ModalSave
+              title={
+                HttpStatusGroup.isSuccess(code)
+                  ? "Cadastrado com sucesso!"
+                  : "Erro no cadastro"
+              }
+              message={
+                HttpStatusGroup.isSuccess(code)
+                  ? "O paciente foi cadastrado com sucesso."
+                  : message || "Houve um problema ao cadastrar o paciente."
+              }
+              isOpen={isModalOpen}
+              onClose={() => {
+                setIsModalOpen(false);
+                setCode(undefined); // ← importante: resetar o status
+              }}
+            />
+          )}
 
         {isMessageOpen && (
           <MessageAlert
@@ -691,10 +697,16 @@ export function FormCadastroDadosPessoais() {
               label="CPF"
               styleClass="campoObrigatorio"
               placeholder="000.000.000-00"
-              onChange={onChange}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setDadosFormulario((prev) => ({
+                  ...prev,
+                  [name]: value,
+                }));
+              }}
               onBlur={handleAlertCPF}
               error={errors.cpf}
-              value={dadosFormulario.cpf}
+              value={dadosFormulario.cpf ?? ''}
             />
             <FormField
               name="nacionalidade"
@@ -875,9 +887,15 @@ export function FormCadastroDadosPessoais() {
               label="CPF"
               styleClass="campoObrigatorio"
               placeholder="000.000.000-00"
-              onChange={onChange}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setDadosFormulario((prev) => ({
+                  ...prev,
+                  [name]: value,
+                }));
+              }}
               error={errors.cpfMae}
-              value={dadosFormulario.cpfMae}
+              value={dadosFormulario.cpfMae ?? ''}
             />
             <FormField
               name="responsavelPelaCriancaMae"
@@ -1002,10 +1020,17 @@ export function FormCadastroDadosPessoais() {
               name="cpfPai"
               label="CPF"
               styleClass="campoObrigatorio"
-              onChange={onChange}
+              placeholder="000.000.000-00"
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setDadosFormulario((prev) => ({
+                  ...prev,
+                  [name]: value,
+                }));
+              }}
               isDisable={isChecked}
               error={errors.cpfPai}
-              value={dadosFormulario.cpfPai}
+              value={dadosFormulario.cpfPai ?? ''}
             />
             <FormField
               name="tipoRacaCorPai"
@@ -1133,8 +1158,15 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpfResponsavel"
               label="CPF"
-              onChange={onChange}
-              value={dadosFormulario.cpfResponsavel}
+              placeholder="000.000.000-00"
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setDadosFormulario((prev) => ({
+                  ...prev,
+                  [name]: value,
+                }));
+              }}
+              value={dadosFormulario.cpfResponsavel ?? ''}
               isDisable={isCheckedResponsavel}
             />
             <FormField
@@ -1220,7 +1252,16 @@ export function FormCadastroDadosPessoais() {
           </div>
         </FormGroup>
 
-        <div className="flex items-end justify-end px-8 pt-4">
+        <div className="flex items-end justify-end gap-2 px-8 pt-4">
+          <button
+            name="novo"
+            type="button"
+            onClick={() => window.location.reload()}
+            className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            Novo
+          </button>
+
           <button
             name="salvar"
             type="button"
