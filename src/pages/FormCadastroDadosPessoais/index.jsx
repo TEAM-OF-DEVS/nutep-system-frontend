@@ -251,11 +251,11 @@ export function FormCadastroDadosPessoais() {
     dataNascimentoPai: "",
     dataNascimentoResponsavel: "",
     tipoRacaCorMae: "",
-    tipoRacaCorPai: "",
+    tipoRacaCorPai: null,
     tipoRacaCorResponsavel: "",
-    estadoCivilMae: "",
-    estadoCivilPai: "",
-    estadoCivilResponsavel: "",
+    estadoCivilMae: null,
+    estadoCivilPai: null,
+    estadoCivilResponsavel: null,
     telefone1Mae: "",
     telefone2Mae: "",
     telefone1Pai: "",
@@ -263,7 +263,7 @@ export function FormCadastroDadosPessoais() {
     telefone1Responsavel: "",
     telefone2Responsavel: "",
     escolaridadeMae: "",
-    escolaridadePai: "",
+    escolaridadePai: null,
     escolaridadeResponsavel: "",
     ocupacaoMae: {},
     ocupacaoPai: {},
@@ -987,7 +987,7 @@ export function FormCadastroDadosPessoais() {
               name="nomePai"
               label="Nome do Pai"
               placeholder="Nome"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.nomePai}
@@ -998,7 +998,7 @@ export function FormCadastroDadosPessoais() {
               label="Data de Nascimento"
               type="text"
               placeholder="00/00/0000"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.dataNascimentoPai}
@@ -1007,7 +1007,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="responsavelPelaCriancaPai"
               label="Responsável pela criança"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               isSelect
               options={simOuNao}
               onChange={onChange}
@@ -1019,7 +1019,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpfPai"
               label="CPF"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               placeholder="000.000.000-00"
               onChange={(e) => {
                 const { name, value } = e.target;
@@ -1035,7 +1035,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="tipoRacaCorPai"
               label="Raça/Cor"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
@@ -1045,7 +1045,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="estadoCivilPai"
               label="Estado Civil"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               isSelect
               options={estadoCivil}
               onChange={onChange}
@@ -1056,7 +1056,7 @@ export function FormCadastroDadosPessoais() {
               name="telefone1Pai"
               label="Telefone 1"
               placeholder="Telefone"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.telefone1Pai}
@@ -1076,7 +1076,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="escolaridadePai"
               label="Escolaridade"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               isSelect
               options={escolaridade}
               onChange={onChange}
@@ -1086,7 +1086,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="ocupacaoPai"
               label="Ocupação"
-              styleClass="campoObrigatorio"
+              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
               isSelect
               isAPI
               options={ocupacoes}
