@@ -617,24 +617,24 @@ export function FormCadastroDadosPessoais() {
       <form>
         {(HttpStatusGroup.isSuccess(code) ||
           HttpStatusGroup.isClientError(code)) && (
-            <ModalSave
-              title={
-                HttpStatusGroup.isSuccess(code)
-                  ? "Cadastrado com sucesso!"
-                  : "Erro no cadastro"
-              }
-              message={
-                HttpStatusGroup.isSuccess(code)
-                  ? "O paciente foi cadastrado com sucesso."
-                  : message || "Houve um problema ao cadastrar o paciente."
-              }
-              isOpen={isModalOpen}
-              onClose={() => {
-                setIsModalOpen(false);
-                setCode(undefined); // ← importante: resetar o status
-              }}
-            />
-          )}
+          <ModalSave
+            title={
+              HttpStatusGroup.isSuccess(code)
+                ? "Cadastrado com sucesso!"
+                : "Erro no cadastro"
+            }
+            message={
+              HttpStatusGroup.isSuccess(code)
+                ? "O paciente foi cadastrado com sucesso."
+                : message || "Houve um problema ao cadastrar o paciente."
+            }
+            isOpen={isModalOpen}
+            onClose={() => {
+              setIsModalOpen(false);
+              setCode(undefined); // ← importante: resetar o status
+            }}
+          />
+        )}
 
         {isMessageOpen && (
           <MessageAlert
@@ -706,7 +706,7 @@ export function FormCadastroDadosPessoais() {
               }}
               onBlur={handleAlertCPF}
               error={errors.cpf}
-              value={dadosFormulario.cpf ?? ''}
+              value={dadosFormulario.cpf ?? ""}
             />
             <FormField
               name="nacionalidade"
@@ -895,7 +895,7 @@ export function FormCadastroDadosPessoais() {
                 }));
               }}
               error={errors.cpfMae}
-              value={dadosFormulario.cpfMae ?? ''}
+              value={dadosFormulario.cpfMae ?? ""}
             />
             <FormField
               name="responsavelPelaCriancaMae"
@@ -987,7 +987,7 @@ export function FormCadastroDadosPessoais() {
               name="nomePai"
               label="Nome do Pai"
               placeholder="Nome"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.nomePai}
@@ -998,7 +998,7 @@ export function FormCadastroDadosPessoais() {
               label="Data de Nascimento"
               type="text"
               placeholder="00/00/0000"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.dataNascimentoPai}
@@ -1007,7 +1007,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="responsavelPelaCriancaPai"
               label="Responsável pela criança"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               isSelect
               options={simOuNao}
               onChange={onChange}
@@ -1019,7 +1019,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpfPai"
               label="CPF"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               placeholder="000.000.000-00"
               onChange={(e) => {
                 const { name, value } = e.target;
@@ -1030,12 +1030,12 @@ export function FormCadastroDadosPessoais() {
               }}
               isDisable={isChecked}
               error={errors.cpfPai}
-              value={dadosFormulario.cpfPai ?? ''}
+              value={dadosFormulario.cpfPai ?? ""}
             />
             <FormField
               name="tipoRacaCorPai"
               label="Raça/Cor"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
@@ -1045,7 +1045,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="estadoCivilPai"
               label="Estado Civil"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               isSelect
               options={estadoCivil}
               onChange={onChange}
@@ -1056,7 +1056,7 @@ export function FormCadastroDadosPessoais() {
               name="telefone1Pai"
               label="Telefone 1"
               placeholder="Telefone"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               isDisable={isChecked}
               error={errors.telefone1Pai}
@@ -1076,7 +1076,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="escolaridadePai"
               label="Escolaridade"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               isSelect
               options={escolaridade}
               onChange={onChange}
@@ -1086,7 +1086,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="ocupacaoPai"
               label="Ocupação"
-              styleClass={`${isChecked ? '' : 'campoObrigatorio'}`}
+              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
               isSelect
               isAPI
               options={ocupacoes}
@@ -1166,7 +1166,7 @@ export function FormCadastroDadosPessoais() {
                   [name]: value,
                 }));
               }}
-              value={dadosFormulario.cpfResponsavel ?? ''}
+              value={dadosFormulario.cpfResponsavel ?? ""}
               isDisable={isCheckedResponsavel}
             />
             <FormField

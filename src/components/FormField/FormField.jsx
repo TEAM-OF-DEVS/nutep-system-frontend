@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Select from "react-select";
+import MultiSelectCheckbox from "../MultiSelect";
 
 export const FormField = ({
   isTextArea = true,
@@ -149,23 +150,11 @@ export const FormField = ({
       </label>
       <div className={isGrid ? "" : "w-full max-w-sm min-w-[100%]"}>
         {isMulti ? (
-          <Select
-            id={name}
-            name={name}
-            isMulti
+          <MultiSelectCheckbox
             options={options}
-            value={
-              Array.isArray(value)
-                ? options.filter((opt) => value.includes(opt.value))
-                : []
-            }
-            onChange={(selectedOptions) => {
-              const values = selectedOptions.map((opt) => opt.value);
-              onChange({ target: { name, value: values } });
-            }}
-            placeholder="Selecione..."
-            classNamePrefix="react-select"
-            isDisabled={isDisable}
+            onChange={onChange}
+            displayAttribute={displayAttribute}
+            isAPI={isAPI}
           />
         ) : isSelect ? (
           <select

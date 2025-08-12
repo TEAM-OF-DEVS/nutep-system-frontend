@@ -2,36 +2,38 @@ class ServicoSocialBuilder {
   constructor() {
     this.dadosFormulario = {};
     this.servicoSocial = {
-      dtAtendimento: "",
-      dsAbrigo: "",
-      possuiRuaPavimentada: "",
-      possuiAguaEncanda: "",
-      nrSecadoraRoupa: "",
-      nrMotocicleta: "",
-      nrMicroondas: "",
-      nrDvd: "",
-      nrLavaRoupa: "",
-      nrFreezer: "",
-      nrGeladeira: "",
-      nrLavaLoucas: "",
-      nrMicrocomputador: "",
-      nrAutomoveis: "",
-      nrEmpregadosDomesticos: "",
-      nrBanheiro: "",
-      dsObservacao: "",
-      dsConfiguracaoFamiliar: "",
-      dsPeriodicidadeTerapia: "",
-      configuracaoFamiliar: "",
-      tpAcolhimento: "",
-      grauInstrucaoChefeFamilia: "",
-      situacaoConjugal: "",
-      presencasPais: "",
-      situacaoAtualInstituicao: "",
       paciente: {},
       abrigo: {},
       periodicidadeTerapia: {},
-      diasTurnosTerapia: "",
-      tipoTerapia: "",
+
+      dtAtendimento: "",
+      dsConfiguracaoFamiliar: "",
+      dsAbrigo: "",
+      nrBanheiro: "",
+      nrDvd: "",
+      nrAutomoveis: "",
+      nrMicroondas: "",
+      nrLavaLoucas: "",
+      nrMotocicleta: "",
+      nrFreezer: "",
+      nrSecadoraRoupa: "",
+      nrEmpregadosDomesticos: "",
+      possuiRuaPavimentada: "",
+      nrMicrocomputador: "",
+      nrGeladeira: "",
+      nrLavaRoupa: "",
+      dsPeriodicidadeTerapia: "",
+      situacaoAtualInstituicao: "",
+      dsObservacao: "",
+
+      configuracaoFamiliar: null,
+      situacaoConjugal: null,
+      presencasPais: null,
+      tpAcolhimento: null,
+      grauInstrucaoChefeFamilia: null,
+
+      diasTurnosTerapia: [],
+      tiposDeTerapia: [],
     };
   }
 
@@ -44,8 +46,12 @@ class ServicoSocialBuilder {
     return this.setCampo("paciente", { ...paciente });
   }
 
-  withTipoTerapia(tipoTerapia) {
-    return this.setCampo("tipoTerapia", { ...tipoTerapia });
+  withTipoTerapia(tiposDeTerapia) {
+    return this.setCampo("tiposDeTerapia", { ...tiposDeTerapia });
+  }
+
+  withDiasTurnoTerapia(diasTurnoTerapia) {
+    return this.setCampo("diasTurnosTerapia", { ...diasTurnoTerapia });
   }
 
   withDataAtendimento(dataAtendimento) {
@@ -156,11 +162,6 @@ class ServicoSocialBuilder {
       descricaoPeriodicidadeTerapia,
     );
   }
-
-  withDiasTurnoTerapia(diasTurnoTerapia) {
-    return this.setCampo("diasTurnosTerapia", diasTurnoTerapia);
-  }
-  nrAutomoveis;
 
   withSituacaoAtualInstituicao(situacaoAtualInstituicao) {
     return this.setCampo("situacaoAtualInstituicao", situacaoAtualInstituicao);
