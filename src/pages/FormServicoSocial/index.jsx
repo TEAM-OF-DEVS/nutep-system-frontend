@@ -79,8 +79,8 @@ export function FormServicoSocial() {
 
   const [dadosFormulario, setDadosFormulario] = useState({
     paciente: {},
-    abrigo: {},
-    periodicidadeTerapia: {},
+    abrigo: null,
+    periodicidadeTerapia: null,
     
     dtAtendimento: "",
     dsConfiguracaoFamiliar: "",
@@ -99,7 +99,7 @@ export function FormServicoSocial() {
     nrGeladeira: "",
     nrLavaRoupa: "",
     dsPeriodicidadeTerapia: "",
-    situacaoAtualInstituicao: "",
+    situacaoAtualInstituicao: null,
     dsObservacao: "",
 
     configuracaoFamiliar: null,
