@@ -1,37 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AutoComplete } from "../../components/AutoComplete/AutoComplete.jsx";
-import { FormGroup } from "../../components/FormGroup/index.jsx";
 import { FormField } from "../../components/FormField/FormField.jsx";
-import Procedencia from "../../models/enum/Procedencia.js";
-import Alergias from "../../models/enum/PreNatais/Alergias.js";
+import { FormGroup } from "../../components/FormGroup/index.jsx";
+import ModalSave from "../../components/ModalSave/ModalSave.jsx";
+import PreNatalBuilder from "../../models/build/PreNatalBuilder.js";
 import ContraceptiveMethods from "../../models/enum/PreNatais/ContraceptiveMethods.js";
 import Convenio from "../../models/enum/PreNatais/Convenio.js";
-import Diagnostico from "../../models/enum/PreNatais/Diagnostico.js";
-import DoencasPreExistentesMae from "../../models/enum/PreNatais/DoencasPreExistentesMae.js";
-import ExamesRealizadosMae from "../../models/enum/PreNatais/ExamesRealizadosMae.js";
-import Infeccoes from "../../models/enum/PreNatais/Infeccoes.js";
-import IntercorrenciasGestacao from "../../models/enum/PreNatais/IntercorrenciasGestacao.js";
 import ListSimOuNao from "../../models/enum/PreNatais/ListSimOuNao.js";
-import MedicamentosUtilizadosMae from "../../models/enum/PreNatais/MedicamentosUtilizadosMae.js";
 import MeioAbortivo from "../../models/enum/PreNatais/MeioAbortivo.js";
-import MotivoHospitalizacao from "../../models/enum/PreNatais/MotivoHospitalizacao.js";
 import PlanejamentoDeGestacao from "../../models/enum/PreNatais/PlanejamentoDeGestacao.js";
-import UsoDrogasMae from "../../models/enum/PreNatais/UsoDrogasMae.js";
-import PreNatalBuilder from "../../models/build/PreNatalBuilder.js";
 import PreNatalService from "../../services/prenatalService.jsx";
+import ServiceUtil from "../../services/serviceUtil.jsx";
 import {
   validateField,
   validateForm,
 } from "../../validator/validateFormPaciente.jsx";
-import ServiceUtil from "../../services/serviceUtil.jsx";
-import { useEffect } from "react";
-import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 
 export function FormCadastroDadosPreNatais() {
-  const procedencias = Object.entries(Procedencia).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
   const convenio = Object.entries(Convenio).map(([key, value]) => ({
     value: key,
     label: value,
@@ -46,37 +31,7 @@ export function FormCadastroDadosPreNatais() {
     value: key,
     label: value,
   }));
-  const intercorrenciasGestacao = Object.entries(IntercorrenciasGestacao).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const alergias = Object.entries(Alergias).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const infeccoes = Object.entries(Infeccoes).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const doencasPreExistentesMae = Object.entries(DoencasPreExistentesMae).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const usoDrogasMae = Object.entries(UsoDrogasMae).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
-  const examesRealizadosMae = Object.entries(ExamesRealizadosMae).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const medicamentosUtilizadosMae = Object.entries(
-    MedicamentosUtilizadosMae,
-  ).map(([key, value]) => ({ value: key, label: value }));
-  const motivoHospitalizacao = Object.entries(MotivoHospitalizacao).map(
-    ([key, value]) => ({ value: key, label: value }),
-  );
-  const diagnostico = Object.entries(Diagnostico).map(([key, value]) => ({
-    value: key,
-    label: value,
-  }));
+
   const listSimOuNao = Object.entries(ListSimOuNao).map(([key, value]) => ({
     value: key,
     label: value,
@@ -86,86 +41,209 @@ export function FormCadastroDadosPreNatais() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [procedenciasList, setProcedenciasList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(true);
 
+  const [procedencias, setProcedencias] = useState([]);
+
+  const [intercorrenciasGestacao, setIntercorrenciasGestacao] = useState([]);
+  const [alergias, setAlergias] = useState([]);
+  const [infeccoes, setInfeccoes] = useState([]);
+  const [doencasPreExistentesMae, setDoencasPreExistentesMae] = useState([]);
+  const [usoDrogasMae, setUsoDrogasMae] = useState([]);
+  const [examesRealizadosMae, setExamesRealizadosMae] = useState([]);
+  const [medicamentosUtilizadosMae, setMedicamentosUtilizadosMae] = useState(
+    [],
+  );
+  const [motivosHospitalizacaoMae, setMotivosHospitalizacaoMae] = useState([]);
+  const [diagnosticoHospitalizacaoMae, setDiagnosticoHospitalizacaoMae] =
+    useState([]);
+
   const validationRules = {
-    dataAtendimento: { required: true },
+    dtAtendimento: { required: true },
   };
 
-  const carregarCidadesOuMunicipios = async () => {
+  useEffect(() => {
+    carregarProcedencias();
+    carregarIntercorrenciasGestacao();
+    carregarAlergias();
+    carregarInfeccoes();
+    carregarDoencasPreExistentesMae();
+    carregarUsoDrogasMae();
+    carregarExamesRealizadosMae();
+    carregarMedicamentosUtilizadosMae();
+    carregarMotivosHospitalizacaoMae();
+    carregarDiagnosticoHospitalizacaoMae();
+  }, []);
+
+  const carregarProcedencias = async () => {
     try {
       setLoading(true);
       const procedencias = await ServiceUtil.getAllProcedencias();
-      setProcedenciasList(procedencias);
+      setProcedencias(procedencias);
     } catch (error) {
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    carregarCidadesOuMunicipios();
-  }, []);
+  const carregarIntercorrenciasGestacao = async () => {
+    try {
+      setLoading(true);
+      const intercorrenciasGestacoes =
+        await ServiceUtil.getAllIntercorrenciasGestacao();
+      setIntercorrenciasGestacao(intercorrenciasGestacoes);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarAlergias = async () => {
+    try {
+      setLoading(true);
+      const alergias = await ServiceUtil.getAllAlergias();
+      setAlergias(alergias);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarInfeccoes = async () => {
+    try {
+      setLoading(true);
+      const infeccoes = await ServiceUtil.getAllInfeccoes();
+      setInfeccoes(infeccoes);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarDoencasPreExistentesMae = async () => {
+    try {
+      setLoading(true);
+      const doencasPreExistentesMae = await ServiceUtil.getAllDoencas();
+      setDoencasPreExistentesMae(doencasPreExistentesMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarUsoDrogasMae = async () => {
+    try {
+      setLoading(true);
+      const usoDrogasMae = await ServiceUtil.getAllUsoDrogas();
+      setUsoDrogasMae(usoDrogasMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarExamesRealizadosMae = async () => {
+    try {
+      setLoading(true);
+      const examesRealizadosMae = await ServiceUtil.getAllExames();
+      setExamesRealizadosMae(examesRealizadosMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarMedicamentosUtilizadosMae = async () => {
+    try {
+      setLoading(true);
+      const medicamentosUtilizadosMae = await ServiceUtil.getAllMedicamentos();
+      setMedicamentosUtilizadosMae(medicamentosUtilizadosMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarMotivosHospitalizacaoMae = async () => {
+    try {
+      setLoading(true);
+      const motivosHospitalizacaoMae =
+        await ServiceUtil.getAllMotivosHospitalizacao();
+      setMotivosHospitalizacaoMae(motivosHospitalizacaoMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carregarDiagnosticoHospitalizacaoMae = async () => {
+    try {
+      setLoading(true);
+      const diagnosticoHospitalizacaoMae =
+        await ServiceUtil.getAllDiagnosticos();
+      setDiagnosticoHospitalizacaoMae(diagnosticoHospitalizacaoMae);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const [dadosFormulario, setDadosFormulario] = useState({
-    paciente: {},
-    procedencia: "",
-    descricaoProcedencia: "",
-    convenio: "",
-    descricaoConvenio: "",
-    idadeMaeEngravidar: "",
-    numeroConsultas: "",
-    idadePaiGestacao: "",
-    numeroGestacoes: "",
-    pesoInicialGravidez: "",
-    numeroFilhosVivos: "",
-    pesoFinalGravidez: "",
-    numeroNatimortos: "",
-    estaturaMae: "",
-    numeroAbortos: "",
-    tempoGestacaoPrimeiraConsulta: "",
-    planejamentoGestacao: "",
-    metodoContraceptivoAnterior: "",
-    descricaoMetodoContraceptivo: "",
-    usoAborto: "",
-    tempoGestacaoSemanas: "",
-    meioAborto: "",
-    descricaoMeioAbortivo: "",
-    consanguinidadePais: "",
-    descricaoConsanguinidade: "",
+    dtAtendimento: null,
+    nrPesoInicioGravidez: null,
+    nrPesoFimGravidez: null,
+    nrEstaturaMae: null,
+    nrIdadeMaeEngravidar: null,
+    nrIdadePaiInicioGestacao: null,
+    nrTempoGestacaoPrimeiraConsulta: null,
+    nrNumeroConsultas: null,
+    nrGestacoes: null,
+    nrFilhosVivos: null,
+    nrNatimortos: null,
+    nrAbortos: null,
+    nrTempoGestacaoSemanasAborto: null,
+    nrSemanasHospitalizacaoPeriodoGestacional: null,
+    nrDiasHospitalizacaoPeriodoGestacional: null,
+    usoAbortivo: false,
+    consanguinidadePais: false,
+    sangramentoGravidez: false,
+    hospitalizacaoPeriodoGestacional: false,
+    dsProcedencia: null,
+    dsConvenio: null,
+    dsMetodoContraceptivoAnteriorGestacao: null,
+    dsMeioAbortivo: null,
+    dsConsanguinidadePais: null,
+    dsIntercorrenciaGestacao: null,
+    dsAlergia: null,
+    dsPeriodoSangramentoGravidez: null,
+    dsInfeccoesMae: null,
+    dsDoencaPreExistentesMae: null,
+    dsMedicamentosUtilizadosMae: null,
+    dsMotivoHospitalizacaoPeriodoGestacional: null,
+    dsDiagnosticoHospitalizacaoMae: null,
+    dsObservacao: null,
+    convenio: null,
+    planejamentoGestacao: null,
+    metodoContraceptivoAnteriorGestacao: null,
+    meioAbortivo: null,
+    paciente: pacienteEncontrado || null,
+    procedencia: null,
     intercorrenciasGestacao: [],
-    descricaoIntercorrencias: "",
     alergias: [],
-    descricaoAlergias: "",
-    sangramentoGravidez: "",
-    periodoSangramento: "",
     infeccoes: [],
-    descricaoInfeccoes: "",
     doencasPreExistentesMae: [],
-    descricaoDoencasPreExistentes: "",
     usoDrogasMae: [],
-    descricaoUsoDeDrogas: "",
     examesRealizadosMae: [],
-    descricaoExamesMae: "",
     medicamentosUtilizadosMae: [],
-    descricaoMedicamentosMae: "",
-    hospitalizacoesGestacao: "",
-    periodoHospitalizacaoSemanas: "",
-    motivoHospitalizacao: [],
-    diasHospitalizacao: "",
-    descricaoMotivoHospitalizacao: "",
-    diagnostico: [],
-    descricaoDiagnostico: "",
-    observacoes: "",
+    motivosHospitalizacaoMae: [],
+    diagnosticoHospitalizacaoMae: [],
   });
 
   const handleShowAlert = (dados) => {
     setMessage(dados);
   };
 
-
-    useEffect(() => {
+  useEffect(() => {
     console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
   }, [dadosFormulario]);
 
@@ -180,6 +258,17 @@ export function FormCadastroDadosPreNatais() {
 
     const { name, value } = e.target;
 
+    let parsedValue;
+
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value;
+    }
+
+    const upperCaseValue =
+      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
+
     const keys = name.split(".");
 
     if (keys.length > 1) {
@@ -187,13 +276,13 @@ export function FormCadastroDadosPreNatais() {
         ...prevState,
         [keys[0]]: {
           ...prevState[keys[0]],
-          [keys[1]]: value,
+          [keys[1]]: upperCaseValue,
         },
       }));
     } else {
       setDadosFormulario((prevState) => ({
         ...prevState,
-        [name]: value,
+        [name]: upperCaseValue,
       }));
     }
 
@@ -203,6 +292,16 @@ export function FormCadastroDadosPreNatais() {
       [name]: error,
     }));
   };
+
+  function formatarDataParaInput(dataBR) {
+    if (!dataBR) return "";
+    const [dia, mes, ano] = dataBR.split("/");
+    return `${ano}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+  }
+
+  const dataFormatada = pacienteEncontrado?.dataNascimento
+    ? formatarDataParaInput(pacienteEncontrado.dataNascimento)
+    : "";
 
   const handleSubmit = async () => {
     const formErrors = validateForm(dadosFormulario, validationRules);
@@ -216,13 +315,10 @@ export function FormCadastroDadosPreNatais() {
   };
 
   async function enviarDadosPreNataisPaciente(dadosFormulario) {
-    const prenatal = new PreNatalBuilder()
-      .withDados(dadosFormulario)
-      .withPaciente(pacienteEncontrado)
-      .build();
-    console.log(prenatal);
+    dadosFormulario.paciente = pacienteEncontrado;
+    console.log(dadosFormulario);
     try {
-      const resposta = await PreNatalService.create(prenatal);
+      const resposta = await PreNatalService.create(dadosFormulario);
       handleShowAlert(resposta != null ? "201" : "400");
     } catch (erro) {
       if (erro instanceof Promise) {
@@ -275,17 +371,17 @@ export function FormCadastroDadosPreNatais() {
               <FormField
                 label="Data de Nascimento"
                 placeholder="00/00/0000"
-                type="Date"
-                value={pacienteEncontrado?.dataNascimento || ""}
+                type="date"
+                value={dataFormatada}
               />
               <FormField
-                name="dataAtendimento"
+                name="dtAtendimento"
                 label="Data do Atendimento"
                 placeholder="00/00/0000"
-                type="Date"
+                type="date"
                 styleClass="campoObrigatorio"
                 onChange={onChange}
-                error={errors.dataAtendimento}
+                error={errors.dtAtendimento}
               />
             </div>
           </FormGroup>
@@ -297,16 +393,17 @@ export function FormCadastroDadosPreNatais() {
               name="procedencia"
               label="Procedência"
               isSelect
+              isAPI
               options={procedencias}
               onChange={onChange}
               error={errors.procedencia}
             />
             <FormField
-              name="descricaoProcedencia"
+              name="dsProcedencia"
               label="Descrição da Procedência"
               placeholder="Descrição"
               onChange={onChange}
-              error={errors.descricaoProcedencia}
+              error={errors.dsProcedencia}
             />
             <FormField
               name="convenio"
@@ -317,11 +414,11 @@ export function FormCadastroDadosPreNatais() {
               error={errors.convenio}
             />
             <FormField
-              name="descricaoConvenio"
+              name="dsConvenio"
               label="Descrição do Convênio"
               placeholder="Descrição"
               onChange={onChange}
-              error={errors.descricaoConvenio}
+              error={errors.dsConvenio}
             />
           </div>
         </FormGroup>
@@ -332,70 +429,70 @@ export function FormCadastroDadosPreNatais() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
-              name="idadeMaeEngravidar"
+              name="nrIdadeMaeEngravidar"
               label="Idade da mãe ao engravidar"
               onChange={onChange}
-              error={errors.idadeMaeEngravidar}
+              error={errors.nrIdadeMaeEngravidar}
             />
             <FormField
-              name="numeroConsultas"
+              name="nrNumeroConsultas"
               label="Número de consultas"
               onChange={onChange}
-              error={errors.numeroConsultas}
+              error={errors.nrNumeroConsultas}
             />
             <FormField
-              name="idadePaiGestacao"
+              name="nrIdadePaiInicioGestacao"
               label="Idade do pai no início da gestação"
               onChange={onChange}
-              error={errors.idadePaiGestacao}
+              error={errors.nrIdadePaiInicioGestacao}
             />
             <FormField
-              name="numeroGestacoes"
+              name="nrGestacoes"
               label="Número de gestações"
               onChange={onChange}
-              error={errors.numeroGestacoes}
+              error={errors.nrGestacoes}
             />
             <FormField
-              name="pesoInicialGravidez"
+              name="nrPesoInicioGravidez"
               label="Peso inicial na gravidez (kg)"
               onChange={onChange}
-              error={errors.pesoInicialGravidez}
+              error={errors.nrPesoInicioGravidez}
             />
             <FormField
-              name="numeroFilhosVivos"
+              name="nrFilhosVivos"
               label="Número de filhos vivos"
               onChange={onChange}
-              error={errors.numeroFilhosVivos}
+              error={errors.nrFilhosVivos}
             />
             <FormField
-              name="pesoFinalGravidez"
+              name="nrPesoFimGravidez"
               label="Peso final na gravidez (kg)"
               onChange={onChange}
-              error={errors.pesoFinalGravidez}
+              error={errors.nrPesoFimGravidez}
             />
             <FormField
-              name="numeroNatimortos"
+              name="nrNatimortos"
               label="Número de natimortos"
               onChange={onChange}
-              error={errors.numeroNatimortos}
+              error={errors.nrNatimortos}
             />
             <FormField
-              name="estaturaMae"
+              name="nrEstaturaMae"
               label="Estatura da mãe (m)"
               onChange={onChange}
-              error={errors.estaturaMae}
+              error={errors.nrEstaturaMae}
             />
             <FormField
-              name="numeroAbortos"
+              name="nrAbortos"
               label="Número de abortos"
               onChange={onChange}
-              error={errors.numeroAbortos}
+              error={errors.nrAbortos}
             />
             <FormField
-              name="tempoGestacaoPrimeiraConsulta"
+              name="nrTempoGestacaoPrimeiraConsulta"
               label="Tempo de gestação na 1ª consulta (Semanas)"
               onChange={onChange}
-              error={errors.tempoGestacaoPrimeiraConsulta}
+              error={errors.nrTempoGestacaoPrimeiraConsulta}
             />
             <FormField
               name="planejamentoGestacao"
@@ -409,24 +506,24 @@ export function FormCadastroDadosPreNatais() {
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
-              name="metodoContraceptivoAnterior"
+              name="metodoContraceptivoAnteriorGestacao"
               label="Método contraceptivo anterior à gestação"
               isSelect
               options={contraceptiveMethods}
               onChange={onChange}
-              error={errors.metodoContraceptivoAnterior}
+              error={errors.metodoContraceptivoAnteriorGestacao}
             />
             <FormField
-              name="descricaoMetodoContraceptivo"
+              name="dsMetodoContraceptivoAnteriorGestacao"
               label="Descrição do método contraceptivo"
               onChange={onChange}
-              error={errors.descricaoMetodoContraceptivo}
+              error={errors.dsMetodoContraceptivoAnteriorGestacao}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
-              name="usoAborto"
+              name="usoAbortivo"
               label="Uso de Abortivo"
               isSelect
               options={listSimOuNao}
@@ -434,24 +531,24 @@ export function FormCadastroDadosPreNatais() {
               error={errors.usoAborto}
             />
             <FormField
-              name="tempoGestacaoSemanas"
+              name="nrTempoGestacaoSemanasAborto"
               label="Tempo gestação (Semanas)"
               onChange={onChange}
-              error={errors.tempoGestacaoSemanas}
+              error={errors.nrTempoGestacaoSemanasAborto}
             />
             <FormField
-              name="meioAborto"
+              name="meioAbortivo"
               label="Meio Abortivo"
               isSelect
               options={meioAbortivo}
               onChange={onChange}
-              error={errors.meioAborto}
+              error={errors.meioAbortivo}
             />
             <FormField
-              name="descricaoMeioAbortivo"
+              name="dsMeioAbortivo"
               label="Descrição do meio abortivo"
               onChange={onChange}
-              error={errors.descricaoMeioAbortivo}
+              error={errors.dsMeioAbortivo}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
@@ -465,45 +562,49 @@ export function FormCadastroDadosPreNatais() {
               error={errors.consanguinidadePais}
             />
             <FormField
-              name="descricaoConsanguinidade"
+              name="dsConsanguinidadePais"
               label="Descrição da Consanguinidade"
               onChange={onChange}
-              error={errors.descricaoConsanguinidade}
+              error={errors.dsConsanguinidadePais}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
-           <FormField
+            <FormField
               name="intercorrenciasGestacao"
               label="Intercorrências na gestação"
               isSelect
               isMulti
+              isAPI
               options={intercorrenciasGestacao}
-              value={dadosFormulario.intercorrenciasGestacao} 
-              onChange={onChange}
+              value={dadosFormulario.intercorrenciasGestacao}
+              onChange={(selected) =>
+                onChange(selected, "intercorrenciasGestacao")
+              }
               error={errors.intercorrenciasGestacao}
             />
             <FormField
-              name="descricaoIntercorrencias"
+              name="dsIntercorrenciaGestacao"
               label="Descrição da Intercorrência"
               onChange={onChange}
-              error={errors.descricaoIntercorrencias}
+              error={errors.dsIntercorrenciaGestacao}
             />
             <FormField
               name="alergias"
               label="Alergias"
               isSelect
               isMulti
+              isAPI
               options={alergias}
               value={dadosFormulario.alergias}
-              onChange={onChange}
+              onChange={(selected) => onChange(selected, "alergias")}
               error={errors.alergias}
             />
             <FormField
-              name="descricaoAlergias"
+              name="dsAlergia"
               label="Descrição de Alergias"
               onChange={onChange}
-              error={errors.descricaoAlergias}
+              error={errors.dsAlergia}
             />
             <FormField
               name="sangramentoGravidez"
@@ -514,26 +615,27 @@ export function FormCadastroDadosPreNatais() {
               error={errors.sangramentoGravidez}
             />
             <FormField
-              name="periodoSangramento"
+              name="dsPeriodoSangramentoGravidez"
               label="Período do Sangramento"
               onChange={onChange}
-              error={errors.periodoSangramento}
+              error={errors.dsPeriodoSangramentoGravidez}
             />
             <FormField
               name="infeccoes"
               label="Infecções"
               isSelect
               isMulti
+              isAPI
               options={infeccoes}
               value={dadosFormulario.infeccoes}
-              onChange={onChange}
+              onChange={(selected) => onChange(selected, "infeccoes")}
               error={errors.infeccoes}
             />
             <FormField
-              name="descricaoInfeccoes"
+              name="dsInfeccoesMae"
               label="Descrição de Infecções"
               onChange={onChange}
-              error={errors.descricaoInfeccoes}
+              error={errors.dsInfeccoesMae}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
@@ -543,16 +645,19 @@ export function FormCadastroDadosPreNatais() {
               label="Doenças Pré Existentes da Mãe"
               isSelect
               isMulti
+              isAPI
               options={doencasPreExistentesMae}
               value={dadosFormulario.doencasPreExistentesMae}
-              onChange={onChange}
+              onChange={(selected) =>
+                onChange(selected, "doencasPreExistentesMae")
+              }
               error={errors.doencasPreExistentesMae}
             />
             <FormField
-              name="descricaoDoencasPreExistentes"
+              name="dsDoencaPreExistentesMae"
               label="Descrição de Doenças Pré existentes"
               onChange={onChange}
-              error={errors.descricaoDoencasPreExistentes}
+              error={errors.dsDoencaPreExistentesMae}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
@@ -562,9 +667,10 @@ export function FormCadastroDadosPreNatais() {
               label="Uso de Drogas Pela Mãe"
               isSelect
               isMulti
+              isAPI
               options={usoDrogasMae}
-               value={dadosFormulario.usoDrogasMae}
-              onChange={onChange}
+              value={dadosFormulario.usoDrogasMae}
+              onChange={(selected) => onChange(selected, "usoDrogasMae")}
               error={errors.usoDrogasMae}
             />
             <FormField
@@ -581,10 +687,11 @@ export function FormCadastroDadosPreNatais() {
               label="Exames Realizados Pela Mãe"
               isSelect
               isMulti
+              isAPI
               options={examesRealizadosMae}
               value={dadosFormulario.examesRealizadosMae}
-              onChange={onChange}
-              error={errors.consanguinidadePais}
+              onChange={(selected) => onChange(selected, "examesRealizadosMae")}
+              error={errors.examesRealizadosMae}
             />
             <FormField
               name="descricaoExamesMae"
@@ -600,82 +707,91 @@ export function FormCadastroDadosPreNatais() {
               label="Medicamentos utilizados pela mãe"
               isSelect
               isMulti
+              isAPI
               options={medicamentosUtilizadosMae}
               value={dadosFormulario.medicamentosUtilizadosMae}
-              onChange={onChange}
+              onChange={(selected) =>
+                onChange(selected, "medicamentosUtilizadosMae")
+              }
               error={errors.medicamentosUtilizadosMae}
             />
             <FormField
-              name="descricaoMedicamentosMae"
+              name="dsMedicamentosUtilizadosMae"
               label="Descrição dos medicamentos utilizados pela mãe"
               onChange={onChange}
-              error={errors.descricaoMedicamentosMae}
+              error={errors.dsMedicamentosUtilizadosMae}
             />
           </div>
           <hr className="h-1 mx-auto my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
-              name="hospitalizacoesGestacao"
+              name="hospitalizacaoPeriodoGestacional"
               label="Hospitalizações no período gestacional"
               isSelect
               options={listSimOuNao}
               onChange={onChange}
-              error={errors.hospitalizacoesGestacao}
+              error={errors.hospitalizacaoPeriodoGestacional}
             />
             <FormField
-              name="periodoHospitalizacaoSemanas"
+              name="nrSemanasHospitalizacaoPeriodoGestacional"
               label="Qual periodo (semanas)"
               onChange={onChange}
-              error={errors.periodoHospitalizacaoSemanas}
+              error={errors.nrSemanasHospitalizacaoPeriodoGestacional}
             />
             <FormField
-              name="motivoHospitalizacao"
+              name="motivosHospitalizacaoMae"
               label="Motivo da hospitalização"
               isSelect
               isMulti
-              options={motivoHospitalizacao}
-              value={dadosFormulario.motivoHospitalizacao}
-              onChange={onChange}
-              error={errors.motivoHospitalizacao}
+              isAPI
+              options={motivosHospitalizacaoMae}
+              value={dadosFormulario.motivosHospitalizacaoMae}
+              onChange={(selected) =>
+                onChange(selected, "motivosHospitalizacaoMae")
+              }
+              error={errors.motivosHospitalizacaoMae}
             />
             <FormField
-              name="diasHospitalizacao"
+              name="nrDiasHospitalizacaoPeriodoGestacional"
               label="Dias de hospitalização"
               onChange={onChange}
-              error={errors.diasHospitalizacao}
+              error={errors.nrDiasHospitalizacaoPeriodoGestacional}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
-              name="descricaoMotivoHospitalizacao"
+              name="dsMotivoHospitalizacaoPeriodoGestacional"
               label="Descrição do Motivo da hospitalização"
               onChange={onChange}
-              error={errors.descricaoMotivoHospitalizacao}
+              error={errors.dsMotivoHospitalizacaoPeriodoGestacional}
             />
             <FormField
-              name="diagnostico"
+              name="diagnosticoHospitalizacaoMae"
               label="Diagnóstico"
               isSelect
               isMulti
-              options={diagnostico}
+              isAPI
+              options={diagnosticoHospitalizacaoMae}
               value={dadosFormulario.diagnostico}
-              onChange={onChange}
+              onChange={(selected) =>
+                onChange(selected, "diagnosticoHospitalizacaoMae")
+              }
               error={errors.diagnostico}
             />
             <FormField
-              name="descricaoDiagnostico"
+              name="dsDiagnosticoHospitalizacaoMae"
               label="Descrição do Diagnóstico"
               onChange={onChange}
-              error={errors.descricaoDiagnostico}
+              error={errors.dsDiagnosticoHospitalizacaoMae}
             />
           </div>
           <div className="grid grid-cols-1 gap-4 px-8 pt-4">
             <FormField
-              name="observacoes"
+              name="dsObservacao"
               label="Observações"
               type="textarea"
               onChange={onChange}
-              error={errors.observacoes}
+              error={errors.dsObservacao}
             />
           </div>
         </FormGroup>

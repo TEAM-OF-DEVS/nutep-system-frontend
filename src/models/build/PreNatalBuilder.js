@@ -2,164 +2,306 @@ class PreNatalBuilder {
   constructor() {
     this.preNatal = {
       paciente: {},
-      procedencia: "",
-      descricaoProcedencia: "",
-      convenio: "",
-      descricaoConvenio: "",
-      idadeMaeEngravidar: "",
-      numeroConsultas: "",
-      idadePaiGestacao: "",
-      numeroGestacoes: "",
-      pesoInicialGravidez: "",
-      numeroFilhosVivos: "",
-      pesoFinalGravidez: "",
-      numeroNatimortos: "",
-      estaturaMae: "",
-      numeroAbortos: "",
-      tempoGestacaoPrimeiraConsulta: "",
-      planejamentoGestacao: "",
-      metodoContraceptivoAnterior: "",
-      descricaoMetodoContraceptivo: "",
-      usoAborto: "",
-      tempoGestacaoSemanas: "",
-      meioAborto: "",
-      descricaoMeioAbortivo: "",
-      consanguinidadePais: "",
-      descricaoConsanguinidade: "",
-      intercorrenciasGestacao: "",
-      descricaoIntercorrencias: "",
-      alergias: "",
-      descricaoAlergias: "",
-      sangramentoGravidez: "",
-      periodoSangramento: "",
-      infeccoes: "",
-      descricaoInfeccoes: "",
-      doencasPreExistentesMae: "",
-      descricaoDoencasPreExistentes: "",
-      usoDrogasMae: "",
-      descricaoUsoDeDrogas: "",
-      examesRealizadosMae: "",
-      descricaoExamesMae: "",
-      medicamentosUtilizadosMae: "",
-      descricaoMedicamentosMae: "",
-      hospitalizacoesGestacao: "",
-      periodoHospitalizacaoSemanas: "",
-      motivoHospitalizacao: "",
-      diasHospitalizacao: "",
-      descricaoMotivoHospitalizacao: "",
-      diagnostico: "",
-      descricaoDiagnostico: "",
-      observacoes: "",
+      procedencia: null,
+      descricaoProcedencia: null,
+      convenio: null,
+      descricaoConvenio: null,
+      idadeMaeEngravidar: null,
+      numeroConsultas: null,
+      idadePaiGestacao: null,
+      numeroGestacoes: null,
+      pesoInicialGravidez: null,
+      numeroFilhosVivos: null,
+      pesoFinalGravidez: null,
+      numeroNatimortos: null,
+      estaturaMae: null,
+      numeroAbortos: null,
+      tempoGestacaoPrimeiraConsulta: null,
+      planejamentoGestacao: null,
+      metodoContraceptivoAnterior: null,
+      descricaoMetodoContraceptivo: null,
+      usoAborto: null,
+      tempoGestacaoSemanas: null,
+      meioAborto: null,
+      descricaoMeioAbortivo: null,
+      consanguinidadePais: null,
+      descricaoConsanguinidade: null,
+      intercorrenciasGestacao: null,
+      descricaoIntercorrencias: null,
+      alergias: null,
+      descricaoAlergias: null,
+      sangramentoGravidez: null,
+      periodoSangramento: null,
+      infeccoes: null,
+      descricaoInfeccoes: null,
+      doencasPreExistentesMae: null,
+      descricaoDoencasPreExistentes: null,
+      usoDrogasMae: null,
+      descricaoUsoDeDrogas: null,
+      examesRealizadosMae: null,
+      descricaoExamesMae: null,
+      medicamentosUtilizadosMae: null,
+      descricaoMedicamentosMae: null,
+      hospitalizacoesGestacao: null,
+      periodoHospitalizacaoSemanas: null,
+      motivoHospitalizacao: null,
+      diasHospitalizacao: null,
+      descricaoMotivoHospitalizacao: null,
+      diagnostico: null,
+      descricaoDiagnostico: null,
+      observacoes: null,
     };
   }
 
-  setCampo(campo, valor) {
-    this.preNatal[campo] = valor;
-    return this;
-  }
-
-  withDados(dados) {
-    Object.keys(dados).forEach((campo) => {
-      if (this.preNatal.hasOwnProperty(campo)) {
-        this.preNatal[campo] = dados[campo];
-      }
-    });
-    return this;
-  }
-
   withPaciente(paciente) {
-    return this.setCampo("paciente", { ...paciente });
+    this.preNatal.paciente = { ...paciente };
+    return this;
   }
 
   withProcedencia(procedencia) {
-    return this.setCampo("procedencia", procedencia);
+    this.preNatal.procedencia = procedencia;
+    return this;
   }
+
   withDescricaoProcedencia(descricaoProcedencia) {
-    return this.setCampo("descricaoProcedencia", descricaoProcedencia);
+    this.preNatal.descricaoProcedencia = descricaoProcedencia;
+    return this;
   }
+
   withConvenio(convenio) {
-    return this.setCampo("convenio", convenio);
+    this.preNatal.convenio = convenio;
+    return this;
   }
+
   withDescricaoConvenio(descricaoConvenio) {
-    return this.setCampo("descricaoConvenio", descricaoConvenio);
+    this.preNatal.descricaoConvenio = descricaoConvenio;
+    return this;
   }
+
   withIdadeMaeEngravidar(idadeMaeEngravidar) {
-    return this.setCampo("idadeMaeEngravidar", idadeMaeEngravidar);
+    this.preNatal.idadeMaeEngravidar = idadeMaeEngravidar;
+    return this;
   }
+
   withNumeroConsultas(numeroConsultas) {
-    return this.setCampo("numeroConsultas", numeroConsultas);
+    this.preNatal.numeroConsultas = numeroConsultas;
+    return this;
   }
+
   withIdadePaiGestacao(idadePaiGestacao) {
-    return this.setCampo("idadePaiGestacao", idadePaiGestacao);
+    this.preNatal.idadePaiGestacao = idadePaiGestacao;
+    return this;
   }
+
   withNumeroGestacoes(numeroGestacoes) {
-    return this.setCampo("numeroGestacoes", numeroGestacoes);
+    this.preNatal.numeroGestacoes = numeroGestacoes;
+    return this;
   }
+
   withPesoInicialGravidez(pesoInicialGravidez) {
-    return this.setCampo("pesoInicialGravidez", pesoInicialGravidez);
+    this.preNatal.pesoInicialGravidez = pesoInicialGravidez;
+    return this;
   }
+
   withNumeroFilhosVivos(numeroFilhosVivos) {
-    return this.setCampo("numeroFilhosVivos", numeroFilhosVivos);
+    this.preNatal.numeroFilhosVivos = numeroFilhosVivos;
+    return this;
   }
+
   withPesoFinalGravidez(pesoFinalGravidez) {
-    return this.setCampo("pesoFinalGravidez", pesoFinalGravidez);
+    this.preNatal.pesoFinalGravidez = pesoFinalGravidez;
+    return this;
   }
+
   withNumeroNatimortos(numeroNatimortos) {
-    return this.setCampo("numeroNatimortos", numeroNatimortos);
+    this.preNatal.numeroNatimortos = numeroNatimortos;
+    return this;
   }
+
   withEstaturaMae(estaturaMae) {
-    return this.setCampo("estaturaMae", estaturaMae);
+    this.preNatal.estaturaMae = estaturaMae;
+    return this;
   }
+
   withNumeroAbortos(numeroAbortos) {
-    return this.setCampo("numeroAbortos", numeroAbortos);
+    this.preNatal.numeroAbortos = numeroAbortos;
+    return this;
   }
+
   withTempoGestacaoPrimeiraConsulta(tempoGestacaoPrimeiraConsulta) {
-    return this.setCampo(
-      "tempoGestacaoPrimeiraConsulta",
-      tempoGestacaoPrimeiraConsulta,
-    );
+    this.preNatal.tempoGestacaoPrimeiraConsulta = tempoGestacaoPrimeiraConsulta;
+    return this;
   }
+
   withPlanejamentoGestacao(planejamentoGestacao) {
-    return this.setCampo("planejamentoGestacao", planejamentoGestacao);
+    this.preNatal.planejamentoGestacao = planejamentoGestacao;
+    return this;
   }
+
   withMetodoContraceptivoAnterior(metodoContraceptivoAnterior) {
-    return this.setCampo(
-      "metodoContraceptivoAnterior",
-      metodoContraceptivoAnterior,
-    );
+    this.preNatal.metodoContraceptivoAnterior = metodoContraceptivoAnterior;
+    return this;
   }
+
   withDescricaoMetodoContraceptivo(descricaoMetodoContraceptivo) {
-    return this.setCampo(
-      "descricaoMetodoContraceptivo",
-      descricaoMetodoContraceptivo,
-    );
+    this.preNatal.descricaoMetodoContraceptivo = descricaoMetodoContraceptivo;
+    return this;
   }
+
   withUsoAborto(usoAborto) {
-    return this.setCampo("usoAborto", usoAborto);
+    this.preNatal.usoAborto = usoAborto;
+    return this;
   }
+
   withTempoGestacaoSemanas(tempoGestacaoSemanas) {
-    return this.setCampo("tempoGestacaoSemanas", tempoGestacaoSemanas);
+    this.preNatal.tempoGestacaoSemanas = tempoGestacaoSemanas;
+    return this;
   }
+
   withMeioAborto(meioAborto) {
-    return this.setCampo("meioAborto", meioAborto);
+    this.preNatal.meioAborto = meioAborto;
+    return this;
   }
+
   withDescricaoMeioAbortivo(descricaoMeioAbortivo) {
-    return this.setCampo("descricaoMeioAbortivo", descricaoMeioAbortivo);
+    this.preNatal.descricaoMeioAbortivo = descricaoMeioAbortivo;
+    return this;
   }
+
   withConsanguinidadePais(consanguinidadePais) {
-    return this.setCampo("consanguinidadePais", consanguinidadePais);
+    this.preNatal.consanguinidadePais = consanguinidadePais;
+    return this;
   }
+
   withDescricaoConsanguinidade(descricaoConsanguinidade) {
-    return this.setCampo("descricaoConsanguinidade", descricaoConsanguinidade);
+    this.preNatal.descricaoConsanguinidade = descricaoConsanguinidade;
+    return this;
   }
+
+  withIntercorrenciasGestacao(intercorrenciasGestacao) {
+    this.preNatal.intercorrenciasGestacao = intercorrenciasGestacao;
+    return this;
+  }
+
+  withDescricaoIntercorrencias(descricaoIntercorrencias) {
+    this.preNatal.descricaoIntercorrencias = descricaoIntercorrencias;
+    return this;
+  }
+
+  withAlergias(alergias) {
+    this.preNatal.alergias = alergias;
+    return this;
+  }
+
+  withDescricaoAlergias(descricaoAlergias) {
+    this.preNatal.descricaoAlergias = descricaoAlergias;
+    return this;
+  }
+
+  withSangramentoGravidez(sangramentoGravidez) {
+    this.preNatal.sangramentoGravidez = sangramentoGravidez;
+    return this;
+  }
+
+  withPeriodoSangramento(periodoSangramento) {
+    this.preNatal.periodoSangramento = periodoSangramento;
+    return this;
+  }
+
+  withInfeccoes(infeccoes) {
+    this.preNatal.infeccoes = infeccoes;
+    return this;
+  }
+
+  withDescricaoInfeccoes(descricaoInfeccoes) {
+    this.preNatal.descricaoInfeccoes = descricaoInfeccoes;
+    return this;
+  }
+
+  withDoencasPreExistentesMae(doencasPreExistentesMae) {
+    this.preNatal.doencasPreExistentesMae = doencasPreExistentesMae;
+    return this;
+  }
+
+  withDescricaoDoencasPreExistentes(descricaoDoencasPreExistentes) {
+    this.preNatal.descricaoDoencasPreExistentes = descricaoDoencasPreExistentes;
+    return this;
+  }
+
+  withUsoDrogasMae(usoDrogasMae) {
+    this.preNatal.usoDrogasMae = usoDrogasMae;
+    return this;
+  }
+
+  withDescricaoUsoDeDrogas(descricaoUsoDeDrogas) {
+    this.preNatal.descricaoUsoDeDrogas = descricaoUsoDeDrogas;
+    return this;
+  }
+
+  withExamesRealizadosMae(examesRealizadosMae) {
+    this.preNatal.examesRealizadosMae = examesRealizadosMae;
+    return this;
+  }
+
+  withDescricaoExamesMae(descricaoExamesMae) {
+    this.preNatal.descricaoExamesMae = descricaoExamesMae;
+    return this;
+  }
+
+  withMedicamentosUtilizadosMae(medicamentosUtilizadosMae) {
+    this.preNatal.medicamentosUtilizadosMae = medicamentosUtilizadosMae;
+    return this;
+  }
+
+  withDescricaoMedicamentosMae(descricaoMedicamentosMae) {
+    this.preNatal.descricaoMedicamentosMae = descricaoMedicamentosMae;
+    return this;
+  }
+
+  withHospitalizacoesGestacao(hospitalizacoesGestacao) {
+    this.preNatal.hospitalizacoesGestacao = hospitalizacoesGestacao;
+    return this;
+  }
+
+  withPeriodoHospitalizacaoSemanas(periodoHospitalizacaoSemanas) {
+    this.preNatal.periodoHospitalizacaoSemanas = periodoHospitalizacaoSemanas;
+    return this;
+  }
+
+  withMotivoHospitalizacao(motivoHospitalizacao) {
+    this.preNatal.motivoHospitalizacao = motivoHospitalizacao;
+    return this;
+  }
+
+  withDiasHospitalizacao(diasHospitalizacao) {
+    this.preNatal.diasHospitalizacao = diasHospitalizacao;
+    return this;
+  }
+
+  withDescricaoMotivoHospitalizacao(descricaoMotivoHospitalizacao) {
+    this.preNatal.descricaoMotivoHospitalizacao = descricaoMotivoHospitalizacao;
+    return this;
+  }
+
+  withDiagnostico(diagnostico) {
+    this.preNatal.diagnostico = diagnostico;
+    return this;
+  }
+
+  withDescricaoDiagnostico(descricaoDiagnostico) {
+    this.preNatal.descricaoDiagnostico = descricaoDiagnostico;
+    return this;
+  }
+
   withObservacoes(observacoes) {
-    return this.setCampo("observacoes", observacoes);
+    this.preNatal.observacoes = observacoes;
+    return this;
   }
 
   build() {
     return {
       ...this.preNatal,
-      dataCriacao: new Date().toLocaleString("pt-Br", {
+      dataCriacao: new Date().toLocaleString("pt-BR", {
         timeZone: "America/Sao_Paulo",
       }),
     };

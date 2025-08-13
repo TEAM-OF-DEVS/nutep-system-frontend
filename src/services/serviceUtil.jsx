@@ -177,6 +177,18 @@ const ServiceUtil = {
     }
   },
 
+
+  getAllIntercorrenciasGestacao: async () => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(BASE_URL + "/pre-natais/intercorrencias");
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar intercorrencias Gestacao:", error);
+      throw error;
+    }
+  },
+
   getAllMedicamentos: async () => {
     try {
       console.log(BASE_URL);

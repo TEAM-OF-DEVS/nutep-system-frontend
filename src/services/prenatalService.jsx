@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE = import.meta.env.VITE_BASE_URL;
-const BASE_URL = BASE + "/pre_natais";
+const BASE_URL = BASE + "/preNatais";
 
 const PreNatalService = {
   // Recuperar todos os pacientes
@@ -20,11 +20,13 @@ const PreNatalService = {
       const response = await axios.get(`${BASE_URL}?paciente=${paciente}`);
       return response.data;
     } catch (error) {
-      console.error(`Erro ao buscar pré natal com prontuário ${paciente}:`, error);
+      console.error(
+        `Erro ao buscar pré natal com prontuário ${paciente}:`,
+        error,
+      );
       throw error;
     }
   },
-
 
   // Recuperar um paciente por ID
   getById: async (id) => {
