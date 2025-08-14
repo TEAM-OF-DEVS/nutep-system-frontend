@@ -20,11 +20,13 @@ const NeoNatalService = {
       const response = await axios.get(`${BASE_URL}?paciente=${paciente}`);
       return response.data;
     } catch (error) {
-      console.error(`Erro ao buscar neo natal com prontuário ${paciente}:`, error);
+      console.error(
+        `Erro ao buscar neo natal com prontuário ${paciente}:`,
+        error,
+      );
       throw error;
     }
   },
-
 
   // Recuperar um paciente por ID
   getById: async (id) => {
@@ -38,9 +40,9 @@ const NeoNatalService = {
   },
 
   // Criar um novo paciente
-  create: async (dadosServicoSocial) => {
+  create: async (dados) => {
     try {
-      const response = await axios.post(BASE_URL, dadosServicoSocial);
+      const response = await axios.post(BASE_URL, dados);
       return <div>{response.status}</div>;
     } catch (error) {
       console.error("Erro ao criar", error);
@@ -49,9 +51,9 @@ const NeoNatalService = {
   },
 
   // Atualizar um paciente existente
-  update: async (id, dadosServicoSocial) => {
+  update: async (id, dados) => {
     try {
-      const response = await axios.put(`${BASE_URL}/${id}`, dadosServicoSocial);
+      const response = await axios.put(`${BASE_URL}/${id}`, dados);
       return response.data;
     } catch (error) {
       console.error(`Erro ao atualizar ${id}:`, error);

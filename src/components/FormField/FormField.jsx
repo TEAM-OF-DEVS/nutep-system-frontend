@@ -133,6 +133,22 @@ export const FormField = ({
     onChange({ target: { name: event.target.name, value } });
   };
 
+  function parseSimNaoSi(value) {
+    if (typeof value === "boolean") {
+      return value; // já é boolean, retorna direto
+    }
+
+    if (typeof value === "string") {
+      const normalized = value.trim().toLowerCase();
+
+      if (normalized === "sim") return true;
+      if (normalized === "não" || normalized === "nao" || normalized === "si")
+        return false;
+    }
+
+    return false;
+  }
+
   return (
     <div
       className={`${className} ${
@@ -176,7 +192,9 @@ export const FormField = ({
               options.map((option, idx) => (
                 <option
                   key={isAPI ? option.id : idx}
-                  value={isAPI ? JSON.stringify(option) : option.value}
+                  value={
+                    isAPI ? JSON.stringify(option) : parseSimNaoSi(option.value)
+                  }
                 >
                   {option[displayAttribute]}
                 </option>

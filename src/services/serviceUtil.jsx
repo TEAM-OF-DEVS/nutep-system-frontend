@@ -177,11 +177,12 @@ const ServiceUtil = {
     }
   },
 
-
   getAllIntercorrenciasGestacao: async () => {
     try {
       console.log(BASE_URL);
-      const response = await axios.get(BASE_URL + "/pre-natais/intercorrencias");
+      const response = await axios.get(
+        BASE_URL + "/pre-natais/intercorrencias",
+      );
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar intercorrencias Gestacao:", error);
@@ -295,6 +296,23 @@ const ServiceUtil = {
       console.error("Erro ao buscar terapeuticas:", error);
       throw error;
     }
+  },
+
+  getAllIntercorrencias: async () => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + "/neo-natais/intercorrencias",
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar intercorrencias:", error);
+      throw error;
+    }
+  },
+
+  getAllExamesRealizados: async () => {
+    return getAllExames();
   },
 };
 

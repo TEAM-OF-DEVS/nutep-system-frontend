@@ -284,18 +284,6 @@ export function FormCadastroDadosPessoais() {
     setCode(code);
   };
 
-  const handleAlertCPF = async (cpf) => {
-    if (cpf.replace(/\D/g, "").length === 11) {
-      try {
-        const resposta = await PacienteService.getByCPF(cpf);
-      } catch (erro) {
-        console.log(cpf);
-      }
-      setCpf(cpf);
-      setIsMessageOpen(true);
-    }
-  };
-
   const handleListCitysByUF = async (e) => {
     const value = JSON.parse(e.target.value);
     try {
@@ -374,10 +362,6 @@ export function FormCadastroDadosPessoais() {
 
   const onChange = async (e) => {
     const { name, value } = e.target;
-
-    if (name === "cpf") {
-      handleAlertCPF(value);
-    }
 
     let parsedValue;
     try {
@@ -704,7 +688,6 @@ export function FormCadastroDadosPessoais() {
                   [name]: value,
                 }));
               }}
-              onBlur={handleAlertCPF}
               error={errors.cpf}
               value={dadosFormulario.cpf ?? ""}
             />

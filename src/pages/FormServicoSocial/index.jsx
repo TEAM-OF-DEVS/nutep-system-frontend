@@ -291,7 +291,7 @@ export function FormServicoSocial() {
           (message === "201" ? (
             <ModalSave
               title="Cadastrado com sucesso!"
-              message="O paciente foi cadastrado com sucesso."
+              message="O serviço social para o paciente foi cadastrado com sucesso."
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               onConfirm={handleConfirmSave}
@@ -299,7 +299,7 @@ export function FormServicoSocial() {
           ) : message === "400" ? (
             <MessageAlert
               title="Erro no cadastro"
-              message="Houve um problema ao cadastrar o paciente."
+              message="Houve um problema ao cadastrar o serviço social do paciente."
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
