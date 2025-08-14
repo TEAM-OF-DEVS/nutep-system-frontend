@@ -163,7 +163,7 @@ export function FormCadastroDadosPessoais() {
     uf: { required: true },
     sexo: { required: true },
     tipoRacaCor: { required: true },
-    descricaoCartaoSUS: { required: true },
+    descricaoCartaoSUS: { required: false },
     localDeNascimento: { required: true },
     // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
     endereco: { required: false },
@@ -752,7 +752,6 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="descricaoCartaoSUS"
               label="Número do cartão SUS"
-              styleClass="campoObrigatorio"
               placeholder="000 0000 0000 0000"
               onChange={onChange}
               error={errors.descricaoCartaoSUS}
