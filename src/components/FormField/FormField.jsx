@@ -140,27 +140,27 @@ export const FormField = ({
 
     if (typeof value === "string") {
       const normalized = value.trim().toLowerCase();
-
-      if (normalized === "sim") return true;
-      if (normalized === "não" || normalized === "nao" || normalized === "si")
+      console.log('value', value)
+      if (normalized === "sim") {
+        return true;
+      }
+      if (normalized === "não" || normalized === "nao" || normalized === "si"){
         return false;
+      }
     }
-
-    return false;
+    return value;
   }
 
   return (
     <div
-      className={`${className} ${
-        isGrid
-          ? "disabled:bg-gray-500 flex items-center space-x-2 font-bold text-sm"
-          : "disabled:bg-gray-200 flex flex-col space-y-1 font-bold text-sm"
-      }`}
+      className={`${className} ${isGrid
+        ? "disabled:bg-gray-500 flex items-center space-x-2 font-bold text-sm"
+        : "disabled:bg-gray-200 flex flex-col space-y-1 font-bold text-sm"
+        }`}
     >
       <label
-        className={`${styleClass} font-bold text-sm text-gray-800 ${
-          isGrid ? "w-1/2" : ""
-        }`}
+        className={`${styleClass} font-bold text-sm text-gray-800 ${isGrid ? "w-1/2" : ""
+          }`}
       >
         {label}
       </label>
@@ -228,8 +228,8 @@ export const FormField = ({
               type === "checkbox"
                 ? `${styleInput}`
                 : isGrid
-                ? `${styleInput} w-full bg-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 shadow-sm`
-                : `${styleInput} w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow`
+                  ? `${styleInput} w-full bg-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 shadow-sm`
+                  : `${styleInput} w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow`
             }
           />
         )}

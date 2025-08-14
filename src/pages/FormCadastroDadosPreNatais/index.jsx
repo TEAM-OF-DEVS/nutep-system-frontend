@@ -17,6 +17,16 @@ import {
 } from "../../validator/validateFormPaciente.jsx";
 
 export function FormCadastroDadosPreNatais() {
+  useEffect(() => {
+    // Desativa o comportamento de manter a rolagem após reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Garante que a rolagem vá para o topo
+    window.scrollTo(0, 0);
+  }, []);
+
   const convenio = Object.entries(Convenio).map(([key, value]) => ({
     value: key,
     label: value,
@@ -340,16 +350,20 @@ export function FormCadastroDadosPreNatais() {
             title="Pré Natal cadastrado!"
             message="O Pré natal para o paciente foi cadastrado com sucesso."
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => {
+              setIsModalOpen(false);
+              window.location.reload(); // ← recarrega a página apenas no sucesso
+            }}
           />
         ) : message === "400" ? (
           <ModalSave
             title="Erro no cadastro!"
             message="Houve um problema ao cadastrar pré natal do paciente."
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => setIsModalOpen(false)} // ← só fecha o modal, sem reload
           />
         ) : null}
+
         {/*DADOS PRE NATAIS*/}
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (

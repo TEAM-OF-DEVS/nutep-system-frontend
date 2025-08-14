@@ -21,6 +21,16 @@ import ServiceUtil from "../../services/serviceUtil";
 import SimOuNao from "../../models/enum/SimNao";
 
 export function FormCadastroDadosNeonatais() {
+  useEffect(() => {
+    // Desativa o comportamento de manter a rolagem após reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Garante que a rolagem vá para o topo
+    window.scrollTo(0, 0);
+  }, []);
+
   const locaisDeNascimento = Object.entries(LocalNascimento).map(
     ([key, value]) => ({ value: key, label: value }),
   );
@@ -95,7 +105,7 @@ export function FormCadastroDadosNeonatais() {
     cirurgiaRealizada: false,
     dsCirurgiaRealizada: "",
 
-    examesRealizados: "",
+    examesRealizados: null,
     dsExameRealizado: "",
 
     tpTestePezinho: null,
@@ -335,7 +345,10 @@ export function FormCadastroDadosNeonatais() {
             title="Neo Natal cadastrado!"
             message="O Neo natal do paciente foi cadastrado com sucesso."
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => {
+              setIsModalOpen(false);
+              window.location.reload(); // Recarrega a página somente em caso de sucesso
+            }}
           />
         ) : message === "400" ? (
           <ModalSave
@@ -343,9 +356,10 @@ export function FormCadastroDadosNeonatais() {
             title="Erro no cadastro!"
             message="Houve um problema ao cadastrar o neo natal do paciente."
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            onClose={() => setIsModalOpen(false)} // Apenas fecha o modal
           />
         ) : null}
+
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
 
         {pacienteEncontrado && (

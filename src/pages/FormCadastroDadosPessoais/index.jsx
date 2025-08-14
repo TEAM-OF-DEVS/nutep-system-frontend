@@ -599,8 +599,7 @@ export function FormCadastroDadosPessoais() {
   return (
     <>
       <form>
-        {(HttpStatusGroup.isSuccess(code) ||
-          HttpStatusGroup.isClientError(code)) && (
+        {(HttpStatusGroup.isSuccess(code) || HttpStatusGroup.isClientError(code)) && (
           <ModalSave
             title={
               HttpStatusGroup.isSuccess(code)
@@ -615,10 +614,17 @@ export function FormCadastroDadosPessoais() {
             isOpen={isModalOpen}
             onClose={() => {
               setIsModalOpen(false);
-              setCode(undefined); // ← importante: resetar o status
+              setCode(undefined);
+
+              // Recarrega a página apenas se o código for de sucesso (ex: 200–299)
+              if (HttpStatusGroup.isSuccess(code)) {
+                window.location.reload();
+              }
             }}
           />
         )}
+
+
 
         {isMessageOpen && (
           <MessageAlert
@@ -1236,15 +1242,6 @@ export function FormCadastroDadosPessoais() {
         </FormGroup>
 
         <div className="flex items-end justify-end gap-2 px-8 pt-4">
-          <button
-            name="novo"
-            type="button"
-            onClick={() => window.location.reload()}
-            className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-          >
-            Novo
-          </button>
-
           <button
             name="salvar"
             type="button"

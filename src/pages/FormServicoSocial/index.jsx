@@ -21,6 +21,17 @@ import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 import ServiceUtil from "../../services/serviceUtil.jsx";
 
 export function FormServicoSocial() {
+
+  useEffect(() => {
+    // Desativa o comportamento de manter a rolagem após reload
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Garante que a rolagem vá para o topo
+    window.scrollTo(0, 0);
+  }, []);
+
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [pacienteEncontrado, setPacienteEncontrado] = useState(null);
@@ -63,6 +74,7 @@ export function FormServicoSocial() {
     ([key, value]) => ({ value: key, label: value }),
   );
 
+  
   function formatarDataParaInput(dataBR) {
     if (!dataBR) return "";
     const [dia, mes, ano] = dataBR.split("/");
@@ -81,7 +93,7 @@ export function FormServicoSocial() {
     paciente: {},
     abrigo: null,
     periodicidadeTerapia: null,
-    
+
     dtAtendimento: "",
     dsConfiguracaoFamiliar: "",
     dsAbrigo: "",
@@ -293,7 +305,10 @@ export function FormServicoSocial() {
               title="Cadastrado com sucesso!"
               message="O serviço social para o paciente foi cadastrado com sucesso."
               isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
+              onClose={() => {
+                setIsModalOpen(false);
+                window.location.reload();
+              }}
               onConfirm={handleConfirmSave}
             />
           ) : message === "400" ? (
@@ -301,9 +316,12 @@ export function FormServicoSocial() {
               title="Erro no cadastro"
               message="Houve um problema ao cadastrar o serviço social do paciente."
               isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
+              onClose={() => {
+                setIsModalOpen(false);
+              }}
             />
           ) : null)}
+
 
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (
