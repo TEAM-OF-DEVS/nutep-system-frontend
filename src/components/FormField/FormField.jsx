@@ -102,6 +102,24 @@ export const FormField = ({
   const formatHouseNumber = (value) =>
     value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
 
+  const formatDecimal = (value) => {
+
+  let formatted = value.replace(/[^0-9.]/g, "");
+
+  const parts = formatted.split('.');
+  if (parts.length > 2) {
+    formatted = parts[0] + '.' + parts.slice(1).join('');
+  }
+  
+  if (parts.length === 2) {
+    formatted = parts[0].slice(0, 3) + '.' + parts[1].slice(0, 2);
+  } else {
+    formatted = formatted.slice(0, 3); 
+  }
+  
+  return formatted;
+};
+
   const handleInputChange = (event) => {
     let value = event.target.value;
     const fieldName = event.target.name.toLowerCase();
@@ -126,9 +144,15 @@ export const FormField = ({
       value = formatHouseNumber(value);
     } else if (fieldName.includes("data")) {
       value = formatDateBR(value);
-    } else {
-      value = value.toUpperCase();
-    }
+    } else if (
+      fieldName.includes("estatura") || 
+      fieldName.includes("altura") || 
+      fieldName.includes("nrEstaturaMae")
+    ) {
+    value = formatDecimal(value);
+  } else {
+    value = value.toUpperCase();
+  }
 
     onChange({ target: { name: event.target.name, value } });
   };

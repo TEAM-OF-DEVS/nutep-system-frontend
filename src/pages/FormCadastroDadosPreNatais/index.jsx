@@ -257,51 +257,82 @@ export function FormCadastroDadosPreNatais() {
     console.log("DADOS ATUAIS DO FORMULÁRIO:", dadosFormulario);
   }, [dadosFormulario]);
 
-  const onChange = (e, fieldName) => {
-    if (Array.isArray(e)) {
-      setDadosFormulario((prevState) => ({
-        ...prevState,
-        [fieldName]: e,
-      }));
-      return;
-    }
+const onChange = (e, fieldName) => {
+  if (Array.isArray(e)) {
+    setDadosFormulario((prevState) => ({
+      ...prevState,
+      [fieldName]: e,
+    }));
+    return;
+  }
 
-    const { name, value } = e.target;
+  const { name, value } = e.target;
 
-    let parsedValue;
-
-    try {
-      parsedValue = JSON.parse(value);
-    } catch {
-      parsedValue = value;
-    }
-
-    const upperCaseValue =
-      typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
-
-    const keys = name.split(".");
-
-    if (keys.length > 1) {
-      setDadosFormulario((prevState) => ({
-        ...prevState,
-        [keys[0]]: {
-          ...prevState[keys[0]],
-          [keys[1]]: upperCaseValue,
-        },
-      }));
+   
+  if (name === "nrEstaturaMae") {
+    
+    const numericValue = value.replace(/\D/g, '');
+    
+    let formattedValue = '';
+    
+    if (numericValue.length <= 2) {
+      
+      formattedValue = numericValue;
+    } else if (numericValue.length <= 4) {
+     
+      formattedValue = `${numericValue.slice(0, 2)}.${numericValue.slice(2)}`;
     } else {
-      setDadosFormulario((prevState) => ({
-        ...prevState,
-        [name]: upperCaseValue,
-      }));
+
+      formattedValue = `${numericValue.slice(0, 2)}.${numericValue.slice(2, 4)}`;
     }
 
-    const error = validateField(name, value, validationRules[name]);
+    setDadosFormulario((prevState) => ({
+      ...prevState,
+      [name]: formattedValue,
+    }));
+
+
+    const isValid = /^[0-9]{1,2}(\.[0-9]{0,2})?$/.test(formattedValue);
     setErrors((prev) => ({
       ...prev,
-      [name]: error,
+      [name]: isValid ? "" : "Formato inválido (ex: 99.99)"
     }));
-  };
+
+    return;
+  }
+
+
+  let parsedValue;
+  try {
+    parsedValue = JSON.parse(value);
+  } catch {
+    parsedValue = value;
+  }
+
+  const upperCaseValue = typeof parsedValue === "string" ? parsedValue.toUpperCase() : parsedValue;
+
+  const keys = name.split(".");
+  if (keys.length > 1) {
+    setDadosFormulario((prevState) => ({
+      ...prevState,
+      [keys[0]]: {
+        ...prevState[keys[0]],
+        [keys[1]]: upperCaseValue,
+      },
+    }));
+  } else {
+    setDadosFormulario((prevState) => ({
+      ...prevState,
+      [name]: upperCaseValue,
+    }));
+  }
+
+  const error = validateField(name, value, validationRules[name]);
+  setErrors((prev) => ({
+    ...prev,
+    [name]: error,
+  }));
+};
 
   function formatarDataParaInput(dataBR) {
     if (!dataBR) return "";
@@ -493,8 +524,12 @@ export function FormCadastroDadosPreNatais() {
             <FormField
               name="nrEstaturaMae"
               label="Estatura da mãe (m)"
-              onChange={onChange}
+              placeholder="Ex: 1.75"
+              onChange={onChange}  
               error={errors.nrEstaturaMae}
+              value={dadosFormulario.nrEstaturaMae ?? ""}
+              type="text"
+              inputMode="decimal"
             />
             <FormField
               name="nrAbortos"
