@@ -269,38 +269,40 @@ const onChange = (e, fieldName) => {
   const { name, value } = e.target;
 
    
-  if (name === "nrEstaturaMae") {
-    
-    const numericValue = value.replace(/\D/g, '');
-    
-    let formattedValue = '';
-    
-    if (numericValue.length <= 2) {
-      
-      formattedValue = numericValue;
-    } else if (numericValue.length <= 4) {
-     
-      formattedValue = `${numericValue.slice(0, 2)}.${numericValue.slice(2)}`;
-    } else {
+// Tratamento especial para o campo de estatura
 
-      formattedValue = `${numericValue.slice(0, 2)}.${numericValue.slice(2, 4)}`;
+  if (name === "nrEstaturaMae") {
+    // Remove todos os caracteres não numéricos e pontos extras
+    let cleanedValue = value.replace(/[^0-9.]/g, "");
+    const parts = cleanedValue.split('.');
+    
+    // Se já tem ponto digitado manualmente (ex: 32.1)
+    if (parts.length > 1) {
+      cleanedValue = parts[0] + '.' + parts.slice(1).join('').slice(0, 2);
+    } 
+    // Formatação automática para 3 dígitos (321 → 3.21)
+    else if (cleanedValue.length === 3) {
+      cleanedValue = cleanedValue.slice(0, 1) + '.' + cleanedValue.slice(1, 3);
+    }
+    // Limitação para 4 dígitos (3210 → 3.21)
+    else if (cleanedValue.length > 3) {
+      cleanedValue = cleanedValue.slice(0, 1) + '.' + cleanedValue.slice(1, 3);
     }
 
     setDadosFormulario((prevState) => ({
       ...prevState,
-      [name]: formattedValue,
+      [name]: cleanedValue,
     }));
 
-
-    const isValid = /^[0-9]{1,2}(\.[0-9]{0,2})?$/.test(formattedValue);
+    // Validação
+    const isValid = /^[0-9]{1}(\.[0-9]{1,2})?$/.test(cleanedValue);
     setErrors((prev) => ({
       ...prev,
-      [name]: isValid ? "" : "Formato inválido (ex: 99.99)"
+      [name]: isValid ? "" : "Formato inválido"
     }));
 
     return;
   }
-
 
   let parsedValue;
   try {
