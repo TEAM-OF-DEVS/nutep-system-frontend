@@ -213,7 +213,7 @@ export function FormCadastroDadosPessoais() {
     ocupacaoResponsavel: { required: false },
     descricaoOcupacaoResponsavel: { required: false },
 
-    procedencia: { required: true },
+    procedencia: { required: false },
     // dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
@@ -275,7 +275,7 @@ export function FormCadastroDadosPessoais() {
     responsavelPelaCriancaPai: "",
     vinculoResponsavel: "",
     descricaoVinculoResponsavel: "",
-    procedencia: {},
+    procedencia: null,
     dsOutroTipoDeProcedenciaPaciente: "",
   });
 
@@ -308,9 +308,9 @@ export function FormCadastroDadosPessoais() {
     setIsCheckedResponsavel(!isCheckedResponsavel);
   };
 
-  useEffect(() => {
-    console.log("DADOS ENVIADO", dadosFormulario);
-  }, [dadosFormulario]);
+  // useEffect(() => {
+  //   console.log("DADOS ENVIADO", dadosFormulario);
+  // }, [dadosFormulario]);
 
   useEffect(() => {
     const carregarNaturalidadesPorUF = async () => {
@@ -347,13 +347,13 @@ export function FormCadastroDadosPessoais() {
         ...prev,
         nomeResponsavel: "",
         dataNascimentoResponsavel: "",
-        vinculoResponsavel: "",
+        vinculoResponsavel: null,
         cpfResponsavel: "",
-        tipoRacaCorResponsavel: "",
-        estadoCivilResponsavel: "",
+        tipoRacaCorResponsavel: null,
+        estadoCivilResponsavel: null,
         telefone1Responsavel: "",
-        escolaridadeResponsavel: "",
-        ocupacaoResponsavel: "",
+        escolaridadeResponsavel: null,
+        ocupacaoResponsavel: null,
         descricaoOcupacaoResponsavel: "",
         descricaoVinculoResponsavel: "",
       }));
@@ -476,14 +476,13 @@ export function FormCadastroDadosPessoais() {
       .withEndereco(endereco)
       .withMaeResponsavel(dadosFormulario.responsavelPelaCriancaMae)
       .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai)
-      .withResponsavel("paiResponsavel", paiResponsavel)
       .withResponsavel("maeResponsavel", maeResponsavel);
 
     console.log("isCheckedResponsavel: ", isCheckedResponsavel);
-    if (!isCheckedResponsavel) {
-      pacientePreSalvo.withResponsavel("responsavel", responsavel);
-    }
-
+    pacientePreSalvo.withResponsavel("responsavel", responsavel);
+    pacientePreSalvo.withResponsavel("paiResponsavel", paiResponsavel);
+    pacientePreSalvo.withTemPaiResponsavel(!isChecked);
+    pacientePreSalvo.withTemResponsavel(!isCheckedResponsavel);
     return pacientePreSalvo.build();
   }
 
@@ -1225,7 +1224,6 @@ export function FormCadastroDadosPessoais() {
               label="Procedência"
               isSelect
               isAPI
-              styleClass="campoObrigatorio"
               options={procedencias}
               onChange={onChange}
               error={errors.procedencia}

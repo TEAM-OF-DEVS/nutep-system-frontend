@@ -20,17 +20,27 @@ class BuilderPaciente {
       nacionalidade: null,
       maeResponsavel: null,
       paiResponsavel: null,
-      naturalidade: {},
-      endereco: {},
-      procedencia: {},
-      paiResponsavel: {},
-      maeResponsavel: {},
-      responsavel: {},
+      naturalidade: null,
+      endereco: null,
+      procedencia: null,
+      responsavel: null,
+      temPaiResponsavel: true,
+      temResponsavel: true,
     };
   }
 
   withId(id) {
     this.paciente.id = id;
+    return this;
+  }
+
+  withTemPaiResponsavel(temPaiResponsavel) {
+    this.paciente.temPaiResponsavel = temPaiResponsavel;
+    return this;
+  }
+
+  withTemResponsavel(temResponsavel) {
+    this.paciente.temResponsavel = temResponsavel;
     return this;
   }
 
@@ -93,8 +103,7 @@ class BuilderPaciente {
 
   withProcedencia(procedencia) {
     this.paciente.procedencia = {
-      ...procedencia,
-      ativo: true,
+      ...procedencia || null,
     };
     return this;
   }
@@ -108,7 +117,6 @@ class BuilderPaciente {
   withResponsavel(tipo, responsavel) {
     this.paciente[tipo] = {
       ...responsavel,
-      ativo: true,
     };
     return this;
   }

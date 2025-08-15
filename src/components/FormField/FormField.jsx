@@ -164,7 +164,6 @@ export const FormField = ({
 
     if (typeof value === "string") {
       const normalized = value.trim().toLowerCase();
-      console.log('value', value)
       if (normalized === "sim") {
         return true;
       }
