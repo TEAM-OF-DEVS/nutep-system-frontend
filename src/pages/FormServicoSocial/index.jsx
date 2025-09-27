@@ -19,13 +19,14 @@ import MessageAlert from "../../util/MessageAlert.jsx";
 import ServicoSocialBuilder from "../../models/build/ServicoSocialBuilder.js";
 import ModalSave from "../../components/ModalSave/ModalSave.jsx";
 import ServiceUtil from "../../services/serviceUtil.jsx";
+import RendaFamiliar from "../../models/enum/ServicosSocial/RendaFamiliar.js";
+import Beneficio from "../../models/enum/ServicosSocial/Beneficio.js";
 
 export function FormServicoSocial() {
-
   useEffect(() => {
     // Desativa o comportamento de manter a rolagem após reload
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
 
     // Garante que a rolagem vá para o topo
@@ -42,6 +43,7 @@ export function FormServicoSocial() {
   const [diasTurnosTerapia, setDiasTurnosTerapia] = useState([]);
   const [periodicidadeTerapia, setPeriodicidadeTerapia] = useState([]);
   const [tiposTerapias, setTiposTerapias] = useState([]);
+  const [unidadesDeAtendimentos, setUnidadesDeAtendimentos] = useState([]);
 
   const configuracaoFamiliar = Object.entries(ConfiguracaoFamiliar).map(
     ([key, value]) => ({ value: key, label: value }),
@@ -74,7 +76,16 @@ export function FormServicoSocial() {
     ([key, value]) => ({ value: key, label: value }),
   );
 
-  
+  const beneficio = Object.entries(Beneficio).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+
+  const rendaFamiliar = Object.entries(RendaFamiliar).map(([key, value]) => ({
+    value: key,
+    label: value,
+  }));
+
   function formatarDataParaInput(dataBR) {
     if (!dataBR) return "";
     const [dia, mes, ano] = dataBR.split("/");
@@ -113,15 +124,20 @@ export function FormServicoSocial() {
     dsPeriodicidadeTerapia: "",
     situacaoAtualInstituicao: null,
     dsObservacao: "",
+    dsBeneficio: "",
+    dsRendaFamiliar: "",
 
     configuracaoFamiliar: null,
     situacaoConjugal: null,
     presencasPais: null,
     tpAcolhimento: null,
     grauInstrucaoChefeFamilia: null,
+    rendaFamiliar: null,
+    beneficio: null,
 
     diasTurnosTerapia: [],
     tiposDeTerapia: [],
+    unidadesDeAtendimentos: [],
   });
 
   const handleShowAlert = (dados) => {
@@ -222,11 +238,25 @@ export function FormServicoSocial() {
     }
   };
 
+  const carregarUnidadesDeAtendimentos = async () => {
+    try {
+      setLoading(true);
+      const unidadesDeAtendimentosAPI =
+        await ServiceUtil.getAllUnidadesAtendimentos();
+
+      setUnidadesDeAtendimentos(unidadesDeAtendimentosAPI);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     carregarAbrigos();
     carregarDiasTurnosTerapias();
     carregarPeriodicidadesTerapias();
     carregarTipoTerapia();
+    carregarUnidadesDeAtendimentos();
   }, []);
 
   useEffect(() => {
@@ -283,7 +313,7 @@ export function FormServicoSocial() {
       .withPeriodicidadeTerapia(dadosFormulario.periodicidadeTerapia)
       .withPaciente(pacienteEncontrado)
       .build();
-    console.log(servicoSocial);
+    console.log("SERVICO_SOCIAL: ", servicoSocial);
     try {
       const resposta = await ServicoSocialService.create(servicoSocial);
       handleShowAlert(resposta != null ? "201" : "400");
@@ -321,7 +351,6 @@ export function FormServicoSocial() {
               }}
             />
           ) : null)}
-
 
         <AutoComplete onSelectPaciente={setPacienteEncontrado} />
         {pacienteEncontrado && (
@@ -650,12 +679,61 @@ export function FormServicoSocial() {
               </div>
             </div>
           </div>
+          <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
+            <FormField
+              name="rendaFamiliar"
+              label="Renda Mensal Familiar do Paciente"
+              data-testid="intercorrencias-field"
+              isSelect
+              options={rendaFamiliar}
+              value={dadosFormulario.rendaFamiliar}
+              onChange={(selected) => onChange(selected, "rendaFamiliar")}
+              error={errors.rendaFamiliar}
+            />
+            <FormField
+              name="dsRendaFamiliar"
+              label="Descrição da Renda Mensal"
+              onChange={onChange}
+              error={errors.dsRendaFamiliar}
+            />
+            <FormField
+              name="beneficio"
+              label="Benefícios"
+              isSelect
+              options={beneficio}
+              value={dadosFormulario.beneficio}
+              onChange={(selected) => onChange(selected, "beneficio")}
+              error={errors.beneficio}
+            />
+            <FormField
+              name="dsBeneficio"
+              label="Descrição do benefício"
+              onChange={onChange}
+              error={errors.dsBeneficio}
+            />
+          </div>
         </FormGroup>
         {/* Atendimentos */}
         <FormGroup
           title="Atendimentos"
           description="Dados sobre o atendimento do Paciente"
         >
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols- gap-4 px-8 pt-4">
+            <FormField
+              name="unidadesDeAtendimentos"
+              label="Unidade de Atendimento"
+              isSelect
+              isMulti
+              isAPI
+              options={unidadesDeAtendimentos}
+              value={dadosFormulario.unidadesDeAtendimentos}
+              onChange={(selected) =>
+                handleSelectionChange("unidadesDeAtendimentos", selected)
+              }
+              error={errors.unidadesDeAtendimentos}
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-8 pt-4">
             <FormField
               name="periodicidadeTerapia"

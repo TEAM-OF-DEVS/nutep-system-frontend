@@ -24,6 +24,7 @@ class BuilderPaciente {
       endereco: null,
       procedencia: null,
       responsavel: null,
+      temMaeResponsalvel: true,
       temPaiResponsavel: true,
       temResponsavel: true,
     };
@@ -31,6 +32,11 @@ class BuilderPaciente {
 
   withId(id) {
     this.paciente.id = id;
+    return this;
+  }
+
+  withTemMaeResponsavel(temMaeResponsavel) {
+    this.paciente.temMaeResponsalvel = temMaeResponsavel;
     return this;
   }
 
@@ -103,7 +109,7 @@ class BuilderPaciente {
 
   withProcedencia(procedencia) {
     this.paciente.procedencia = {
-      ...procedencia || null,
+      ...(procedencia || null),
     };
     return this;
   }

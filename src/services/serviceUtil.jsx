@@ -115,7 +115,20 @@ const ServiceUtil = {
       );
       return response.data;
     } catch (error) {
-      console.error("Erro ao buscar tipos de Terapias:", error);
+      console.error("Erro ao buscar tipos de terapias:", error);
+      throw error;
+    }
+  },
+
+  getAllUnidadesAtendimentos: async () => {
+    try {
+      console.log(BASE_URL);
+      const response = await axios.get(
+        BASE_URL + "/servico-social/unidadesDeAtendimentos",
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar unidades de atendimentos:", error);
       throw error;
     }
   },

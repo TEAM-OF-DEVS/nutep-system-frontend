@@ -25,15 +25,20 @@ class ServicoSocialBuilder {
       dsPeriodicidadeTerapia: "",
       situacaoAtualInstituicao: "",
       dsObservacao: "",
+      dsBeneficio: "",
+      dsRendaFamiliar: "",
 
       configuracaoFamiliar: null,
       situacaoConjugal: null,
       presencasPais: null,
       tpAcolhimento: null,
       grauInstrucaoChefeFamilia: null,
+      rendaFamiliar: null,
+      beneficio: null,
 
       diasTurnosTerapia: [],
       tiposDeTerapia: [],
+      unidadesDeAtendimentos: [],
     };
   }
 
@@ -52,6 +57,12 @@ class ServicoSocialBuilder {
 
   withDiasTurnoTerapia(diasTurnoTerapia) {
     return this.setCampo("diasTurnosTerapia", { ...diasTurnoTerapia });
+  }
+
+  withUnidadesDeAtendimento(unidadesDeAtendimentos) {
+    return this.setCampo("unidadesDeAtendimentos", {
+      ...unidadesDeAtendimentos,
+    });
   }
 
   withDataAtendimento(dataAtendimento) {
@@ -148,6 +159,14 @@ class ServicoSocialBuilder {
     );
   }
 
+  withRendaFamiliar(rendaFamiliar) {
+    return this.setCampo("rendaFamiliar", rendaFamiliar);
+  }
+
+  withBeneficio(beneficio) {
+    return this.setCampo("beneficio", beneficio);
+  }
+
   withLavaRoupa(lavaRoupa) {
     return this.setCampo("nrLavaRoupa", lavaRoupa);
   }
@@ -169,6 +188,14 @@ class ServicoSocialBuilder {
 
   withObservacoes(observacoes) {
     return this.setCampo("dsObservacao", observacoes);
+  }
+
+  withDescricaoBeneficio(descricaoBeneficio) {
+    return this.setCampo("dsBeneficio", descricaoBeneficio);
+  }
+
+  withDescricaoRendaFamiliar(descricaoRendaFamiliar) {
+    return this.setCampo("dsRendaFamiliar", descricaoRendaFamiliar);
   }
 
   withDados(dados) {

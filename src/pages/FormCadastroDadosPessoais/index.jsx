@@ -75,7 +75,8 @@ export function FormCadastroDadosPessoais() {
   const [message, setMessage] = useState("");
   const [cpf, setCpf] = useState("");
   const [code, setCode] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedMae, setIsCheckedMae] = useState(false);
+  const [isCheckedPai, setIsCheckedPai] = useState(false);
   const [isCheckedResponsavel, setIsCheckedResponsavel] = useState(false);
   const [errors, setErrors] = useState({});
   const [paiOuMaeResponsavel, setPaiOuMaeResponsavel] = useState(false);
@@ -176,28 +177,28 @@ export function FormCadastroDadosPessoais() {
     estado: { required: true },
     tpMoradia: { required: true },
 
-    nomeMae: { required: true },
-    dataNascimentoMae: { required: true },
-    responsavelPelaCriancaMae: { required: true },
-    cpfMae: { required: true },
-    tipoRacaCorMae: { required: true },
-    estadoCivilMae: { required: true },
-    telefone1Mae: { required: true },
+    nomeMae: { required: !isCheckedMae },
+    dataNascimentoMae: { required: !isCheckedMae },
+    responsavelPelaCriancaMae: { required: !isCheckedMae },
+    cpfMae: { required: !isCheckedMae },
+    tipoRacaCorMae: { required: !isCheckedMae },
+    estadoCivilMae: { required: !isCheckedMae },
+    telefone1Mae: { required: !isCheckedMae },
     telefone2Mae: { required: false },
-    escolaridadeMae: { required: true },
-    ocupacaoMae: { required: true },
-    descricaoOcupacaoMae: { required: false },
+    escolaridadeMae: { required: !isCheckedMae },
+    ocupacaoMae: { required: !isCheckedMae },
+    descricaoOcupacaoMae: { required: !isCheckedMae },
 
-    nomePai: { required: !isChecked },
-    dataNascimentoPai: { required: !isChecked },
-    responsavelPelaCriancaPai: { required: !isChecked },
-    cpfPai: { required: !isChecked },
-    tipoRacaCorPai: { required: !isChecked },
-    estadoCivilPai: { required: !isChecked },
-    telefone1Pai: { required: !isChecked },
+    nomePai: { required: !isCheckedPai },
+    dataNascimentoPai: { required: !isCheckedPai },
+    responsavelPelaCriancaPai: { required: !isCheckedPai },
+    cpfPai: { required: !isCheckedPai },
+    tipoRacaCorPai: { required: !isCheckedPai },
+    estadoCivilPai: { required: !isCheckedPai },
+    telefone1Pai: { required: !isCheckedPai },
     telefone2Pai: { required: false },
-    escolaridadePai: { required: !isChecked },
-    ocupacaoPai: { required: !isChecked },
+    escolaridadePai: { required: !isCheckedPai },
+    ocupacaoPai: { required: !isCheckedPai },
     // descricaoOcupacaoPai: { required: !isChecked },
 
     nomeResponsavel: { required: false },
@@ -300,8 +301,12 @@ export function FormCadastroDadosPessoais() {
     }));
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const handleCheckboxMaeChange = () => {
+    setIsCheckedMae(!isCheckedMae);
+  };
+
+  const handleCheckboxPaiChange = () => {
+    setIsCheckedPai(!isCheckedPai);
   };
 
   const handleCheckboxChangeResponsavel = () => {
@@ -475,13 +480,14 @@ export function FormCadastroDadosPessoais() {
       .withNaturalidade(dadosFormulario.naturalidade)
       .withEndereco(endereco)
       .withMaeResponsavel(dadosFormulario.responsavelPelaCriancaMae)
-      .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai)
-      .withResponsavel("maeResponsavel", maeResponsavel);
+      .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai);
 
     console.log("isCheckedResponsavel: ", isCheckedResponsavel);
-    pacientePreSalvo.withResponsavel("responsavel", responsavel);
+    pacientePreSalvo.withResponsavel("maeResponsavel", maeResponsavel)
     pacientePreSalvo.withResponsavel("paiResponsavel", paiResponsavel);
-    pacientePreSalvo.withTemPaiResponsavel(!isChecked);
+    pacientePreSalvo.withResponsavel("responsavel", responsavel);
+    pacientePreSalvo.withTemMaeResponsavel(!isCheckedMae);
+    pacientePreSalvo.withTemPaiResponsavel(!isCheckedPai);
     pacientePreSalvo.withTemResponsavel(!isCheckedResponsavel);
     return pacientePreSalvo.build();
   }
@@ -598,7 +604,8 @@ export function FormCadastroDadosPessoais() {
   return (
     <>
       <form>
-        {(HttpStatusGroup.isSuccess(code) || HttpStatusGroup.isClientError(code)) && (
+        {(HttpStatusGroup.isSuccess(code) ||
+          HttpStatusGroup.isClientError(code)) && (
           <ModalSave
             title={
               HttpStatusGroup.isSuccess(code)
@@ -622,8 +629,6 @@ export function FormCadastroDadosPessoais() {
             }}
           />
         )}
-
-
 
         {isMessageOpen && (
           <MessageAlert
@@ -850,29 +855,41 @@ export function FormCadastroDadosPessoais() {
           title="Dados dos Pais"
           description="Cadastro de dados pessoais dos pais do Paciente"
         >
+          <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
+            <FormField
+              name="nadaConstaMae"
+              label="NC (Caso desconhecido, selecionar está opção)"
+              type="checkbox"
+              styleInput="w-6 h-6"
+              onChange={handleCheckboxMaeChange}
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
             <FormField
               name="nomeMae"
               label="Nome da Mãe"
               placeholder="Nome"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               error={errors.nomeMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="dataNascimentoMae"
               label="Data de Nascimento"
               type="text"
               placeholder="00/00/0000"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               error={errors.dataNascimentoMae}
               value={dadosFormulario.dataNascimentoMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="cpfMae"
               label="CPF"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               placeholder="000.000.000-00"
               onChange={(e) => {
                 const { name, value } = e.target;
@@ -883,44 +900,49 @@ export function FormCadastroDadosPessoais() {
               }}
               error={errors.cpfMae}
               value={dadosFormulario.cpfMae ?? ""}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="responsavelPelaCriancaMae"
               label="Responsável pela criança"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               isSelect
               options={simOuNao}
               onChange={onChange}
               error={errors.responsavelPelaCriancaMae}
+              isDisable={isCheckedMae}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-4 px-8 pt-4">
             <FormField
               name="tipoRacaCorMae"
               label="Raça/Cor"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
               error={errors.tipoRacaCorMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="estadoCivilMae"
               label="Estado Civil"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               isSelect
               options={estadoCivil}
               onChange={onChange}
               error={errors.estadoCivilMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="telefone1Mae"
               label="Telefone 1"
               placeholder="Telefone"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               onChange={onChange}
               error={errors.telefone1Mae}
               value={dadosFormulario.telefone1Mae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="telefone2Mae"
@@ -929,27 +951,30 @@ export function FormCadastroDadosPessoais() {
               onChange={onChange}
               error={errors.telefone2Mae}
               value={dadosFormulario.telefone2Mae}
+              isDisable={isCheckedMae}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 px-8 pt-4">
             <FormField
               name="escolaridadeMae"
               label="Escolaridade"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               isSelect
               options={escolaridade}
               onChange={onChange}
               error={errors.escolaridadeMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="ocupacaoMae"
               label="Ocupação"
-              styleClass="campoObrigatorio"
+              styleClass={`${isCheckedMae ? "" : "campoObrigatorio"}`}
               isSelect
               isAPI
               options={ocupacoes}
               onChange={onChange}
               error={errors.ocupacaoMae}
+              isDisable={isCheckedMae}
             />
             <FormField
               name="descricaoOcupacaoMae"
@@ -957,16 +982,17 @@ export function FormCadastroDadosPessoais() {
               placeholder="Descrição"
               onChange={onChange}
               error={errors.descricaoOcupacaoMae}
+              isDisable={isCheckedMae}
             />
           </div>
           <hr className="h-1 my-4 border-0 rounded md:my-10 bg-gray-700"></hr>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
             <FormField
-              name="nadaConsta"
+              name="nadaConstaPai"
               label="NC (Caso desconhecido, selecionar está opção)"
               type="checkbox"
               styleInput="w-6 h-6"
-              onChange={handleCheckboxChange}
+              onChange={handleCheckboxPaiChange}
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-8 pt-4'">
@@ -974,9 +1000,9 @@ export function FormCadastroDadosPessoais() {
               name="nomePai"
               label="Nome do Pai"
               placeholder="Nome"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.nomePai}
               className="col-span-1"
             />
@@ -985,20 +1011,20 @@ export function FormCadastroDadosPessoais() {
               label="Data de Nascimento"
               type="text"
               placeholder="00/00/0000"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.dataNascimentoPai}
               value={dadosFormulario.dataNascimentoPai}
             />
             <FormField
               name="responsavelPelaCriancaPai"
               label="Responsável pela criança"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               isSelect
               options={simOuNao}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.responsavelPelaCriancaPai}
             />
           </div>
@@ -1006,7 +1032,7 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="cpfPai"
               label="CPF"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               placeholder="000.000.000-00"
               onChange={(e) => {
                 const { name, value } = e.target;
@@ -1015,37 +1041,37 @@ export function FormCadastroDadosPessoais() {
                   [name]: value,
                 }));
               }}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.cpfPai}
               value={dadosFormulario.cpfPai ?? ""}
             />
             <FormField
               name="tipoRacaCorPai"
               label="Raça/Cor"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               isSelect
               options={tipoRacaCor}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.tipoRacaCorPai}
             />
             <FormField
               name="estadoCivilPai"
               label="Estado Civil"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               isSelect
               options={estadoCivil}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.estadoCivilPai}
             />
             <FormField
               name="telefone1Pai"
               label="Telefone 1"
               placeholder="Telefone"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.telefone1Pai}
               value={dadosFormulario.telefone1Pai}
             />
@@ -1054,7 +1080,7 @@ export function FormCadastroDadosPessoais() {
               label="Telefone 2"
               placeholder="Telefone"
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.telefone2Pai}
               value={dadosFormulario.telefone2Pai}
             />
@@ -1063,22 +1089,22 @@ export function FormCadastroDadosPessoais() {
             <FormField
               name="escolaridadePai"
               label="Escolaridade"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               isSelect
               options={escolaridade}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.escolaridadePai}
             />
             <FormField
               name="ocupacaoPai"
               label="Ocupação"
-              styleClass={`${isChecked ? "" : "campoObrigatorio"}`}
+              styleClass={`${isCheckedPai ? "" : "campoObrigatorio"}`}
               isSelect
               isAPI
               options={ocupacoes}
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
               error={errors.ocupacaoPai}
             />
             <FormField
@@ -1086,7 +1112,7 @@ export function FormCadastroDadosPessoais() {
               label="Descrição da ocupação"
               placeholder="Descrição"
               onChange={onChange}
-              isDisable={isChecked}
+              isDisable={isCheckedPai}
             />
           </div>
         </FormGroup>

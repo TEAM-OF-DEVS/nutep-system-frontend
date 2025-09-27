@@ -103,22 +103,21 @@ export const FormField = ({
     value.replace(/[^0-9a-zA-Z\/\-\.\s]/g, "").slice(0, 10);
 
   const formatDecimal = (value) => {
+    let formatted = value.replace(/[^0-9.]/g, "");
 
-  let formatted = value.replace(/[^0-9.]/g, "");
+    const parts = formatted.split(".");
+    if (parts.length < 2) {
+      formatted = parts[0] + "." + parts.slice(1).join("");
+    }
 
-  const parts = formatted.split('.');
-  if (parts.length > 2) {
-    formatted = parts[0] + '.' + parts.slice(1).join('');
-  }
-  
-  if (parts.length === 2) {
-    formatted = parts[0].slice(0, 3) + '.' + parts[1].slice(0, 2);
-  } else {
-    formatted = formatted.slice(0, 3); 
-  }
-  
-  return formatted;
-};
+    if (parts.length === 2) {
+      formatted = parts[0].slice(0, 3) + "." + parts[1].slice(0, 2);
+    } else {
+      formatted = formatted.slice(0, 3);
+    }
+
+    return formatted;
+  };
 
   const handleInputChange = (event) => {
     let value = event.target.value;
@@ -145,14 +144,14 @@ export const FormField = ({
     } else if (fieldName.includes("data")) {
       value = formatDateBR(value);
     } else if (
-      fieldName.includes("estatura") || 
-      fieldName.includes("altura") || 
+      fieldName.includes("estatura") ||
+      fieldName.includes("altura") ||
       fieldName.includes("nrEstaturaMae")
     ) {
-    value = formatDecimal(value);
-  } else {
-    value = value.toUpperCase();
-  }
+      value = formatDecimal(value);
+    } else {
+      value = value.toUpperCase();
+    }
 
     onChange({ target: { name: event.target.name, value } });
   };
@@ -167,7 +166,7 @@ export const FormField = ({
       if (normalized === "sim") {
         return true;
       }
-      if (normalized === "não" || normalized === "nao" || normalized === "si"){
+      if (normalized === "não" || normalized === "nao" || normalized === "si") {
         return false;
       }
     }
@@ -176,14 +175,16 @@ export const FormField = ({
 
   return (
     <div
-      className={`${className} ${isGrid
-        ? "disabled:bg-gray-500 flex items-center space-x-2 font-bold text-sm"
-        : "disabled:bg-gray-200 flex flex-col space-y-1 font-bold text-sm"
-        }`}
+      className={`${className} ${
+        isGrid
+          ? "disabled:bg-gray-500 flex items-center space-x-2 font-bold text-sm"
+          : "disabled:bg-gray-200 flex flex-col space-y-1 font-bold text-sm"
+      }`}
     >
       <label
-        className={`${styleClass} font-bold text-sm text-gray-800 ${isGrid ? "w-1/2" : ""
-          }`}
+        className={`${styleClass} font-bold text-sm text-gray-800 ${
+          isGrid ? "w-1/2" : ""
+        }`}
       >
         {label}
       </label>
@@ -251,8 +252,8 @@ export const FormField = ({
               type === "checkbox"
                 ? `${styleInput}`
                 : isGrid
-                  ? `${styleInput} w-full bg-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 shadow-sm`
-                  : `${styleInput} w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow`
+                ? `${styleInput} w-full bg-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 shadow-sm`
+                : `${styleInput} w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow`
             }
           />
         )}
