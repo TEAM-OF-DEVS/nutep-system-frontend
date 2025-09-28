@@ -7,6 +7,7 @@ import { FormCadastroDadosPreNatais } from "./pages/FormCadastroDadosPreNatais/i
 import { FormCadastroDadosNeonatais } from "./pages/FormCadastroDadosNeonatais/index.jsx";
 import Login from "./pages/Login/index.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
 
 const MyContext = createContext();
 
@@ -33,28 +34,30 @@ function App() {
             <Route
               path="/dashboard/*"
               element={
-                <div className="flex">
-                  <Sidebar setOpen={setOpen} open={open} />
+                <ProtectedRoute>
+                  <div className="flex">
+                    <Sidebar setOpen={setOpen} open={open} />
 
-                  <div
-                    className={`flex-1 transition-all duration-300 ${
-                      open ? "ml-64" : "ml-20"
-                    }`}
-                  >
-                    
-                    <Routes>
-                      <Route index element={<Dashboard/>}/>
-                      {routes.map((route, index) => (
-                        <Route
-                          key={index}
-                          path={route.path}
-                          exact={true}
-                          element={route.component}
-                        />
-                      ))}
-                    </Routes>
+                    <div
+                      className={`flex-1 transition-all duration-300 ${
+                        open ? "ml-64" : "ml-20"
+                      }`}
+                    >
+                      
+                      <Routes>
+                        <Route index element={<Dashboard/>}/>
+                        {routes.map((route, index) => (
+                          <Route
+                            key={index}
+                            path={route.path}
+                            exact={true}
+                            element={route.component}
+                          />
+                        ))}
+                      </Routes>
+                    </div>
                   </div>
-                </div>
+                </ProtectedRoute>
               }
             />
           </Routes>

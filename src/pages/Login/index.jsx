@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 // import PersonIcon from "@mui/icons-material/Person";
@@ -16,6 +16,13 @@ export default function AuthPage() {
   // const [confirmPassword, setConfirmPassword] = useState("");
   // const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
+
+    useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleLogin = () => {
     setErrors({});
