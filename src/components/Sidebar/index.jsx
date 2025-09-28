@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
@@ -20,6 +21,12 @@ const Sidebar = ({ setOpen, open }) => {
 
   const toggleSubMenu = (index) => {
     setSubmenuOpen(submenuOpen === index ? null : index);
+  };
+
+  const navigate = useNavigate();
+   const handleLogout = () => {
+    localStorage.removeItem("user"); 
+    navigate("/"); 
   };
 
   const Menus = [
@@ -112,27 +119,35 @@ const Sidebar = ({ setOpen, open }) => {
             </Button>
             {menu.subMenu && submenuOpen === index && open && (
               <div className="flex flex-col pl-8">
-                {menu.subMenu.map((subMenu, subIndex) => (
-                  <Link
-                    key={subIndex}
-                    to={
-                      subMenu === "Sair"
-                        ? "/"
-                        : subMenu === "Dados Pessoais"
-                        ? "/dashboard/dados-pessoais"
-                        : subMenu === "Dados Serviços Sociais"
-                        ? "/dashboard/servico-social"
-                        : subMenu === "Dados Pré-Natais"
-                        ? "/dashboard/dados-pre-natais"
-                        : subMenu === "Dados Neonatais"
-                        ? "/dashboard/dados-neonatais"
-                        : "#"
-                    }
-                    className="text-white block p-2 no-underline font-bold"
-                  >
-                    {subMenu}
-                  </Link>
-                ))}
+                {menu.subMenu.map((subMenu, subIndex) =>
+  subMenu === "Sair" ? (
+    <button
+      key={subIndex}
+      onClick={handleLogout}
+      className="text-white block p-2 no-underline font-bold text-left"
+    >
+      {subMenu}
+    </button>
+  ) : (
+    <Link
+      key={subIndex}
+      to={
+        subMenu === "Dados Pessoais"
+          ? "/dashboard/dados-pessoais"
+          : subMenu === "Dados Serviços Sociais"
+          ? "/dashboard/servico-social"
+          : subMenu === "Dados Pré-Natais"
+          ? "/dashboard/dados-pre-natais"
+          : subMenu === "Dados Neonatais"
+          ? "/dashboard/dados-neonatais"
+          : "#"
+      }
+      className="text-white block p-2 no-underline font-bold"
+    >
+      {subMenu}
+    </Link>
+  )
+)}
               </div>
             )}
           </li>
