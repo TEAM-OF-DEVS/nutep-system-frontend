@@ -251,9 +251,9 @@ export function FormCadastroDadosPessoais() {
     dataNascimentoMae: "",
     dataNascimentoPai: "",
     dataNascimentoResponsavel: "",
-    tipoRacaCorMae: "",
+    tipoRacaCorMae: null,
     tipoRacaCorPai: null,
-    tipoRacaCorResponsavel: "",
+    tipoRacaCorResponsavel: null,
     estadoCivilMae: null,
     estadoCivilPai: null,
     estadoCivilResponsavel: null,
@@ -263,10 +263,10 @@ export function FormCadastroDadosPessoais() {
     telefone2Pai: "",
     telefone1Responsavel: "",
     telefone2Responsavel: "",
-    escolaridadeMae: "",
+    escolaridadeMae: null,
     escolaridadePai: null,
-    escolaridadeResponsavel: "",
-    ocupacaoMae: {},
+    escolaridadeResponsavel: null,
+    ocupacaoMae: null,
     ocupacaoPai: null,
     ocupacaoResponsavel: null,
     descricaoOcupacaoMae: "",
@@ -274,7 +274,7 @@ export function FormCadastroDadosPessoais() {
     descricaoOcupacaoResponsavel: "",
     responsavelPelaCriancaMae: "",
     responsavelPelaCriancaPai: "",
-    vinculoResponsavel: "",
+    vinculoResponsavel: null,
     descricaoVinculoResponsavel: "",
     procedencia: null,
     dsOutroTipoDeProcedenciaPaciente: "",
@@ -284,6 +284,10 @@ export function FormCadastroDadosPessoais() {
     setMessage(message);
     setCode(code);
   };
+
+  useEffect(() => {
+    console.log('enviando dados', dadosFormulario)
+  }, [dadosFormulario])
 
   const handleListCitysByUF = async (e) => {
     const value = JSON.parse(e.target.value);
