@@ -187,7 +187,7 @@ export function FormCadastroDadosPessoais() {
     telefone2Mae: { required: false },
     escolaridadeMae: { required: !isCheckedMae },
     ocupacaoMae: { required: !isCheckedMae },
-    descricaoOcupacaoMae: { required: !isCheckedMae },
+    // descricaoOcupacaoMae: { required: !isCheckedMae },
 
     nomePai: { required: !isCheckedPai },
     dataNascimentoPai: { required: !isCheckedPai },
