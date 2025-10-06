@@ -27,14 +27,6 @@ export const validateField = (name, value, rules = {}) => {
     }
   }
 
-  // if (rules.required && (!value || (typeof value === "string" && value.trim() === ""))) {
-  //   errors.push(`${firstLetter(name)} é obrigatório.`);
-  // }
-  // Validação de comprimento mínimo (aplicada apenas se o valor não estiver vazio)
-  // if (rules.minLength && value && typeof value === "string" && value.trim().length < rules.minLength) {
-  //   errors.push(`${firstLetter(name)} deve ter pelo menos ${rules.minLength} caracteres.`);
-  // }
-
   return errors.length > 0 ? errors.join(" ") : null;
 };
 
