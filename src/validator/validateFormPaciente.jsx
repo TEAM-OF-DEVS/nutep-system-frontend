@@ -17,8 +17,14 @@ export const validateField = (name, value, rules = {}) => {
   const errors = [];
 
   // Validação de campo obrigatório
-  if (rules.required && (!value || (typeof value === "string" && value.trim() === ""))) {
-    errors.push(`${firstLetter(name)} é obrigatório.`);
+  if (rules.required) {
+    const isStringEmpty = typeof value === "string" && value.trim() === "";
+    const isValueEmpty =
+      value === undefined || value === null || isStringEmpty;
+
+    if (isValueEmpty) {
+      errors.push(`${firstLetter(name)} é obrigatório.`);
+    }
   }
 
   // if (rules.required && (!value || (typeof value === "string" && value.trim() === ""))) {
