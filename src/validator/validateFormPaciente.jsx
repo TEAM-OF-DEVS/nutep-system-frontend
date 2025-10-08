@@ -15,15 +15,23 @@ const firstLetter = (string) => {
  */
 export const validateField = (name, value, rules = {}) => {
   const errors = [];
+  const { required, label } = rules;
+
+  const fieldLabel =
+    label && label.trim() !== "" && label !== "undefined" && label !== "null"
+      ? label
+      : name;
 
   // Validação de campo obrigatório
   if (rules.required) {
-    const isStringEmpty = typeof value === "string" && value.trim() === "";
-    const isValueEmpty =
-      value === undefined || value === null || isStringEmpty;
+    const isEmpty =
+      value === null ||
+      value === undefined ||
+      value === "" ||
+      (typeof value === "object" && Object.keys(value).length === 0);
 
-    if (isValueEmpty) {
-      errors.push(`${firstLetter(name)} é obrigatório.`);
+    if (isEmpty) {
+      errors.push(`${fieldLabel} é obrigatório.`);
     }
   }
 

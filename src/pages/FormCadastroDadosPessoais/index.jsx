@@ -154,67 +154,106 @@ export function FormCadastroDadosPessoais() {
   }, []);
 
   const validationRules = {
-    dataAdmissao: { required: true },
-    descricaoProntuario: { required: true },
-    nomeCompleto: { required: true },
-    dataNascimento: { required: true },
-    cpf: { required: false },
-    nacionalidade: { required: true },
-    naturalidade: { required: true },
-    uf: { required: true },
-    sexo: { required: true },
-    tipoRacaCor: { required: true },
-    descricaoCartaoSUS: { required: false },
-    localDeNascimento: { required: true },
-    // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false },
-    endereco: { required: false },
-    cep: { required: true },
-    logradouro: { required: true },
-    numero: { required: true },
-    // complemento: { required: false },
-    bairro: { required: true },
-    municipioLogradouro: { required: true },
-    estado: { required: true },
-    tpMoradia: { required: true },
+    dataAdmissao: { required: true, label: "Data da Admissão" },
+    descricaoProntuario: { required: true, label: "Prontuário" },
+    nomeCompleto: { required: true, label: "Nome Completo" },
+    dataNascimento: { required: true, label: "Data de Nascimento" },
+    cpf: { required: true, label: "CPF" },
+    nacionalidade: { required: true, label: "Nacionalidade" },
+    naturalidade: { required: true, label: "Naturalidade" },
+    uf: { required: true, label: "UF" },
+    sexo: { required: true, label: "Sexo" },
+    tipoRacaCor: { required: true, label: "Raça/Cor" },
+    descricaoCartaoSUS: { required: false, label: "Descrição do Cartão SUS" },
+    localDeNascimento: { required: true, label: "Local de Nascimento" },
+    // dsOutroTipoDeLocalDeNascimentoPaciente: { required: false, label: "Outro Tipo de Local de Nascimento" },
+    endereco: { required: false, label: "Endereço" },
+    cep: { required: true, label: "CEP" },
+    logradouro: { required: true, label: "Logradouro" },
+    numero: { required: true, label: "Número" },
+    // complemento: { required: false, label: "Complemento" },
+    bairro: { required: true, label: "Bairro" },
+    municipioLogradouro: { required: true, label: "Cidade" },
+    estado: { required: true, label: "Estado" },
+    tpMoradia: { required: true, label: "Tipo de Moradia" },
 
-    nomeMae: { required: !isCheckedMae },
-    dataNascimentoMae: { required: !isCheckedMae },
-    responsavelPelaCriancaMae: { required: !isCheckedMae },
-    cpfMae: { required: !isCheckedMae },
-    tipoRacaCorMae: { required: !isCheckedMae },
-    estadoCivilMae: { required: !isCheckedMae },
-    telefone1Mae: { required: !isCheckedMae },
-    telefone2Mae: { required: false },
-    escolaridadeMae: { required: !isCheckedMae },
-    ocupacaoMae: { required: !isCheckedMae },
-    // descricaoOcupacaoMae: { required: !isCheckedMae },
+    nomeMae: { required: !isCheckedMae, label: "Nome" },
+    dataNascimentoMae: {
+      required: !isCheckedMae,
+      label: "Data de Nascimento",
+    },
+    responsavelPelaCriancaMae: {
+      required: !isCheckedMae,
+      label: "Responsável pela Criança",
+    },
+    cpfMae: { required: !isCheckedMae, label: "CPF" },
+    tipoRacaCorMae: { required: !isCheckedMae, label: "Raça/Cor" },
+    estadoCivilMae: { required: !isCheckedMae, label: "Estado Civil" },
+    telefone1Mae: { required: !isCheckedMae, label: "Telefone 1" },
+    telefone2Mae: { required: false, label: "Telefone 2" },
+    escolaridadeMae: { required: !isCheckedMae, label: "Escolaridade" },
+    ocupacaoMae: { required: !isCheckedMae, label: "Ocupação" },
+    descricaoOcupacaoMae: {
+      required: !isCheckedMae,
+      label: "Descrição da Ocupação",
+    },
 
-    nomePai: { required: !isCheckedPai },
-    dataNascimentoPai: { required: !isCheckedPai },
-    responsavelPelaCriancaPai: { required: !isCheckedPai },
-    cpfPai: { required: !isCheckedPai },
-    tipoRacaCorPai: { required: !isCheckedPai },
-    estadoCivilPai: { required: !isCheckedPai },
-    telefone1Pai: { required: !isCheckedPai },
-    telefone2Pai: { required: false },
-    escolaridadePai: { required: !isCheckedPai },
-    ocupacaoPai: { required: !isCheckedPai },
-    // descricaoOcupacaoPai: { required: !isChecked },
+    nomePai: { required: !isCheckedPai, label: "Nome" },
+    dataNascimentoPai: {
+      required: !isCheckedPai,
+      label: "Data de Nascimento",
+    },
+    responsavelPelaCriancaPai: {
+      required: !isCheckedPai,
+      label: "Responsável pela Criança",
+    },
+    cpfPai: { required: !isCheckedPai, label: "CPF" },
+    tipoRacaCorPai: { required: !isCheckedPai, label: "Raça/Cor" },
+    estadoCivilPai: { required: !isCheckedPai, label: "Estado Civil" },
+    telefone1Pai: { required: !isCheckedPai, label: "Telefone 1" },
+    telefone2Pai: { required: false, label: "Telefone 2" },
+    escolaridadePai: { required: !isCheckedPai, label: "Escolaridade" },
+    ocupacaoPai: { required: !isCheckedPai, label: "Ocupação" },
+    // descricaoOcupacaoPai: { required: !isCheckedPai, label: "Descrição da Ocupação do Pai" },
 
-    nomeResponsavel: { required: false },
-    dataNascimentoResponsavel: { required: false },
-    vinculoResponsavel: { required: false },
-    descricaoVinculoResponsavel: { required: false },
-    cpfResponsavel: { required: false },
-    tipoRacaCorResponsavel: { required: false },
-    estadoCivilResponsavel: { required: false },
-    telefone1Responsavel: { required: false },
-    telefone2Responsavel: { required: false },
-    escolaridadeResponsavel: { required: false },
-    ocupacaoResponsavel: { required: false },
-    descricaoOcupacaoResponsavel: { required: false },
+    nomeResponsavel: { required: false, label: "Nome" },
+    dataNascimentoResponsavel: {
+      required: false,
+      label: "Data de Nascimento",
+    },
+    vinculoResponsavel: { required: false, label: "Vínculo" },
+    descricaoVinculoResponsavel: {
+      required: false,
+      label: "Descrição do Vínculo",
+    },
+    cpfResponsavel: { required: false, label: "CPF" },
+    tipoRacaCorResponsavel: {
+      required: false,
+      label: "Raça/Cor",
+    },
+    estadoCivilResponsavel: {
+      required: false,
+      label: "Estado Civil",
+    },
+    telefone1Responsavel: {
+      required: false,
+      label: "Telefone 1",
+    },
+    telefone2Responsavel: {
+      required: false,
+      label: "Telefone 2",
+    },
+    escolaridadeResponsavel: {
+      required: false,
+      label: "Escolaridade",
+    },
+    ocupacaoResponsavel: { required: false, label: "Ocupação" },
+    descricaoOcupacaoResponsavel: {
+      required: false,
+      label: "Descrição da Ocupação",
+    },
 
-    procedencia: { required: false },
+    procedencia: { required: false, label: "Procedência" },
     // dsOutroTipoDeProcedenciaPaciente: { required: false },
   };
 
@@ -286,8 +325,8 @@ export function FormCadastroDadosPessoais() {
   };
 
   useEffect(() => {
-    console.log('enviando dados', dadosFormulario)
-  }, [dadosFormulario])
+    console.log("enviando dados", dadosFormulario);
+  }, [dadosFormulario]);
 
   const handleListCitysByUF = async (e) => {
     const value = JSON.parse(e.target.value);
@@ -487,7 +526,7 @@ export function FormCadastroDadosPessoais() {
       .withPaiResponsavel(dadosFormulario.responsavelPelaCriancaPai);
 
     console.log("isCheckedResponsavel: ", isCheckedResponsavel);
-    pacientePreSalvo.withResponsavel("maeResponsavel", maeResponsavel)
+    pacientePreSalvo.withResponsavel("maeResponsavel", maeResponsavel);
     pacientePreSalvo.withResponsavel("paiResponsavel", paiResponsavel);
     pacientePreSalvo.withResponsavel("responsavel", responsavel);
     pacientePreSalvo.withTemMaeResponsavel(!isCheckedMae);
