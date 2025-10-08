@@ -902,7 +902,7 @@ export function FormCadastroDadosPessoais() {
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
             <FormField
               name="nadaConstaMae"
-              label="NC (Caso desconhecido, selecionar está opção)"
+              label="NC (Caso desconhecida, selecionar esta opção)"
               type="checkbox"
               styleInput="w-6 h-6"
               onChange={handleCheckboxMaeChange}
@@ -1032,7 +1032,7 @@ export function FormCadastroDadosPessoais() {
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 px-8 pb-2">
             <FormField
               name="nadaConstaPai"
-              label="NC (Caso desconhecido, selecionar está opção)"
+              label="NC (Caso desconhecido, selecionar esta opção)"
               type="checkbox"
               styleInput="w-6 h-6"
               onChange={handleCheckboxPaiChange}
