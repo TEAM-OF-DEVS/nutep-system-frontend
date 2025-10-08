@@ -23,7 +23,7 @@ export const validateField = (name, value, rules = {}) => {
       : name;
 
   // Validação de campo obrigatório
-  if (rules.required) {
+  if (required) {
     const isEmpty =
       value === null ||
       value === undefined ||
