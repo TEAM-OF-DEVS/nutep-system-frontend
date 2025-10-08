@@ -194,7 +194,7 @@ export function FormCadastroDadosPessoais() {
     escolaridadeMae: { required: !isCheckedMae, label: "Escolaridade" },
     ocupacaoMae: { required: !isCheckedMae, label: "Ocupação" },
     descricaoOcupacaoMae: {
-      required: !isCheckedMae,
+      required: false,
       label: "Descrição da Ocupação",
     },
 
@@ -214,7 +214,7 @@ export function FormCadastroDadosPessoais() {
     telefone2Pai: { required: false, label: "Telefone 2" },
     escolaridadePai: { required: !isCheckedPai, label: "Escolaridade" },
     ocupacaoPai: { required: !isCheckedPai, label: "Ocupação" },
-    // descricaoOcupacaoPai: { required: !isCheckedPai, label: "Descrição da Ocupação do Pai" },
+    descricaoOcupacaoPai: { required: false, label: "Descrição da Ocupação do Pai" },
 
     nomeResponsavel: { required: false, label: "Nome" },
     dataNascimentoResponsavel: {
